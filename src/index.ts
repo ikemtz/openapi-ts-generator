@@ -25,5 +25,3 @@ export async function generateTsModels(url: string, outputfolder: string) {
   await unlinkSync(filePath);
 }
 
-// sample Usage
-// generateTsModels('https://im-wa-cmpo-nrsr.azurewebsites.net/swagger/index.html', "./output/odata/");
