@@ -37,8 +37,32 @@ steps:
     customCommand: 'run build'
 
 - task: Npm@1
+  displayName: 'npm test'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run test'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage cobertura-coverage.xml'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+    failIfCoverageEmpty: true
+
+- task: PublishTestResults@2
+  displayName: 'Publish JUnit Test Results'
+  inputs:
+    searchFolder: '$(System.DefaultWorkingDirectory)/coverage/'
+    testResultsFiles: junit.xml
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+
+- task: Npm@1
   displayName: 'npm publish'
   inputs:
     command: publish
     verbose: false
     publishEndpoint: IkeMtz-npm
+
+
