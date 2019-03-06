@@ -1,4 +1,4 @@
-import { readdirSync, existsSync } from 'fs';
+import { existsSync, readdirSync } from 'fs';
 import { generateTsModels } from '../index';
 
 beforeAll(async () => {

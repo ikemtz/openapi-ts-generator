@@ -38,7 +38,7 @@ steps:
     configMode: manual
     cliProjectKey: 'ikemtz_OData-TS-Generator'
     cliProjectName: 'ikemtz_OData-TS-Generator'
-    cliSources: 'nurser-ui/apps/nurser/src'
+    cliSources: 'src'
     extraProperties: |
      # Additional properties that will be passed to the scanner, 
      # Put one key=value per line, example:
