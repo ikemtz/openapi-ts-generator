@@ -3,11 +3,18 @@
 # OData-TS-Generator
 NPM package based on [swagger-ts-generator](https://www.npmjs.com/package/swagger-ts-generator) to generate typescript models for OData endpoints documented by swagger.
 
-## Usage
+## TypeScript Usage
 ```javascript
 import { generateTsModels } from 'odata-ts-generator';
 
 generateTsModels('{Your OData Swagger Enpoint here}', './{outputFolder}/');
+```
+
+## Javascript Usage
+```javascript
+const generator = require('odata-ts-generator');
+
+generator.generateTsModels('{Your OData Swagger Enpoint here}', './{outputFolder}/');
 ```
 
 ## Working Example
