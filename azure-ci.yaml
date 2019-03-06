@@ -1,5 +1,4 @@
 pool:
-  vmImage: Hosted Ubuntu 1604
   demands: npm
 
 steps:
