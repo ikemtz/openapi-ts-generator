@@ -1,0 +1,45 @@
+pool:
+  vmImage: Hosted Ubuntu 1604
+  demands: npm
+
+steps:
+- checkout: self
+  clean: true
+  persistCredentials: true
+
+- script: |
+    git config user.email "pcalchi@aim.com" 
+    git config user.name "Isaac Martinez"
+
+- task: Npm@1
+  displayName: 'npm version'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'version patch'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm build'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'
+
+- task: Npm@1
+  displayName: 'npm post build'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run postbuild'
+
+- task: Npm@1
+  displayName: 'npm publish'
+  inputs:
+    command: publish
+    verbose: false
+    publishEndpoint: IkeMtz
