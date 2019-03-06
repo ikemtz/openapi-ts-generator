@@ -1,6 +1,6 @@
 {
   "name": "odata-ts-generator",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for OData endpoints documented by swagger.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
