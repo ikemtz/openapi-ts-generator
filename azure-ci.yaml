@@ -37,13 +37,6 @@ steps:
     customCommand: 'run build'
 
 - task: Npm@1
-  displayName: 'npm post build'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'run postbuild'
-
-- task: Npm@1
   displayName: 'npm publish'
   inputs:
     command: publish
