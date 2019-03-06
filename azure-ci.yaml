@@ -29,6 +29,29 @@ steps:
   inputs:
     verbose: false
 
+- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: 'SonarCloud_OData-Ts-Generator'
+    organization: 'ikemtz-github'
+    scannerMode: CLI
+    configMode: manual
+    cliProjectKey: 'ikemtz_OData-TS-Generator'
+    cliProjectName: 'ikemtz_OData-TS-Generator'
+    cliSources: 'nurser-ui/apps/nurser/src'
+    extraProperties: |
+     # Additional properties that will be passed to the scanner, 
+     # Put one key=value per line, example:
+     # sonar.exclusions=**/*.test.ts
+      sonar.sources=src
+      sonar.sourceEncoding=UTF-8
+      sonar.exclusions=**/node_modules/**,**/*.test.ts
+      sonar.tests=src/__tests__
+      sonar.test.inclusions=**/*.test.ts
+      sonar.ts.tslintconfigpath=tslint.json
+      sonar.typescript.lcov.reportPaths=coverage/lcov.info
+      sonar.typescript.exclusions=**/node_modules/**
+
 - task: Npm@1
   displayName: 'npm build'
   inputs:
@@ -57,6 +80,12 @@ steps:
     testResultsFiles: junit.xml
     mergeTestResults: true
     failTaskOnFailedTests: true
+
+- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+  displayName: 'Run Code Analysis'
+
+- task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+  displayName: 'Publish Quality Gate Result'
 
 - task: Npm@1
   displayName: 'npm publish'
