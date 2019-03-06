@@ -22,6 +22,5 @@ export async function generateTsModels(url: string, outputfolder: string) {
   } catch {
     // TODO: need to figure out why enums are failing
   }
-  await unlinkSync(filePath);
+  unlinkSync(filePath);
 }
-
