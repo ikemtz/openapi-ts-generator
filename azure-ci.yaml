@@ -17,6 +17,13 @@ steps:
     verbose: false
     customCommand: 'version patch'
 
+- bash: |
+   git push origin HEAD:$SourceBranchName
+   git push --tags
+  displayName: 'Git Push New Version'
+  env:
+    SourceBranchName: $(Build.SourceBranchName)
+
 - task: Npm@1
   displayName: 'npm install'
   inputs:
@@ -41,4 +48,4 @@ steps:
   inputs:
     command: publish
     verbose: false
-    publishEndpoint: IkeMtz
+    publishEndpoint: IkeMtz-npm

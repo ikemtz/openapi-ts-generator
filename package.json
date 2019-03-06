@@ -11,8 +11,7 @@
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "version": "git add -A src",
-    "postbuild": "git push && git push --tags"
+    "version": "git add -A src"
   },
   "author": {
     "name": "Isaac Martinez <@ikemtz>"
