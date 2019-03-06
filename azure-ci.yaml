@@ -41,4 +41,4 @@ steps:
   inputs:
     command: publish
     verbose: false
-    publishEndpoint: IkeMtz
+    publishEndpoint: IkeMtz-npm
