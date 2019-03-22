@@ -67,7 +67,7 @@ export class PropertyHelpers {
     suffix: string,
     baseType?: ITypeMetaData,
   ): IPropertyTypeMetaData | undefined {
-    const staticFieldName = `${snakeCase(key).toUpperCase()}_FIELD_NAME`;
+    const staticFieldName = `${snakeCase(key).toUpperCase()}`;
     let isRefType = !!item.$ref;
     const isArray = item.type === 'array';
     const isEnum =
