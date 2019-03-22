@@ -388,11 +388,13 @@ function generateBarrelFiles(namespaceGroups: INamespaceGroups, folder: string, 
 }
 
 function addRootFixedFileNames(fileNames: string[], options: GeneratorOptions) {
-  const enumOutputFileName = normalize(options.enumTSFile.split('/').pop() || '');
-  fileNames.splice(0, 0, removeExtension(enumOutputFileName));
-  if (options.generateValidatorFile) {
-    const validatorsOutputFileName = normalize(options.validatorsFileName);
-    fileNames.splice(0, 0, removeExtension(validatorsOutputFileName));
+  const enumOutputFileName = normalize(options.enumTSFile.split('/').pop() || '.');
+  if (enumOutputFileName && enumOutputFileName !== '.') {
+    fileNames.splice(0, 0, removeExtension(enumOutputFileName));
+    if (options.generateValidatorFile) {
+      const validatorsOutputFileName = normalize(options.validatorsFileName);
+      fileNames.splice(0, 0, removeExtension(validatorsOutputFileName));
+    }
   }
 }
 
