@@ -1,7 +1,9 @@
 export interface IGeneratorOptions {
+  generateSubTypeFactory?: boolean;
   modelFolder: string;
   enumTSFile: string;
-
+  templateFolder: string;
+  generateBaseClass?: boolean;
   generateBarrelFiles?: boolean;
   generateClasses?: boolean;
   generateValidatorFile?: boolean;

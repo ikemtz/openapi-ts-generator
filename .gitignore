@@ -7,3 +7,5 @@
 /lib
 /output
 /coverage
+/bin
+/obj/Debug

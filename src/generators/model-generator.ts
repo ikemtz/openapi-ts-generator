@@ -36,19 +36,24 @@ export function generateModelTSFiles(swagger: ISwagger, options: GeneratorOption
   if (options.generateValidatorFile) {
     generateTSValidations(folder, options);
   }
-  // generate fixed file with the BaseModel class
-  generateTSBaseModel(folder, options);
+  if (options.generateBaseClass) {
+    // generate fixed file with the BaseModel class
+    generateTSBaseModel(folder, options);
+  }
   // get type definitions from swagger
   const typeCollection = getTypeDefinitions(swagger, options, MODEL_SUFFIX, MODEL_FILE_SUFFIX);
-  // console.log('typeCollection', util.inspect(typeCollection, false, null, true))
 
   // group types per namespace
   const namespaceGroups = NameSpaceHelpers.getNamespaceGroups(typeCollection, options);
   // console.log('namespaceGroups', namespaceGroups);
   // generate model files
   generateTSModels(namespaceGroups, folder, options);
+
   // generate subTypeFactory
-  generateSubTypeFactory(namespaceGroups, folder, options);
+  if (options.generateSubTypeFactory) {
+    generateSubTypeFactory(namespaceGroups, folder, options);
+  }
+
   // generate barrel files (index files to simplify import statements)
   if (options.generateBarrelFiles) {
     generateBarrelFiles(namespaceGroups, folder, options);
@@ -63,7 +68,15 @@ function generateTSValidations(folder: string, options: GeneratorOptions) {
   const outputFileName = join(folder, options.validatorsFileName);
   const data = {};
   const template = readAndCompileTemplateFile(options.templates.validators);
-  const result = template(data);
+  let result: string = '';
+  try {
+    result = template(data);
+  } catch (x) {
+    console.error(`Error generating ${outputFileName}, this is likely an issue with the template`);
+    console.error(`HandleBar file: ${options.templates.validators}`);
+    console.error(x);
+    throw x;
+  }
   ensureFolder(folder);
   const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
   if (isChanged) {
@@ -283,7 +296,15 @@ function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, opt
         const outputFileName = join(typeFolder, type.fileName);
         data.type = type;
         data.hasComplexType = type.properties.some(property => property.isComplexType);
-        const result = template(data);
+        let result: string = '';
+        try {
+          result = template(data);
+        } catch (x) {
+          console.error(`Error generating ${outputFileName}, this is likely an issue with the template`);
+          console.error(`HandleBar file: ${options.templates.models}`);
+          console.error(x);
+          throw x;
+        }
         const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
         if (isChanged) {
           nrGeneratedFiles++;
@@ -303,7 +324,6 @@ function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, opt
 function cleanFoldersForObsoleteFiles(folder: string, namespacePaths: string[]) {
   getDirectories(folder).forEach(name => {
     const folderPath = join(folder, name);
-    // TODO bij swagger-zib-v2 wordt de webapi/ZIB folder weggegooid !
     const namespacePath = find(namespacePaths, path => {
       return path.startsWith(folderPath);
     });

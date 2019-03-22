@@ -2,8 +2,8 @@ import { resolve } from 'path';
 import { IGeneratorOptions } from './IGeneratorOptions';
 
 export class GeneratorOptions {
-  public TEMPLATE_FOLDER = resolve(__dirname, 'templates');
-
+  public generateBaseClass: boolean;
+  public templateFolder: string;
   public modelFolder: string;
   public enumTSFile: string;
   public generateBarrelFiles: boolean;
@@ -32,12 +32,15 @@ export class GeneratorOptions {
     enum: string;
     enumLanguage: string;
   };
+  public generateSubTypeFactory: boolean;
 
   public constructor(options: IGeneratorOptions) {
+    this.generateBaseClass = options.generateBaseClass || false;
+    this.templateFolder = options.templateFolder;
     this.modelFolder = options.modelFolder;
     this.enumTSFile = options.enumTSFile;
     this.exclude = options.exclude || [];
-
+    this.generateSubTypeFactory = options.generateSubTypeFactory || false;
     this.enumI18NHtmlFile = options.enumI18NHtmlFile || null;
     this.enumLanguageFiles = options.enumLanguageFiles || null;
     this.modelModuleName = options.modelModuleName || null;
@@ -53,20 +56,20 @@ export class GeneratorOptions {
     this.baseModelFileName = options.baseModelFileName || 'base-model.ts';
     this.generateBarrelFiles = options.generateBarrelFiles || true;
     this.generateClasses = options.generateClasses || true;
-    this.generateValidatorFile = options.generateValidatorFile || true;
+    this.generateValidatorFile = options.generateValidatorFile || false;
     this.subTypeFactoryFileName = options.subTypeFactoryFileName || 'sub-type-factory.ts';
     this.subTypePropertyName = options.subTypePropertyName || '$type';
     this.validatorsFileName = options.validatorsFileName || 'validators.ts';
 
     const template = options.templates || {};
     this.templates = {
-      barrel: template.barrel || `${this.TEMPLATE_FOLDER}/generate-barrel-ts.hbs`,
-      baseModel: template.baseModel || `${this.TEMPLATE_FOLDER}/generate-base-model-ts.hbs`,
-      enum: template.enum || `${this.TEMPLATE_FOLDER}/generate-enum-ts.hbs`,
-      enumLanguage: template.enumLanguage || `${this.TEMPLATE_FOLDER}/generate-enum-i18n-html.hbs`,
-      models: template.models || `${this.TEMPLATE_FOLDER}/generate-model-ts.hbs`,
-      subTypeFactory: template.subTypeFactory || `${this.TEMPLATE_FOLDER}/generate-sub-type-factory-ts.hbs`,
-      validators: template.validators || `${this.TEMPLATE_FOLDER}/generate-validators-ts.hbs`,
+      barrel: template.barrel || `${this.templateFolder}/generate-barrel-ts.hbs`,
+      baseModel: template.baseModel || `${this.templateFolder}/generate-base-model-ts.hbs`,
+      enum: template.enum || `${this.templateFolder}/generate-enum-ts.hbs`,
+      enumLanguage: template.enumLanguage || `${this.templateFolder}/generate-enum-i18n-html.hbs`,
+      models: template.models || `${this.templateFolder}/generate-model-ts.hbs`,
+      subTypeFactory: template.subTypeFactory || `${this.templateFolder}/generate-sub-type-factory-ts.hbs`,
+      validators: template.validators || `${this.templateFolder}/generate-validators-ts.hbs`,
     };
   }
 }

@@ -5,12 +5,13 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "npm run format && npm run lint && tsc",
+    "build": "cp-cli ./src/templates ./lib/templates && npm run format && npm run lint && tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
     "prepare": "npm run build",
-    "version": "git add -A src"
+    "version": "git add -A src",
+    "debug": "npm run build && node --no-lazy --inspect-brk=9229 ./lib/app.js"
   },
   "author": {
     "name": "Isaac Martinez <@ikemtz>"
@@ -38,6 +39,7 @@
     "@types/lodash": "^4.14.123",
     "@types/node": "^11.10.4",
     "@types/node-fetch": "^2.1.6",
+    "cp-cli": "^2.0.0",
     "jest": "^24.1.0",
     "jest-junit": "^6.3.0",
     "prettier": "^1.16.4",
@@ -47,7 +49,7 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "node-fetch": "^2.3.0",
-    "swagger-ts-generator": "^1.1.56"
+    "moment": "^2.24.0",
+    "node-fetch": "^2.3.0"
   }
 }
