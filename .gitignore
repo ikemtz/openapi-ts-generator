@@ -5,7 +5,7 @@
 /.vs
 /node_modules
 /lib
-/output
+/output*
 /coverage
 /bin
 /obj/Debug
