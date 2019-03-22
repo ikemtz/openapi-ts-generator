@@ -3,6 +3,8 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/OData-TS-Generator
  * Do not edit.
  */
+ // tslint:disable: array-type
+ 
 import { ITimeSheet } from './time-sheet.model';
 
 export interface ITimeSheetEntry {

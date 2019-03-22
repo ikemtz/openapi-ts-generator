@@ -209,7 +209,6 @@ function fillMissingBaseTypes(
   suffix: string,
   fileSuffix: string,
 ) {
-  // console.log('-------------------> In fillMissingBaseTypes <---------------------------')
   forEach(swagger.definitions, (item, key) => {
     const isSubType = TypeHelpers.getIsSubType(item);
     const type = TypeHelpers.findTypeInTypeCollection(typeCollection, key);
@@ -391,7 +390,7 @@ function generateBarrelFiles(namespaceGroups: INamespaceGroups, folder: string, 
 function addRootFixedFileNames(fileNames: string[], options: GeneratorOptions) {
   const enumOutputFileName = normalize(options.enumTSFile.split('/').pop() || '');
   fileNames.splice(0, 0, removeExtension(enumOutputFileName));
-  if (options.generateClasses) {
+  if (options.generateValidatorFile) {
     const validatorsOutputFileName = normalize(options.validatorsFileName);
     fileNames.splice(0, 0, removeExtension(validatorsOutputFileName));
   }
