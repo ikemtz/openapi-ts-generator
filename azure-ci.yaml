@@ -33,11 +33,11 @@ steps:
   displayName: 'Prepare analysis on SonarCloud'
   inputs:
     SonarCloud: 'SonarCloud_OData-Ts-Generator'
-    organization: 'ikemtz-github'
+    organization: 'ikemtz'
     scannerMode: CLI
     configMode: manual
-    cliProjectKey: 'ikemtz_OData-TS-Generator'
-    cliProjectName: 'ikemtz_OData-TS-Generator'
+    cliProjectKey: 'odata-ts-generator'
+    cliProjectName: 'odata-ts-generator'
     cliSources: 'src'
     extraProperties: |
      # Additional properties that will be passed to the scanner, 
