@@ -235,6 +235,7 @@ export class PropertyHelpers {
     if (item.$ref) {
       const type = Helpers.removeDefinitionsRef(item.$ref);
       result.typeName = TypeHelpers.getTypeName(type, options);
+      result.interfaceTypeName = TypeHelpers.getTypeInterfaceName(type, options);
       result.namespace = NameSpaceHelpers.getNamespace(type, options, true);
       result.fullNamespace = NameSpaceHelpers.getNamespace(type, options, false);
 
