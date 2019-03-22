@@ -5,6 +5,7 @@ export interface IPropertyTypeMetaData {
   name: string;
   staticFieldName: string;
   type?: ITypeMetaData;
+  interfaceTypeName: string;
   typeName: string;
   namespace?: string | undefined;
   fullNamespace?: string | undefined;

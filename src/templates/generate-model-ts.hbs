@@ -9,20 +9,16 @@ import { I{{baseType.typeName}}, {{baseType.typeName}} } from '{{baseImportFile}
     {{/if}}
 {{#properties}}
     {{#if isUniqueImportType}}
-import { {{importType}} } from '{{importFile}}';
+import { I{{importType}} } from '{{importFile}}';
     {{/if}}
     {{#if isUniqueImportEnumType}}
 import { {{importEnumType}} } from '{{../../enumRef}}';
     {{/if}}
 {{/properties}}
 
-{{#if ../generateClasses}}
 export interface I{{{typeName}}} {
-{{else}}
-export interface {{{typeName}}} {
-{{/if}}
 {{#properties}}
-    {{name}}{{#unless validators.validation.required}}?{{/unless}}: {{{typeName}}};
+    {{name}}{{#unless validators.validation.required}}?{{/unless}}: {{{interfaceTypeName}}};
 {{/properties}}
 }
 

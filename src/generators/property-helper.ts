@@ -105,10 +105,9 @@ export class PropertyHelpers {
       const importEnumType = isEnum ? TypeHelpers.removeGenericArray(propertyType.typeName, isArray) : undefined;
       const isUniqueImportEnumType = isEnum && EnumHelpers.getIsUniqueImportEnumType(importEnumType, type.properties); // import this enumType
       const property: IPropertyTypeMetaData = {
+        ...propertyType,
         name: key,
         staticFieldName,
-        typeName: propertyType.typeName,
-        namespace: propertyType.namespace,
         fullNamespace: NameSpaceHelpers.getNamespace(type.typeName, options, false),
         description: item.description,
         hasValidation,
@@ -121,8 +120,6 @@ export class PropertyHelpers {
         isUniqueImportEnumType,
         importEnumType,
         isArray,
-        isArrayComplexType: propertyType.isArrayComplexType,
-        arrayTypeName: propertyType.arrayTypeName,
         validators,
         enum: item.enum,
       };
@@ -192,25 +189,32 @@ export class PropertyHelpers {
       name,
       staticFieldName: name,
       typeName: item.type || '',
+      interfaceTypeName: '',
     };
     if (item.type) {
       result.typeName = item.type;
+      result.interfaceTypeName = item.type;
       if (item.type === 'integer') {
         result.typeName = 'number';
+        result.interfaceTypeName = 'number';
       }
       if (item.type === 'string' && item.format === 'date') {
         result.typeName = 'Date';
+        result.interfaceTypeName = 'Date';
       }
       if (item.type === 'string' && item.format === 'date-time') {
         result.typeName = 'Date';
+        result.interfaceTypeName = 'Date';
       }
       if (item.type === 'string' && item.enum) {
         result.typeName = `${name}`;
+        result.interfaceTypeName = `${name}`;
       }
       if (item.type === 'array' && item.items) {
         const arrayPropType = PropertyHelpers.getPropertyType(item.items, name, options, isEnum);
         if (arrayPropType) {
           result.typeName = `Array<${arrayPropType.typeName}>`;
+          result.interfaceTypeName = `Array<I${arrayPropType.typeName}>`;
           result.namespace = arrayPropType.namespace;
           result.isArrayComplexType = !isEnum ? !!item.items.$ref : false;
           result.arrayTypeName = arrayPropType.typeName;

@@ -78,6 +78,20 @@ export class TypeHelpers {
     }
     return upperFirst(typeName);
   }
+  public static getTypeInterfaceName(type: string, options: GeneratorOptions) {
+    let typeName: string;
+    if (TypeHelpers.getIsGenericType(type)) {
+      const startGenericT = type.indexOf('[');
+      const startGenericType = type.lastIndexOf('.', startGenericT) + 1;
+      typeName = type.substring(startGenericType);
+      typeName = TypeHelpers.convertGenericTypeName(typeName);
+      typeName = TypeHelpers.getTypeNameWithoutSuffixesToRemove(typeName, options);
+    } else {
+      typeName = type.split('.').pop() || '';
+      typeName = 'I' + TypeHelpers.getTypeNameWithoutSuffixesToRemove(typeName, options);
+    }
+    return upperFirst(typeName);
+  }
 
   public static getTypeNameWithoutSuffixesToRemove(typeName: string, options: GeneratorOptions) {
     if (!options.typeNameSuffixesToRemove) {

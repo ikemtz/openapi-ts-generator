@@ -145,6 +145,7 @@ function getTypeDefinition(
   if (TypeHelpers.getIsGenericType(typeName)) {
     typeName = TypeHelpers.convertGenericToGenericType(typeName);
   }
+  const interfaceTypeName = TypeHelpers.getTypeInterfaceName(key, options);
   const fullTypeName = fullNamespace ? `${fullNamespace}.${typeName}` : typeName;
   const pathToRoot = getPathToRoot(namespace);
   const importFile = getImportFile(typeName, namespace, pathToRoot, suffix);
@@ -172,6 +173,7 @@ function getTypeDefinition(
   const type: ITypeMetaData = {
     fileName: getFileName(key, options, fileSuffix),
     typeName,
+    interfaceTypeName,
     fullNamespace,
     fullTypeName,
     isSubType,
@@ -257,6 +259,7 @@ function fillPropertyTypes(
     });
   });
 }
+
 function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, options: GeneratorOptions) {
   const data = {
     generateClasses: options.generateClasses,
