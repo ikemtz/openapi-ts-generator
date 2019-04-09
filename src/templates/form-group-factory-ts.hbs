@@ -1,0 +1,10 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+{{#with type}}
+export function {{{typeName}}}FormGroupFac(): FormGroup {
+  return new FormGroup({
+{{#properties}}
+    {{name}}: new FormControl(''{{#if validators.validation.required}}, Validators.required{{/if}}),
+{{/properties}}
+  });
+};
+{{/with}}

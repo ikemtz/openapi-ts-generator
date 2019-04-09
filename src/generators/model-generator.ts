@@ -1,5 +1,5 @@
 import { readdirSync, unlinkSync } from 'fs';
-import { each, endsWith, find, forEach, snakeCase, uniqBy } from 'lodash';
+import { each, endsWith, find, forEach, kebabCase, snakeCase, uniqBy } from 'lodash';
 import { join, normalize } from 'path';
 import {
   convertNamespaceToPath,
@@ -48,6 +48,8 @@ export function generateModelTSFiles(swagger: ISwagger, options: GeneratorOption
   // console.log('namespaceGroups', namespaceGroups);
   // generate model files
   generateTSModels(namespaceGroups, folder, options);
+
+  generateFormGroupFactories(namespaceGroups, folder, options);
 
   // generate subTypeFactory
   if (options.generateSubTypeFactory) {
@@ -273,7 +275,6 @@ function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, opt
     subTypePropertyConstantName: snakeCase(options.subTypePropertyName).toUpperCase(),
     type: {},
   };
-  console.log(data);
   const template = readAndCompileTemplateFile(options.templates.models);
   ensureFolder(folder);
   for (const namespace in namespaceGroups) {
@@ -296,6 +297,60 @@ function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, opt
       let nrGeneratedFiles = 0;
       each(typeCol, type => {
         const outputFileName = join(typeFolder, type.fileName);
+        data.type = type;
+        data.hasComplexType = type.properties.some(property => property.isComplexType);
+        let result: string = '';
+        try {
+          result = template(data);
+        } catch (x) {
+          console.error(`Error generating ${outputFileName}, this is likely an issue with the template`);
+          console.error(`HandleBar file: ${options.templates.models}`);
+          console.error(x);
+          throw x;
+        }
+        const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
+        if (isChanged) {
+          nrGeneratedFiles++;
+        }
+        // fs.writeFileSync(outputFileName, result, { flag: 'w', encoding: utils.ENCODING });
+      });
+      log(`generated ${nrGeneratedFiles} type${nrGeneratedFiles === 1 ? '' : 's'} in ${typeFolder}`);
+      removeFilesOfNonExistingTypes(typeCol, typeFolder, options, MODEL_FILE_SUFFIX);
+    }
+  }
+  const namespacePaths = Object.keys(namespaceGroups).map(namespace => {
+    return join(folder, convertNamespaceToPath(namespace));
+  });
+  cleanFoldersForObsoleteFiles(folder, namespacePaths);
+}
+
+function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: string, options: GeneratorOptions) {
+  const data = {
+    type: {},
+    hasComplexType: false,
+  };
+  const template = readAndCompileTemplateFile(options.templates.formGroupFacTemplate);
+  ensureFolder(folder);
+  for (const namespace in namespaceGroups) {
+    if (namespaceGroups[namespace]) {
+      const typeCol = namespaceGroups[namespace];
+      const firstType =
+        typeCol[0] ||
+        ({
+          namespace: '',
+        } as ITypeMetaData);
+      const namespacePath = convertNamespaceToPath(firstType.namespace);
+      const typeFolder = `${folder}${namespacePath}`;
+      const folderParts = namespacePath.split('/');
+      let prevParts = folder;
+      folderParts.forEach(part => {
+        prevParts += part + '/';
+        ensureFolder(prevParts);
+      });
+
+      let nrGeneratedFiles = 0;
+      each(typeCol, type => {
+        const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
         data.type = type;
         data.hasComplexType = type.properties.some(property => property.isComplexType);
         let result: string = '';
@@ -372,6 +427,7 @@ function generateBarrelFiles(namespaceGroups: INamespaceGroups, folder: string, 
       data.fileNames = namespaceGroups[key].map(type => {
         return removeExtension(type.fileName);
       });
+      namespaceGroups[key].forEach(type => data.fileNames.push(`${kebabCase(type.fullTypeName)}.form-group-fac`));
       if (key === ROOT_NAMESPACE) {
         addRootFixedFileNames(data.fileNames, options);
       }

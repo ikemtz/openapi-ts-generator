@@ -28,6 +28,7 @@ export interface IGeneratorOptions {
     baseModel?: string;
     models?: string;
     subTypeFactory?: string;
+    formGroupFacTemplate?: string;
     barrel?: string;
     enum?: string;
     enumLanguage?: string;

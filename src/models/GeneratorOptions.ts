@@ -28,6 +28,7 @@ export class GeneratorOptions {
     baseModel: string;
     models: string;
     subTypeFactory: string;
+    formGroupFacTemplate: string;
     barrel: string;
     enum: string;
     enumLanguage: string;
@@ -68,6 +69,7 @@ export class GeneratorOptions {
       enum: template.enum || `${this.templateFolder}/generate-enum-ts.hbs`,
       enumLanguage: template.enumLanguage || `${this.templateFolder}/generate-enum-i18n-html.hbs`,
       models: template.models || `${this.templateFolder}/generate-model-ts.hbs`,
+      formGroupFacTemplate: template.formGroupFacTemplate || `${this.templateFolder}/form-group-factory-ts.hbs`,
       subTypeFactory: template.subTypeFactory || `${this.templateFolder}/generate-sub-type-factory-ts.hbs`,
       validators: template.validators || `${this.templateFolder}/generate-validators-ts.hbs`,
     };
