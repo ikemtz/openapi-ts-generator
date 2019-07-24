@@ -40,16 +40,16 @@
     "@types/node": "^11.11.5",
     "@types/node-fetch": "^2.1.7",
     "cp-cli": "^2.0.0",
-    "jest": "^24.5.0",
-    "jest-junit": "^6.3.0",
-    "prettier": "^1.16.4",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.14.0",
+    "jest": "^24.8.0",
+    "jest-junit": "^7.0.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.4000"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.6.0"
   }
 }
