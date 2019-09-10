@@ -1,6 +1,6 @@
 {
   "name": "odata-ts-generator",
-  "version": "0.1.23",
+  "version": "0.1.26",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for OData endpoints documented by swagger.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -35,18 +35,18 @@
   ],
   "homepage": "https://github.com/ikemtz/OData-TS-Generator#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.11.5",
-    "@types/node-fetch": "^2.1.7",
+    "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.138",
+    "@types/node": "^11.13.20",
+    "@types/node-fetch": "^2.5.0",
     "cp-cli": "^2.0.0",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "jest-junit": "^7.0.0",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
+    "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.2"
   },
   "dependencies": {
     "moment": "^2.24.0",
