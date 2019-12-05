@@ -326,7 +326,7 @@ function generateTSModels(namespaceGroups: INamespaceGroups, folder: string, opt
 
 function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: string, options: GeneratorOptions) {
   const data = {
-    type: {},
+    type: {} as ITypeMetaData,
     hasComplexType: false,
   };
   const template = readAndCompileTemplateFile(options.templates.formGroupFacTemplate);
@@ -349,9 +349,12 @@ function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: s
       });
 
       let nrGeneratedFiles = 0;
+      const exclusionProperties = ['createdBy', 'createdOnUtc','updatedBy','updatedOnUtc' ]
       each(typeCol, type => {
         const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
-        data.type = type;
+        data.type = {...type,
+          properties : type.properties.filter(prop => !exclusionProperties.includes(prop.name))
+        }; 
         data.hasComplexType = type.properties.some(property => property.isComplexType);
         let result: string = '';
         try {

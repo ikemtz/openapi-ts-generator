@@ -82,12 +82,10 @@ export class PropertyHelpers {
     if (propertyType) {
       const isComplexType = isRefType || isArray; // new this one in constructor
       const isImportType = isRefType || (isArray && item.items && item.items.$ref && !isEnum);
-      const importType =
-        isImportType && propertyType ? TypeHelpers.getImportType(propertyType.typeName, isArray) : undefined;
-      const importFile =
-        isImportType && propertyType
-          ? getImportFile(importType, propertyType.namespace, type.pathToRoot, suffix)
-          : undefined;
+      const importType = isImportType ? TypeHelpers.getImportType(propertyType.typeName, isArray) : undefined;
+      const importFile = isImportType
+        ? getImportFile(importType, propertyType.namespace, type.pathToRoot, suffix)
+        : undefined;
       const importTypeIsPropertyType = importType === type.typeName;
       const isUniqueImportType =
         isImportType &&
