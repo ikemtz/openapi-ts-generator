@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "cp-cli ./src/templates ./lib/templates && npm run format && npm run lint && tsc",
+    "build": "npm run format && npm run lint && tsc && cp -rf ./src/templates ./lib/templates",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
@@ -39,7 +39,6 @@
     "@types/lodash": "^4.14.149",
     "@types/node": "^11.15.3",
     "@types/node-fetch": "^2.5.4",
-    "cp-cli": "^2.0.0",
     "jest": "^24.8.0",
     "jest-junit": "^7.0.0",
     "prettier": "^1.19.1",
