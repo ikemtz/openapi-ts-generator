@@ -1,5 +1,5 @@
 import { ITypeMetaData } from './ITypeMetaData';
-import { IValidators } from './Validators';
+import { IValidators } from './validators';
 
 export interface IPropertyTypeMetaData {
   name: string;

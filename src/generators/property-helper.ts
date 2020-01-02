@@ -4,7 +4,7 @@ import { getImportFile, getTypeFromDescription, hasTypeFromDescription } from '.
 import { GeneratorOptions } from '../models/GeneratorOptions';
 import { IPropertyTypeMetaData } from '../models/IPropertyTypeMetaData';
 import { ITypeMetaData } from '../models/ITypeMetaData';
-import { IValidators } from '../models/Validators';
+import { IValidators } from '../models/validators';
 import { EnumHelpers } from './enum-helper';
 import { Helpers } from './helper';
 import { NameSpaceHelpers } from './namespace-helpers';
