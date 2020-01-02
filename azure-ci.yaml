@@ -12,20 +12,6 @@ steps:
     git config user.name "Isaac Martinez"
 
 - task: Npm@1
-  displayName: 'npm version'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'version patch'
-
-- bash: |
-   git push origin HEAD:$SourceBranchName
-   git push --tags
-  displayName: 'Git Push New Version'
-  env:
-    SourceBranchName: $(Build.SourceBranchName)
-
-- task: Npm@1
   displayName: 'npm install'
   inputs:
     verbose: false
@@ -57,7 +43,7 @@ steps:
   displayName: 'npm build'
   inputs:
     command: custom
-    verbose: false
+    verbose: true
     customCommand: 'run build'
 
 - task: Npm@1
@@ -87,6 +73,21 @@ steps:
 
 - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
   displayName: 'Publish Quality Gate Result'
+
+
+- task: Npm@1
+  displayName: 'npm version'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'version patch'
+
+- bash: |
+   git push origin HEAD:$SourceBranchName
+   git push --tags
+  displayName: 'Git Push New Version'
+  env:
+    SourceBranchName: $(Build.SourceBranchName)
 
 - task: Npm@1
   displayName: 'npm publish'
