@@ -1,14 +1,15 @@
 import { endsWith, find, has, some, upperFirst } from 'lodash';
+import { isSchemaObject, SchemaObject, SchemasObject } from 'openapi3-ts';
 import { GeneratorOptions } from '../models/GeneratorOptions';
 import { IPropertyTypeMetaData } from '../models/IPropertyTypeMetaData';
 import { ITypeMetaData } from '../models/ITypeMetaData';
-import { ISwaggerDefinition, ISwaggerDefinitionProperties } from '../models/swagger';
 import { Helpers } from './helper';
 
 export class TypeHelpers {
-  public static getSubTypeRequired(item: ISwaggerDefinition) {
+  public static getSubTypeRequired(item: SchemaObject) {
     if (item.allOf) {
-      const required = (item.allOf[1].required as string[]) || [];
+      const allof = item.allOf.find(t => isSchemaObject(t)) as SchemaObject;
+      const required = allof.required || [];
       return required;
     }
     return [];
@@ -48,7 +49,7 @@ export class TypeHelpers {
   public static getBaseType(
     superTypeName: string,
     typeCollection: ITypeMetaData[],
-    item: ISwaggerDefinition,
+    item: SchemaObject,
     options: GeneratorOptions,
   ) {
     if (item.allOf) {
@@ -57,6 +58,7 @@ export class TypeHelpers {
       const baseType = TypeHelpers.findTypeInTypeCollection(typeCollection, typeName);
       return baseType;
     }
+    return undefined;
   }
 
   public static getTypeName(type: string, options: GeneratorOptions) {
@@ -141,12 +143,12 @@ export class TypeHelpers {
     return typeName.replace(/\<.*\>/, '<T>');
   }
 
-  public static getIsSubType(item: ISwaggerDefinition) {
+  public static getIsSubType(item: SchemaObject) {
     return item.allOf !== undefined;
   }
 
-  public static getHasSubTypeProperty(properties: ISwaggerDefinitionProperties, options: GeneratorOptions) {
-    return has(properties, options.subTypePropertyName);
+  public static getHasSubTypeProperty(properties: SchemasObject | undefined, options: GeneratorOptions) {
+    return properties ? has(properties, options.subTypePropertyName) : undefined;
   }
 
   public static getIsUniqueImportType(

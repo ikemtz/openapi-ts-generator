@@ -1,18 +1,20 @@
 ﻿import { readFileSync, unlinkSync } from 'fs';
 import { isObject } from 'lodash';
 import fetch from 'node-fetch';
+import { OpenAPIObject } from 'openapi3-ts';
 import { resolve } from 'path';
 import { ENCODING } from './file-utils';
 import { generateModelTSFiles } from './generators/model-generator';
 import { GeneratorOptions } from './models/GeneratorOptions';
 import { IGeneratorOptions } from './models/IGeneratorOptions';
-import { ISwagger } from './models/swagger';
 
 export async function generateTsModels(url: string, outputfolder: string) {
   const response = await fetch(url);
-  const json: ISwagger = await response.json();
-  const oDataWrapperTypes = Object.getOwnPropertyNames(json.definitions).filter(t => t.startsWith('ODataValue['));
-
+  const json: OpenAPIObject = await response.json();
+  const oDataWrapperTypes = Object.getOwnPropertyNames(json.components?.schemas).filter(
+    t => t.startsWith('ODataValue[') || t.endsWith('ODataEnvelope'),
+  );
+  console.log(`oDataWrapperTypes: ${oDataWrapperTypes}`);
   const TEMPLATE_FOLDER = resolve(__dirname, 'templates');
   try {
     generateTSFiles(json, {
@@ -28,7 +30,7 @@ export async function generateTsModels(url: string, outputfolder: string) {
   }
 }
 
-function generateTSFiles(swaggerInput: string | ISwagger, ioptions: IGeneratorOptions) {
+function generateTSFiles(swaggerInput: string | OpenAPIObject, ioptions: IGeneratorOptions) {
   const options = new GeneratorOptions(ioptions);
 
   if (!swaggerInput) {
@@ -40,7 +42,7 @@ function generateTSFiles(swaggerInput: string | ISwagger, ioptions: IGeneratorOp
 
   const swagger =
     typeof swaggerInput === 'string'
-      ? (JSON.parse(readFileSync(swaggerInput, ENCODING).trim()) as ISwagger)
+      ? (JSON.parse(readFileSync(swaggerInput, ENCODING).trim()) as OpenAPIObject)
       : swaggerInput;
 
   if (typeof swagger !== 'object') {

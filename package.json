@@ -1,5 +1,5 @@
 {
-  "name": "odata-ts-generator",
+  "name": "openapi-ts-generator",
   "version": "0.1.25",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for OData endpoints documented by swagger.",
   "main": "lib/index.js",
@@ -18,13 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ikemtz/OData-TS-Generator.git"
+    "url": "git+https://github.com/ikemtz/OpenApi-TS-Generator.git"
   },
   "keywords": [
-    "OData",
-    "Swagger",
+    "OpenAPI",
+    "TypeScript",
     "TS",
-    "Interfaces"
+    "Interfaces",
+    "Angular"
   ],
   "license": "MIT",
   "bugs": {
@@ -35,21 +36,22 @@
   ],
   "homepage": "https://github.com/ikemtz/OData-TS-Generator#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.11.5",
-    "@types/node-fetch": "^2.1.7",
+    "@types/jest": "^24.0.25",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^11.15.3",
+    "@types/node-fetch": "^2.5.4",
     "cp-cli": "^2.0.0",
     "jest": "^24.8.0",
     "jest-junit": "^7.0.0",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "moment": "^2.24.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "openapi3-ts": "^1.3.0"
   }
 }

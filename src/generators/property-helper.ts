@@ -1,14 +1,9 @@
 import { forEach, has, indexOf, keys, lowerFirst, snakeCase } from 'lodash';
+import { isSchemaObject, OpenAPIObject, SchemaObject, SchemasObject } from 'openapi3-ts';
 import { getImportFile, getTypeFromDescription, hasTypeFromDescription } from '../file-utils';
 import { GeneratorOptions } from '../models/GeneratorOptions';
 import { IPropertyTypeMetaData } from '../models/IPropertyTypeMetaData';
 import { ITypeMetaData } from '../models/ITypeMetaData';
-import {
-  ISwagger,
-  ISwaggerDefinition,
-  ISwaggerDefinitionProperties,
-  ISwaggerPropertyDefinition,
-} from '../models/swagger';
 import { IValidators } from '../models/Validators';
 import { EnumHelpers } from './enum-helper';
 import { Helpers } from './helper';
@@ -16,23 +11,28 @@ import { NameSpaceHelpers } from './namespace-helpers';
 import { TypeHelpers } from './type-helper';
 
 export class PropertyHelpers {
-  public static getSubTypeProperties(item: ISwaggerDefinition, baseType: ITypeMetaData) {
+  public static getSubTypeProperties(item: SchemaObject, baseType: ITypeMetaData) {
     if (item.allOf) {
-      const properties = item.allOf[1].properties;
+      const properties = (item.allOf[1] as SchemaObject)?.properties;
       return properties;
     }
     return null;
   }
-  public static getHasSubTypeProperty(properties: ISwaggerDefinitionProperties, options: GeneratorOptions) {
+  public static getHasSubTypeProperty(
+    properties: {
+      [propertyName: string]: SchemaObject;
+    },
+    options: GeneratorOptions,
+  ) {
     return has(properties, options.subTypePropertyName);
   }
 
   public static fillTypeProperties(
-    swagger: ISwagger,
+    swagger: OpenAPIObject,
     type: ITypeMetaData,
     required: string[],
-    properties: ISwaggerDefinitionProperties | null,
-    item: ISwaggerDefinition,
+    properties: SchemasObject | undefined,
+    item: SchemaObject,
     key: string,
     options: GeneratorOptions,
     suffix: string,
@@ -58,10 +58,10 @@ export class PropertyHelpers {
   }
 
   public static getTypePropertyDefinition(
-    swagger: ISwagger,
+    swagger: OpenAPIObject,
     type: ITypeMetaData,
     required: string[],
-    item: ISwaggerPropertyDefinition,
+    item: SchemaObject,
     key: string,
     options: GeneratorOptions,
     suffix: string,
@@ -72,7 +72,7 @@ export class PropertyHelpers {
     const isArray = item.type === 'array';
     const isEnum =
       (item.type === 'string' && !!item.enum) ||
-      (isArray && item.items && item.items.type === 'string' && !!item.items.enum) ||
+      (isArray && item.items && isSchemaObject(item.items) && item.items.type === 'string' && !!item.items.enum) ||
       ((isRefType || isArray) && EnumHelpers.getIsEnumRefType(swagger, item, isArray));
     // enum ref types are not handles as model types (they are handled in the enumGenerator)
     if (isEnum) {
@@ -110,8 +110,8 @@ export class PropertyHelpers {
         description: item.description,
         hasValidation,
         isComplexType,
-        isImportType: importType ? true : false,
-        isUniqueImportType: isUniqueImportType ? true : false,
+        isImportType: !!importType,
+        isUniqueImportType: !!isUniqueImportType,
         importType,
         importFile,
         isEnum,
@@ -128,7 +128,7 @@ export class PropertyHelpers {
 
   public static getTypePropertyValidatorDefinitions(
     required: string[],
-    item: ISwaggerPropertyDefinition,
+    item: SchemaObject,
     key: string,
     typeName: string,
     isEnum: boolean,
@@ -168,12 +168,7 @@ export class PropertyHelpers {
     return validators;
   }
 
-  public static getPropertyType(
-    item: ISwaggerPropertyDefinition,
-    name: string,
-    options: GeneratorOptions,
-    isEnum: boolean,
-  ) {
+  public static getPropertyType(item: SchemaObject, name: string, options: GeneratorOptions, isEnum: boolean) {
     const result: IPropertyTypeMetaData = {
       description: '',
       hasValidation: false,
@@ -195,10 +190,6 @@ export class PropertyHelpers {
       if (item.type === 'integer') {
         result.typeName = 'number';
         result.interfaceTypeName = 'number';
-      }
-      if (item.type === 'string' && item.format === 'date') {
-        result.typeName = 'Date';
-        result.interfaceTypeName = 'Date';
       }
       if (item.type === 'string' && item.format === 'date-time') {
         result.typeName = 'Date';

@@ -8,7 +8,7 @@ steps:
   persistCredentials: true
 
 - script: |
-    git config user.email "pcalchi@aim.com" 
+    git config user.email "ikemtz@outlook.com" 
     git config user.name "Isaac Martinez"
 
 - task: Npm@1

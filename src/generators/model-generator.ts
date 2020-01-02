@@ -1,5 +1,6 @@
 import { readdirSync, unlinkSync } from 'fs';
 import { each, endsWith, find, forEach, kebabCase, snakeCase, uniqBy } from 'lodash';
+import { OpenAPIObject, SchemaObject, SchemasObject } from 'openapi3-ts';
 import { join, normalize } from 'path';
 import {
   convertNamespaceToPath,
@@ -19,7 +20,6 @@ import {
 import { GeneratorOptions } from '../models/GeneratorOptions';
 import { ITypeMetaData } from '../models/ITypeMetaData';
 import { INamespaceGroups } from '../models/NamespaceGroups';
-import { ISwagger, ISwaggerDefinition, ISwaggerDefinitionProperties } from '../models/swagger';
 import { EnumHelpers } from './enum-helper';
 import { NameSpaceHelpers, ROOT_NAMESPACE } from './namespace-helpers';
 import { PropertyHelpers } from './property-helper';
@@ -30,7 +30,7 @@ const MODEL_SUFFIX = '.model';
 const MODEL_FILE_SUFFIX = `${MODEL_SUFFIX}${TS_SUFFIX}`;
 // const BASE_TYPE_WAIT_FOR_SECOND_PASS = 'wait-for-second-pass';
 
-export function generateModelTSFiles(swagger: ISwagger, options: GeneratorOptions) {
+export function generateModelTSFiles(swagger: OpenAPIObject, options: GeneratorOptions) {
   const folder = normalize(options.modelFolder);
   // generate fixed file with non-standard validators for validation rules which can be defined in the swagger file
   if (options.generateValidatorFile) {
@@ -104,9 +104,9 @@ function generateTSBaseModel(folder: string, options: GeneratorOptions) {
   }
 }
 
-function getTypeDefinitions(swagger: ISwagger, options: GeneratorOptions, suffix: string, fileSuffix: string) {
+function getTypeDefinitions(swagger: OpenAPIObject, options: GeneratorOptions, suffix: string, fileSuffix: string) {
   let typeCollection: ITypeMetaData[] = new Array();
-  forEach(swagger.definitions, (item, key) => {
+  forEach(swagger.components?.schemas, (item, key) => {
     if (!isInTypesToFilter(item, key, options)) {
       const type = getTypeDefinition(swagger, typeCollection, item, key, options, suffix, fileSuffix);
       if (type) {
@@ -126,9 +126,9 @@ function getTypeDefinitions(swagger: ISwagger, options: GeneratorOptions, suffix
 }
 
 function getTypeDefinition(
-  swagger: ISwagger,
+  swagger: OpenAPIObject,
   typeCollection: ITypeMetaData[],
-  item: ISwaggerDefinition,
+  item: SchemaObject,
   key: string,
   options: GeneratorOptions,
   suffix: string,
@@ -151,9 +151,7 @@ function getTypeDefinition(
   const fullTypeName = fullNamespace ? `${fullNamespace}.${typeName}` : typeName;
   const pathToRoot = getPathToRoot(namespace);
   const importFile = getImportFile(typeName, namespace, pathToRoot, suffix);
-  let properties: ISwaggerDefinitionProperties | null = getSortedObjectProperties(
-    item.properties,
-  ) as ISwaggerDefinitionProperties;
+  let properties: SchemasObject = getSortedObjectProperties(item.properties) as SchemaObject;
   let baseType;
   let baseImportFile;
   const isSubType = TypeHelpers.getIsSubType(item);
@@ -168,7 +166,10 @@ function getTypeDefinition(
       // determine baseImportFile
       baseImportFile = getImportFile(baseType.typeName, baseType.namespace, pathToRoot, suffix);
       required = TypeHelpers.getSubTypeRequired(item);
-      properties = PropertyHelpers.getSubTypeProperties(item, baseType);
+      const props = PropertyHelpers.getSubTypeProperties(item, baseType);
+      if (props) {
+        properties = props;
+      }
     }
   }
 
@@ -179,7 +180,7 @@ function getTypeDefinition(
     fullNamespace,
     fullTypeName,
     isSubType,
-    hasSubTypeProperty,
+    hasSubTypeProperty: false,
     importFile,
     isBaseType: false, // set elsewhere
     baseType,
@@ -205,7 +206,7 @@ function getTypeDefinition(
 }
 
 function fillMissingBaseTypes(
-  swagger: ISwagger,
+  swagger: OpenAPIObject,
   typeCollection: ITypeMetaData[],
   options: GeneratorOptions,
   suffix: string,
@@ -225,7 +226,7 @@ function fillMissingBaseTypes(
         // determine baseImportFile
         const baseImportFile = getImportFile(baseType.typeName, baseType.namespace, pathToRoot, suffix);
         const required = TypeHelpers.getSubTypeRequired(item);
-        const properties = PropertyHelpers.getSubTypeProperties(item, baseType);
+        const properties = PropertyHelpers.getSubTypeProperties(item, baseType) as SchemasObject;
 
         type.baseType = baseType;
         type.baseImportFile = baseImportFile;
@@ -247,7 +248,7 @@ function fillMissingBaseTypes(
 }
 
 function fillPropertyTypes(
-  swagger: ISwagger,
+  swagger: OpenAPIObject,
   typeCollection: ITypeMetaData[],
   options: GeneratorOptions,
   suffix: string,
@@ -349,28 +350,29 @@ function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: s
       });
 
       let nrGeneratedFiles = 0;
-      const exclusionProperties = ['createdBy', 'createdOnUtc','updatedBy','updatedOnUtc' ]
-      each(typeCol, type => {
-        const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
-        data.type = {...type,
-          properties : type.properties.filter(prop => !exclusionProperties.includes(prop.name))
-        }; 
-        data.hasComplexType = type.properties.some(property => property.isComplexType);
-        let result: string = '';
-        try {
-          result = template(data);
-        } catch (x) {
-          console.error(`Error generating ${outputFileName}, this is likely an issue with the template`);
-          console.error(`HandleBar file: ${options.templates.models}`);
-          console.error(x);
-          throw x;
-        }
-        const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
-        if (isChanged) {
-          nrGeneratedFiles++;
-        }
-        // fs.writeFileSync(outputFileName, result, { flag: 'w', encoding: utils.ENCODING });
-      });
+      const exclusionProperties = ['createdBy', 'createdOnUtc', 'updatedBy', 'updatedOnUtc'];
+      each(
+        typeCol.filter(t => !options.typesToFilter.includes(t.typeName)),
+        type => {
+          const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
+          data.type = { ...type, properties: type.properties.filter(prop => !exclusionProperties.includes(prop.name)) };
+          data.hasComplexType = type.properties.some(property => property.isComplexType);
+          let result: string = '';
+          try {
+            result = template(data);
+          } catch (x) {
+            console.error(`Error generating ${outputFileName}, this is likely an issue with the template`);
+            console.error(`HandleBar file: ${options.templates.models}`);
+            console.error(x);
+            throw x;
+          }
+          const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
+          if (isChanged) {
+            nrGeneratedFiles++;
+          }
+          // fs.writeFileSync(outputFileName, result, { flag: 'w', encoding: utils.ENCODING });
+        },
+      );
       log(`generated ${nrGeneratedFiles} type${nrGeneratedFiles === 1 ? '' : 's'} in ${typeFolder}`);
       removeFilesOfNonExistingTypes(typeCol, typeFolder, options, MODEL_FILE_SUFFIX);
     }

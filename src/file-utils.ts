@@ -12,10 +12,10 @@ import {
 import { compile } from 'handlebars';
 import { find, fromPairs, kebabCase, sortBy, toPairs } from 'lodash';
 import * as moment from 'moment';
+import { SchemaObject } from 'openapi3-ts';
 import { dirname, join } from 'path';
 import { TypeHelpers } from './generators/type-helper';
 import { GeneratorOptions } from './models/GeneratorOptions';
-import { ISwaggerDefinition, ISwaggerDefinitionProperties } from './models/swagger';
 
 export const ENCODING = 'utf8';
 
@@ -117,13 +117,16 @@ export function hasTypeFromDescription(description: string) {
   return false;
 }
 
-export function getSortedObjectProperties(object: ISwaggerDefinitionProperties) {
+export function getSortedObjectProperties(object: SchemaObject | undefined) {
+  if (!object) {
+    return;
+  }
   const pairs = sortBy(toPairs(object), 0);
   const result = fromPairs(pairs as Array<[string, {}]>);
   return result;
 }
 
-export function isInTypesToFilter(item: ISwaggerDefinition, key: string, options: GeneratorOptions) {
+export function isInTypesToFilter(item: SchemaObject, key: string, options: GeneratorOptions) {
   if (options && options.typesToFilter) {
     const result = !!find(options.typesToFilter, element => element === key);
     // if (result) {

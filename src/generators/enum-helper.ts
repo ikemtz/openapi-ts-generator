@@ -1,24 +1,31 @@
 import { some } from 'lodash';
+import {
+  isReferenceObject,
+  isSchemaObject,
+  OpenAPIObject,
+  ReferenceObject,
+  SchemaObject,
+  SchemasObject,
+} from 'openapi3-ts';
 import { IPropertyTypeMetaData } from '../models/IPropertyTypeMetaData';
-import { ISwagger, ISwaggerDefinition, ISwaggerPropertyDefinition } from '../models/swagger';
 import { Helpers } from './helper';
 
 export class EnumHelpers {
-  public static getIsEnumRefType(swagger: ISwagger, item: ISwaggerPropertyDefinition, isArray: boolean) {
+  public static getIsEnumRefType(swagger: OpenAPIObject, item: SchemasObject | ReferenceObject, isArray: boolean) {
     let refItemName = '';
-    if (isArray) {
-      if (item.items && item.items.$ref) {
-        refItemName = Helpers.removeDefinitionsRef(item.items.$ref);
-      }
-    } else {
+    if (isArray && isSchemaObject(item)) {
+      const schemaObject = item as SchemaObject;
+      const items = schemaObject.items as ReferenceObject;
+      refItemName = Helpers.removeDefinitionsRef(items.$ref);
+    } else if (isReferenceObject(item)) {
       refItemName = Helpers.removeDefinitionsRef(item.$ref);
     }
-    const refItem = swagger.definitions[refItemName];
+    const refItem = swagger.components?.schemas?.[refItemName];
     return EnumHelpers.getIsEnumType(refItem);
   }
 
-  public static getIsEnumType(item: ISwaggerDefinition) {
-    return !!(item && item.enum);
+  public static getIsEnumType(item: SchemaObject | undefined) {
+    return !!(item && item.type === 'enum');
   }
 
   public static getIsUniqueImportEnumType(
