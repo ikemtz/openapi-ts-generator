@@ -9,7 +9,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
-  //  "prepare": "npm run build",
     "version": "git add -A src",
     "debug": "npm run build && node --no-lazy --inspect-brk=9229 ./lib/app.js"
   },
