@@ -7,14 +7,14 @@ NPM package based on [swagger-ts-generator](https://www.npmjs.com/package/swagge
 ```javascript
 import { generateTsModels } from 'openapi-ts-generator';
 
-generateTsModels('{Your OData Swagger Enpoint here}', './{outputFolder}/');
+generateTsModels('{Your Swagger Enpoint here}', './{outputFolder}/');
 ```
 
 ## Javascript Usage
 ```javascript
 const generator = require('openapi-ts-generator');
 
-generator.generateTsModels('{Your OData Swagger Enpoint here}', './{outputFolder}/');
+generator.generateTsModels('{Your Swagger Enpoint here}', './{outputFolder}/');
 ```
 
 ## Working Example
