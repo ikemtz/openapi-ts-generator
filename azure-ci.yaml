@@ -80,7 +80,7 @@ steps:
   inputs:
     command: custom
     verbose: false
-    customCommand: 'version patch'
+    customCommand: 'version patch -m "Patch version to %s [skip ci]" --force'
 
 - bash: |
    git push origin HEAD:$SourceBranchName

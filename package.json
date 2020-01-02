@@ -28,12 +28,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ikemtz/OData-TS-Generator/issues"
+    "url": "https://github.com/ikemtz/OpenApi-TS-Generator/issues"
   },
   "files": [
     "lib/**/*"
   ],
-  "homepage": "https://github.com/ikemtz/OData-TS-Generator#readme",
+  "homepage": "https://github.com/ikemtz/OpenApi-TS-Generator#readme",
   "devDependencies": {
     "@types/jest": "^24.0.25",
     "@types/lodash": "^4.14.149",
