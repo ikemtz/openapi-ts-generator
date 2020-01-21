@@ -70,7 +70,7 @@ export class TypeHelpers {
       typeName = TypeHelpers.convertGenericTypeName(typeName);
       typeName = TypeHelpers.getTypeNameWithoutSuffixesToRemove(typeName, options);
     } else {
-      typeName = type.split('.').pop() || '';
+      typeName = type.split('/').pop() || '';
       typeName = TypeHelpers.getTypeNameWithoutSuffixesToRemove(typeName, options);
       // C# Object affects Typescript Object - fix this
       if (typeName === 'Object') {

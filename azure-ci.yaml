@@ -43,7 +43,7 @@ steps:
   displayName: 'npm build'
   inputs:
     command: custom
-    verbose: true
+    verbose: false
     customCommand: 'run build'
 
 - task: Npm@1
@@ -73,7 +73,6 @@ steps:
 
 - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
   displayName: 'Publish Quality Gate Result'
-
 
 - task: Npm@1
   displayName: 'npm version'
