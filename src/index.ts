@@ -5,6 +5,7 @@ import { OpenAPIObject } from 'openapi3-ts';
 import { resolve } from 'path';
 import { ENCODING } from './file-utils';
 import { generateModelTSFiles } from './generators/model-generator';
+import { SimpleEnumGenerator } from './generators/simple-enum-generator';
 import { GeneratorOptions } from './models/GeneratorOptions';
 import { IGeneratorOptions } from './models/IGeneratorOptions';
 
@@ -50,4 +51,6 @@ function generateTSFiles(swaggerInput: string | OpenAPIObject, ioptions: IGenera
   }
 
   generateModelTSFiles(swagger, options);
+  const enumGenerator = new SimpleEnumGenerator(swagger, options);
+  enumGenerator.generate();
 }

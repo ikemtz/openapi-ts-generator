@@ -21,6 +21,7 @@ export class GeneratorOptions {
   public namespacePrefixesToRemove: string[];
   public typeNameSuffixesToRemove: string[];
   public typesToFilter: string[];
+  public propertiesToFilter?: string[] | null;
 
   public templates: {
     validators: string;
@@ -30,6 +31,7 @@ export class GeneratorOptions {
     formGroupFacTemplate: string;
     barrel: string;
     enum: string;
+    simpleEnum: string;
     enumLanguage: string;
   };
   public generateSubTypeFactory: boolean;
@@ -45,7 +47,7 @@ export class GeneratorOptions {
     this.enumLanguageFiles = options.enumLanguageFiles || null;
     this.modelModuleName = options.modelModuleName || null;
     this.enumModuleName = options.enumModuleName || null;
-
+    this.propertiesToFilter = options.propertiesToFilter || null;
     this.enumRef = options.enumRef || null;
 
     this.namespacePrefixesToRemove = options.namespacePrefixesToRemove || [];
@@ -71,6 +73,7 @@ export class GeneratorOptions {
       formGroupFacTemplate: template.formGroupFacTemplate || `${this.templateFolder}/form-group-factory-ts.hbs`,
       subTypeFactory: template.subTypeFactory || `${this.templateFolder}/generate-sub-type-factory-ts.hbs`,
       validators: template.validators || `${this.templateFolder}/generate-validators-ts.hbs`,
+      simpleEnum: template.simpleEnum || `${this.templateFolder}/generate-simple-enum-ts.hbs`,
     };
   }
 }

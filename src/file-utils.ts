@@ -147,18 +147,20 @@ export function log(message: string) {
   console.log(`[${time}] ${message}`);
 }
 
-export function getFileName(type: string, options: GeneratorOptions, fileSuffix: string) {
+export function getFileName(type: string, options: GeneratorOptions, isEnum: boolean) {
   const typeName = TypeHelpers.removeGenericType(TypeHelpers.getTypeName(type, options));
-  return `${kebabCase(typeName)}${fileSuffix}`;
+  return `${kebabCase(typeName)}${getSuffix(isEnum)}.ts`;
 }
-
+export function getSuffix(isEnum: boolean) {
+  return isEnum ? '.enum' : '.model';
+}
 export function getImportFile(
   propTypeName: string | undefined,
   propNamespace: string | undefined,
   pathToRoot: string | undefined,
-  suffix: string | undefined,
+  isEnum: boolean,
 ) {
-  let importPath = `${kebabCase(propTypeName)}${suffix}`;
+  let importPath = `${kebabCase(propTypeName)}${getSuffix(isEnum)}`;
   if (propNamespace) {
     const namespacePath = convertNamespaceToPath(propNamespace);
     importPath = `${namespacePath}/${importPath}`;

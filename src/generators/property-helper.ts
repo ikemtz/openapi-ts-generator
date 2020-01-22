@@ -8,6 +8,7 @@ import { IValidators } from '../models/validators';
 import { EnumHelpers } from './enum-helper';
 import { Helpers } from './helper';
 import { NameSpaceHelpers } from './namespace-helpers';
+import { getSchema, getSchemaByRef } from './open-api-object-helper';
 import { TypeHelpers } from './type-helper';
 
 export class PropertyHelpers {
@@ -32,11 +33,7 @@ export class PropertyHelpers {
     type: ITypeMetaData,
     required: string[],
     properties: SchemasObject | undefined,
-    item: SchemaObject,
-    key: string,
     options: GeneratorOptions,
-    suffix: string,
-    fileSuffix: string,
     baseType?: ITypeMetaData,
   ) {
     type.properties = [];
@@ -48,7 +45,6 @@ export class PropertyHelpers {
         pitem,
         pkey,
         options,
-        suffix,
         baseType,
       );
       if (property) {
@@ -64,31 +60,29 @@ export class PropertyHelpers {
     item: SchemaObject,
     key: string,
     options: GeneratorOptions,
-    suffix: string,
     baseType?: ITypeMetaData,
   ): IPropertyTypeMetaData | undefined {
     const staticFieldName = `${snakeCase(key).toUpperCase()}`;
-    let isRefType = !!item.$ref;
+    const isRefType = !!item.$ref;
     const isArray = item.type === 'array';
     const isEnum =
-      (item.type === 'string' && !!item.enum) ||
+      EnumHelpers.getIsEnumType(item) ||
       (isArray && item.items && isSchemaObject(item.items) && item.items.type === 'string' && !!item.items.enum) ||
       ((isRefType || isArray) && EnumHelpers.getIsEnumRefType(swagger, item, isArray));
     // enum ref types are not handles as model types (they are handled in the enumGenerator)
-    if (isEnum) {
-      isRefType = false;
-    }
-    const propertyType = PropertyHelpers.getPropertyType(item, key, options, isEnum);
+    const propertyType = PropertyHelpers.getPropertyType(swagger, item, key, options, isEnum);
     if (propertyType) {
       const isComplexType = isRefType || isArray; // new this one in constructor
-      const isImportType = isRefType || (isArray && item.items && item.items.$ref && !isEnum);
-      const importType = isImportType ? TypeHelpers.getImportType(propertyType.typeName, isArray) : undefined;
-      const importFile = isImportType
-        ? getImportFile(importType, propertyType.namespace, type.pathToRoot, suffix)
+      const importType = propertyType.isImportType
+        ? TypeHelpers.getImportType(propertyType.typeName, isArray)
+        : undefined;
+      const importFile = propertyType.isImportType
+        ? getImportFile(importType, propertyType.namespace, type.pathToRoot, isEnum)
         : undefined;
       const importTypeIsPropertyType = importType === type.typeName;
       const isUniqueImportType =
-        isImportType &&
+        !isEnum &&
+        propertyType.isImportType &&
         !importTypeIsPropertyType &&
         TypeHelpers.getIsUniqueImportType(importType, baseType, type.properties); // import this type
       const validators = PropertyHelpers.getTypePropertyValidatorDefinitions(
@@ -168,11 +162,17 @@ export class PropertyHelpers {
     return validators;
   }
 
-  public static getPropertyType(item: SchemaObject, name: string, options: GeneratorOptions, isEnum: boolean) {
+  public static getPropertyType(
+    swagger: OpenAPIObject,
+    item: SchemaObject,
+    name: string,
+    options: GeneratorOptions,
+    isEnum: boolean,
+  ) {
     const result: IPropertyTypeMetaData = {
       description: '',
       hasValidation: false,
-      isEnum: false,
+      isEnum,
       isArray: false,
       isArrayComplexType: false,
       isComplexType: false,
@@ -200,13 +200,15 @@ export class PropertyHelpers {
         result.interfaceTypeName = `${name}`;
       }
       if (item.type === 'array' && item.items) {
-        const arrayPropType = PropertyHelpers.getPropertyType(item.items, name, options, isEnum);
+        const arrayPropType = PropertyHelpers.getPropertyType(swagger, item.items, name, options, isEnum);
         if (arrayPropType) {
-          result.typeName = `Array<${arrayPropType.typeName}>`;
-          result.interfaceTypeName = `Array<I${arrayPropType.typeName}>`;
+          const schemaObject = getSchemaByRef(swagger, item.items);
+          result.arrayTypeName = arrayPropType.typeName || TypeHelpers.getTypeName(schemaObject?.name || '', options);
+          result.typeName = `Array<${result.arrayTypeName}>`;
+          result.interfaceTypeName = `Array<I${result.arrayTypeName}>`;
+          result.isImportType = !!schemaObject;
           result.namespace = arrayPropType.namespace;
           result.isArrayComplexType = !isEnum ? !!item.items.$ref : false;
-          result.arrayTypeName = arrayPropType.typeName;
         }
       }
       // description may contain an overrule type for enums, eg /** type CoverType */
@@ -223,17 +225,28 @@ export class PropertyHelpers {
     }
     if (item.$ref) {
       const type = Helpers.removeDefinitionsRef(item.$ref);
-      result.typeName = TypeHelpers.getTypeName(type, options);
-      result.interfaceTypeName = TypeHelpers.getTypeInterfaceName(type, options);
-      result.namespace = NameSpaceHelpers.getNamespace(type, options, true);
-      result.fullNamespace = NameSpaceHelpers.getNamespace(type, options, false);
+      const schema = getSchema(swagger, type);
+      result.isImportType = true;
+      if (!schema) {
+        result.typeName = TypeHelpers.getTypeName(type, options);
+        result.interfaceTypeName = isEnum ? result.typeName || '' : TypeHelpers.getTypeInterfaceName(type, options);
+        result.namespace = NameSpaceHelpers.getNamespace(type, options, true);
+        result.fullNamespace = NameSpaceHelpers.getNamespace(type, options, false);
 
-      // TODO add more C# primitive types
-      if (TypeHelpers.getIsGenericType(result.typeName)) {
-        const genericTType = TypeHelpers.getGenericType(result.typeName);
-        if (genericTType && genericTType === 'System.DateTime') {
-          result.typeName = result.typeName.replace(genericTType, 'Date');
+        // TODO add more C# primitive types
+        if (TypeHelpers.getIsGenericType(result.typeName)) {
+          const genericTType = TypeHelpers.getGenericType(result.typeName);
+          if (genericTType && genericTType === 'System.DateTime') {
+            result.typeName = result.typeName.replace(genericTType, 'Date');
+          }
         }
+      } else if (schema.schemaObject.type === 'integer') {
+        result.typeName = 'number';
+        result.interfaceTypeName = 'number';
+        result.isUniqueImportType = false;
+        result.isUniqueImportEnumType = false;
+        result.isEnum = false;
+        result.isImportType = false;
       }
 
       return result;

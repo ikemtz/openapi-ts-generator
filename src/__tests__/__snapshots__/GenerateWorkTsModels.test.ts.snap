@@ -9,12 +9,11 @@ exports[`IAggregatedWorkModel should be correct 1`] = `
  */
  // tslint:disable: array-type
  
-import { DayOfWeek } from './day-of-week.enum';
 
 export interface IAggregatedWorkModel {
     createdBy?: string;
     createdOnUtc?: Date;
-    dayOfWeek?: DayOfWeek;
+    dayOfWeek?: number;
     id?: string;
     metric?: number;
     modelName?: string;

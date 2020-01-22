@@ -20,6 +20,7 @@ export interface IGeneratorOptions {
   namespacePrefixesToRemove?: string[];
   typeNameSuffixesToRemove?: string[];
   typesToFilter?: string[];
+  propertiesToFilter?: string[];
   sortModelProperties?: boolean;
   sortEnumTypes?: boolean;
 
@@ -32,5 +33,6 @@ export interface IGeneratorOptions {
     barrel?: string;
     enum?: string;
     enumLanguage?: string;
+    simpleEnum?: string;
   };
 }
