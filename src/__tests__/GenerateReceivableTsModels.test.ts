@@ -38,12 +38,12 @@ test('Generate TS Models should generate an index.ts barrel file', async done =>
   }
 });
 
-// test('IAggregatedWorkModel should be correct', async done => {
-//   try {
-//     const file = await readFileSync('./output_inr/aggregated-work-model.model.ts');
-//     expect(file.toString()).toMatchSnapshot();
-//     done();
-//   } catch (err) {
-//     done.fail(err);
-//   }
-// });
+test('IReceivable should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_inr/receivable.model.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});
