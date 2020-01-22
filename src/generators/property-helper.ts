@@ -223,6 +223,9 @@ export class PropertyHelpers {
 
       return result;
     }
+    if (!item.$ref && item.allOf) {
+      item = item.allOf[0];
+    }
     if (item.$ref) {
       const type = Helpers.removeDefinitionsRef(item.$ref);
       const schema = getSchema(swagger, type);
