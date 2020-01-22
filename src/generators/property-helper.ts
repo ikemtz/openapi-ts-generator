@@ -229,8 +229,11 @@ export class PropertyHelpers {
     if (item.$ref) {
       const type = Helpers.removeDefinitionsRef(item.$ref);
       const schema = getSchema(swagger, type);
+
       result.isImportType = true;
       if (!schema) {
+        throw new Error('Schema not found!');
+      } else if (schema.schemaObject.type === 'object') {
         result.typeName = TypeHelpers.getTypeName(type, options);
         result.interfaceTypeName = isEnum ? result.typeName || '' : TypeHelpers.getTypeInterfaceName(type, options);
         result.namespace = NameSpaceHelpers.getNamespace(type, options, true);
