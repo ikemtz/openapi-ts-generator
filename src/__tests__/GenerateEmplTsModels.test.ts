@@ -34,3 +34,13 @@ test('Employee model should be correct', async done => {
     done.fail(err);
   }
 });
+
+test('EmployeeFormGroupFac should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_emp/employee.form-group-fac.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});

@@ -326,7 +326,7 @@ function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: s
           const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
           data.type = {
             ...type,
-            properties: type.properties.filter(prop => !prop.enum || !exclusionProperties.includes(prop.name)),
+            properties: type.properties.filter(prop => !exclusionProperties.includes(prop.name)),
           };
           data.hasComplexType = type.properties.some(property => property.isComplexType);
           let result: string = '';

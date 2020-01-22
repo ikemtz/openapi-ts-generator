@@ -47,3 +47,13 @@ test('IAggregatedWorkModel should be correct', async done => {
     done.fail(err);
   }
 });
+
+test('AggregatedWorkModelFormGroupFac should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_wrk/aggregated-work-model.form-group-fac.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});

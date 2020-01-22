@@ -47,3 +47,13 @@ test('IReceivable should be correct', async done => {
     done.fail(err);
   }
 });
+
+test('ReceivableFormGroupFac should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_inr/receivable.form-group-fac.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});

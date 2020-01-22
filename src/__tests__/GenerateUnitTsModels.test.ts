@@ -47,3 +47,13 @@ test('IUnit should be correct', async done => {
     done.fail(err);
   }
 });
+
+test('UnitFormGroupFac should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_unt/unit.form-group-fac.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});
