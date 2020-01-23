@@ -54,3 +54,13 @@ test('employeeFormPatcher should be correct', async done => {
     done.fail(err);
   }
 });
+
+test('BarrelFile should be correct', async done => {
+  try {
+    const file = await readFileSync('./output_emp/index.ts');
+    expect(file.toString()).toMatchSnapshot();
+    done();
+  } catch (err) {
+    done.fail(err);
+  }
+});

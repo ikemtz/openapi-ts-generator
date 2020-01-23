@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';
 import { resolve } from 'path';
 import { ENCODING } from './file-utils';
+import { BarrelFileGenerator } from './generators/barrel-file-generator';
 import { FormGroupPatcherGenerator } from './generators/form-group-patcher-generator';
 import { generateModelTSFiles } from './generators/model-generator';
 import { SimpleEnumGenerator } from './generators/simple-enum-generator';
@@ -58,4 +59,10 @@ function generateTSFiles(swaggerInput: string | OpenAPIObject, ioptions: IGenera
 
   const formGroupPatchGenerator = new FormGroupPatcherGenerator(swagger, options);
   formGroupPatchGenerator.generate();
+
+  // generate barrel files (index files to simplify import statements)
+  if (options.generateBarrelFiles) {
+    const barrelFileGenerator = new BarrelFileGenerator(swagger, options);
+    barrelFileGenerator.generate();
+  }
 }

@@ -55,11 +55,6 @@ export function generateModelTSFiles(swagger: OpenAPIObject, options: GeneratorO
   if (options.generateSubTypeFactory) {
     generateSubTypeFactory(namespaceGroups, folder, options);
   }
-
-  // generate barrel files (index files to simplify import statements)
-  if (options.generateBarrelFiles) {
-    generateBarrelFiles(namespaceGroups, folder, options);
-  }
 }
 
 function generateTSValidations(folder: string, options: GeneratorOptions) {
@@ -388,44 +383,6 @@ function generateSubTypeFactory(namespaceGroups: INamespaceGroups, folder: strin
       if (isChanged) {
         log(`generated ${outputFileName}`);
       }
-    }
-  }
-}
-
-function generateBarrelFiles(namespaceGroups: INamespaceGroups, folder: string, options: GeneratorOptions) {
-  const data: { fileNames: string[] } = {
-    fileNames: [],
-  };
-  const template = readAndCompileTemplateFile(options.templates.barrel);
-
-  for (const key in namespaceGroups) {
-    if (namespaceGroups[key]) {
-      data.fileNames = namespaceGroups[key].map(type => {
-        return removeExtension(type.fileName);
-      });
-      namespaceGroups[key].forEach(type => data.fileNames.push(`${kebabCase(type.fullTypeName)}.form-group-fac`));
-      if (key === ROOT_NAMESPACE) {
-        addRootFixedFileNames(data.fileNames, options);
-      }
-      const namespacePath = namespaceGroups[key][0] ? namespaceGroups[key][0].path : '';
-      const outputFileName = join(folder + namespacePath, 'index.ts');
-
-      const result = template(data);
-      const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
-      if (isChanged) {
-        log(`generated ${outputFileName}`);
-      }
-    }
-  }
-}
-
-function addRootFixedFileNames(fileNames: string[], options: GeneratorOptions) {
-  const enumOutputFileName = normalize(options.enumTSFile.split('/').pop() || '.');
-  if (enumOutputFileName && enumOutputFileName !== '.') {
-    fileNames.splice(0, 0, removeExtension(enumOutputFileName));
-    if (options.generateValidatorFile) {
-      const validatorsOutputFileName = normalize(options.validatorsFileName);
-      fileNames.splice(0, 0, removeExtension(validatorsOutputFileName));
     }
   }
 }

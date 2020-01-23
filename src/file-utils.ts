@@ -13,7 +13,7 @@ import { compile } from 'handlebars';
 import { find, fromPairs, kebabCase, sortBy, toPairs } from 'lodash';
 import * as moment from 'moment';
 import { SchemaObject } from 'openapi3-ts';
-import { dirname, join } from 'path';
+import { dirname, join, normalize } from 'path';
 import { TypeHelpers } from './generators/type-helper';
 import { GeneratorOptions } from './models/GeneratorOptions';
 
@@ -165,6 +165,5 @@ export function getImportFile(
     const namespacePath = convertNamespaceToPath(propNamespace);
     importPath = `${namespacePath}/${importPath}`;
   }
-
   return (pathToRoot + importPath).toLocaleLowerCase();
 }
