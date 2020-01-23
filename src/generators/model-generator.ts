@@ -148,7 +148,6 @@ function getTypeDefinition(
   let baseType;
   let baseImportFile;
   const isSubType = TypeHelpers.getIsSubType(item);
-  const hasSubTypeProperty = isSubType || TypeHelpers.getHasSubTypeProperty(properties, options);
   if (isSubType) {
     baseType = TypeHelpers.getBaseType(typeName, typeCollection, item, options);
     // baseType might not be in the typeCollection yet
