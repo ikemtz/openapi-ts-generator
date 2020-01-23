@@ -32,6 +32,7 @@ export class GeneratorOptions {
     barrel: string;
     enum: string;
     simpleEnum: string;
+    formGroupPatcher: string;
     enumLanguage: string;
   };
   public generateSubTypeFactory: boolean;
@@ -74,6 +75,7 @@ export class GeneratorOptions {
       subTypeFactory: template.subTypeFactory || `${this.templateFolder}/generate-sub-type-factory-ts.hbs`,
       validators: template.validators || `${this.templateFolder}/generate-validators-ts.hbs`,
       simpleEnum: template.simpleEnum || `${this.templateFolder}/generate-simple-enum-ts.hbs`,
+      formGroupPatcher: template.formGroupPatcher || `${this.templateFolder}/form-group-patcher-ts.hbs`,
     };
   }
 }

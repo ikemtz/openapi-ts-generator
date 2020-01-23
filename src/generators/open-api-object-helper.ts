@@ -21,6 +21,20 @@ export function getSchema(
   return schemas.find(t => t.name === typeName);
 }
 
+export function getProperties(
+  typeSchemaObject: SchemaObject,
+): Array<{ name: string; schemaObject: SchemaObject | ReferenceObject }> | undefined {
+  const properties = typeSchemaObject.properties || {};
+  const result: Array<{ name: string; schemaObject: SchemaObject | ReferenceObject }> = [];
+  for (const key in properties) {
+    if (properties.hasOwnProperty(key)) {
+      const schemaObject = properties[key];
+      result.push({ name: key, schemaObject });
+    }
+  }
+  return result;
+}
+
 export function getSchemaByRef(
   openAPIObject: OpenAPIObject,
   reference: SchemaObject | ReferenceObject,

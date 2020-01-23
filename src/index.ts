@@ -4,6 +4,7 @@ import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';
 import { resolve } from 'path';
 import { ENCODING } from './file-utils';
+import { FormGroupPatcherGenerator } from './generators/form-group-patcher-generator';
 import { generateModelTSFiles } from './generators/model-generator';
 import { SimpleEnumGenerator } from './generators/simple-enum-generator';
 import { GeneratorOptions } from './models/GeneratorOptions';
@@ -51,6 +52,10 @@ function generateTSFiles(swaggerInput: string | OpenAPIObject, ioptions: IGenera
   }
 
   generateModelTSFiles(swagger, options);
+
   const enumGenerator = new SimpleEnumGenerator(swagger, options);
   enumGenerator.generate();
+
+  const formGroupPatchGenerator = new FormGroupPatcherGenerator(swagger, options);
+  formGroupPatchGenerator.generate();
 }

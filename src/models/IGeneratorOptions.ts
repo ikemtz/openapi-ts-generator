@@ -34,5 +34,6 @@ export interface IGeneratorOptions {
     enum?: string;
     enumLanguage?: string;
     simpleEnum?: string;
+    formGroupPatcher?: string;
   };
 }
