@@ -1,4 +1,4 @@
-import { kebabCase, snakeCase } from 'lodash';
+import { camelCase, kebabCase, snakeCase } from 'lodash';
 import { OpenAPIObject, SchemaObject } from 'openapi3-ts';
 import { log, readAndCompileTemplateFile, writeFileIfContentsIsChanged } from '../file-utils';
 import { GeneratorOptions } from '../models/GeneratorOptions';
@@ -15,7 +15,8 @@ export class FormGroupPatcherGenerator {
   public generate() {
     const objectSchemas = this.getObjectSchemas().map(os => ({
       ...os,
-      kebabName: kebabCase(os.name),
+      nameKebab: kebabCase(os.name),
+      nameCamel: camelCase(os.name),
       propertyKeys: (getProperties(os.schemaObject) || [])
         .filter(t => !this.exclusionProperties.includes(t.name))
         .map(t => ({

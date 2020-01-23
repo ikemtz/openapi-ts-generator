@@ -9,9 +9,9 @@
 import { FormGroup } from '@angular/forms';
 import { tap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { I{{name}}, {{name}}Properties } from './{{kebabName}}.model';
+import { I{{name}}, {{name}}Properties } from './{{nameKebab}}.model';
 
-export const formPatcher = (addEditForm: FormGroup) => (source: Observable<I{{name}}>) => source.pipe(
+export const {{nameCamel}}FormPatcher = (addEditForm: FormGroup) => (source: Observable<I{{name}}>) => source.pipe(
   filter(t => !!t),
   tap(t => {
     addEditForm.patchValue({
