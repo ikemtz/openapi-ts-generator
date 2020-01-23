@@ -130,12 +130,13 @@ exports[`employeeFormPatcher should be correct 1`] = `
 /* tslint:disable */
 
 import { FormGroup } from '@angular/forms';
-import { tap, filter } from 'rxjs/operators';
+import { take, tap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { IEmployee, EmployeeProperties } from './employee.model';
 
 export const employeeFormPatcher = (addEditForm: FormGroup) => (source: Observable<IEmployee>) => source.pipe(
   filter(t => !!t),
+  take(1),
   tap(t => {
     addEditForm.patchValue({
       [EmployeeProperties.LAST_NAME]: t.lastName,

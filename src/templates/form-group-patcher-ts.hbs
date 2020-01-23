@@ -7,12 +7,13 @@
 /* tslint:disable */
 
 import { FormGroup } from '@angular/forms';
-import { tap, filter } from 'rxjs/operators';
+import { take, tap, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { I{{name}}, {{name}}Properties } from './{{nameKebab}}.model';
 
 export const {{nameCamel}}FormPatcher = (addEditForm: FormGroup) => (source: Observable<I{{name}}>) => source.pipe(
   filter(t => !!t),
+  take(1),
   tap(t => {
     addEditForm.patchValue({
 {{#each propertyKeys}}
