@@ -17,7 +17,7 @@ export const {{nameCamel}}FormPatcher = (addEditForm: FormGroup) => (source: Obs
   tap(t => {
     addEditForm.patchValue({
 {{#each propertyKeys}}
-      [{{@root.name}}Properties.{{this.nameSnakeCase}}]: t.{{this.name}},
+      [{{@root.name}}Properties.{{this.nameSnakeCase}}]: t.{{this.name}} || '',
 {{/each}}
     });
   })
