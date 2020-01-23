@@ -11,7 +11,9 @@ export class BarrelFileGenerator {
   }
 
   public generate() {
-    const fileNames = readdirSync(this.options.modelFolder).map(t => removeExtension(t));
+    const fileNames = readdirSync(this.options.modelFolder)
+      .filter(t => !t.endsWith('index.ts'))
+      .map(t => removeExtension(t));
     const result = this.generateBarrelFile({ fileNames });
     const outputFileName = `${this.options.modelFolder}/index.ts`;
     writeFileIfContentsIsChanged(outputFileName, result);
