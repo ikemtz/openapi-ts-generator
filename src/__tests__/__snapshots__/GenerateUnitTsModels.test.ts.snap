@@ -25,9 +25,8 @@ export interface IUnit {
     site?: ISite;
     siteId?: string;
     unitTags?: Array<IUnitTag>;
+    unitType?: IUnitType;
     unitTypeId?: string;
-    unitTypeName?: string;
-    unitTypes?: IUnitType;
     updatedBy?: string;
     updatedOnUtc?: Date;
 }
@@ -43,9 +42,8 @@ export enum UnitProperties {
     SITE = 'site',
     SITE_ID = 'siteId',
     UNIT_TAGS = 'unitTags',
+    UNIT_TYPE = 'unitType',
     UNIT_TYPE_ID = 'unitTypeId',
-    UNIT_TYPE_NAME = 'unitTypeName',
-    UNIT_TYPES = 'unitTypes',
     UPDATED_BY = 'updatedBy',
     UPDATED_ON_UTC = 'updatedOnUtc',
 }
@@ -70,9 +68,8 @@ export function UnitFormGroupFac(): FormGroup {
     site: new FormControl(''),
     siteId: new FormControl(''),
     unitTags: new FormControl(''),
+    unitType: new FormControl(''),
     unitTypeId: new FormControl(''),
-    unitTypeName: new FormControl(''),
-    unitTypes: new FormControl(''),
   });
 };
 "

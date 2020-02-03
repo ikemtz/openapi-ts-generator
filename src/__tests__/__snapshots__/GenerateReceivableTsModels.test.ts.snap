@@ -11,12 +11,11 @@ exports[`IReceivable should be correct 1`] = `
  
 import { ILineItem } from './line-item.model';
 import { IReceivableContact } from './receivable-contact.model';
+import { IReceivableDocument } from './receivable-document.model';
 
 export interface IReceivable {
     accountId?: string;
     accountName: string;
-    buildingId?: string;
-    buildingNumber?: string;
     cancelledOnUtc?: Date;
     comments?: string;
     createdBy?: string;
@@ -34,8 +33,7 @@ export interface IReceivable {
     paidOnDate?: Date;
     previousLineItemTotal?: number;
     receivableContacts?: Array<IReceivableContact>;
-    siteId?: string;
-    siteNumber?: string;
+    receivableDocuments?: Array<IReceivableDocument>;
     status?: number;
     tenantId: string;
     totalTaxes?: number;
@@ -46,8 +44,6 @@ export interface IReceivable {
 export enum ReceivableProperties {
     ACCOUNT_ID = 'accountId',
     ACCOUNT_NAME = 'accountName',
-    BUILDING_ID = 'buildingId',
-    BUILDING_NUMBER = 'buildingNumber',
     CANCELLED_ON_UTC = 'cancelledOnUtc',
     COMMENTS = 'comments',
     CREATED_BY = 'createdBy',
@@ -65,8 +61,7 @@ export enum ReceivableProperties {
     PAID_ON_DATE = 'paidOnDate',
     PREVIOUS_LINE_ITEM_TOTAL = 'previousLineItemTotal',
     RECEIVABLE_CONTACTS = 'receivableContacts',
-    SITE_ID = 'siteId',
-    SITE_NUMBER = 'siteNumber',
+    RECEIVABLE_DOCUMENTS = 'receivableDocuments',
     STATUS = 'status',
     TENANT_ID = 'tenantId',
     TOTAL_TAXES = 'totalTaxes',
@@ -88,8 +83,6 @@ export function ReceivableFormGroupFac(): FormGroup {
   return new FormGroup({
     accountId: new FormControl(''),
     accountName: new FormControl('', Validators.required),
-    buildingId: new FormControl(''),
-    buildingNumber: new FormControl(''),
     cancelledOnUtc: new FormControl(''),
     comments: new FormControl(''),
     dueDate: new FormControl(''),
@@ -105,8 +98,7 @@ export function ReceivableFormGroupFac(): FormGroup {
     paidOnDate: new FormControl(''),
     previousLineItemTotal: new FormControl(''),
     receivableContacts: new FormControl(''),
-    siteId: new FormControl(''),
-    siteNumber: new FormControl(''),
+    receivableDocuments: new FormControl(''),
     status: new FormControl(''),
     tenantId: new FormControl('', Validators.required),
     totalTaxes: new FormControl(''),
