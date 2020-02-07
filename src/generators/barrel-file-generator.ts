@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs';
-import { OpenAPIObject, SchemaObject } from 'openapi3-ts';
+import { OpenAPIObject } from 'openapi3-ts';
 import { readAndCompileTemplateFile, removeExtension, writeFileIfContentsIsChanged } from '../file-utils';
 import { GeneratorOptions } from '../models/GeneratorOptions';
 

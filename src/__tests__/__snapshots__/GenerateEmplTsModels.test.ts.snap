@@ -29,12 +29,12 @@ exports[`Employee model should be correct 1`] = `
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
- // tslint:disable: array-type
- 
+// tslint:disable: array-type
 import { IEmployeeCertification } from './employee-certification.model';
 import { IEmployeeCompetency } from './employee-competency.model';
 import { IEmployeeHealthItem } from './employee-health-item.model';
 
+// tslint:disable-next-line: no-empty-interface
 export interface IEmployee {
     addressLine1?: string;
     birthDate?: Date;
@@ -59,7 +59,6 @@ export interface IEmployee {
     updatedOnUtc?: Date;
     zip?: string;
 }
-
 export enum EmployeeProperties {
     ADDRESS_LINE_1 = 'addressLine1',
     BIRTH_DATE = 'birthDate',

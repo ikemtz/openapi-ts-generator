@@ -1,4 +1,4 @@
-﻿import { readFileSync, unlinkSync } from 'fs';
+﻿import { readFileSync } from 'fs';
 import { isObject } from 'lodash';
 import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';

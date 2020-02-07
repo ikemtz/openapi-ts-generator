@@ -7,12 +7,12 @@ exports[`IReceivable should be correct 1`] = `
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
- // tslint:disable: array-type
- 
+// tslint:disable: array-type
 import { ILineItem } from './line-item.model';
 import { IReceivableContact } from './receivable-contact.model';
 import { IReceivableDocument } from './receivable-document.model';
 
+// tslint:disable-next-line: no-empty-interface
 export interface IReceivable {
     accountId?: string;
     accountName: string;
@@ -40,7 +40,6 @@ export interface IReceivable {
     updatedBy?: string;
     updatedOnUtc?: Date;
 }
-
 export enum ReceivableProperties {
     ACCOUNT_ID = 'accountId',
     ACCOUNT_NAME = 'accountName',

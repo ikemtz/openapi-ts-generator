@@ -25,15 +25,17 @@ export class FormGroupPatcherGenerator {
         })),
     }));
     let generatedPatchers = 0;
-    objectSchemas.forEach(data => {
-      const result = this.generatePatchFile(data);
-      const fileName = this.getFileName(data.name);
-      const outputFileName = `${this.options.modelFolder}/${fileName}`;
-      const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
-      if (isChanged) {
-        generatedPatchers++;
-      }
-    });
+    objectSchemas
+      .filter(t => t.propertyKeys.length > 0)
+      .forEach(data => {
+        const result = this.generatePatchFile(data);
+        const fileName = this.getFileName(data.name);
+        const outputFileName = `${this.options.modelFolder}/${fileName}`;
+        const isChanged = writeFileIfContentsIsChanged(outputFileName, result);
+        if (isChanged) {
+          generatedPatchers++;
+        }
+      });
     log(`generated ${generatedPatchers} enums`);
   }
   public generatePatchFile(data: { name: string; schemaObject: SchemaObject }) {

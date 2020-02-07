@@ -4,8 +4,7 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
- // tslint:disable: array-type
- 
+// tslint:disable: array-type
 {{#with type}}
     {{#if isSubType}}
 import { I{{baseType.typeName}}, {{baseType.typeName}} } from '{{baseImportFile}}';
@@ -19,15 +18,17 @@ import { {{importEnumType}} } from '{{../../enumRef}}{{importFile}}';
     {{/if}}
 {{/properties}}
 
+// tslint:disable-next-line: no-empty-interface
 export interface I{{{typeName}}} {
 {{#properties}}
     {{name}}{{#unless validators.validation.required}}?{{/unless}}: {{{interfaceTypeName}}};
 {{/properties}}
 }
-
+{{#if properties.length}}
 export enum {{{typeName}}}Properties {
 {{#properties}}
     {{staticFieldName}} = '{{name}}',
 {{/properties}}
 }
+{{/if}}
 {{/with}}

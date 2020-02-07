@@ -7,13 +7,13 @@ exports[`IUnit should be correct 1`] = `
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
- // tslint:disable: array-type
- 
+// tslint:disable: array-type
 import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 import { IUnitTag } from './unit-tag.model';
 import { IUnitType } from './unit-type.model';
 
+// tslint:disable-next-line: no-empty-interface
 export interface IUnit {
     building?: IBuilding;
     buildingId?: string;
@@ -30,7 +30,6 @@ export interface IUnit {
     updatedBy?: string;
     updatedOnUtc?: Date;
 }
-
 export enum UnitProperties {
     BUILDING = 'building',
     BUILDING_ID = 'buildingId',

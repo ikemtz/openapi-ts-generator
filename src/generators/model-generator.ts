@@ -314,9 +314,10 @@ function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: s
         'updatedBy',
         'updatedOnUtc',
       ];
-      each(
-        typeCol.filter(t => !options.typesToFilter.includes(t.typeName)),
-        type => {
+
+      typeCol
+        .filter(t => !options.typesToFilter.includes(t.typeName) && t.properties.length > 0)
+        .forEach(type => {
           const outputFileName = join(typeFolder, `${kebabCase(type.fullTypeName)}.form-group-fac.ts`);
           data.type = {
             ...type,
@@ -337,8 +338,8 @@ function generateFormGroupFactories(namespaceGroups: INamespaceGroups, folder: s
             nrGeneratedFiles++;
           }
           // fs.writeFileSync(outputFileName, result, { flag: 'w', encoding: utils.ENCODING });
-        },
-      );
+        });
+
       log(`generated ${nrGeneratedFiles} type${nrGeneratedFiles === 1 ? '' : 's'} in ${typeFolder}`);
       removeFilesOfNonExistingTypes(typeCol, typeFolder, options, MODEL_FILE_SUFFIX);
     }

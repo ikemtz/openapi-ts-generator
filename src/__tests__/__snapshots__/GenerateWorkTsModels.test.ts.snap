@@ -33,9 +33,9 @@ exports[`IAggregatedWorkModel should be correct 1`] = `
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
- // tslint:disable: array-type
- 
+// tslint:disable: array-type
 
+// tslint:disable-next-line: no-empty-interface
 export interface IAggregatedWorkModel {
     createdBy?: string;
     createdOnUtc?: Date;
@@ -53,7 +53,6 @@ export interface IAggregatedWorkModel {
     workType?: string;
     year?: number;
 }
-
 export enum AggregatedWorkModelProperties {
     CREATED_BY = 'createdBy',
     CREATED_ON_UTC = 'createdOnUtc',
