@@ -10,7 +10,7 @@ beforeAll(async () => {
 
 test('Generate TS Models should generate an output directory', async done => {
   try {
-    const files = await readdirSync('./output_inr');
+    const files = readdirSync('./output_inr');
     expect(files.length).toBeGreaterThan(0);
     done();
   } catch (err) {
@@ -20,7 +20,7 @@ test('Generate TS Models should generate an output directory', async done => {
 
 test('Generate TS Models should generate an output directory', async done => {
   try {
-    const files = await readdirSync('./output_inr');
+    const files = readdirSync('./output_inr');
     expect(files.length).toBeGreaterThan(0);
     done();
   } catch (err) {
@@ -30,7 +30,7 @@ test('Generate TS Models should generate an output directory', async done => {
 
 test('Generate TS Models should generate an index.ts barrel file', async done => {
   try {
-    const fileExist = await existsSync('./output_inr/index.ts');
+    const fileExist = existsSync('./output_inr/index.ts');
     expect(fileExist).toBeTruthy();
     done();
   } catch (err) {
@@ -40,7 +40,7 @@ test('Generate TS Models should generate an index.ts barrel file', async done =>
 
 test('IReceivable should be correct', async done => {
   try {
-    const file = await readFileSync('./output_inr/receivable.model.ts');
+    const file = readFileSync('./output_inr/receivable.model.ts');
     expect(file.toString()).toMatchSnapshot();
     done();
   } catch (err) {
@@ -50,7 +50,7 @@ test('IReceivable should be correct', async done => {
 
 test('ReceivableFormGroupFac should be correct', async done => {
   try {
-    const file = await readFileSync('./output_inr/receivable.form-group-fac.ts');
+    const file = readFileSync('./output_inr/receivable.form-group-fac.ts');
     expect(file.toString()).toMatchSnapshot();
     done();
   } catch (err) {
