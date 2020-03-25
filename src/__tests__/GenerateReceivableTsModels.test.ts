@@ -3,7 +3,7 @@ import { generateTsModels } from '../index';
 
 beforeAll(async () => {
   await generateTsModels(
-    'https://d-invr-wal-00-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
+    'https://d-invr-wal-00-cus-npmstrcrp.azurewebsites.net/swagger/v1/swagger.json',
     './output_inr/',
   );
 });
