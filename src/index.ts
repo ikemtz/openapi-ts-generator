@@ -6,10 +6,7 @@ import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generato
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
 
-export {
-  nrsrxTypeFilterCallBack as typeFilterCallBack,
-  nrsrxValuePropertyTypeFilterCallBack as valuePropertyTypeFilterCallBack,
-} from './models/nrsrx-filters';
+export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
 
 export async function generateTsModels(options: IGeneratorOptions) {
   options = setGeneratorOptionDefaults(options);
