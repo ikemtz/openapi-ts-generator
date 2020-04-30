@@ -10,7 +10,7 @@
     "lint": "tslint -p tsconfig.json",
     "test": "npm run build && jest --collect-coverage --config jestconfig.json",
     "version": "git add -A src",
-    "debug": "tsc && node --inspect-brk ./lib/app.js"
+    "debug": "npm run build && node --inspect-brk ./lib/app.js"
   },
   "author": {
     "name": "Isaac Martinez <@ikemtz>"

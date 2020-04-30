@@ -5,15 +5,17 @@
  * Do not edit.
  */
 /* tslint:disable */
+{{#if importTypes}}
 {{#importTypes}}
 import { I{{name}} } from './{{kebabCasedTypeName}}';
 {{/importTypes}}
 
+{{/if}}
 export interface I{{{name}}} {
 {{#valueProperties}}
-  {{name}}: {{typeScriptType}}{{#if isArray}}[]{{/if}};
+  {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}};
 {{/valueProperties}}
 {{#referenceProperties}}
-  {{name}}: I{{referenceTypeName}}{{#if isArray}}[]{{/if}};
+  {{name}}?: I{{referenceTypeName}}{{#if isArray}}[]{{/if}};
 {{/referenceProperties}}
 }

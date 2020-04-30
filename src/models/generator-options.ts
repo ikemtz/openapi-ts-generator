@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
 
 export interface IGeneratorOptions {
@@ -30,6 +31,7 @@ export function defaultFilter(
 }
 
 export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGeneratorOptions {
+  const templateFolder = resolve(`${__dirname}/..`, 'templates');
   options.angular = options.angular ?? true;
   options.messageFormat = options.messageFormat ?? 'json';
   options.typeFilterCallBack = options.typeFilterCallBack ?? defaultFilter;
@@ -37,11 +39,11 @@ export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGenerat
   options.referencePropertyTypeFilterCallBack = options.referencePropertyTypeFilterCallBack ?? defaultFilter;
   options.templates = {
     ...options.templates,
-    model: options.templates?.model ?? './templates/model.ts.hbs',
-    formGroupFactory: options.templates?.formGroupFactory ?? './templates/form-group-factory.ts.hbs',
-    barrel: options.templates?.barrel ?? './templates/index.ts.hbs',
-    enum: options.templates?.barrel ?? './templates/enum.ts.hbs',
-    modelProperties: options.templates?.barrel ?? './templates/model-properties.ts.hbs',
+    model: options.templates?.model ?? `${templateFolder}/model.ts.hbs`,
+    formGroupFactory: options.templates?.formGroupFactory ?? `${templateFolder}/form-group-factory.ts.hbs`,
+    barrel: options.templates?.barrel ?? `${templateFolder}/index.ts.hbs`,
+    enum: options.templates?.barrel ?? `${templateFolder}/enum.ts.hbs`,
+    modelProperties: options.templates?.barrel ?? `${templateFolder}/model-properties.ts.hbs`,
   };
   return options;
 }

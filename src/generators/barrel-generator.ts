@@ -5,13 +5,13 @@ import { ITemplateData } from '../models/template-data';
 import { BaseGenerator } from './base-generator';
 
 export class BarrelGenerator extends BaseGenerator<{ fileNames: string[] }> {
-  private regex = /.ts$/;
+  private readonly tsRegex = /.ts$/;
   constructor(options: IGeneratorOptions) {
     super(options, options.templates?.barrel);
   }
 
-  public generate(templateData: ITemplateData): void {
-    const fileNames = readdirSync(this.generatorOptions.outputPath).map(value => value.replace(this.regex, ''));
-    super.generateFile(`${this.generatorOptions.outputPath}/index.ts`, { fileNames });
+  public generate(templateData: ITemplateData): string | null {
+    const fileNames = readdirSync(this.generatorOptions.outputPath).map(value => value.replace(this.tsRegex, ''));
+    return super.generateFile(`${this.generatorOptions.outputPath}/index.ts`, { fileNames });
   }
 }

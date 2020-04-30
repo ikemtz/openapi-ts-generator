@@ -16,9 +16,11 @@ export interface IValueProperty {
   name: string;
   snakeCaseName: string;
   typeScriptType?: string;
+  isArray: boolean;
+  hasMultipleValidators: boolean;
   required: boolean;
   maxLength?: number;
-  minLength?: Int32Array;
+  minLength?: number;
 }
 
 export interface IReferenceProperty {

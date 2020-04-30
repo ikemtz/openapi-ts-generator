@@ -6,13 +6,22 @@
  */
 /* tslint:disable */
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 export function {{name}}FormGroupFac(): FormGroup {
   return new FormGroup({
 {{#valueProperties}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}),
+{{#if hasMultipleValidators}}
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}])),
+{{else}}
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+{{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}),
+{{#if hasMultipleValidators}}
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}]),
+{{else}}
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+{{/if}}
 {{/referenceProperties}}
   });
 };

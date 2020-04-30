@@ -38,10 +38,21 @@ export class OpenApiDocConverter {
               this.convertReferenceObjectToPropertyType(propertyName, propertyReferenceObject, componentSchemaObject),
             );
           } else if (propertySchemaObject.type === 'array' && propertySchemaObject.items) {
-            propertyReferenceObject = propertySchemaObject.items as ReferenceObject;
-            referenceProperties.push(
-              this.convertArrayObjectToPropertyType(propertyName, propertyReferenceObject, componentSchemaObject),
-            );
+            const arraySchemaObject = propertySchemaObject.items as SchemaObject;
+            if (arraySchemaObject.type) {
+              valueProperties.push(
+                this.convertArrayObjectToValuePropertyType(propertyName, arraySchemaObject, componentSchemaObject),
+              );
+            } else {
+              propertyReferenceObject = propertySchemaObject.items as ReferenceObject;
+              referenceProperties.push(
+                this.convertArrayObjectToReferencePropertyType(
+                  propertyName,
+                  propertyReferenceObject,
+                  componentSchemaObject,
+                ),
+              );
+            }
           }
         }
         referenceProperties = referenceProperties.filter(
@@ -64,18 +75,37 @@ export class OpenApiDocConverter {
     propertyObject: SchemaObject,
     componentSchemaObject: SchemaObject,
   ): IValueProperty {
+    const required = this.getIsRequired(propertyName, propertyObject, componentSchemaObject);
     const property: IValueProperty = {
       name: propertyName,
+      isArray: false,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(propertyObject),
-      required:
-        (componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
-        (propertyObject.nullable === undefined ? false : !propertyObject.nullable),
+      required,
+      maxLength: propertyObject.maxLength,
+      minLength: propertyObject.minLength,
+      hasMultipleValidators: +required + +!!propertyObject.maxLength + +!!propertyObject.minLength > 1,
     };
     return property;
   }
 
-  public convertArrayObjectToPropertyType(
+  public convertArrayObjectToValuePropertyType(
+    propertyName: string,
+    propertyObject: SchemaObject,
+    componentSchemaObject: SchemaObject,
+  ): IValueProperty {
+    const required = this.getIsRequired(propertyName, propertyObject, componentSchemaObject);
+    return {
+      name: propertyName,
+      isArray: true,
+      snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
+      typeScriptType: this.getPropertyTypeScriptType(propertyObject),
+      required,
+      hasMultipleValidators: false,
+    };
+  }
+
+  public convertArrayObjectToReferencePropertyType(
     propertyName: string,
     propertyObject: ReferenceObject,
     componentSchemaObject: SchemaObject,
@@ -127,5 +157,11 @@ export class OpenApiDocConverter {
       .map(t => t.referenceTypeName)
       .filter((value, index, array) => array.indexOf(value) === index)
       .map(value => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
+  }
+  public getIsRequired(propertyName: string, propertyObject: SchemaObject, componentSchemaObject: SchemaObject) {
+    return (
+      (componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
+      (propertyObject.nullable === undefined ? false : !propertyObject.nullable)
+    );
   }
 }

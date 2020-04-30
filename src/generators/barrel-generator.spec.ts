@@ -12,12 +12,11 @@ describe('BarrelGenerator', () => {
     }
   });
   it('should generate', () => {
-    const generator = new BarrelGenerator(
-      setGeneratorOptionDefaults({
-        templates: { barrel: './src/templates/index.ts.hbs' },
-        outputPath,
-      } as IGeneratorOptions),
-    );
+    const options: IGeneratorOptions = {
+      outputPath,
+      openApiJsonUrl: '',
+    };
+    const generator = new BarrelGenerator(setGeneratorOptionDefaults(options));
     const result = generator.generate({} as ITemplateData);
     expect(result).toMatchSnapshot();
   });
