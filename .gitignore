@@ -70,3 +70,4 @@ old_src/templates/generate-model-ts.hbs
 old_src/templates/generate-simple-enum-ts.hbs
 old_src/templates/generate-sub-type-factory-ts.hbs
 old_src/templates/generate-validators-ts.hbs
+jest_ouput/index.ts
