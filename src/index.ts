@@ -1,68 +1,37 @@
-﻿import { readFileSync } from 'fs';
-import { isObject } from 'lodash';
+import * as fs from 'fs';
 import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';
-import { resolve } from 'path';
-import { ENCODING } from './file-utils';
-import { BarrelFileGenerator } from './generators/barrel-file-generator';
-import { FormGroupPatcherGenerator } from './generators/form-group-patcher-generator';
-import { generateModelTSFiles } from './generators/model-generator';
-import { SimpleEnumGenerator } from './generators/simple-enum-generator';
-import { GeneratorOptions } from './models/GeneratorOptions';
-import { IGeneratorOptions } from './models/IGeneratorOptions';
+import { ModelGenerator, FormGroupGenerator, ModelPropertiesGenerator, BarrelGenerator } from './generators';
+import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
+import { ITemplateData } from './models/template-data';
+import { OpenApiDocConverter } from './openapidoc-converter';
 
-export async function generateTsModels(url: string, outputfolder: string) {
-  const response = await fetch(url);
-  const json: OpenAPIObject = await response.json();
-  const oDataWrapperTypes = Object.getOwnPropertyNames(json.components?.schemas).filter(
-    t => t.startsWith('ODataValue[') || t.endsWith('ODataEnvelope'),
-  );
-  console.log(`oDataWrapperTypes: ${oDataWrapperTypes}`);
-  const TEMPLATE_FOLDER = resolve(__dirname, 'templates');
-  try {
-    generateTSFiles(json, {
-      enumTSFile: outputfolder,
-      generateClasses: false,
-      generateValidatorFile: false,
-      modelFolder: outputfolder,
-      typesToFilter: oDataWrapperTypes,
-      templateFolder: TEMPLATE_FOLDER,
-    });
-  } catch {
-    // TODO: need to figure out why enums are failing
-  }
+export async function generateTsModels(options: IGeneratorOptions) {
+  options = setGeneratorOptionDefaults(options);
+  const apiDocument: OpenAPIObject = await getOpenApiDocumentAsync(options);
+  const converter = new OpenApiDocConverter(options, apiDocument);
+  const templateData: ITemplateData = converter.convertDocument();
+  generateOutput(options, templateData);
 }
 
-function generateTSFiles(swaggerInput: string | OpenAPIObject, ioptions: IGeneratorOptions) {
-  const options = new GeneratorOptions(ioptions);
+async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<OpenAPIObject> {
+  const response = await fetch(options.openApiJsonUrl);
+  const apiDoc = await response.json();
+  return apiDoc as OpenAPIObject;
+}
 
-  if (!swaggerInput) {
-    throw new Error('swaggerFileName must be defined');
+function generateOutput(options: IGeneratorOptions, templateData: ITemplateData) {
+  if (fs.existsSync(options.outputPath)) {
+    fs.readdirSync(options.outputPath).forEach(file => fs.unlinkSync(`${options.outputPath}/${file}`));
+    fs.rmdirSync(options.outputPath);
   }
-  if (!isObject(options)) {
-    throw new Error('options must be defined');
-  }
-
-  const swagger =
-    typeof swaggerInput === 'string'
-      ? (JSON.parse(readFileSync(swaggerInput, ENCODING).trim()) as OpenAPIObject)
-      : swaggerInput;
-
-  if (typeof swagger !== 'object') {
-    throw new TypeError('The given swagger input is not of type object');
-  }
-
-  generateModelTSFiles(swagger, options);
-
-  const enumGenerator = new SimpleEnumGenerator(swagger, options);
-  enumGenerator.generate();
-
-  const formGroupPatchGenerator = new FormGroupPatcherGenerator(swagger, options);
-  formGroupPatchGenerator.generate();
-
-  // generate barrel files (index files to simplify import statements)
-  if (options.generateBarrelFiles) {
-    const barrelFileGenerator = new BarrelFileGenerator(swagger, options);
-    barrelFileGenerator.generate();
-  }
+  fs.mkdirSync(options.outputPath);
+  const modelGenerator = new ModelGenerator(options);
+  modelGenerator.generate(templateData);
+  const formGroupGenerator = new FormGroupGenerator(options);
+  formGroupGenerator.generate(templateData);
+  const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
+  modelPropertiesGenerator.generate(templateData);
+  const barrelGenerator = new BarrelGenerator(options);
+  barrelGenerator.generate(templateData);
 }
