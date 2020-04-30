@@ -5,6 +5,7 @@ import { ITemplateData } from '../models/template-data';
 import { BaseGenerator } from './base-generator';
 
 export class BarrelGenerator extends BaseGenerator<{ fileNames: string[] }> {
+  public readonly GeneratorName = 'BarrelGenerator';
   private readonly tsRegex = /.ts$/;
   constructor(options: IGeneratorOptions) {
     super(options, options.templates?.barrel);

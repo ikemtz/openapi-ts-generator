@@ -4,6 +4,7 @@ import { IEntity, ITemplateData } from '../models/template-data';
 import { BaseGenerator } from './base-generator';
 
 export class FormGroupGenerator extends BaseGenerator<IEntity> {
+  public readonly GeneratorName = 'FormGroupGenerator';
   constructor(options: IGeneratorOptions) {
     super(options, options.templates?.formGroupFactory);
   }

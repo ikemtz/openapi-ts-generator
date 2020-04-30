@@ -1,20 +1,20 @@
 import { generateTsModels } from '.';
 import { IGeneratorOptions } from './models/generator-options';
-import { NrsrxOptions } from './models/nrsrx-options';
+import { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
 import { IEntity } from './models/template-data';
 
 export const unitGenerationOptions = {
   openApiJsonUrl: 'https://d-unit-wal-00-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
   outputPath: './output_unit/',
-  typeFilterCallBack: NrsrxOptions.typeFilterCallBack,
-  valuePropertyTypeFilterCallBack: NrsrxOptions.valuePropertyTypeFilterCallBack,
+  typeFilterCallBack: nrsrxTypeFilterCallBack,
+  valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
 };
 export const messageGenerationOptions = {
   openApiJsonUrl: 'https://d-msng-wal-01-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
   outputPath: './output_msng/',
   typeFilterCallBack: (val: IEntity, i: number, arr: IEntity[]) =>
-    NrsrxOptions.typeFilterCallBack(val, i, arr) && val.name !== 'GetMessageInfoResponse',
-  valuePropertyTypeFilterCallBack: NrsrxOptions.valuePropertyTypeFilterCallBack,
+    nrsrxTypeFilterCallBack(val, i, arr) && val.name !== 'GetMessageInfoResponse',
+  valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
 };
 export function generateUnitFiles(options: IGeneratorOptions = unitGenerationOptions) {
   return generateTsModels(options);

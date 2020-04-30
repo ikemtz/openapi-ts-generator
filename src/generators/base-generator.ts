@@ -2,7 +2,8 @@ import { readFileSync, writeFileSync } from 'fs';
 import { compile } from 'handlebars';
 import { IGeneratorOptions } from '../models/generator-options';
 
-export abstract class BaseGenerator<TContextSchema> {
+export abstract class BaseGenerator<TContextSchema extends object> {
+  public abstract readonly GeneratorName: string;
   public readonly template?: HandlebarsTemplateDelegate<TContextSchema>;
   public readonly emptyArrayRegex = /, ]/g;
   public constructor(
@@ -12,8 +13,6 @@ export abstract class BaseGenerator<TContextSchema> {
     if (templateFilePath) {
       const templateSource = readFileSync(templateFilePath, { encoding: 'utf8' });
       this.template = compile(templateSource);
-    } else {
-      console.warn(`Template for ${this} has not been specified`);
     }
   }
 
@@ -31,6 +30,8 @@ export abstract class BaseGenerator<TContextSchema> {
         console.error(err);
         throw err;
       }
+    } else {
+      console.warn(`Template for ${this.GeneratorName} has not been specified`);
     }
     return null;
   }

@@ -6,7 +6,10 @@ import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generato
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
 
-export * from './models/nrsrx-options';
+export {
+  nrsrxTypeFilterCallBack as typeFilterCallBack,
+  nrsrxValuePropertyTypeFilterCallBack as valuePropertyTypeFilterCallBack,
+} from './models/nrsrx-filters';
 
 export async function generateTsModels(options: IGeneratorOptions) {
   options = setGeneratorOptionDefaults(options);
@@ -27,7 +30,7 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
     fs.readdirSync(options.outputPath).forEach(file => fs.unlinkSync(`${options.outputPath}/${file}`));
     fs.rmdirSync(options.outputPath);
   }
-  fs.mkdirSync(options.outputPath);
+  fs.mkdirSync(options.outputPath, { recursive: true });
   const modelGenerator = new ModelGenerator(options);
   modelGenerator.generate(templateData);
   const formGroupGenerator = new FormGroupGenerator(options);
