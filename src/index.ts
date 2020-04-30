@@ -6,6 +6,8 @@ import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generato
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
 
+export * from './models/nrsrx-options';
+
 export async function generateTsModels(options: IGeneratorOptions) {
   options = setGeneratorOptionDefaults(options);
   const apiDocument: OpenAPIObject = await getOpenApiDocumentAsync(options);
