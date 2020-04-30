@@ -15,10 +15,8 @@ describe('Full Integration Tests', () => {
       files.forEach(file => {
         const content = readFileSync(`${unitGenerationOptions.outputPath}${file}`, 'utf8');
         expect(content).toMatchSnapshot(file);
+        unlinkSync(`${unitGenerationOptions.outputPath}${file}`);
       });
-      readdirSync(unitGenerationOptions.outputPath).forEach(file =>
-        unlinkSync(`${unitGenerationOptions.outputPath}${file}`),
-      );
       rmdirSync(unitGenerationOptions.outputPath);
       done();
     });
@@ -36,10 +34,8 @@ describe('Full Integration Tests', () => {
       files.forEach(file => {
         const content = readFileSync(`${messageGenerationOptions.outputPath}${file}`, 'utf8');
         expect(content).toMatchSnapshot(file);
+        unlinkSync(`${messageGenerationOptions.outputPath}${file}`);
       });
-      readdirSync(messageGenerationOptions.outputPath).forEach(file =>
-        unlinkSync(`${messageGenerationOptions.outputPath}${file}`),
-      );
       rmdirSync(messageGenerationOptions.outputPath);
       done();
     });
