@@ -20,7 +20,35 @@ describe('Full Integration Tests', () => {
       rmdirSync(unitGenerationOptions.outputPath);
       done();
     });
+    it('should not generate files', async done => {
+      try {
+        mkdirSync(unitGenerationOptions.outputPath);
+      } catch {
+        // ignore
+      }
+
+      await generateUnitFiles({
+        ...unitGenerationOptions,
+        templates: {
+          formGroupFactory: '',
+          model: '',
+          modelProperties: '',
+          barrel: '',
+          enum: '',
+        },
+      });
+      const files = readdirSync(unitGenerationOptions.outputPath).sort();
+      expect(files).toMatchSnapshot();
+      files.forEach(file => {
+        const content = readFileSync(`${unitGenerationOptions.outputPath}${file}`, 'utf8');
+        expect(content).toMatchSnapshot(file);
+        unlinkSync(`${unitGenerationOptions.outputPath}${file}`);
+      });
+      rmdirSync(unitGenerationOptions.outputPath);
+      done();
+    });
   });
+
   describe('MasterCorp Messaging Service', () => {
     it('should generate files', async done => {
       try {

@@ -8,6 +8,5 @@ exports[`BarrelGenerator should generate 1`] = `
  * Do not edit.
  */
 /* tslint:disable */
-export * from './index';
 "
 `;

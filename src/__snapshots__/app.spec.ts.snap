@@ -575,3 +575,5 @@ export interface IWorkCategoryTypes {
 }
 "
 `;
+
+exports[`Full Integration Tests MasterCorp Unit Service should not generate files 1`] = `Array []`;

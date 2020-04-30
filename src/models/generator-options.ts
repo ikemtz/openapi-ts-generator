@@ -32,8 +32,6 @@ export function defaultFilter(
 
 export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGeneratorOptions {
   const templateFolder = resolve(`${__dirname}/..`, 'templates');
-  options.angular = options.angular ?? true;
-  options.messageFormat = options.messageFormat ?? 'json';
   options.typeFilterCallBack = options.typeFilterCallBack ?? defaultFilter;
   options.valuePropertyTypeFilterCallBack = options.valuePropertyTypeFilterCallBack ?? defaultFilter;
   options.referencePropertyTypeFilterCallBack = options.referencePropertyTypeFilterCallBack ?? defaultFilter;

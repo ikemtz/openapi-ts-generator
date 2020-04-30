@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync } from 'fs';
+import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'fs';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
 import { ITemplateData } from '../models/template-data';
 import { BarrelGenerator } from './barrel-generator';
@@ -19,5 +19,7 @@ describe('BarrelGenerator', () => {
     const generator = new BarrelGenerator(setGeneratorOptionDefaults(options));
     const result = generator.generate({} as ITemplateData);
     expect(result).toMatchSnapshot();
+    unlinkSync(`${outputPath}/index.ts`);
+    rmdirSync(outputPath);
   });
 });
