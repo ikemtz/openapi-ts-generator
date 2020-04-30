@@ -1,6 +1,6 @@
 {
   "name": "openapi-ts-generator",
-  "version": "0.1.106",
+  "version": "0.1.107",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for OData endpoints documented by swagger.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
