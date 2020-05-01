@@ -70,7 +70,6 @@ exports[`Full Integration Tests MasterCorp Account Service should generate files
  * Do not edit.
  */
 /* tslint:disable */
-import { IAccount } from './account';
 import { IContact } from './contact';
 
 export interface IAccount {

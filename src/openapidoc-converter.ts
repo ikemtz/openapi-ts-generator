@@ -62,7 +62,7 @@ export class OpenApiDocConverter {
           name: schemaName,
           referenceProperties,
           valueProperties: valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
-          importTypes: this.getImportTypes(referenceProperties),
+          importTypes: this.getImportTypes(schemaName, referenceProperties),
         };
         entities.push(entity);
       }
@@ -152,9 +152,10 @@ export class OpenApiDocConverter {
     }
     return result || 'unknown';
   }
-  public getImportTypes(referenceProperties: IReferenceProperty[]): IImportType[] {
+  public getImportTypes(entityName: string, referenceProperties: IReferenceProperty[]): IImportType[] {
     return referenceProperties
       .map(t => t.referenceTypeName)
+      .filter(t => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
       .map(value => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
   }
