@@ -11,7 +11,7 @@ export class ModelPropertiesGenerator extends BaseGenerator<IEntity> {
 
   public generate(templateData: ITemplateData): void {
     templateData.entities
-      ?.filter(val => val.valueProperties?.length + val.referenceProperties?.length > 0)
+      ?.filter(val => val.valueProperties?.length > 0 || val.referenceProperties?.length > 0)
       .forEach(entity => {
         super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.properties.ts`, entity);
       });
