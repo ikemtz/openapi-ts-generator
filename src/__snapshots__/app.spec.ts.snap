@@ -59,7 +59,7 @@ exports[`Full Integration Tests MasterCorp Account Service should generate files
  * Do not edit.
  */
 /* tslint:disable */
-import { IContact } from './contact';
+import { IContact } from './contact.model';
 
 export interface IAccount {
   id?: string;
@@ -118,7 +118,7 @@ exports[`Full Integration Tests MasterCorp Account Service should generate files
  * Do not edit.
  */
 /* tslint:disable */
-import { IContact } from './contact';
+import { IContact } from './contact.model';
 
 export interface IAccountInsertRequest {
   id?: string;
@@ -174,7 +174,7 @@ exports[`Full Integration Tests MasterCorp Account Service should generate files
  * Do not edit.
  */
 /* tslint:disable */
-import { IContact } from './contact';
+import { IContact } from './contact.model';
 
 export interface IAccountUpdateRequest {
   id?: string;
@@ -240,7 +240,7 @@ exports[`Full Integration Tests MasterCorp Account Service should generate files
  * Do not edit.
  */
 /* tslint:disable */
-import { IAccount } from './account';
+import { IAccount } from './account.model';
 
 export interface IContact {
   id?: string;
@@ -574,8 +574,8 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: b
  * Do not edit.
  */
 /* tslint:disable */
-import { ISite } from './site';
-import { IUnit } from './unit';
+import { ISite } from './site.model';
+import { IUnit } from './unit.model';
 
 export interface IBuilding {
   id?: string;
@@ -673,9 +673,9 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: s
  * Do not edit.
  */
 /* tslint:disable */
-import { ISiteCollection } from './site-collection';
-import { IBuilding } from './building';
-import { IUnit } from './unit';
+import { ISiteCollection } from './site-collection.model';
+import { IBuilding } from './building.model';
+import { IUnit } from './unit.model';
 
 export interface ISite {
   id?: string;
@@ -749,9 +749,9 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: s
  * Do not edit.
  */
 /* tslint:disable */
-import { IWorkCategoryTypes } from './work-category-types';
-import { IBuilding } from './building';
-import { ISite } from './site';
+import { IWorkCategoryTypes } from './work-category-types.model';
+import { IBuilding } from './building.model';
+import { ISite } from './site.model';
 
 export interface ISiteCollection {
   id?: string;
@@ -813,7 +813,7 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: t
  * Do not edit.
  */
 /* tslint:disable */
-import { IUnitTag } from './unit-tag';
+import { IUnitTag } from './unit-tag.model';
 
 export interface ITag {
   id?: string;
@@ -870,10 +870,10 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: u
  * Do not edit.
  */
 /* tslint:disable */
-import { IBuilding } from './building';
-import { ISite } from './site';
-import { IUnitType } from './unit-type';
-import { IUnitTag } from './unit-tag';
+import { IBuilding } from './building.model';
+import { ISite } from './site.model';
+import { IUnitType } from './unit-type.model';
+import { IUnitTag } from './unit-tag.model';
 
 export interface IUnit {
   id?: string;
@@ -932,8 +932,8 @@ exports[`Full Integration Tests MasterCorp Unit Service should generate files: u
  * Do not edit.
  */
 /* tslint:disable */
-import { ITag } from './tag';
-import { IUnit } from './unit';
+import { ITag } from './tag.model';
+import { IUnit } from './unit.model';
 
 export interface IUnitTag {
   id?: string;
