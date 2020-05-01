@@ -16,6 +16,12 @@ export const messageGenerationOptions = {
     nrsrxTypeFilterCallBack(val, i, arr) && val.name !== 'GetMessageInfoResponse',
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
 };
+export const accountGenerationOptions = {
+  openApiJsonUrl: 'https://d-acct-wal-01-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
+  outputPath: './output_acct/',
+  typeFilterCallBack: nrsrxTypeFilterCallBack,
+  valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+};
 export function generateUnitFiles(options: IGeneratorOptions = unitGenerationOptions) {
   return generateTsModels(options);
 }
@@ -24,5 +30,10 @@ export function generateMessageFiles(options: IGeneratorOptions = messageGenerat
   return generateTsModels(messageGenerationOptions);
 }
 
+export function generateAccountFiles(options: IGeneratorOptions = messageGenerationOptions) {
+  return generateTsModels(accountGenerationOptions);
+}
+
 generateUnitFiles();
 generateMessageFiles();
+generateAccountFiles();

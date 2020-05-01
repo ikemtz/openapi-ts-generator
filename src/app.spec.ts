@@ -1,5 +1,12 @@
 import { mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
-import { generateMessageFiles, generateUnitFiles, messageGenerationOptions, unitGenerationOptions } from './app';
+import {
+  accountGenerationOptions,
+  generateAccountFiles,
+  generateMessageFiles,
+  generateUnitFiles,
+  messageGenerationOptions,
+  unitGenerationOptions,
+} from './app';
 
 describe('Full Integration Tests', () => {
   describe('MasterCorp Unit Service', () => {
@@ -65,6 +72,26 @@ describe('Full Integration Tests', () => {
         unlinkSync(`${messageGenerationOptions.outputPath}${file}`);
       });
       rmdirSync(messageGenerationOptions.outputPath);
+      done();
+    });
+  });
+
+  describe('MasterCorp Account Service', () => {
+    it('should generate files', async done => {
+      try {
+        mkdirSync(accountGenerationOptions.outputPath);
+      } catch {
+        // ignore
+      }
+      await generateAccountFiles();
+      const files = readdirSync(accountGenerationOptions.outputPath).sort();
+      expect(files).toMatchSnapshot();
+      files.forEach(file => {
+        const content = readFileSync(`${accountGenerationOptions.outputPath}${file}`, 'utf8');
+        expect(content).toMatchSnapshot(file);
+        unlinkSync(`${accountGenerationOptions.outputPath}${file}`);
+      });
+      rmdirSync(accountGenerationOptions.outputPath);
       done();
     });
   });
