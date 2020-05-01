@@ -11,7 +11,7 @@ export class ModelGenerator extends BaseGenerator<IEntity> {
 
   public generate(templateData: ITemplateData): void {
     templateData.entities?.forEach(entity => {
-      super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.ts`, entity);
+      super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.model.ts`, entity);
     });
   }
 }
