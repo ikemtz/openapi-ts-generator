@@ -3,96 +3,94 @@ pool:
   demands: npm
 
 steps:
-- checkout: self
-  clean: true
-  persistCredentials: true
+  - checkout: self
+    clean: true
+    persistCredentials: true
 
-- script: |
-    git config user.email "ikemtz@outlook.com" 
-    git config user.name "Isaac Martinez"
+  - script: |
+      git config user.email "ikemtz@outlook.com" 
+      git config user.name "Isaac Martinez"
 
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    verbose: false
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      verbose: false
 
-- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
-  displayName: 'Prepare analysis on SonarCloud'
-  inputs:
-    SonarCloud: 'SonarCloud IkeMtz'
-    organization: 'ikemtz'
-    scannerMode: CLI
-    configMode: manual
-    cliProjectKey: 'open-api-ts-generator'
-    cliProjectName: 'open-api-ts-generator'
-    cliSources: 'src'
-    extraProperties: |
-     # Additional properties that will be passed to the scanner, 
-     # Put one key=value per line, example:
-     # sonar.exclusions=**/*.test.ts
-      sonar.sources=src
-      sonar.sourceEncoding=UTF-8
-      sonar.exclusions=**/node_modules/**,**/*.test.ts
-      sonar.tests=src/__tests__
-      sonar.test.inclusions=**/*.test.ts
-      sonar.ts.tslintconfigpath=tslint.json
-      sonar.typescript.lcov.reportPaths=coverage/lcov.info
-      sonar.typescript.exclusions=**/node_modules/**
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+      organization: 'ikemtz'
+      scannerMode: CLI
+      configMode: manual
+      cliProjectKey: 'open-api-ts-generator'
+      cliProjectName: 'open-api-ts-generator'
+      cliSources: 'src'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.test.ts
+         sonar.sources=src
+         sonar.sourceEncoding=UTF-8
+         sonar.exclusions=**/node_modules/**,**/*.test.ts,**/*.spec.ts
+         sonar.tests=src/__tests__
+         sonar.test.inclusions=**/*.test.ts
+         sonar.ts.tslintconfigpath=tslint.json
+         sonar.typescript.lcov.reportPaths=coverage/lcov.info
+         sonar.typescript.exclusions=**/node_modules/**
 
-- task: Npm@1
-  displayName: 'npm build'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'run build'
+  - task: Npm@1
+    displayName: 'npm build'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run build'
 
-- task: Npm@1
-  displayName: 'npm test'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'run test'
+  - task: Npm@1
+    displayName: 'npm test'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run test'
 
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage cobertura-coverage.xml'
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
-    failIfCoverageEmpty: true
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage cobertura-coverage.xml'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+      failIfCoverageEmpty: true
 
-- task: PublishTestResults@2
-  displayName: 'Publish JUnit Test Results'
-  inputs:
-    searchFolder: '$(System.DefaultWorkingDirectory)/coverage/'
-    testResultsFiles: junit.xml
-    mergeTestResults: true
-    failTaskOnFailedTests: true
+  - task: PublishTestResults@2
+    displayName: 'Publish JUnit Test Results'
+    inputs:
+      searchFolder: '$(System.DefaultWorkingDirectory)/coverage/'
+      testResultsFiles: junit.xml
+      mergeTestResults: true
+      failTaskOnFailedTests: true
 
-- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
-  displayName: 'Run Code Analysis'
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
 
-- task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
-  displayName: 'Publish Quality Gate Result'
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
 
-- task: Npm@1
-  displayName: 'npm version'
-  inputs:
-    command: custom
-    verbose: false
-    customCommand: 'version patch -m "Patch version to %s [skip ci]" --force'
+  - task: Npm@1
+    displayName: 'npm version'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'version patch -m "Patch version to %s [skip ci]" --force'
 
-- bash: |
-   git push origin HEAD:$SourceBranchName
-   git push --tags
-  displayName: 'Git Push New Version'
-  env:
-    SourceBranchName: $(Build.SourceBranchName)
+  - bash: |
+      git push origin HEAD:$SourceBranchName
+      git push --tags
+    displayName: 'Git Push New Version'
+    env:
+      SourceBranchName: $(Build.SourceBranchName)
 
-- task: Npm@1
-  displayName: 'npm publish'
-  inputs:
-    command: publish
-    verbose: false
-    publishEndpoint: IkeMtz-npm
-
-
+  - task: Npm@1
+    displayName: 'npm publish'
+    inputs:
+      command: publish
+      verbose: false
+      publishEndpoint: IkeMtz-npm
