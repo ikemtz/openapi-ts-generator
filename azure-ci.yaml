@@ -80,13 +80,7 @@ steps:
       command: custom
       verbose: false
       customCommand: 'version patch -m "Patch version to %s [skip ci]" --force'
-
-  - bash: |
-      git push origin HEAD:$SourceBranchName
-      git push --tags
-    displayName: 'Git Push New Version'
-    env:
-      SourceBranchName: $(Build.SourceBranchName)
+      conditions: and(succeeded(), endsWith(variables['Build.SourceBranch'], 'master'))
 
   - task: Npm@1
     displayName: 'npm publish'
@@ -94,3 +88,22 @@ steps:
       command: publish
       verbose: false
       publishEndpoint: IkeMtz-npm
+      conditions: and(succeeded(), endsWith(variables['Build.SourceBranch'], 'master'))
+
+  - bash: |
+      git push origin HEAD:$SourceBranchName
+      git push --tags
+    displayName: 'Git Push New Version'
+    env:
+      SourceBranchName: $(Build.SourceBranchName)
+    conditions: and(succeeded(), endsWith(variables['Build.SourceBranch'], 'master'))
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+pr:
+  branches:
+    include:
+      - master
