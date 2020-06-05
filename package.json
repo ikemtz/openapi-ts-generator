@@ -9,7 +9,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "npm run build && jest --collect-coverage --config jestconfig.json",
-    "del:snapshots": "rm -r ./**/__snapshots__",
+    "prep:lib": "rm -r ./**/__snapshots__ && cp -v ./package.json ./lib/package.json",
     "debug": "npm run build && node --inspect-brk ./lib/app.js"
   },
   "author": {
