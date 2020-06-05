@@ -1,11 +1,12 @@
 import _ = require('lodash');
 import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
+import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
 
 export class OpenApiDocConverter {
   public readonly regex = /[A-z0-9]*$/s;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -18,51 +19,16 @@ export class OpenApiDocConverter {
 
     for (const schemaName in this.apiDocument.components?.schemas) {
       if (this.apiDocument.components?.schemas[schemaName]) {
-        const componentSchemaObject: SchemaObject = this.apiDocument.components?.schemas[schemaName];
-        const valueProperties: IValueProperty[] = [];
-        let referenceProperties: IReferenceProperty[] = [];
-        let propertySchemaObject: SchemaObject;
-        let propertyReferenceObject: ReferenceObject;
-        for (const propertyName in componentSchemaObject.properties) {
-          if (
-            (propertySchemaObject = componentSchemaObject.properties[propertyName] as SchemaObject).type &&
-            propertySchemaObject.type !== 'array'
-          ) {
-            valueProperties.push(
-              this.convertSchemaObjectToPropertyType(propertyName, propertySchemaObject, componentSchemaObject),
-            );
-          } else if (
-            (propertyReferenceObject = componentSchemaObject.properties[propertyName] as ReferenceObject).$ref
-          ) {
-            referenceProperties.push(
-              this.convertReferenceObjectToPropertyType(propertyName, propertyReferenceObject, componentSchemaObject),
-            );
-          } else if (propertySchemaObject.type === 'array' && propertySchemaObject.items) {
-            const arraySchemaObject = propertySchemaObject.items as SchemaObject;
-            if (arraySchemaObject.type) {
-              valueProperties.push(
-                this.convertArrayObjectToValuePropertyType(propertyName, arraySchemaObject, componentSchemaObject),
-              );
-            } else {
-              propertyReferenceObject = propertySchemaObject.items as ReferenceObject;
-              referenceProperties.push(
-                this.convertArrayObjectToReferencePropertyType(
-                  propertyName,
-                  propertyReferenceObject,
-                  componentSchemaObject,
-                ),
-              );
-            }
-          }
-        }
-        referenceProperties = referenceProperties.filter(
-          this.options.referencePropertyTypeFilterCallBack || defaultFilter,
-        );
+        const schemaWrapperInfo = new SchemaWrapperInfo(this.apiDocument.components?.schemas[schemaName]);
+        this.buildSchemaWrapperInfo(schemaWrapperInfo);
+        schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity = {
           name: schemaName,
-          referenceProperties,
-          valueProperties: valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
-          importTypes: this.getImportTypes(schemaName, referenceProperties),
+          referenceProperties: schemaWrapperInfo.referenceProperties,
+          valueProperties: schemaWrapperInfo.valueProperties.filter(
+            this.options.valuePropertyTypeFilterCallBack || defaultFilter,
+          ),
+          importTypes: this.getImportTypes(schemaName, schemaWrapperInfo),
         };
         entities.push(entity);
       }
@@ -70,36 +36,74 @@ export class OpenApiDocConverter {
     return entities.filter(this.options.typeFilterCallBack || defaultFilter);
   }
 
-  public convertSchemaObjectToPropertyType(
-    propertyName: string,
-    propertyObject: SchemaObject,
-    componentSchemaObject: SchemaObject,
-  ): IValueProperty {
-    const required = this.getIsRequired(propertyName, propertyObject, componentSchemaObject);
-    const property: IValueProperty = {
+  public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo) {
+    for (const propertyName in schemaWrapperInfo.componentSchemaObject.properties) {
+      if (
+        (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[ // NOSONAR
+          propertyName
+        ] as SchemaObject).type &&
+        schemaWrapperInfo.propertySchemaObject.type !== 'array'
+      ) {
+        schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(propertyName, schemaWrapperInfo));
+      } else if (
+        (schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[
+          propertyName
+        ] as ReferenceObject).$ref
+      ) {
+        schemaWrapperInfo.referenceProperties.push(
+          this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
+        );
+      } else if (
+        schemaWrapperInfo.propertySchemaObject.type === 'array' &&
+        schemaWrapperInfo.propertySchemaObject.items
+      ) {
+        this.convertArray(propertyName, schemaWrapperInfo);
+      }
+    }
+  }
+
+  public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
+    const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
+    if (arraySchemaObject.type) {
+      schemaWrapperInfo.valueProperties.push(
+        this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo),
+      );
+    } else {
+      schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.propertySchemaObject.items as ReferenceObject;
+      schemaWrapperInfo.referenceProperties.push(
+        this.convertArrayObjectToReferencePropertyType(propertyName, schemaWrapperInfo),
+      );
+    }
+  }
+
+  public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+    const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    return {
       name: propertyName,
       isArray: false,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
-      typeScriptType: this.getPropertyTypeScriptType(propertyObject),
+      typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       required,
-      maxLength: propertyObject.maxLength,
-      minLength: propertyObject.minLength,
-      hasMultipleValidators: +required + +!!propertyObject.maxLength + +!!propertyObject.minLength > 1,
+      maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
+      minLength: schemaWrapperInfo.propertySchemaObject.minLength,
+      hasMultipleValidators:
+        +required +
+        +!!schemaWrapperInfo.propertySchemaObject.maxLength +
+        +!!schemaWrapperInfo.propertySchemaObject.minLength >
+        1,
     };
-    return property;
   }
 
   public convertArrayObjectToValuePropertyType(
     propertyName: string,
-    propertyObject: SchemaObject,
-    componentSchemaObject: SchemaObject,
+    schemaWrapperInfo: SchemaWrapperInfo,
   ): IValueProperty {
-    const required = this.getIsRequired(propertyName, propertyObject, componentSchemaObject);
+    const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     return {
       name: propertyName,
       isArray: true,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
-      typeScriptType: this.getPropertyTypeScriptType(propertyObject),
+      typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       required,
       hasMultipleValidators: false,
     };
@@ -107,62 +111,67 @@ export class OpenApiDocConverter {
 
   public convertArrayObjectToReferencePropertyType(
     propertyName: string,
-    propertyObject: ReferenceObject,
-    componentSchemaObject: SchemaObject,
+    schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
     return {
-      ...this.convertReferenceObjectToPropertyType(propertyName, propertyObject, componentSchemaObject),
+      ...this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
       isArray: true,
     };
   }
 
   public convertReferenceObjectToPropertyType(
     propertyName: string,
-    propertyObject: ReferenceObject,
-    componentSchemaObject: SchemaObject,
+    schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
-    const property: IReferenceProperty = {
+    return {
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
-      referenceTypeName: this.parseRef(propertyObject.$ref),
+      referenceTypeName: this.parseRef(schemaWrapperInfo),
       isArray: false,
-      required: (componentSchemaObject.required || []).indexOf(propertyName) > -1,
+      required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
     };
-    return property;
   }
 
-  public getPropertyTypeScriptType(propertySchemaObject: SchemaObject): string {
-    if (propertySchemaObject.type === 'integer') {
+  public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
+    if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
       return 'number';
-    } else if (propertySchemaObject.format === 'date-time') {
+    } else if (schemaWrapperInfo.propertySchemaObject.format === 'date-time') {
       return 'Date';
     }
-    if (!propertySchemaObject.type) {
+    if (!schemaWrapperInfo.propertySchemaObject.type) {
       throw new Error('Invalid Propety Type');
     }
-    return propertySchemaObject.type;
+    return schemaWrapperInfo.propertySchemaObject.type;
   }
-  public parseRef($ref?: string | null): string {
+
+  public parseRef(schemaWrapperInfo: SchemaWrapperInfo): string {
     let regexResult: RegExpExecArray;
     let result: string | null = null;
-    // tslint:disable-next-line: no-conditional-assignment
-    if ($ref && (regexResult = this.regex.exec($ref) as RegExpExecArray)) {
-      result = $ref = regexResult[0];
-      const importType: IImportType = { kebabCasedTypeName: _.kebabCase(result), name: result };
+    if (
+      schemaWrapperInfo.propertyReferenceObject.$ref &&
+      // tslint:disable-next-line: no-conditional-assignment
+      (regexResult = this.regex.exec(schemaWrapperInfo.propertyReferenceObject.$ref) as RegExpExecArray) // NOSONAR
+    ) {
+      schemaWrapperInfo.propertyReferenceObject.$ref = regexResult[0];
+      result = schemaWrapperInfo.propertyReferenceObject.$ref;
     }
     return result || 'unknown';
   }
-  public getImportTypes(entityName: string, referenceProperties: IReferenceProperty[]): IImportType[] {
-    return referenceProperties
+
+  public getImportTypes(entityName: string, schemaWrapperInfo: SchemaWrapperInfo): IImportType[] {
+    return schemaWrapperInfo.referenceProperties
       .map(t => t.referenceTypeName)
       .filter(t => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
       .map(value => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
   }
-  public getIsRequired(propertyName: string, propertyObject: SchemaObject, componentSchemaObject: SchemaObject) {
+
+  public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
     return (
-      (componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
-      (propertyObject.nullable === undefined ? false : !propertyObject.nullable)
+      (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
+      (schemaWrapperInfo.propertySchemaObject.nullable === undefined
+        ? false
+        : !schemaWrapperInfo.propertySchemaObject.nullable)
     );
   }
 }
