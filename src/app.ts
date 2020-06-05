@@ -24,7 +24,7 @@ export const accountGenerationOptions = {
 };
 
 export const fileEmployeeGenerationOptions: IGeneratorOptions = {
-  openApiJsonFileName: './test-swagger-document.json',
+  openApiJsonFileName: '../src/test-swagger-document.json',
   outputPath: './output_empl/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,

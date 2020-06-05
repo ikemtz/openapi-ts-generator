@@ -1,7 +1,9 @@
 import { resolve } from 'path';
+import { ILogger } from './logger';
 import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
 
 export interface IGeneratorOptions {
+  logger?: ILogger;
   outputPath: string;
   openApiJsonUrl?: string;
   openApiJsonFileName?: string;

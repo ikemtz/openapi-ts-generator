@@ -9,6 +9,7 @@ import {
   unitGenerationOptions,
 } from './app';
 import { IGeneratorOptions } from './models/generator-options';
+import { MockConsoleLogger } from './models/logger';
 
 export function ValidateFiles(options: IGeneratorOptions): void {
   const files = readdirSync(options.outputPath).sort();
@@ -43,6 +44,7 @@ describe('Full Integration Tests', () => {
 
       await generateUnitFiles({
         ...unitGenerationOptions,
+        logger: new MockConsoleLogger(),
         templates: {
           formGroupFactory: '',
           model: '',
