@@ -23,15 +23,17 @@ export abstract class BaseGenerator<TContextSchema extends object> {
         writeFileSync(outputFilePath, content, { encoding: 'utf8' });
         return content;
       } catch (err) {
-        console.error(`Error executing template: ${this.templateFilePath}.`);
-        console.error(`This is likely an issue with the template.`);
-        console.error(`Data: ${JSON.stringify(context)}`);
-        console.error(`Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.`);
-        console.error(err);
+        this.generatorOptions.logger?.error(`Error executing template: ${this.templateFilePath}.`);
+        this.generatorOptions.logger?.error(`This is likely an issue with the template.`);
+        this.generatorOptions.logger?.error(`Data: ${JSON.stringify(context)}`);
+        this.generatorOptions.logger?.error(
+          `Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.`,
+        );
+        this.generatorOptions.logger?.error(err);
         throw err;
       }
     } else {
-      console.warn(`Template for ${this.GeneratorName} has not been specified`);
+      this.generatorOptions.logger?.warn(`Template for ${this.GeneratorName} has not been specified`);
     }
     return null;
   }
