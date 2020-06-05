@@ -28,7 +28,7 @@ describe('Url Based - Full Integration Tests', () => {
 
     it('should not generate files', async done => {
       const options = unitGenerationOptionsFactory();
-      options.outputPath = `'./jest_output/unit_noFiles/`;
+      options.outputPath = './jest_output/unit_noFiles/';
       try {
         mkdirSync(options.outputPath);
       } catch {
