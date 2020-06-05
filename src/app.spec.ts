@@ -1,15 +1,5 @@
-import { mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
-import {
-  accountGenerationOptions,
-  fileEmployeeGenerationOptions,
-  generateAccountFiles,
-  generateMessageFiles,
-  generateUnitFiles,
-  messageGenerationOptions,
-  unitGenerationOptions,
-} from './app';
+import { readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
 import { IGeneratorOptions } from './models/generator-options';
-import { MockConsoleLogger } from './models/logger';
 
 export function ValidateFiles(options: IGeneratorOptions): void {
   const files = readdirSync(options.outputPath).sort();
@@ -21,79 +11,16 @@ export function ValidateFiles(options: IGeneratorOptions): void {
   });
   rmdirSync(options.outputPath);
 }
+/*
+ This test is just a place holder so that Jest does not throw the:
+  "Your test suite must contain at least one test."
+  exception test failure.
 
-describe('Full Integration Tests', () => {
-  describe('MasterCorp Unit Service', () => {
-    it('should generate files', async done => {
-      try {
-        mkdirSync(unitGenerationOptions.outputPath);
-      } catch {
-        // ignore
-      }
-      await generateUnitFiles();
-      const files = readdirSync(unitGenerationOptions.outputPath).sort();
-      ValidateFiles(unitGenerationOptions);
-      done();
-    });
-    it('should not generate files', async done => {
-      try {
-        mkdirSync(unitGenerationOptions.outputPath);
-      } catch {
-        // ignore
-      }
-
-      await generateUnitFiles({
-        ...unitGenerationOptions,
-        logger: new MockConsoleLogger(),
-        templates: {
-          formGroupFactory: '',
-          model: '',
-          modelProperties: '',
-          barrel: '',
-          enum: '',
-        },
-      });
-      ValidateFiles(unitGenerationOptions);
-      done();
-    });
-  });
-
-  describe('MasterCorp Messaging Service', () => {
-    it('should generate files', async done => {
-      try {
-        mkdirSync(messageGenerationOptions.outputPath);
-      } catch {
-        // ignore
-      }
-      await generateMessageFiles();
-      ValidateFiles(messageGenerationOptions);
-      done();
-    });
-  });
-
-  describe('MasterCorp Account Service', () => {
-    it('should generate files', async done => {
-      try {
-        mkdirSync(accountGenerationOptions.outputPath);
-      } catch {
-        // ignore
-      }
-      await generateAccountFiles();
-      ValidateFiles(accountGenerationOptions);
-      done();
-    });
-  });
-
-  describe('File Based - NRSRx Employee OData Microservice', () => {
-    it('should generate files', async done => {
-      try {
-        mkdirSync(fileEmployeeGenerationOptions.outputPath);
-      } catch {
-        // ignore
-      }
-      await generateAccountFiles();
-      ValidateFiles(fileEmployeeGenerationOptions);
-      done();
-    });
+  The purpose of this spec file is to serve as a place for 
+  common logic for the other unit tests.
+*/
+describe('Ignore', () => {
+  it('1 + 2 should = 3', () => {
+    expect(1 + 2).toBe(3);
   });
 });
