@@ -73,12 +73,20 @@ steps:
 
   - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
     displayName: 'Publish Quality Gate Result'
+
   - task: Npm@1
-    displayName: 'npm del:snapshots'
+    displayName: 'npm prep:lib'
     inputs:
       command: custom
       verbose: false
-      customCommand: 'run del:snapshots'
+      customCommand: 'run prep:lib'
+
+  - task: Bash@3
+    displayName: 'running versioneer'
+    inputs:
+      filePath: '$(System.DefaultWorkingDirectory)/versioneer.sh'
+      arguments: '$(Build.BuildNumber)'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/lib/'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: prod-drop [RELEASE BUILD]'
