@@ -10,13 +10,3 @@ exports[`BarrelGenerator should generate 1`] = `
 /* tslint:disable */
 "
 `;
-
-exports[`BarrelGenerator should handle exceptions 1`] = `
-Array [
-  "Error executing template: C:\\\\Repos\\\\openapi-ts-generator\\\\src\\\\templates/index.ts.hbs.",
-  "This is likely an issue with the template.",
-  "Data: {\\"fileNames\\":[]}",
-  "Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.",
-  [Error: This error is to validate unit tests.],
-]
-`;

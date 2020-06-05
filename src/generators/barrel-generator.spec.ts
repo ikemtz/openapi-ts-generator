@@ -3,6 +3,7 @@ import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generat
 import { MockConsoleLogger } from '../models/logger';
 import { ITemplateData } from '../models/template-data';
 import { BarrelGenerator } from './barrel-generator';
+import { first } from 'lodash';
 
 const outputPath = './jest_output';
 
@@ -38,7 +39,8 @@ describe('BarrelGenerator', () => {
       done.fail('Exception logic was not triggered.');
     }
     catch (err) {
-      expect(errorLogs).toMatchSnapshot();
+      const firstMessage = errorLogs.shift();
+      expect(firstMessage?.startsWith('Error executing template: ')).toBe(true);
       done();
     }
   });
