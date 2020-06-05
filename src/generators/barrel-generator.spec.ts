@@ -3,7 +3,6 @@ import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generat
 import { MockConsoleLogger } from '../models/logger';
 import { ITemplateData } from '../models/template-data';
 import { BarrelGenerator } from './barrel-generator';
-import { first } from 'lodash';
 
 const outputPath = './jest_output';
 
@@ -29,16 +28,19 @@ describe('BarrelGenerator', () => {
   it('should handle exceptions', done => {
     const errorLogs: string[] = [];
     try {
-      const generator = new BarrelGenerator(setGeneratorOptionDefaults({
-        outputPath,
-        openApiJsonUrl: '',
-        logger: { ...new MockConsoleLogger(), error: (x) => errorLogs.push(x) }
-      }));
-      (generator as any).template = () => { throw new Error('This error is to validate unit tests.'); };
+      const generator = new BarrelGenerator(
+        setGeneratorOptionDefaults({
+          outputPath,
+          openApiJsonUrl: '',
+          logger: { ...new MockConsoleLogger(), error: x => errorLogs.push(x) },
+        }),
+      );
+      (generator as any).template = () => {
+        throw new Error('This error is to validate unit tests.');
+      };
       generator.generate({} as ITemplateData);
       done.fail('Exception logic was not triggered.');
-    }
-    catch (err) {
+    } catch (err) {
       const firstMessage = errorLogs.shift();
       expect(firstMessage?.startsWith('Error executing template: ')).toBe(true);
       done();
