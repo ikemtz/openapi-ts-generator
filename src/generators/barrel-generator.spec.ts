@@ -24,4 +24,22 @@ describe('BarrelGenerator', () => {
     unlinkSync(`${outputPath}/index.ts`);
     rmdirSync(outputPath);
   });
+
+  it('should handle exceptions', done => {
+    const errorLogs: string[] = [];
+    try {
+      const generator = new BarrelGenerator(setGeneratorOptionDefaults({
+        outputPath,
+        openApiJsonUrl: '',
+        logger: { ...new MockConsoleLogger(), error: (x) => errorLogs.push(x) }
+      }));
+      (generator as any).template = () => { throw new Error('This error is to validate unit tests.'); };
+      generator.generate({} as ITemplateData);
+      done.fail('Exception logic was not triggered.');
+    }
+    catch (err) {
+      expect(errorLogs).toMatchSnapshot();
+      done();
+    }
+  });
 });
