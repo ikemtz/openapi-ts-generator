@@ -1,12 +1,26 @@
 import { mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
 import {
   accountGenerationOptions,
+  fileEmployeeGenerationOptions,
   generateAccountFiles,
   generateMessageFiles,
   generateUnitFiles,
   messageGenerationOptions,
   unitGenerationOptions,
 } from './app';
+import { IGeneratorOptions } from './models/generator-options';
+import { MockConsoleLogger } from './models/logger';
+
+export function ValidateFiles(options: IGeneratorOptions): void {
+  const files = readdirSync(options.outputPath).sort();
+  expect(files).toMatchSnapshot();
+  files.forEach(file => {
+    const content = readFileSync(`${options.outputPath}${file}`, 'utf8');
+    expect(content).toMatchSnapshot(file);
+    unlinkSync(`${options.outputPath}${file}`);
+  });
+  rmdirSync(options.outputPath);
+}
 
 describe('Full Integration Tests', () => {
   describe('MasterCorp Unit Service', () => {
@@ -18,13 +32,7 @@ describe('Full Integration Tests', () => {
       }
       await generateUnitFiles();
       const files = readdirSync(unitGenerationOptions.outputPath).sort();
-      expect(files).toMatchSnapshot();
-      files.forEach(file => {
-        const content = readFileSync(`${unitGenerationOptions.outputPath}${file}`, 'utf8');
-        expect(content).toMatchSnapshot(file);
-        unlinkSync(`${unitGenerationOptions.outputPath}${file}`);
-      });
-      rmdirSync(unitGenerationOptions.outputPath);
+      ValidateFiles(unitGenerationOptions);
       done();
     });
     it('should not generate files', async done => {
@@ -36,6 +44,7 @@ describe('Full Integration Tests', () => {
 
       await generateUnitFiles({
         ...unitGenerationOptions,
+        logger: new MockConsoleLogger(),
         templates: {
           formGroupFactory: '',
           model: '',
@@ -44,14 +53,7 @@ describe('Full Integration Tests', () => {
           enum: '',
         },
       });
-      const files = readdirSync(unitGenerationOptions.outputPath).sort();
-      expect(files).toMatchSnapshot();
-      files.forEach(file => {
-        const content = readFileSync(`${unitGenerationOptions.outputPath}${file}`, 'utf8');
-        expect(content).toMatchSnapshot(file);
-        unlinkSync(`${unitGenerationOptions.outputPath}${file}`);
-      });
-      rmdirSync(unitGenerationOptions.outputPath);
+      ValidateFiles(unitGenerationOptions);
       done();
     });
   });
@@ -64,14 +66,7 @@ describe('Full Integration Tests', () => {
         // ignore
       }
       await generateMessageFiles();
-      const files = readdirSync(messageGenerationOptions.outputPath).sort();
-      expect(files).toMatchSnapshot();
-      files.forEach(file => {
-        const content = readFileSync(`${messageGenerationOptions.outputPath}${file}`, 'utf8');
-        expect(content).toMatchSnapshot(file);
-        unlinkSync(`${messageGenerationOptions.outputPath}${file}`);
-      });
-      rmdirSync(messageGenerationOptions.outputPath);
+      ValidateFiles(messageGenerationOptions);
       done();
     });
   });
@@ -84,14 +79,20 @@ describe('Full Integration Tests', () => {
         // ignore
       }
       await generateAccountFiles();
-      const files = readdirSync(accountGenerationOptions.outputPath).sort();
-      expect(files).toMatchSnapshot();
-      files.forEach(file => {
-        const content = readFileSync(`${accountGenerationOptions.outputPath}${file}`, 'utf8');
-        expect(content).toMatchSnapshot(file);
-        unlinkSync(`${accountGenerationOptions.outputPath}${file}`);
-      });
-      rmdirSync(accountGenerationOptions.outputPath);
+      ValidateFiles(accountGenerationOptions);
+      done();
+    });
+  });
+
+  describe('File Based - NRSRx Employee OData Microservice', () => {
+    it('should generate files', async done => {
+      try {
+        mkdirSync(fileEmployeeGenerationOptions.outputPath);
+      } catch {
+        // ignore
+      }
+      await generateAccountFiles();
+      ValidateFiles(fileEmployeeGenerationOptions);
       done();
     });
   });

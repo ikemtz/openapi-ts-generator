@@ -1,9 +1,12 @@
 import { resolve } from 'path';
+import { ILogger } from './logger';
 import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
 
 export interface IGeneratorOptions {
+  logger?: ILogger;
   outputPath: string;
-  openApiJsonUrl: string;
+  openApiJsonUrl?: string;
+  openApiJsonFileName?: string;
   messageFormat?: string | null;
   angular?: boolean | null;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
