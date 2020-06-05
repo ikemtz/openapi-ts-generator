@@ -22,6 +22,14 @@ export const accountGenerationOptions = {
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
 };
+
+export const fileEmployeeGenerationOptions: IGeneratorOptions = {
+  openApiJsonFileName: '../src/test-swagger-document.json',
+  outputPath: './output_empl/',
+  typeFilterCallBack: nrsrxTypeFilterCallBack,
+  valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+};
+
 export function generateUnitFiles(options: IGeneratorOptions = unitGenerationOptions) {
   return generateTsModels(options);
 }
@@ -30,10 +38,15 @@ export function generateMessageFiles(options: IGeneratorOptions = messageGenerat
   return generateTsModels(messageGenerationOptions);
 }
 
-export function generateAccountFiles(options: IGeneratorOptions = messageGenerationOptions) {
+export function generateAccountFiles(options: IGeneratorOptions = accountGenerationOptions) {
   return generateTsModels(accountGenerationOptions);
+}
+
+export function generateEmployeeFiles(options: IGeneratorOptions = fileEmployeeGenerationOptions) {
+  return generateTsModels(fileEmployeeGenerationOptions);
 }
 
 generateUnitFiles();
 generateMessageFiles();
 generateAccountFiles();
+generateEmployeeFiles();

@@ -73,24 +73,35 @@ steps:
 
   - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
     displayName: 'Publish Quality Gate Result'
-
   - task: Npm@1
-    displayName: 'npm version'
+    displayName: 'npm del:snapshots'
     inputs:
       command: custom
       verbose: false
-      customCommand: 'version patch -m "Patch version to %s [skip ci]" --force'
+      customCommand: 'run del:snapshots'
 
-  - bash: |
-      git push origin HEAD:$SourceBranchName
-      git push --tags
-    displayName: 'Git Push New Version'
-    env:
-      SourceBranchName: $(Build.SourceBranchName)
-
-  - task: Npm@1
-    displayName: 'npm publish'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: prod-drop [RELEASE BUILD]'
     inputs:
-      command: publish
-      verbose: false
-      publishEndpoint: IkeMtz-npm
+      PathtoPublish: 'lib'
+      ArtifactName: 'release-drop'
+
+  - task: GitTag@5
+    inputs:
+      workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
+      tagUser: 'ikemtz'
+      tagEmail: 'ikemtz@outlook.com'
+      tag: 'cron-$(Build.BuildNumber)'
+      tagMessage: 'cron-$(Build.BuildNumber)'
+      useLightweightTags: true
+      conditions: and(succeeded(), not(endsWith(variables['Build.SourceBranch'], 'master')))
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+pr:
+  branches:
+    include:
+      - master
