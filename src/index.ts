@@ -17,9 +17,19 @@ export async function generateTsModels(options: IGeneratorOptions) {
 }
 
 async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<OpenAPIObject> {
-  const response = await fetch(options.openApiJsonUrl);
-  const apiDoc = await response.json();
-  return apiDoc as OpenAPIObject;
+  let apiDoc: OpenAPIObject;
+  if (options.openApiJsonUrl) {
+    const response = await fetch(options.openApiJsonUrl);
+    apiDoc = await response.json();
+  } else if (options.openApiJsonFileName) {
+    const response = fs.readFileSync(`${__dirname}/${options.openApiJsonFileName}`);
+    apiDoc = JSON.parse(response.toString());
+  } else {
+    throw new Error(
+      'You must specify either an OpenApi Json Url or FileName.  Please review the readme.md @ https://github.com/ikemtz/openapi-ts-generator.',
+    );
+  }
+  return apiDoc;
 }
 
 function generateOutput(options: IGeneratorOptions, templateData: ITemplateData) {

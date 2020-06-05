@@ -3,7 +3,8 @@ import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
 
 export interface IGeneratorOptions {
   outputPath: string;
-  openApiJsonUrl: string;
+  openApiJsonUrl?: string;
+  openApiJsonFileName?: string;
   messageFormat?: string | null;
   angular?: boolean | null;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
