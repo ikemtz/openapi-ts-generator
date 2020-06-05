@@ -4,7 +4,7 @@ import { MockConsoleLogger } from '../models/logger';
 import { ITemplateData } from '../models/template-data';
 import { BarrelGenerator } from './barrel-generator';
 
-const outputPath = './jest_output';
+const outputPath = './jest_output/barrel';
 
 describe('BarrelGenerator', () => {
   beforeEach(() => {
