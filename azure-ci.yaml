@@ -96,7 +96,8 @@ steps:
     displayName: 'Git Push New Version'
     env:
       SourceBranchName: $(Build.SourceBranchName)
-    conditions: and(succeeded(), endsWith(variables['Build.SourceBranch'], 'master'))
+    inputs:
+      conditions: and(succeeded(), endsWith(variables['Build.SourceBranch'], 'master'))
 
 trigger:
   batch: true
