@@ -30,7 +30,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export function EmployeeFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl('', Validators.required),
+    id: new FormControl(''),
     lastName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250)])),
     firstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250)])),
     birthDate: new FormControl(''),

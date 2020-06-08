@@ -167,11 +167,11 @@ export class OpenApiDocConverter {
   }
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
-    return (
+    return ((
       (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
       (schemaWrapperInfo.propertySchemaObject.nullable === undefined
         ? false
         : !schemaWrapperInfo.propertySchemaObject.nullable)
-    );
+    ) && propertyName !== "id");
   }
 }

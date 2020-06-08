@@ -418,7 +418,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl('', Validators.required),
+    id: new FormControl(''),
     contactTypeId: new FormControl('', Validators.required),
     accountId: new FormControl('', Validators.required),
     firstName: new FormControl('', Validators.required),
