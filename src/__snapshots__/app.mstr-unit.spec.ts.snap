@@ -242,7 +242,6 @@ export function SiteCollectionFormGroupFac(): FormGroup {
     zip: new FormControl('', Validators.compose([Validators.maxLength(10), Validators.minLength(5)])),
     isSchedulerEnabled: new FormControl('', Validators.required),
     siteCount: new FormControl(''),
-    workCategoryTypes: new FormControl('', Validators.required),
     buildings: new FormControl(''),
     sites: new FormControl(''),
   });
@@ -274,7 +273,6 @@ export interface ISiteCollection {
   zip?: string;
   isSchedulerEnabled?: boolean;
   siteCount?: number;
-  workCategoryTypes?: number;
   buildings?: IBuilding[];
   sites?: ISite[];
 }
@@ -302,7 +300,6 @@ export enum SiteCollectionProperties {
   ZIP = 'zip',
   IS_SCHEDULER_ENABLED = 'isSchedulerEnabled',
   SITE_COUNT = 'siteCount',
-  WORK_CATEGORY_TYPES = 'workCategoryTypes',
   BUILDINGS = 'buildings',
   SITES = 'sites',
 }

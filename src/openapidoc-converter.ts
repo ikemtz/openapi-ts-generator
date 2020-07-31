@@ -6,7 +6,7 @@ import { IEntity, IImportType, IReferenceProperty, ITemplateData, IValueProperty
 
 export class OpenApiDocConverter {
   public readonly regex = /[A-z0-9]*$/s;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -88,8 +88,8 @@ export class OpenApiDocConverter {
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
       hasMultipleValidators:
         +required +
-        +!!schemaWrapperInfo.propertySchemaObject.maxLength +
-        +!!schemaWrapperInfo.propertySchemaObject.minLength >
+          +!!schemaWrapperInfo.propertySchemaObject.maxLength +
+          +!!schemaWrapperInfo.propertySchemaObject.minLength >
         1,
     };
   }
@@ -167,11 +167,12 @@ export class OpenApiDocConverter {
   }
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
-    return ((
-      (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
-      (schemaWrapperInfo.propertySchemaObject.nullable === undefined
-        ? false
-        : !schemaWrapperInfo.propertySchemaObject.nullable)
-    ) && propertyName !== "id");
+    return (
+      ((schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
+        (schemaWrapperInfo.propertySchemaObject.nullable === undefined
+          ? false
+          : !schemaWrapperInfo.propertySchemaObject.nullable)) &&
+      propertyName !== 'id'
+    );
   }
 }
