@@ -98,8 +98,8 @@ steps:
       workingdir: '$(SYSTEM.DEFAULTWORKINGDIRECTORY)'
       tagUser: 'ikemtz'
       tagEmail: 'ikemtz@outlook.com'
-      tag: 'cron-$(Build.BuildNumber)'
-      tagMessage: 'cron-$(Build.BuildNumber)'
+      tag: 'oapi-$(Build.BuildNumber)'
+      tagMessage: 'oapi-$(Build.BuildNumber)'
       useLightweightTags: true
       conditions: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
