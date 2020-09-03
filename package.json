@@ -37,22 +37,22 @@
   "devDependencies": {
     "@angular/forms": "^8.2.14",
     "@types/jest": "^24.9.1",
-    "@types/lodash": "^4.14.155",
-    "@types/node": "^11.15.15",
+    "@types/lodash": "^4.14.161",
+    "@types/node": "^11.15.21",
     "@types/node-fetch": "^2.5.7",
-    "jest": "^26.2.2",
+    "jest": "^26.4.2",
     "jest-junit": "^9.0.0",
     "openapi3-ts": "^1.4.0",
     "prettier": "^1.19.1",
     "rxjs": "^6.6.2",
-    "ts-jest": "^26.1.0",
+    "ts-jest": "^26.3.0",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.9.5"
   },
   "dependencies": {
     "handlebars": "^4.7.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "node-fetch": "^2.6.0"
   },
   "peerDependencies": {
