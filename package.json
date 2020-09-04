@@ -35,7 +35,7 @@
   ],
   "homepage": "https://github.com/ikemtz/OpenApi-TS-Generator#readme",
   "devDependencies": {
-    "@angular/forms": "^8.2.14",
+    "@angular/forms": ">=9",
     "@types/jest": "^24.9.1",
     "@types/lodash": "^4.14.161",
     "@types/node": "^11.15.21",

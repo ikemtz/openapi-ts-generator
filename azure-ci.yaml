@@ -73,6 +73,23 @@ steps:
   - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
     displayName: 'Publish Quality Gate Result'
 
+  - task: sonarcloud-buildbreaker@2
+    displayName: 'Break build on SonarCloud quality gate failure'
+    inputs:
+      SonarCloud: 'SonarCloud IkeMtz'
+      organization: 'ikemtz'
+
+  - task: SnykSecurityScan@0
+    inputs:
+      serviceConnectionEndpoint: 'synk'
+      testType: 'app'
+      severityThreshold: 'medium'
+      monitorOnBuild: false
+      failOnIssues: true
+      projectName: 'openapi-ts-generator'
+      organization: 'ikemtz'
+      additionalArguments: '--file=$(Build.SourcesDirectory)\package.json'
+
   - task: Npm@1
     displayName: 'npm prep:lib'
     inputs:
