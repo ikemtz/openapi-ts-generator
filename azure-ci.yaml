@@ -88,7 +88,7 @@ steps:
       failOnIssues: true
       projectName: 'openapi-ts-generator'
       organization: 'ikemtz'
-      additionalArguments: '--file=$(Build.SourcesDirectory)\package.json'
+      additionalArguments: '--file=$(Build.SourcesDirectory)/package.json'
 
   - task: Npm@1
     displayName: 'npm prep:lib'
