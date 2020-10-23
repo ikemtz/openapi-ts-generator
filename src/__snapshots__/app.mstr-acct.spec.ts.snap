@@ -32,7 +32,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function AccountFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -44,8 +44,8 @@ export function AccountFormGroupFac(): FormGroup {
     emailInvoice: new FormControl(''),
     tenantId: new FormControl(''),
     parentAccount: new FormControl(''),
-    contacts: new FormControl(''),
-    inverseParentAccount: new FormControl(''),
+    contacts: new FormArray([]),
+    inverseParentAccount: new FormArray([]),
   });
 };
 "
@@ -107,7 +107,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function AccountInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -116,7 +116,7 @@ export function AccountInsertRequestFormGroupFac(): FormGroup {
     name: new FormControl('', Validators.required),
     parentAccountId: new FormControl(''),
     emailInvoice: new FormControl(''),
-    contacts: new FormControl(''),
+    contacts: new FormArray([]),
   });
 };
 "
@@ -170,7 +170,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -180,7 +180,7 @@ export function AccountUpdateRequestFormGroupFac(): FormGroup {
     parentAccountId: new FormControl(''),
     isEnabled: new FormControl(''),
     emailInvoice: new FormControl(''),
-    contacts: new FormControl(''),
+    contacts: new FormArray([]),
   });
 };
 "
@@ -236,7 +236,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -329,7 +329,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function ContactInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -414,7 +414,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({

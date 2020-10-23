@@ -35,7 +35,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function BuildingFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -44,7 +44,7 @@ export function BuildingFormGroupFac(): FormGroup {
     identifier: new FormControl(''),
     isEnabled: new FormControl(''),
     site: new FormControl(''),
-    units: new FormControl(''),
+    units: new FormArray([]),
   });
 };
 "
@@ -131,7 +131,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function SiteFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -149,8 +149,8 @@ export function SiteFormGroupFac(): FormGroup {
     zip: new FormControl(''),
     isEnabled: new FormControl(''),
     siteCollection: new FormControl(''),
-    buildings: new FormControl(''),
-    units: new FormControl(''),
+    buildings: new FormArray([]),
+    units: new FormArray([]),
   });
 };
 "
@@ -226,7 +226,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function SiteCollectionFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -242,8 +242,8 @@ export function SiteCollectionFormGroupFac(): FormGroup {
     zip: new FormControl('', Validators.compose([Validators.maxLength(10), Validators.minLength(5)])),
     isSchedulerEnabled: new FormControl('', Validators.required),
     siteCount: new FormControl(''),
-    buildings: new FormControl(''),
-    sites: new FormControl(''),
+    buildings: new FormArray([]),
+    sites: new FormArray([]),
   });
 };
 "
@@ -314,14 +314,14 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function TagFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
     value: new FormControl(''),
-    unitTags: new FormControl(''),
+    unitTags: new FormArray([]),
   });
 };
 "
@@ -371,7 +371,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function UnitFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -384,7 +384,7 @@ export function UnitFormGroupFac(): FormGroup {
     building: new FormControl(''),
     site: new FormControl(''),
     unitType: new FormControl(''),
-    unitTags: new FormControl(''),
+    unitTags: new FormArray([]),
   });
 };
 "
@@ -449,7 +449,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function UnitTagFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -513,7 +513,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function UnitTypeFormGroupFac(): FormGroup {
   return new FormGroup({

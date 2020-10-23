@@ -26,7 +26,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function EmployeeFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -50,9 +50,9 @@ export function EmployeeFormGroupFac(): FormGroup {
     certificationCount: new FormControl('', Validators.required),
     competencyCount: new FormControl('', Validators.required),
     healthItemCount: new FormControl('', Validators.required),
-    employeeCertifications: new FormControl(''),
-    employeeCompetencies: new FormControl(''),
-    employeeHealthItems: new FormControl(''),
+    employeeCertifications: new FormArray([]),
+    employeeCompetencies: new FormArray([]),
+    employeeHealthItems: new FormArray([]),
   });
 };
 "
@@ -142,7 +142,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function EmployeeCertificationFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -200,7 +200,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function EmployeeCompetencyFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -261,7 +261,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 /* tslint:disable */
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
 
 export function EmployeeHealthItemFormGroupFac(): FormGroup {
   return new FormGroup({
