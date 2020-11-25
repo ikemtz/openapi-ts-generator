@@ -79,11 +79,11 @@ export class OpenApiDocConverter {
   public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     return {
+      required,
       name: propertyName,
       isArray: false,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
-      required,
       maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
       hasMultipleValidators:
@@ -100,11 +100,11 @@ export class OpenApiDocConverter {
   ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     return {
+      required,
       name: propertyName,
       isArray: true,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
-      required,
       hasMultipleValidators: false,
     };
   }
@@ -134,7 +134,7 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as any).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
       return 'number';
     } else if (schemaWrapperInfo.propertySchemaObject.format === 'date-time') {
