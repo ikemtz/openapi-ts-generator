@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-empty-function */
 export interface ILogger {
   log: (data: string) => void;
   error: (data: string) => void;
@@ -5,10 +8,7 @@ export interface ILogger {
 }
 
 export class MockConsoleLogger implements ILogger {
-  // tslint:disable-next-line: no-empty
   public log = (data: string) => {};
-  // tslint:disable-next-line: no-empty
   public error = (data: string) => {};
-  // tslint:disable-next-line: no-empty
   public warn = (data: string) => {};
 }

@@ -23,6 +23,7 @@ describe('Url Based - Full Integration Tests', () => {
       await generateTsModels(options);
       const files = readdirSync(options.outputPath).sort();
       ValidateFiles(options);
+      expect(files).toMatchSnapshot();
       done();
     });
 

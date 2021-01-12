@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { resolve } from 'path';
 import { ILogger } from './logger';
 import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
@@ -29,7 +30,7 @@ export function defaultFilter(
   value: IEntity | IValueProperty | IReferenceProperty,
   index: number,
   array: IEntity[] | IValueProperty[] | IReferenceProperty[],
-) {
+): boolean {
   return true;
 }
 

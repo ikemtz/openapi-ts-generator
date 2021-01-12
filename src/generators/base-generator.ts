@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { compile } from 'handlebars';
 import { IGeneratorOptions } from '../models/generator-options';
 
-export abstract class BaseGenerator<TContextSchema extends object> {
+export abstract class BaseGenerator<TContextSchema> {
   public abstract readonly GeneratorName: string;
   public readonly template?: HandlebarsTemplateDelegate<TContextSchema>;
   public readonly emptyArrayRegex = /, ]/g;

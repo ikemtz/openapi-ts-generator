@@ -35,6 +35,7 @@ describe('BarrelGenerator', () => {
           logger: { ...new MockConsoleLogger(), error: x => errorLogs.push(x) },
         }),
       );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (generator as any).template = () => {
         throw new Error('This error is to validate unit tests.');
       };

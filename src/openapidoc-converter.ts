@@ -36,7 +36,7 @@ export class OpenApiDocConverter {
     return entities.filter(this.options.typeFilterCallBack || defaultFilter);
   }
 
-  public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo) {
+  public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo): void {
     for (const propertyName in schemaWrapperInfo.componentSchemaObject.properties) {
       if (
         (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[ // NOSONAR
@@ -62,7 +62,7 @@ export class OpenApiDocConverter {
     }
   }
 
-  public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
+  public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
     if (arraySchemaObject.type) {
       schemaWrapperInfo.valueProperties.push(
@@ -168,7 +168,7 @@ export class OpenApiDocConverter {
       .map(value => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
   }
 
-  public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo) {
+  public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
     return (
       ((schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
         (schemaWrapperInfo.propertySchemaObject.nullable === undefined

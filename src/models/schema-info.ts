@@ -16,7 +16,7 @@ export class SchemaWrapperInfo {
     this.referenceProperties = [];
   }
 
-  public updateReferenceProperties(options: IGeneratorOptions) {
+  public updateReferenceProperties(options: IGeneratorOptions): void {
     this.referenceProperties = this.referenceProperties.filter(
       options.referencePropertyTypeFilterCallBack || defaultFilter,
     );

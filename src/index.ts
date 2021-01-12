@@ -8,7 +8,7 @@ import { OpenApiDocConverter } from './openapidoc-converter';
 
 export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
 
-export async function generateTsModels(options: IGeneratorOptions) {
+export async function generateTsModels(options: IGeneratorOptions): Promise<void> {
   options = setGeneratorOptionDefaults(options);
   const apiDocument: OpenAPIObject = await getOpenApiDocumentAsync(options);
   const converter = new OpenApiDocConverter(options, apiDocument);
