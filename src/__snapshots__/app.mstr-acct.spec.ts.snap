@@ -32,7 +32,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function AccountFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -107,7 +107,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function AccountInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -170,7 +170,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -236,7 +236,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -329,7 +329,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function ContactInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -414,7 +414,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({

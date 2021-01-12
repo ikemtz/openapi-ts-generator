@@ -6,10 +6,7 @@ export abstract class BaseGenerator<TContextSchema> {
   public abstract readonly GeneratorName: string;
   public readonly template?: HandlebarsTemplateDelegate<TContextSchema>;
   public readonly emptyArrayRegex = /, ]/g;
-  public constructor(
-    public readonly generatorOptions: IGeneratorOptions,
-    public readonly templateFilePath: string | undefined,
-  ) {
+  public constructor(public readonly generatorOptions: IGeneratorOptions, public readonly templateFilePath: string | undefined) {
     if (templateFilePath) {
       const templateSource = readFileSync(templateFilePath, { encoding: 'utf8' });
       this.template = compile(templateSource);
@@ -26,9 +23,7 @@ export abstract class BaseGenerator<TContextSchema> {
         this.generatorOptions.logger?.error(`Error executing template: ${this.templateFilePath}.`);
         this.generatorOptions.logger?.error(`This is likely an issue with the template.`);
         this.generatorOptions.logger?.error(`Data: ${JSON.stringify(context)}`);
-        this.generatorOptions.logger?.error(
-          `Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.`,
-        );
+        this.generatorOptions.logger?.error(`Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.`);
         this.generatorOptions.logger?.error(err);
         throw err;
       }

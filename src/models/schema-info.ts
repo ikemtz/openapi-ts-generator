@@ -17,8 +17,6 @@ export class SchemaWrapperInfo {
   }
 
   public updateReferenceProperties(options: IGeneratorOptions): void {
-    this.referenceProperties = this.referenceProperties.filter(
-      options.referencePropertyTypeFilterCallBack || defaultFilter,
-    );
+    this.referenceProperties = this.referenceProperties.filter(options.referencePropertyTypeFilterCallBack || defaultFilter);
   }
 }

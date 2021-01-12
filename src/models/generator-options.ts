@@ -12,11 +12,7 @@ export interface IGeneratorOptions {
   angular?: boolean | null;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
   valuePropertyTypeFilterCallBack?: (valueProperty: IValueProperty, index: number, array: IValueProperty[]) => boolean;
-  referencePropertyTypeFilterCallBack?: (
-    referenceProperty: IReferenceProperty,
-    index: number,
-    array: IReferenceProperty[],
-  ) => boolean;
+  referencePropertyTypeFilterCallBack?: (referenceProperty: IReferenceProperty, index: number, array: IReferenceProperty[]) => boolean;
   templates?: ITemplates | null;
 }
 export interface ITemplates {

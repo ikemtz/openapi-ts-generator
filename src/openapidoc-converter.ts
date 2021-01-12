@@ -25,9 +25,7 @@ export class OpenApiDocConverter {
         const entity = {
           name: schemaName,
           referenceProperties: schemaWrapperInfo.referenceProperties,
-          valueProperties: schemaWrapperInfo.valueProperties.filter(
-            this.options.valuePropertyTypeFilterCallBack || defaultFilter,
-          ),
+          valueProperties: schemaWrapperInfo.valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
           importTypes: this.getImportTypes(schemaName, schemaWrapperInfo),
         };
         entities.push(entity);
@@ -39,24 +37,16 @@ export class OpenApiDocConverter {
   public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo): void {
     for (const propertyName in schemaWrapperInfo.componentSchemaObject.properties) {
       if (
-        (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[ // NOSONAR
-          propertyName
-        ] as SchemaObject).type &&
+        (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as SchemaObject).type && // NOSONAR
         schemaWrapperInfo.propertySchemaObject.type !== 'array'
       ) {
         schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(propertyName, schemaWrapperInfo));
       } else if (
-        (schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[
-          propertyName
-        ] as ReferenceObject).$ref
+        (schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as ReferenceObject)
+          .$ref
       ) {
-        schemaWrapperInfo.referenceProperties.push(
-          this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
-        );
-      } else if (
-        schemaWrapperInfo.propertySchemaObject.type === 'array' &&
-        schemaWrapperInfo.propertySchemaObject.items
-      ) {
+        schemaWrapperInfo.referenceProperties.push(this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo));
+      } else if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
         this.convertArray(propertyName, schemaWrapperInfo);
       }
     }
@@ -65,14 +55,10 @@ export class OpenApiDocConverter {
   public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
     if (arraySchemaObject.type) {
-      schemaWrapperInfo.valueProperties.push(
-        this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo),
-      );
+      schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo));
     } else {
       schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.propertySchemaObject.items as ReferenceObject;
-      schemaWrapperInfo.referenceProperties.push(
-        this.convertArrayObjectToReferencePropertyType(propertyName, schemaWrapperInfo),
-      );
+      schemaWrapperInfo.referenceProperties.push(this.convertArrayObjectToReferencePropertyType(propertyName, schemaWrapperInfo));
     }
   }
 
@@ -87,17 +73,11 @@ export class OpenApiDocConverter {
       maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
       hasMultipleValidators:
-        +required +
-          +!!schemaWrapperInfo.propertySchemaObject.maxLength +
-          +!!schemaWrapperInfo.propertySchemaObject.minLength >
-        1,
+        +required + +!!schemaWrapperInfo.propertySchemaObject.maxLength + +!!schemaWrapperInfo.propertySchemaObject.minLength > 1,
     };
   }
 
-  public convertArrayObjectToValuePropertyType(
-    propertyName: string,
-    schemaWrapperInfo: SchemaWrapperInfo,
-  ): IValueProperty {
+  public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     return {
       required,
@@ -109,20 +89,14 @@ export class OpenApiDocConverter {
     };
   }
 
-  public convertArrayObjectToReferencePropertyType(
-    propertyName: string,
-    schemaWrapperInfo: SchemaWrapperInfo,
-  ): IReferenceProperty {
+  public convertArrayObjectToReferencePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
     return {
       ...this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
       isArray: true,
     };
   }
 
-  public convertReferenceObjectToPropertyType(
-    propertyName: string,
-    schemaWrapperInfo: SchemaWrapperInfo,
-  ): IReferenceProperty {
+  public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
     return {
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
@@ -171,9 +145,7 @@ export class OpenApiDocConverter {
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
     return (
       ((schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
-        (schemaWrapperInfo.propertySchemaObject.nullable === undefined
-          ? false
-          : !schemaWrapperInfo.propertySchemaObject.nullable)) &&
+        (schemaWrapperInfo.propertySchemaObject.nullable === undefined ? false : !schemaWrapperInfo.propertySchemaObject.nullable)) &&
       propertyName !== 'id'
     );
   }
