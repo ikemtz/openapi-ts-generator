@@ -8,7 +8,7 @@ const outputPath = './jest_output/barrel';
 
 describe('BarrelGenerator', () => {
   beforeEach(() => {
-    if (!existsSync(outputPath)) {
+    while (!existsSync(outputPath)) {
       mkdirSync(outputPath);
     }
   });
