@@ -58,7 +58,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 import { IContact } from './contact.model';
 
 export interface IAccount {
@@ -129,7 +129,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 import { IContact } from './contact.model';
 
 export interface IAccountInsertRequest {
@@ -193,7 +193,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 import { IContact } from './contact.model';
 
 export interface IAccountUpdateRequest {
@@ -268,7 +268,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 import { IAccount } from './account.model';
 
 export interface IContact {
@@ -359,7 +359,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactInsertRequest {
   id?: string;
   contactTypeId?: string;
@@ -444,7 +444,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactUpdateRequest {
   id?: string;
   contactTypeId?: string;
