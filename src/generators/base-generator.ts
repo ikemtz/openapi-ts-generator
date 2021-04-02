@@ -20,7 +20,7 @@ export abstract class BaseGenerator<TContextSchema> {
         writeFileSync(outputFilePath, content, { encoding: 'utf8' });
         return content;
       } catch (err) {
-        this.generatorOptions.logger?.error(`Error executing template: ${this.templateFilePath}.`);
+        this.generatorOptions.logger?.error(`Error executing template: ${this.templateFilePath ?? 'undefined'}.`);
         this.generatorOptions.logger?.error(`This is likely an issue with the template.`);
         this.generatorOptions.logger?.error(`Data: ${JSON.stringify(context)}`);
         this.generatorOptions.logger?.error(`Goto: https://github.com/ikemtz/openapi-ts-generator to report an issue if necessary.`);

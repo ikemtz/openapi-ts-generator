@@ -28,17 +28,17 @@ describe('BarrelGenerator', () => {
     rmdirSync(outputPath);
   });
 
-  it('should handle exceptions', done => {
+  it('should handle exceptions', (done) => {
     const errorLogs: string[] = [];
     try {
       const generator = new BarrelGenerator(
         setGeneratorOptionDefaults({
           outputPath,
           openApiJsonUrl: '',
-          logger: { ...new MockConsoleLogger(), error: x => errorLogs.push(x) },
+          logger: { ...new MockConsoleLogger(), error: (x) => errorLogs.push(x) },
         }),
       );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
       (generator as any).template = () => {
         throw new Error('This error is to validate unit tests.');
       };

@@ -1,8 +1,8 @@
-import _ = require('lodash');
 import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
+import _ = require('lodash');
 
 export class OpenApiDocConverter {
   public readonly regex = /[A-z0-9]*$/s;
@@ -136,10 +136,10 @@ export class OpenApiDocConverter {
 
   public getImportTypes(entityName: string, schemaWrapperInfo: SchemaWrapperInfo): IImportType[] {
     return schemaWrapperInfo.referenceProperties
-      .map(t => t.referenceTypeName)
-      .filter(t => t !== entityName)
+      .map((t) => t.referenceTypeName)
+      .filter((t) => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
-      .map(value => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
+      .map((value) => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
   }
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {

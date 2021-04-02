@@ -13,7 +13,7 @@ const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Unit Service', () => {
-    it('should generate files', async done => {
+    it('should generate files', async (done) => {
       const options = unitGenerationOptionsFactory();
       try {
         mkdirSync(options.outputPath);
@@ -27,7 +27,7 @@ describe('Url Based - Full Integration Tests', () => {
       done();
     });
 
-    it('should not generate files', async done => {
+    it('should not generate files', async (done) => {
       const options = unitGenerationOptionsFactory();
       options.outputPath = './jest_output/unit_noFiles/';
       try {

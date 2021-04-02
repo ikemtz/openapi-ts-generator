@@ -4,7 +4,7 @@ import { IGeneratorOptions } from './models/generator-options';
 export function ValidateFiles(options: IGeneratorOptions): void {
   const files = readdirSync(options.outputPath).sort();
   expect(files).toMatchSnapshot();
-  files.forEach(file => {
+  files.forEach((file) => {
     const content = readFileSync(`${options.outputPath}${file}`, 'utf8');
     expect(content).toMatchSnapshot(file);
     unlinkSync(`${options.outputPath}${file}`);
