@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'fs';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
 import { MockConsoleLogger } from '../models/logger';
-import { ITemplateData } from '../models/template-data';
 import { BarrelGenerator } from './barrel-generator';
 
 const outputPath = './jest_output/barrel';
@@ -22,7 +21,7 @@ describe('BarrelGenerator', () => {
       logger: new MockConsoleLogger(),
     };
     const generator = new BarrelGenerator(setGeneratorOptionDefaults(options));
-    const result = generator.generate({} as ITemplateData);
+    const result = generator.generate();
     expect(result).toMatchSnapshot();
     unlinkSync(`${outputPath}/index.ts`);
     rmdirSync(outputPath);
@@ -42,7 +41,7 @@ describe('BarrelGenerator', () => {
       (generator as any).template = () => {
         throw new Error('This error is to validate unit tests.');
       };
-      generator.generate({} as ITemplateData);
+      generator.generate();
       done.fail('Exception logic was not triggered.');
     } catch (err) {
       const firstMessage = errorLogs.shift();

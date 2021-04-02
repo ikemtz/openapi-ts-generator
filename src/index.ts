@@ -45,5 +45,5 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
   modelPropertiesGenerator.generate(templateData);
   const barrelGenerator = new BarrelGenerator(options);
-  barrelGenerator.generate(templateData);
+  barrelGenerator.generate();
 }
