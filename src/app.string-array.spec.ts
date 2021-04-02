@@ -11,7 +11,7 @@ const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
 describe('File Based - Full Integration Tests', () => {
   describe('String Array Test', () => {
     const options = fileEmployeeGenerationOptionsFactory();
-    it('should generate files', async done => {
+    it('should generate files', async (done) => {
       try {
         mkdirSync(options.outputPath);
       } catch {

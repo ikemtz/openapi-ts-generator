@@ -20,10 +20,10 @@ async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<Open
   let apiDoc: OpenAPIObject;
   if (options.openApiJsonUrl) {
     const response = await fetch(options.openApiJsonUrl);
-    apiDoc = await response.json();
+    apiDoc = (await response.json()) as OpenAPIObject;
   } else if (options.openApiJsonFileName) {
     const response = fs.readFileSync(`${__dirname}/${options.openApiJsonFileName}`);
-    apiDoc = JSON.parse(response.toString());
+    apiDoc = JSON.parse(response.toString()) as OpenAPIObject;
   } else {
     throw new Error(
       'You must specify either an OpenApi Json Url or FileName.  Please review the readme.md @ https://github.com/ikemtz/openapi-ts-generator.',
@@ -34,7 +34,7 @@ async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<Open
 
 function generateOutput(options: IGeneratorOptions, templateData: ITemplateData) {
   if (fs.existsSync(options.outputPath)) {
-    fs.readdirSync(options.outputPath).forEach(file => fs.unlinkSync(`${options.outputPath}/${file}`));
+    fs.readdirSync(options.outputPath).forEach((file) => fs.unlinkSync(`${options.outputPath}/${file}`));
     fs.rmdirSync(options.outputPath);
   }
   fs.mkdirSync(options.outputPath, { recursive: true });
@@ -45,5 +45,5 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
   modelPropertiesGenerator.generate(templateData);
   const barrelGenerator = new BarrelGenerator(options);
-  barrelGenerator.generate(templateData);
+  barrelGenerator.generate();
 }

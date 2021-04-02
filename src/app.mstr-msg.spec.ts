@@ -14,7 +14,7 @@ const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Messaging Service', () => {
-    it('should generate files', async done => {
+    it('should generate files', async (done) => {
       const options = messageGenerationOptionsFactory();
       try {
         mkdirSync(options.outputPath);

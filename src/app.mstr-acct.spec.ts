@@ -12,7 +12,7 @@ const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Account Service', () => {
-    it('should generate files', async done => {
+    it('should generate files', async (done) => {
       const options = accountGenerationOptionsFactory();
       try {
         mkdirSync(options.outputPath);
