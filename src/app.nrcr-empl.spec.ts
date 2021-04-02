@@ -13,7 +13,7 @@ const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
 describe('File Based - Full Integration Tests', () => {
   describe('NRSRx Employee OData Microservice', () => {
     const options = fileEmployeeGenerationOptionsFactory();
-    it('should generate files', async done => {
+    it('should generate files', async (done) => {
       try {
         mkdirSync(options.outputPath);
       } catch {
