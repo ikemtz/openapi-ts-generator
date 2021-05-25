@@ -40,8 +40,12 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   fs.mkdirSync(options.outputPath, { recursive: true });
   const modelGenerator = new ModelGenerator(options);
   modelGenerator.generate(templateData);
-  const formGroupGenerator = new FormGroupGenerator(options);
-  formGroupGenerator.generate(templateData);
+
+  if (options.genAngularFormGroups) {
+    const formGroupGenerator = new FormGroupGenerator(options);
+    formGroupGenerator.generate(templateData);
+  }
+
   const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
   modelPropertiesGenerator.generate(templateData);
   const barrelGenerator = new BarrelGenerator(options);

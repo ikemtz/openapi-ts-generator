@@ -8,6 +8,7 @@ const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
   outputPath: './jest_output/acct/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  genAngularFormGroups: true,
 });
 
 describe('Url Based - Full Integration Tests', () => {

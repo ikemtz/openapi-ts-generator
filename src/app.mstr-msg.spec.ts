@@ -10,6 +10,7 @@ const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
   typeFilterCallBack: (val: IEntity, i: number, arr: IEntity[]) =>
     nrsrxTypeFilterCallBack(val, i, arr) && val.name !== 'GetMessageInfoResponse',
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  genAngularFormGroups: true,
 });
 
 describe('Url Based - Full Integration Tests', () => {
