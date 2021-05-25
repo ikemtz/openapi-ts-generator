@@ -4,7 +4,7 @@ import { ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from './models/generator-options';
 
 const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonUrl: 'https://d-acct-wal-01-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
+  openApiJsonFileName: './open-api-spec-docs/mstr-acct.json',
   outputPath: './jest_output/acct/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
