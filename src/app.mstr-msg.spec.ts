@@ -5,7 +5,7 @@ import { IGeneratorOptions } from './models/generator-options';
 import { IEntity } from './models/template-data';
 
 const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonUrl: 'https://d-msng-wal-01-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
+  openApiJsonFileName: './open-api-spec-docs/mstr-msg.json',
   outputPath: './jest_output/msng/',
   typeFilterCallBack: (val: IEntity, i: number, arr: IEntity[]) =>
     nrsrxTypeFilterCallBack(val, i, arr) && val.name !== 'GetMessageInfoResponse',

@@ -5,7 +5,7 @@ import { IGeneratorOptions } from './models/generator-options';
 import { MockConsoleLogger } from './models/logger';
 
 const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonUrl: 'https://d-unit-wal-00-cus-mstrcrp.azurewebsites.net/swagger/v1/swagger.json',
+  openApiJsonFileName: './open-api-spec-docs/mstr-unit.json',
   outputPath: './jest_output/unit/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
