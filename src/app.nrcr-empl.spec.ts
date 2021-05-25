@@ -8,6 +8,7 @@ const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
   outputPath: './jest_output/empl/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  genAngularFormGroups: true,
 });
 
 describe('File Based - Full Integration Tests', () => {

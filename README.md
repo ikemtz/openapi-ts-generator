@@ -34,6 +34,7 @@ const generator = require('openapi-ts-generator');
 generator.generateTsModels({
   openApiJsonUrl: '{Your Swagger Enpoint URL here}',
   outputPath: './{outputFolder}/',
+  genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/
 });
 ```
 
@@ -45,6 +46,18 @@ const generator = require('openapi-ts-generator');
 generator.generateTsModels({
   openApiJsonFileName: '{location and file name of your OpenApi document}',
   outputPath: './{outputFolder}/',
+});
+```
+
+## Want to include Angular FormGroup Factories?
+
+```javascript
+const generator = require('openapi-ts-generator');
+
+generator.generateTsModels({
+  openApiJsonFileName: '{location and file name of your OpenApi document}',
+  outputPath: './{outputFolder}/',
+  genAngularFormGroups: true
 });
 ```
 

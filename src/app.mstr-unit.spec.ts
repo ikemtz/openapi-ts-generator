@@ -9,6 +9,7 @@ const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
   outputPath: './jest_output/unit/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  genAngularFormGroups: true
 });
 
 describe('Url Based - Full Integration Tests', () => {
@@ -27,6 +28,22 @@ describe('Url Based - Full Integration Tests', () => {
       done();
     });
 
+    it('should skip formGroup Fac files', async (done) => {
+      const options = {
+        ...unitGenerationOptionsFactory(),
+        genAngularFormGroups: false
+      };
+      try {
+        mkdirSync(options.outputPath);
+      } catch {
+        // ignore
+      }
+      await generateTsModels(options);
+      const files = readdirSync(options.outputPath).sort();
+      ValidateFiles(options);
+      expect(files).toMatchSnapshot();
+      done();
+    });
     it('should not generate files', async (done) => {
       const options = unitGenerationOptionsFactory();
       options.outputPath = './jest_output/unit_noFiles/';
