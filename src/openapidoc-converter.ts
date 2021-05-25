@@ -109,6 +109,8 @@ export class OpenApiDocConverter {
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
       return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
+    } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
+      return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
       return 'number';
     } else if (schemaWrapperInfo.propertySchemaObject.format === 'date-time') {
