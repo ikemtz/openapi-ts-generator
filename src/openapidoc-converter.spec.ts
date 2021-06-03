@@ -9,7 +9,7 @@ describe('OpenApiDocConverter Tests', () => {
     expect(result).toBe('unknown');
   });
 
-  it('should handle invalid getPropertyTypeScriptType()', done => {
+  it('should handle invalid getPropertyTypeScriptType()', (done) => {
     const converter = new OpenApiDocConverter({ outputPath: '' }, {} as OpenAPIObject);
     try {
       converter.getPropertyTypeScriptType({ propertySchemaObject: {} } as SchemaWrapperInfo);
