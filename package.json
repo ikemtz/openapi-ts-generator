@@ -24,7 +24,8 @@
     "TypeScript",
     "TS",
     "Interfaces",
-    "Angular"
+    "Angular",
+    "Swagger"
   ],
   "license": "MIT",
   "bugs": {

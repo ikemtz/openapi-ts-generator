@@ -16,7 +16,7 @@ describe('File Based - Full Integration Tests', () => {
     const options = fileEmployeeGenerationOptionsFactory();
     it('should generate files', async () => {
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }

@@ -17,7 +17,7 @@ describe('Url Based - Full Integration Tests', () => {
     it('should generate files', async () => {
       const options = unitGenerationOptionsFactory();
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
@@ -33,7 +33,7 @@ describe('Url Based - Full Integration Tests', () => {
         genAngularFormGroups: false,
       };
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
@@ -47,7 +47,7 @@ describe('Url Based - Full Integration Tests', () => {
       const options = unitGenerationOptionsFactory();
       options.outputPath = './jest_output/unit_noFiles/';
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }

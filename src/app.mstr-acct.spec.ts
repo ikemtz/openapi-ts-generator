@@ -16,7 +16,7 @@ describe('Url Based - Full Integration Tests', () => {
     it('should generate files', async () => {
       const options = accountGenerationOptionsFactory();
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
