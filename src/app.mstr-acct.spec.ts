@@ -13,16 +13,15 @@ const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Account Service', () => {
-    it('should generate files', async (done) => {
+    it('should generate files', async () => {
       const options = accountGenerationOptionsFactory();
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
       await generateTsModels(options);
       ValidateFiles(options);
-      done();
     });
   });
 });

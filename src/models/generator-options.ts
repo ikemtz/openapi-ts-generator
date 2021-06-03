@@ -8,7 +8,6 @@ export interface IGeneratorOptions {
   outputPath: string;
   openApiJsonUrl?: string;
   openApiJsonFileName?: string;
-  messageFormat?: string | null;
   genAngularFormGroups?: boolean;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
   valuePropertyTypeFilterCallBack?: (valueProperty: IValueProperty, index: number, array: IValueProperty[]) => boolean;

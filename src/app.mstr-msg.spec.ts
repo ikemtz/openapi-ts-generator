@@ -15,16 +15,15 @@ const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Messaging Service', () => {
-    it('should generate files', async (done) => {
+    it('should generate files', async () => {
       const options = messageGenerationOptionsFactory();
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
       await generateTsModels(options);
       ValidateFiles(options);
-      done();
     });
   });
 });

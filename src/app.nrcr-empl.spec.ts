@@ -14,15 +14,14 @@ const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
 describe('File Based - Full Integration Tests', () => {
   describe('NRSRx Employee OData Microservice', () => {
     const options = fileEmployeeGenerationOptionsFactory();
-    it('should generate files', async (done) => {
+    it('should generate files', async () => {
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
       await generateTsModels(options);
       ValidateFiles(options);
-      done();
     });
   });
 });

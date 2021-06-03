@@ -9,15 +9,15 @@ const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
   outputPath: './jest_output/unit/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
-  genAngularFormGroups: true
+  genAngularFormGroups: true,
 });
 
 describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Unit Service', () => {
-    it('should generate files', async (done) => {
+    it('should generate files', async () => {
       const options = unitGenerationOptionsFactory();
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
@@ -25,16 +25,15 @@ describe('Url Based - Full Integration Tests', () => {
       const files = readdirSync(options.outputPath).sort();
       ValidateFiles(options);
       expect(files).toMatchSnapshot();
-      done();
     });
 
-    it('should skip formGroup Fac files', async (done) => {
+    it('should skip formGroup Fac files', async () => {
       const options = {
         ...unitGenerationOptionsFactory(),
-        genAngularFormGroups: false
+        genAngularFormGroups: false,
       };
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
@@ -42,13 +41,13 @@ describe('Url Based - Full Integration Tests', () => {
       const files = readdirSync(options.outputPath).sort();
       ValidateFiles(options);
       expect(files).toMatchSnapshot();
-      done();
+      return;
     });
-    it('should not generate files', async (done) => {
+    it('should not generate files', async () => {
       const options = unitGenerationOptionsFactory();
       options.outputPath = './jest_output/unit_noFiles/';
       try {
-        mkdirSync(options.outputPath);
+        mkdirSync(options.outputPath, { recursive: true });
       } catch {
         // ignore
       }
@@ -65,7 +64,6 @@ describe('Url Based - Full Integration Tests', () => {
         },
       });
       ValidateFiles(options);
-      done();
     });
   });
 });
