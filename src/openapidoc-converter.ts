@@ -16,8 +16,8 @@ export class OpenApiDocConverter {
   public convertPaths(): IPath[] {
     const paths: IPath[] = [];
     for (const key in this.apiDocument.paths) {
-      const path = this.apiDocument.paths[key] as PathItemObject;
-      const tag: string = (((path?.get || path?.post || path?.put || path?.delete)?.tags) || ['unknown_endpoint'])[0];
+      const path = this.apiDocument.paths[key] as PathItemObject || {};
+      const tag: string = (((path.get || path.post || path.put || path.delete)?.tags) || ['unknown_endpoint'])[0];
 
       paths.push({ tag: _.snakeCase(tag), endpoint: key });
     }
