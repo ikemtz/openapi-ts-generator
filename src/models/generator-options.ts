@@ -12,6 +12,7 @@ export interface IGeneratorOptions {
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
   valuePropertyTypeFilterCallBack?: (valueProperty: IValueProperty, index: number, array: IValueProperty[]) => boolean;
   referencePropertyTypeFilterCallBack?: (referenceProperty: IReferenceProperty, index: number, array: IReferenceProperty[]) => boolean;
+  pathUrlFormattingCallBack?: (url: string) => string;
   templates?: ITemplates | null;
 }
 export interface ITemplates {

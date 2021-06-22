@@ -19,7 +19,7 @@ export class OpenApiDocConverter {
       const path = this.apiDocument.paths[key] as PathItemObject || {};
       const tag: string = (((path.get || path.post || path.put || path.delete)?.tags) || ['unknown_endpoint'])[0];
 
-      paths.push({ tag: _.snakeCase(tag), endpoint: key });
+      paths.push({ tag: _.snakeCase(tag), endpoint: this.options.pathUrlFormattingCallBack ? this.options.pathUrlFormattingCallBack(key) : key });
     }
     return paths;
   }
