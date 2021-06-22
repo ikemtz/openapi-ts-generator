@@ -15,11 +15,12 @@ export interface IGeneratorOptions {
   templates?: ITemplates | null;
 }
 export interface ITemplates {
-  model: string;
-  formGroupFactory: string;
-  modelProperties: string;
-  barrel: string;
-  enum: string;
+  model?: string;
+  formGroupFactory?: string;
+  modelProperties?: string;
+  barrel?: string;
+  enum?: string;
+  endpoints?: string;
 }
 export function defaultFilter(
   value: IEntity | IValueProperty | IReferenceProperty,
@@ -41,6 +42,7 @@ export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGenerat
     barrel: options.templates?.barrel ?? `${templateFolder}/index.ts.hbs`,
     enum: options.templates?.barrel ?? `${templateFolder}/enum.ts.hbs`,
     modelProperties: options.templates?.barrel ?? `${templateFolder}/model-properties.ts.hbs`,
+    endpoints: options.templates?.endpoints ?? `${templateFolder}/endpoints.ts.hbs`,
   };
   return options;
 }

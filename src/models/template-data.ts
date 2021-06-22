@@ -1,6 +1,10 @@
 export interface ITemplateData {
   entities?: IEntity[];
-  paths: string[];
+  paths: IPath[];
+}
+export interface IPath {
+  tag: string;
+  endpoint: string;
 }
 export interface IEntity {
   name: string;
