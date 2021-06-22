@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';
 import { BarrelGenerator, FormGroupGenerator, ModelGenerator, ModelPropertiesGenerator } from './generators';
+import { EndPointsGenerator } from './generators/endpoints-generator';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
@@ -48,6 +49,8 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
 
   const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
   modelPropertiesGenerator.generate(templateData);
+  const endpointGenerator = new EndPointsGenerator(options);
+  endpointGenerator.generate(templateData);
   const barrelGenerator = new BarrelGenerator(options);
   barrelGenerator.generate();
 }

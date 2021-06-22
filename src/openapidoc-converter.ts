@@ -1,19 +1,28 @@
-import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
+import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
-import { IEntity, IImportType, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
+import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
 import _ = require('lodash');
 
 export class OpenApiDocConverter {
   public readonly regex = /[A-z0-9]*$/s;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
-    const paths: string[] = [];
+    const paths = this.convertPaths();
     return { entities, paths };
   }
+  public convertPaths(): IPath[] {
+    const paths: IPath[] = [];
+    for (const key in this.apiDocument.paths) {
+      const path = this.apiDocument.paths[key] as PathItemObject || {};
+      const tag: string = (((path.get || path.post || path.put || path.delete)?.tags) || ['unknown_endpoint'])[0];
 
+      paths.push({ tag: _.snakeCase(tag), endpoint: key });
+    }
+    return paths;
+  }
   public convertEntities(): IEntity[] {
     const entities: IEntity[] = [];
 
@@ -108,7 +117,7 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string; }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
