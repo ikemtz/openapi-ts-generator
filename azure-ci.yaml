@@ -23,7 +23,7 @@ steps:
       organization: 'ikemtz'
       scannerMode: CLI
       configMode: manual
-      cliProjectKey: 'openapi-ts-generator'
+      cliProjectKey: 'ikemtz_openapi-ts-generator'
       cliProjectName: 'openapi-ts-generator'
       cliSources: 'src'
       extraProperties: |
