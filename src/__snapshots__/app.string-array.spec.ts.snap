@@ -20,6 +20,8 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
 /* tslint:disable */
 export enum Endpoints {
 }
+export interface IEndpoints {
+}
 "
 `;
 
