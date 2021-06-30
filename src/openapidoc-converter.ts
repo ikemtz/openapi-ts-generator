@@ -17,7 +17,7 @@ export class OpenApiDocConverter {
     const paths: IPath[] = [];
     for (const key in this.apiDocument.paths) {
       const path = (this.apiDocument.paths[key] as PathItemObject) || {};
-      const tag: string = ((path.get || path.post || path.put || path.delete)?.tags || ['unknown_endpoint'])[0];
+      const tag: string = ((path.get || path.post || path.put || path.delete || path.patch)?.tags || ['unknown_endpoint'])[0];
 
       paths.push({
         tag: _.snakeCase(tag),
@@ -129,7 +129,7 @@ export class OpenApiDocConverter {
       return 'Date';
     }
     if (!schemaWrapperInfo.propertySchemaObject.type) {
-      throw new Error('Invalid Propety Type');
+      throw new Error('Invalid Property Type');
     }
     return schemaWrapperInfo.propertySchemaObject.type;
   }

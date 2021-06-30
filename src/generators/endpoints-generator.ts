@@ -11,11 +11,11 @@ export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {
 
   public generate(templateData: ITemplateData): string | null {
     const paths = this.eliminateDupes(templateData);
-    return super.generateFile(`${this.generatorOptions.outputPath}/endpoints.ts`, { paths: paths });
+    return super.generateFile(`${this.generatorOptions.outputPath}/endpoints.ts`, { paths });
   }
 
   public eliminateDupes(templateData: ITemplateData): IPath[] {
-    const sortedTemplateData = [...templateData.paths.sort((x, y) => (x.endpoint.toUpperCase() < y.endpoint.toUpperCase() ? -1 : 1))];
+    const sortedTemplateData = templateData.paths.sort((x, y) => (x.endpoint.toUpperCase() < y.endpoint.toUpperCase() ? -1 : 1));
     const result: IPath[] = [];
     sortedTemplateData.forEach((val) => {
       if (result.findIndex((f) => f.tag === val.tag) > -1) {
