@@ -1,3 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[Error: Invalid Propety Type]`;
+exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[Error: Invalid Property Type]`;
+
+exports[`OpenApiDocConverter Tests should properly convertPaths 1`] = `
+Array [
+  Object {
+    "endpoint": "GET_Employees",
+    "tag": "employees",
+  },
+  Object {
+    "endpoint": "POST_Employees",
+    "tag": "employees",
+  },
+  Object {
+    "endpoint": "PUT_Employees",
+    "tag": "employees",
+  },
+  Object {
+    "endpoint": "DELETE_Employees",
+    "tag": "employees",
+  },
+  Object {
+    "endpoint": "PATCH_Employees",
+    "tag": "employees",
+  },
+]
+`;

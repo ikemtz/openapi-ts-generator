@@ -19,4 +19,38 @@ describe('OpenApiDocConverter Tests', () => {
       done();
     }
   });
+
+  it('should properly convertPaths', () => {
+    const converter = new OpenApiDocConverter({ outputPath: '' }, {
+      paths: {
+        GET_Employees: {
+          get: {
+            tags: ['Employees'],
+          },
+        },
+        POST_Employees: {
+          post: {
+            tags: ['Employees'],
+          },
+        },
+        PUT_Employees: {
+          put: {
+            tags: ['Employees'],
+          },
+        },
+        DELETE_Employees: {
+          delete: {
+            tags: ['Employees'],
+          },
+        },
+        PATCH_Employees: {
+          patch: {
+            tags: ['Employees'],
+          },
+        },
+      },
+    } as never);
+    const result = converter.convertPaths();
+    expect(result).toMatchSnapshot();
+  });
 });
