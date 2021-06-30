@@ -326,6 +326,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 export enum Endpoints {
   employees = '/odata/v1/Employees',
 }
+export interface IEndpoints {
+  employees: string;
+}
 "
 `;
 

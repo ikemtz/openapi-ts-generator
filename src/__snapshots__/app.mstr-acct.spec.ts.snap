@@ -504,6 +504,10 @@ export enum Endpoints {
   accounts = '/api/v1/Accounts.{format}',
   contacts = '/api/v1/Contacts.{format}',
 }
+export interface IEndpoints {
+  accounts: string;
+  contacts: string;
+}
 "
 `;
 
