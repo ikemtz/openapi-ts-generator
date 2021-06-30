@@ -135,6 +135,13 @@ export enum Endpoints {
   units = '/odata/v1/Units',
   unit_types = '/odata/v1/UnitTypes',
 }
+export interface IEndpoints {
+  buildings: string;
+  site_collections: string;
+  sites: string;
+  units: string;
+  unit_types: string;
+}
 "
 `;
 
@@ -629,6 +636,13 @@ export enum Endpoints {
   units = '/odata/v1/Units',
   unit_types = '/odata/v1/UnitTypes',
 }
+export interface IEndpoints {
+  buildings: string;
+  site_collections: string;
+  sites: string;
+  units: string;
+  unit_types: string;
+}
 "
 `;
 
@@ -729,6 +743,13 @@ export enum Endpoints {
   sites = '/odata/v1/Sites',
   units = '/odata/v1/Units',
   unit_types = '/odata/v1/UnitTypes',
+}
+export interface IEndpoints {
+  buildings: string;
+  site_collections: string;
+  sites: string;
+  units: string;
+  unit_types: string;
 }
 "
 `;

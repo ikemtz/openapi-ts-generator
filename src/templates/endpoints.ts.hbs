@@ -10,3 +10,8 @@ export enum Endpoints {
   {{tag}} = '{{endpoint}}',
 {{/paths}}
 }
+export interface IEndpoints {
+{{#paths}}
+  {{tag}}: string;
+{{/paths}}
+}
