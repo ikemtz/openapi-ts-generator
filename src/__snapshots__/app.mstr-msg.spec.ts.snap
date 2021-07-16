@@ -25,7 +25,7 @@ export enum Endpoints {
   sms = '/api/v1/Sms.{format}',
 }
 export interface IEndpoints {
-  sms: string;
+  readonly sms: string;
 }
 "
 `;

@@ -136,11 +136,11 @@ export enum Endpoints {
   unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
-  buildings: string;
-  siteCollections: string;
-  sites: string;
-  units: string;
-  unitTypes: string;
+  readonly buildings: string;
+  readonly siteCollections: string;
+  readonly sites: string;
+  readonly units: string;
+  readonly unitTypes: string;
 }
 "
 `;
@@ -636,11 +636,11 @@ export enum Endpoints {
   unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
-  buildings: string;
-  siteCollections: string;
-  sites: string;
-  units: string;
-  unitTypes: string;
+  readonly buildings: string;
+  readonly siteCollections: string;
+  readonly sites: string;
+  readonly units: string;
+  readonly unitTypes: string;
 }
 "
 `;
@@ -744,11 +744,11 @@ export enum Endpoints {
   unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
-  buildings: string;
-  siteCollections: string;
-  sites: string;
-  units: string;
-  unitTypes: string;
+  readonly buildings: string;
+  readonly siteCollections: string;
+  readonly sites: string;
+  readonly units: string;
+  readonly unitTypes: string;
 }
 "
 `;
