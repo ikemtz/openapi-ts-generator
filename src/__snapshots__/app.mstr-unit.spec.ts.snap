@@ -130,17 +130,17 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 /* tslint:disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
-  site_collections = '/odata/v1/SiteCollections',
+  siteCollections = '/odata/v1/SiteCollections',
   sites = '/odata/v1/Sites',
   units = '/odata/v1/Units',
-  unit_types = '/odata/v1/UnitTypes',
+  unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
   buildings: string;
-  site_collections: string;
+  siteCollections: string;
   sites: string;
   units: string;
-  unit_types: string;
+  unitTypes: string;
 }
 "
 `;
@@ -631,17 +631,17 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 /* tslint:disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
-  site_collections = '/odata/v1/SiteCollections',
+  siteCollections = '/odata/v1/SiteCollections',
   sites = '/odata/v1/Sites',
   units = '/odata/v1/Units',
-  unit_types = '/odata/v1/UnitTypes',
+  unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
   buildings: string;
-  site_collections: string;
+  siteCollections: string;
   sites: string;
   units: string;
-  unit_types: string;
+  unitTypes: string;
 }
 "
 `;
@@ -739,17 +739,17 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 /* tslint:disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
-  site_collections = '/odata/v1/SiteCollections',
+  siteCollections = '/odata/v1/SiteCollections',
   sites = '/odata/v1/Sites',
   units = '/odata/v1/Units',
-  unit_types = '/odata/v1/UnitTypes',
+  unitTypes = '/odata/v1/UnitTypes',
 }
 export interface IEndpoints {
   buildings: string;
-  site_collections: string;
+  siteCollections: string;
   sites: string;
   units: string;
-  unit_types: string;
+  unitTypes: string;
 }
 "
 `;

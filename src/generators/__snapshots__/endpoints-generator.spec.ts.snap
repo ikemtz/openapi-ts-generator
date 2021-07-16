@@ -8,15 +8,23 @@ Array [
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}",
-    "tag": "lookup_dupe",
+    "tag": "lookupDupe",
+  },
+  Object {
+    "endpoint": "api/v1/Lookup.{format}",
+    "tag": "lookupSnakeTest",
+  },
+  Object {
+    "endpoint": "api/v1/Lookup.{format}",
+    "tag": "lookupSnakeTest",
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}/GetLookup1",
-    "tag": "lookup_GetLookup1",
+    "tag": "lookupGetLookup1",
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}/GetLookup2",
-    "tag": "lookup_GetLookup2",
+    "tag": "lookupGetLookup2",
   },
 ]
 `;
