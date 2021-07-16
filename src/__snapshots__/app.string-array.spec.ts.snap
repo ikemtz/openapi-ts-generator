@@ -33,7 +33,6 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * Do not edit.
  */
 /* tslint:disable */
-export * from './endpoints';
 export * from './string-array-test-object.form-group-fac';
 export * from './string-array-test-object.model';
 export * from './string-array-test-object.properties';
