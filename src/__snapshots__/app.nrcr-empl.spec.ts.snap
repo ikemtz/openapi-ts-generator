@@ -327,7 +327,7 @@ export enum Endpoints {
   employees = '/odata/v1/Employees',
 }
 export interface IEndpoints {
-  employees: string;
+  readonly employees: string;
 }
 "
 `;

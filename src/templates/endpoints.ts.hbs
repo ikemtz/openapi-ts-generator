@@ -12,6 +12,6 @@ export enum Endpoints {
 }
 export interface IEndpoints {
 {{#paths}}
-  {{tag}}: string;
+  readonly {{tag}}: string;
 {{/paths}}
 }
