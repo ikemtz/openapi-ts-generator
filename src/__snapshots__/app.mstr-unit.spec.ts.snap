@@ -156,7 +156,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 export * from './building.form-group-fac';
 export * from './building.model';
 export * from './building.properties';
-export * from './endpoints';
 export * from './site-collection.form-group-fac';
 export * from './site-collection.model';
 export * from './site-collection.properties';
@@ -764,7 +763,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 /* tslint:disable */
 export * from './building.model';
 export * from './building.properties';
-export * from './endpoints';
 export * from './site-collection.model';
 export * from './site-collection.properties';
 export * from './site.model';

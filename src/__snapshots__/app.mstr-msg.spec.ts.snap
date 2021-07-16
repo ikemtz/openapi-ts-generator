@@ -38,7 +38,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * Do not edit.
  */
 /* tslint:disable */
-export * from './endpoints';
 export * from './message-dto.form-group-fac';
 export * from './message-dto.model';
 export * from './message-dto.properties';

@@ -537,6 +537,5 @@ export * from './contact-update-request.properties';
 export * from './contact.form-group-fac';
 export * from './contact.model';
 export * from './contact.properties';
-export * from './endpoints';
 "
 `;

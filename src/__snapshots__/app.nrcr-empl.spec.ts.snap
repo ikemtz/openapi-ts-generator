@@ -352,6 +352,5 @@ export * from './employee-health-item.properties';
 export * from './employee.form-group-fac';
 export * from './employee.model';
 export * from './employee.properties';
-export * from './endpoints';
 "
 `;
