@@ -8,7 +8,7 @@ Array [
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}",
-    "tag": "lookupDupe",
+    "tag": "lookup2",
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}",
@@ -16,7 +16,7 @@ Array [
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}",
-    "tag": "lookupSnakeTest",
+    "tag": "lookupSnakeTest2",
   },
   Object {
     "endpoint": "api/v1/Lookup.{format}/GetLookup1",

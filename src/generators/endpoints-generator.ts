@@ -19,11 +19,14 @@ export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[]; }> {
     const sortedTemplateData = [...templateData.paths].sort((x, y) => (x.endpoint.toUpperCase() < y.endpoint.toUpperCase() ? -1 : 1));
     const result: IPath[] = [];
     sortedTemplateData.forEach((val) => {
-      if (result.findIndex((f) => f.tag === val.tag) > -1) {
+      val = { ...val, tag: _.camelCase(val.tag) };
+      const dupeIndex = result.findIndex((f) => f.tag === val.tag);
+      if (dupeIndex > -1) {
+        const dupeCount = result.filter((f) => f.tag === val.tag).length + 1;
         const endpointIdentifier = (this.endpointIdentifierRegex.exec(val.endpoint) || [])[0];
-        result.push({ ...val, tag: _.camelCase(`${val.tag}_${endpointIdentifier || 'dupe'}`) });
+        result.push({ ...val, tag: _.camelCase(`${val.tag}_${endpointIdentifier || dupeCount}`) });
       } else {
-        result.push({ ...val, tag: _.camelCase(val.tag) });
+        result.push(val);
       }
     });
     return result;
