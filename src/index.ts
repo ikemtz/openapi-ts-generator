@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import fetch from 'node-fetch';
 import { OpenAPIObject } from 'openapi3-ts';
 import { BarrelGenerator, FormGroupGenerator, ModelGenerator, ModelPropertiesGenerator } from './generators';
 import { EndPointsGenerator } from './generators/endpoints-generator';
