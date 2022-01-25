@@ -3,7 +3,7 @@ import { IPath, ITemplateData } from '../models/template-data';
 import { BaseGenerator } from './base-generator';
 import _ = require('lodash');
 
-export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[]; }> {
+export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {
   public readonly GeneratorName = 'EndPointsGenerator';
   public readonly endpointIdentifierRegex = /[A-z0-9_-]*$/;
   constructor(options: IGeneratorOptions) {

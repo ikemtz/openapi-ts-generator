@@ -39,7 +39,6 @@
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.168",
     "@types/node": "^15.9.0",
-    "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "4.26",
     "@typescript-eslint/parser": "4.26",
     "eslint": "^7.23.0",
@@ -58,12 +57,10 @@
   },
   "dependencies": {
     "handlebars": "^4.x",
-    "lodash": "^4.x",
-    "node-fetch": "^2.x"
+    "lodash": "^4.x"
   },
   "peerDependencies": {
     "handlebars": "^4.x",
-    "lodash": "^4.x",
-    "node-fetch": "^2.x"
+    "lodash": "^4.x"
   }
 }
