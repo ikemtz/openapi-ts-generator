@@ -35,7 +35,9 @@ steps:
          sonar.exclusions=**/node_modules/**,**/jest_ouput/**,**/*.spec.ts,jest.config.js
          sonar.test.inclusions=**/*.spec.ts
          sonar.ts.tslintconfigpath=tslint.json
+         sonar.javascript.lcov.reportPaths=coverage/lcov.info
          sonar.typescript.lcov.reportPaths=coverage/lcov.info
+         sonar.eslint.reportPaths=eslint-report.html
          sonar.typescript.exclusions=**/node_modules/**
 
   - task: Npm@1

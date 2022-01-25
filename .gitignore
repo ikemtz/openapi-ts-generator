@@ -10,3 +10,4 @@
 /bin
 /obj/Debug 
 /jest_output 
+eslint-report.html
