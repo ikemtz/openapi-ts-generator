@@ -37,7 +37,7 @@ steps:
          sonar.ts.tslintconfigpath=tslint.json
          sonar.javascript.lcov.reportPaths=coverage/lcov.info
          sonar.typescript.lcov.reportPaths=coverage/lcov.info
-         sonar.eslint.reportPaths=eslint-report.html
+         sonar.eslint.reportPaths=eslint-report.json
          sonar.typescript.exclusions=**/node_modules/**
 
   - task: Npm@1
