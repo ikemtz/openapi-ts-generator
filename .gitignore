@@ -9,5 +9,5 @@
 /coverage
 /bin
 /obj/Debug 
-/jest_output 
-eslint-report.html
+/jest_output
+eslint-report.json
