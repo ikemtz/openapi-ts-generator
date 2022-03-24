@@ -5,7 +5,7 @@ import { EndPointsGenerator } from './generators/endpoints-generator';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
-import { Axios } from 'axios';
+import axios from 'axios';
 
 export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
 
@@ -20,9 +20,8 @@ export async function generateTsModels(options: IGeneratorOptions): Promise<void
 async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<OpenAPIObject> {
   let apiDoc: OpenAPIObject;
   if (options.openApiJsonUrl) {
-    const axios = new Axios();
     const response = await axios.get(options.openApiJsonUrl);
-    apiDoc = JSON.parse(response.data as string) as OpenAPIObject;
+    apiDoc = response.data as OpenAPIObject;
   } else if (options.openApiJsonFileName) {
     const response = fs.readFileSync(`${__dirname}/${options.openApiJsonFileName}`);
     apiDoc = JSON.parse(response.toString()) as OpenAPIObject;
