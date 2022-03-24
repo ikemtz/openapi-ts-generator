@@ -55,7 +55,7 @@ export function EmployeeFormGroupFac(): FormGroup {
     employeeCompetencies: new FormArray([]),
     employeeHealthItems: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -153,7 +153,7 @@ export function EmployeeCertificationFormGroupFac(): FormGroup {
     certificationName: new FormControl(''),
     expiresOnUtc: new FormControl(''),
   });
-};
+}
 "
 `;
 
@@ -212,7 +212,7 @@ export function EmployeeCompetencyFormGroupFac(): FormGroup {
     expiresOnUtc: new FormControl(''),
     isEnabled: new FormControl(''),
   });
-};
+}
 "
 `;
 
@@ -273,7 +273,7 @@ export function EmployeeHealthItemFormGroupFac(): FormGroup {
     expiresOnUtc: new FormControl(''),
     isEnabled: new FormControl(''),
   });
-};
+}
 "
 `;
 

@@ -63,7 +63,7 @@ export function MessageDtoFormGroupFac(): FormGroup {
     body: new FormControl('', Validators.required),
     recipients: new FormArray([], Validators.required),
   });
-};
+}
 "
 `;
 
@@ -121,7 +121,7 @@ export function RecipientFormGroupFac(): FormGroup {
     cellPhone1: new FormControl(''),
     homePhone1: new FormControl(''),
   });
-};
+}
 "
 `;
 
