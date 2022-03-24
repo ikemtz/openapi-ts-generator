@@ -75,7 +75,7 @@ export function BuildingFormGroupFac(): FormGroup {
     site: new FormControl(''),
     units: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -206,7 +206,7 @@ export function SiteFormGroupFac(): FormGroup {
     buildings: new FormArray([]),
     units: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -300,7 +300,7 @@ export function SiteCollectionFormGroupFac(): FormGroup {
     buildings: new FormArray([]),
     sites: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -380,7 +380,7 @@ export function TagFormGroupFac(): FormGroup {
     value: new FormControl(''),
     unitTags: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -443,7 +443,7 @@ export function UnitFormGroupFac(): FormGroup {
     unitType: new FormControl(''),
     unitTags: new FormArray([]),
   });
-};
+}
 "
 `;
 
@@ -517,7 +517,7 @@ export function UnitTagFormGroupFac(): FormGroup {
     tag: new FormControl(''),
     unit: new FormControl(''),
   });
-};
+}
 "
 `;
 
@@ -578,7 +578,7 @@ export function UnitTypeFormGroupFac(): FormGroup {
     code: new FormControl(''),
     description: new FormControl(''),
   });
-};
+}
 "
 `;
 

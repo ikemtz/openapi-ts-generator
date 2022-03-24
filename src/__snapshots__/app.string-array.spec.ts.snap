@@ -53,7 +53,7 @@ export function StringArrayTestObjectFormGroupFac(): FormGroup {
   return new FormGroup({
     typeCodes: new FormControl([]),
   });
-};
+}
 "
 `;
 
