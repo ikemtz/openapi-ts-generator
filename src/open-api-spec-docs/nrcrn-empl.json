@@ -8,9 +8,7 @@
   "paths": {
     "/odata/v1/Employees": {
       "get": {
-        "tags": [
-          "Employees"
-        ],
+        "tags": ["Employees"],
         "parameters": [
           {
             "name": "$select",
@@ -225,19 +223,23 @@
           "totalHoursOfService": {
             "type": "number",
             "format": "double",
-            "nullable": true
+            "nullable": true,
+            "minimum": 0
           },
           "certificationCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "minimum": 0
           },
           "competencyCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "minimum": 0
           },
           "healthItemCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "minimum": 0
           },
           "createdBy": {
             "maxLength": 250,
@@ -320,7 +322,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }

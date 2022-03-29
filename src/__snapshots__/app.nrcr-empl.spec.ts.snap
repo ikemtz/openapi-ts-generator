@@ -48,7 +48,7 @@ export function EmployeeFormGroupFac(): FormGroup {
     hireDate: new FormControl('', Validators.required),
     fireDate: new FormControl(''),
     totalHoursOfService: new FormControl(''),
-    certificationCount: new FormControl('', Validators.required),
+    certificationCount: new FormControl('', Validators.requiredValidators.min(), ),
     competencyCount: new FormControl('', Validators.required),
     healthItemCount: new FormControl('', Validators.required),
     employeeCertifications: new FormArray([]),
