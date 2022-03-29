@@ -73,3 +73,5 @@ generateTsModels({
   valuePropertyTypeFilterCallBack: (val, i, arr) => !val.name.startsWith('created') && !val.name.startsWith('updated'),
 });
 ```
+
+Check out [openapi-mermaid](https://www.npmjs.com/package/openapi-mermaid), it will auto-generate mermaid entity diagrams using your swagger docs.
