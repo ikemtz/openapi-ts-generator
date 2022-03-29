@@ -12,30 +12,30 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{#valueProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}])),
+    {{name}}: new FormControl([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}])),
 {{else}}
-    {{name}}: new FormControl([]{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+    {{name}}: new FormControl([]{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}])),
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}])),
 {{else}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}),
 {{/if}}
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormArray([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}]),
+    {{name}}: new FormArray([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}]),
 {{else}}
-    {{name}}: new FormArray([]{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+    {{name}}: new FormArray([]{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}]),
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}]),
 {{else}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}),
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}

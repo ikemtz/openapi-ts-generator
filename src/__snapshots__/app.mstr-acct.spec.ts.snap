@@ -44,7 +44,7 @@ export function AccountFormGroupFac(): FormGroup {
     isEnabled: new FormControl(''),
     emailInvoice: new FormControl(''),
     tenantId: new FormControl(''),
-    contactCount: new FormControl('', Validators.compose([])),
+    contactCount: new FormControl('', Validators.compose([Validators.min(1)])),
     parentAccount: new FormControl(''),
     contacts: new FormArray([]),
     inverseParentAccount: new FormArray([]),
@@ -263,8 +263,8 @@ export function ContactFormGroupFac(): FormGroup {
     state: new FormControl('', Validators.required),
     zip: new FormControl('', Validators.required),
     emails: new FormControl(''),
-    phone1: new FormControl('', Validators.compose([Validators.maxLength(14), Validators.minLength(13)])),
-    phone2: new FormControl('', Validators.compose([Validators.maxLength(14), Validators.minLength(13)])),
+    phone1: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14)])),
+    phone2: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14)])),
     account: new FormControl(''),
   });
 }
