@@ -802,14 +802,14 @@
           "phone1": {
             "type": "string",
             "nullable": true,
-            "pattern": "([0-9]{3}) ?[0-9]{3}-[0-9]{4}",
+            "pattern": "^(d{3}) ?d{3}-d{4}$",
             "minLength": 13,
             "maxLength": 14
           },
           "phone2": {
             "type": "string",
             "nullable": true,
-            "pattern": "([0-9]{3}) ?[0-9]{3}-[0-9]{4}",
+            "pattern": "^(d{3}) ?d{3}-d{4}$",
             "minLength": 13,
             "maxLength": 14
           }
