@@ -5,9 +5,15 @@
  * Do not edit.
  */
 /* tslint:disable */
-export enum {{name}}Properties {
+{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}export enum {{name}}Properties {
 {{#valueProperties}}
-  {{snakeCaseName}} = '{{name}}',
+{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}  {{snakeCaseName}} = '{{name}}',
 {{/valueProperties}}
 {{#referenceProperties}}
   {{snakeCaseName}} = '{{name}}',

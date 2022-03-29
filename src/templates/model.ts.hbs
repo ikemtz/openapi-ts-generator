@@ -10,9 +10,14 @@
 import { I{{name}} } from './{{kebabCasedTypeName}}.model';
 {{/importTypes}}
 
+{{/if}}{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}export interface I{{{name}}} {
+{{#valueProperties}}{{#if description}}/**
+ * {{description}}
+ */
 {{/if}}
-export interface I{{{name}}} {
-{{#valueProperties}}
   {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}};
 {{/valueProperties}}
 {{#referenceProperties}}

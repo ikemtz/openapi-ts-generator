@@ -38,6 +38,7 @@ export class OpenApiDocConverter {
         schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity = {
           name: schemaName,
+          description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,
           valueProperties: schemaWrapperInfo.valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
           importTypes: this.getImportTypes(schemaName, schemaWrapperInfo),
@@ -86,8 +87,18 @@ export class OpenApiDocConverter {
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
+      maximum: schemaWrapperInfo.propertySchemaObject.maximum,
+      minimum: schemaWrapperInfo.propertySchemaObject.minimum,
+      description: schemaWrapperInfo.propertySchemaObject.description,
+      pattern: schemaWrapperInfo.propertySchemaObject.pattern,
       hasMultipleValidators:
-        +required + +!!schemaWrapperInfo.propertySchemaObject.maxLength + +!!schemaWrapperInfo.propertySchemaObject.minLength > 1,
+        +required +
+          +!!schemaWrapperInfo.propertySchemaObject.maxLength +
+          +!!schemaWrapperInfo.propertySchemaObject.minLength +
+          +!!schemaWrapperInfo.propertySchemaObject.maximum +
+          +!!schemaWrapperInfo.propertySchemaObject.minimum +
+          +!!schemaWrapperInfo.propertySchemaObject.pattern >
+        1,
     };
   }
 

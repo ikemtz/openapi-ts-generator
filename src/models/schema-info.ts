@@ -9,9 +9,11 @@ export class SchemaWrapperInfo {
   public readonly componentSchemaObject: SchemaObject;
   public readonly valueProperties: IValueProperty[];
   public referenceProperties: IReferenceProperty[];
+  public readonly description?: string;
 
   constructor(schemaItem: SchemaObject) {
     this.componentSchemaObject = schemaItem;
+    this.description = schemaItem.description;
     this.valueProperties = [];
     this.referenceProperties = [];
   }

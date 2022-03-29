@@ -8,9 +8,7 @@
   "paths": {
     "/api/v1/Accounts.{format}": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "format",
@@ -28,9 +26,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "tid",
@@ -142,9 +138,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "id",
@@ -264,9 +258,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Accounts"
-        ],
+        "tags": ["Accounts"],
         "parameters": [
           {
             "name": "id",
@@ -339,9 +331,7 @@
     },
     "/api/v1/Contacts.{format}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "parameters": [
           {
             "name": "format",
@@ -359,9 +349,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "parameters": [
           {
             "name": "tid",
@@ -473,9 +461,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "parameters": [
           {
             "name": "id",
@@ -595,9 +581,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "parameters": [
           {
             "name": "id",
@@ -718,6 +702,11 @@
             "format": "date-time",
             "nullable": true
           },
+          "contactCount": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 99999
+          },
           "parentAccount": {
             "$ref": "#/components/schemas/Account"
           },
@@ -738,24 +727,17 @@
             "readOnly": true
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Customer Account"
       },
       "Contact": {
-        "required": [
-          "accountId",
-          "addressLine1",
-          "city",
-          "contactTypeId",
-          "firstName",
-          "lastName",
-          "state",
-          "zip"
-        ],
+        "required": ["accountId", "addressLine1", "city", "contactTypeId", "firstName", "lastName", "state", "zip"],
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "description": "Unique Identifier"
           },
           "isEnabled": {
             "type": "boolean"
@@ -819,19 +801,23 @@
           },
           "phone1": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "pattern": "^(d{3}) ?d{3}-d{4}$",
+            "minLength": 13,
+            "maxLength": 14
           },
           "phone2": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "pattern": "^(d{3}) ?d{3}-d{4}$",
+            "minLength": 13,
+            "maxLength": 14
           }
         },
         "additionalProperties": false
       },
       "AccountInsertRequest": {
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "properties": {
           "id": {
@@ -866,10 +852,7 @@
         "additionalProperties": false
       },
       "AccountUpdateRequest": {
-        "required": [
-          "name",
-          "refId"
-        ],
+        "required": ["name", "refId"],
         "type": "object",
         "properties": {
           "id": {
@@ -905,16 +888,7 @@
         "additionalProperties": false
       },
       "ContactInsertRequest": {
-        "required": [
-          "accountId",
-          "addressLine1",
-          "city",
-          "contactTypeId",
-          "firstName",
-          "lastName",
-          "state",
-          "zip"
-        ],
+        "required": ["accountId", "addressLine1", "city", "contactTypeId", "firstName", "lastName", "state", "zip"],
         "type": "object",
         "properties": {
           "id": {
@@ -971,17 +945,7 @@
         "additionalProperties": false
       },
       "ContactUpdateRequest": {
-        "required": [
-          "accountId",
-          "addressLine1",
-          "city",
-          "contactTypeId",
-          "firstName",
-          "id",
-          "lastName",
-          "state",
-          "zip"
-        ],
+        "required": ["accountId", "addressLine1", "city", "contactTypeId", "firstName", "id", "lastName", "state", "zip"],
         "type": "object",
         "properties": {
           "id": {
@@ -1054,7 +1018,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }

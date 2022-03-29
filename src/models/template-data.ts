@@ -8,6 +8,7 @@ export interface IPath {
 }
 export interface IEntity {
   name: string;
+  description?: string;
   importTypes: IImportType[];
   valueProperties: IValueProperty[];
   referenceProperties: IReferenceProperty[];
@@ -25,6 +26,10 @@ export interface IValueProperty {
   required: boolean;
   maxLength?: number;
   minLength?: number;
+  maximum?: number;
+  minimum?: number;
+  description?: string;
+  pattern?: string;
 }
 
 export interface IReferenceProperty {

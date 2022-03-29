@@ -44,6 +44,7 @@ export function AccountFormGroupFac(): FormGroup {
     isEnabled: new FormControl(''),
     emailInvoice: new FormControl(''),
     tenantId: new FormControl(''),
+    contactCount: new FormControl('', Validators.compose([Validators.min(1), Validators.max(99999)])),
     parentAccount: new FormControl(''),
     contacts: new FormArray([]),
     inverseParentAccount: new FormArray([]),
@@ -62,6 +63,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 import { IContact } from './contact.model';
 
+/**
+ * Customer Account
+ */
 export interface IAccount {
   id?: string;
   refId?: string;
@@ -70,6 +74,7 @@ export interface IAccount {
   isEnabled?: boolean;
   emailInvoice?: boolean;
   tenantId?: string;
+  contactCount?: number;
   parentAccount?: IAccount;
   contacts?: IContact[];
   inverseParentAccount?: IAccount[];
@@ -85,6 +90,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 /* tslint:disable */
+/**
+ * Customer Account
+ */
 export enum AccountProperties {
   ID = 'id',
   REF_ID = 'refId',
@@ -93,6 +101,7 @@ export enum AccountProperties {
   IS_ENABLED = 'isEnabled',
   EMAIL_INVOICE = 'emailInvoice',
   TENANT_ID = 'tenantId',
+  CONTACT_COUNT = 'contactCount',
   PARENT_ACCOUNT = 'parentAccount',
   CONTACTS = 'contacts',
   INVERSE_PARENT_ACCOUNT = 'inverseParentAccount',
@@ -254,8 +263,8 @@ export function ContactFormGroupFac(): FormGroup {
     state: new FormControl('', Validators.required),
     zip: new FormControl('', Validators.required),
     emails: new FormControl(''),
-    phone1: new FormControl(''),
-    phone2: new FormControl(''),
+    phone1: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')])),
+    phone2: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')])),
     account: new FormControl(''),
   });
 }
@@ -273,6 +282,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { IAccount } from './account.model';
 
 export interface IContact {
+/**
+ * Unique Identifier
+ */
   id?: string;
   isEnabled?: boolean;
   contactTypeId?: string;
@@ -302,6 +314,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 /* tslint:disable */
 export enum ContactProperties {
+/**
+ * Unique Identifier
+ */
   ID = 'id',
   IS_ENABLED = 'isEnabled',
   CONTACT_TYPE_ID = 'contactTypeId',
