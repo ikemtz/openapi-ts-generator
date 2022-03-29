@@ -199,9 +199,11 @@
             "nullable": true
           },
           "state": {
+            "minLength": 2,
             "maxLength": 2,
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "pattern": "^[A-Z]{2}$"
           },
           "zip": {
             "maxLength": 10,
@@ -229,17 +231,19 @@
           "certificationCount": {
             "type": "integer",
             "format": "int32",
-            "minimum": 0
+            "maximum": 99
           },
           "competencyCount": {
             "type": "integer",
             "format": "int32",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 99
           },
           "healthItemCount": {
             "type": "integer",
             "format": "int32",
-            "minimum": 0
+            "minimum": 0,
+            "maximum": 99
           },
           "createdBy": {
             "maxLength": 250,
