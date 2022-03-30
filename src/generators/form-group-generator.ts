@@ -3,6 +3,7 @@ import { IGeneratorOptions } from '../models/generator-options';
 import { IEntity, ITemplateData, IValueProperty } from '../models/template-data';
 import { BaseGenerator } from './base-generator';
 import * as HandleBars from 'handlebars';
+import { IHelperContext, PropertyType } from '../models/helper-context';
 
 export class FormGroupGenerator extends BaseGenerator<IEntity> {
   public readonly GeneratorName = 'FormGroupGenerator';
@@ -19,94 +20,22 @@ export class FormGroupGenerator extends BaseGenerator<IEntity> {
       });
   }
   public registerHelpers() {
-    HandleBars.registerHelper(
-      'minimumValidator',
-      (
-        x: 'valueProperties' | 'referenceProperties',
-        y: {
-          data: {
-            root: IEntity;
-            key: number;
-            index: number;
-            first: boolean;
-          };
-          name: string;
-        },
-      ) => this.validatorFactory(x, y, 'minimum', 'min'),
+    HandleBars.registerHelper('minimumValidator', (x: PropertyType, y: IHelperContext) => this.validatorFactory(x, y, 'minimum', 'min'));
+    HandleBars.registerHelper('maximumValidator', (x: PropertyType, y: IHelperContext) => this.validatorFactory(x, y, 'maximum', 'max'));
+    HandleBars.registerHelper('minLengthValidator', (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, 'minLength', 'minLength'),
     );
-    HandleBars.registerHelper(
-      'maximumValidator',
-      (
-        x: 'valueProperties' | 'referenceProperties',
-        y: {
-          data: {
-            root: IEntity;
-            key: number;
-            index: number;
-            first: boolean;
-          };
-          name: string;
-        },
-      ) => this.validatorFactory(x, y, 'maximum', 'max'),
+    HandleBars.registerHelper('maxLengthValidator', (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, 'maxLength', 'maxLength'),
     );
-    HandleBars.registerHelper(
-      'minLengthValidator',
-      (
-        x: 'valueProperties' | 'referenceProperties',
-        y: {
-          data: {
-            root: IEntity;
-            key: number;
-            index: number;
-            first: boolean;
-          };
-          name: string;
-        },
-      ) => this.validatorFactory(x, y, 'minLength', 'minLength'),
-    );
-    HandleBars.registerHelper(
-      'maxLengthValidator',
-      (
-        x: 'valueProperties' | 'referenceProperties',
-        y: {
-          data: {
-            root: IEntity;
-            key: number;
-            index: number;
-            first: boolean;
-          };
-          name: string;
-        },
-      ) => this.validatorFactory(x, y, 'maxLength', 'maxLength'),
-    );
-    HandleBars.registerHelper(
-      'patternValidator',
-      (
-        x: 'valueProperties' | 'referenceProperties',
-        y: {
-          data: {
-            root: IEntity;
-            key: number;
-            index: number;
-            first: boolean;
-          };
-          name: string;
-        },
-      ) => this.validatorFactory(x, y, 'pattern', 'pattern'),
+    HandleBars.registerHelper('patternValidator', (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, 'pattern', 'pattern'),
     );
   }
 
   public validatorFactory(
-    propertyCollection: 'valueProperties' | 'referenceProperties',
-    propertyContext: {
-      data: {
-        root: IEntity;
-        key: number;
-        index: number;
-        first: boolean;
-      };
-      name: string;
-    },
+    propertyCollection: PropertyType,
+    propertyContext: IHelperContext,
     validationName: string,
     angularValidatorFunctionName: string,
   ) {
