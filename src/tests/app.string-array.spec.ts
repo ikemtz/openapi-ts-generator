@@ -1,18 +1,16 @@
 import { mkdirSync } from 'fs';
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '.';
+import { generateTsModels } from '..';
 import { ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from './models/generator-options';
+import { IGeneratorOptions } from '../models/generator-options';
 
 const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonFileName: '../src/open-api-spec-docs/nrcrn-empl.json',
-  outputPath: './jest_output/empl/',
-  typeFilterCallBack: nrsrxTypeFilterCallBack,
-  valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  openApiJsonFileName: '../src/open-api-spec-docs/string-array-test-oject.json',
+  outputPath: './jest_output/string-array/',
   genAngularFormGroups: true,
 });
 
 describe('File Based - Full Integration Tests', () => {
-  describe('NRSRx Employee OData Microservice', () => {
+  describe('String Array Test', () => {
     const options = fileEmployeeGenerationOptionsFactory();
     it('should generate files', async () => {
       try {

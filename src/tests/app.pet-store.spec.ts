@@ -1,7 +1,7 @@
 import { mkdirSync } from 'fs';
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '.';
+import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
 import { ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from './models/generator-options';
+import { IGeneratorOptions } from '../models/generator-options';
 
 const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonUrl: 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.json',

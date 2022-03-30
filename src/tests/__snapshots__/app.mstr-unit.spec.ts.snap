@@ -295,7 +295,7 @@ export function SiteCollectionFormGroupFac(): FormGroup {
     state: new FormControl('', Validators.compose([Validators.minLength(2), Validators.maxLength(2)])),
     zip: new FormControl('', Validators.compose([Validators.minLength(5), Validators.maxLength(10)])),
     isSchedulerEnabled: new FormControl('', Validators.required),
-    siteCount: new FormControl(''),
+    siteCount: new FormControl('', Validators.max(99)),
     workCategoryTypes: new FormControl('', Validators.required),
     buildings: new FormArray([]),
     sites: new FormArray([]),
