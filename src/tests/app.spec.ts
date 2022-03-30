@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
-import { IGeneratorOptions } from './models/generator-options';
+import { IGeneratorOptions } from '../models/generator-options';
 
 export function ValidateFiles(options: IGeneratorOptions): void {
   const files = readdirSync(options.outputPath).sort();

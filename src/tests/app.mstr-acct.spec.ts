@@ -1,7 +1,7 @@
 import { mkdirSync } from 'fs';
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '.';
+import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
 import { ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from './models/generator-options';
+import { IGeneratorOptions } from '../models/generator-options';
 
 const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/mstr-acct.json',

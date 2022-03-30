@@ -8,9 +8,7 @@
   "paths": {
     "/odata/v1/Buildings": {
       "get": {
-        "tags": [
-          "Buildings"
-        ],
+        "tags": ["Buildings"],
         "parameters": [
           {
             "name": "$select",
@@ -45,9 +43,7 @@
     },
     "/odata/v1/SiteCollections": {
       "get": {
-        "tags": [
-          "SiteCollections"
-        ],
+        "tags": ["SiteCollections"],
         "parameters": [
           {
             "name": "tid",
@@ -90,9 +86,7 @@
     },
     "/odata/v1/Sites": {
       "get": {
-        "tags": [
-          "Sites"
-        ],
+        "tags": ["Sites"],
         "parameters": [
           {
             "name": "tid",
@@ -135,9 +129,7 @@
     },
     "/odata/v1/Units": {
       "get": {
-        "tags": [
-          "Units"
-        ],
+        "tags": ["Units"],
         "parameters": [
           {
             "name": "$select",
@@ -172,9 +164,7 @@
     },
     "/odata/v1/UnitTypes": {
       "get": {
-        "tags": [
-          "UnitTypes"
-        ],
+        "tags": ["UnitTypes"],
         "parameters": [
           {
             "name": "$select",
@@ -211,13 +201,7 @@
   "components": {
     "schemas": {
       "SiteCollection": {
-        "required": [
-          "code",
-          "isSchedulerEnabled",
-          "name",
-          "number",
-          "workCategoryTypes"
-        ],
+        "required": ["code", "isSchedulerEnabled", "name", "number", "workCategoryTypes"],
         "type": "object",
         "properties": {
           "id": {
@@ -266,20 +250,12 @@
           },
           "siteCount": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "maximum": 49,
+            "minimum": -250
           },
           "workCategoryTypes": {
-            "enum": [
-              0,
-              1,
-              2,
-              4,
-              8,
-              16,
-              32,
-              64,
-              128
-            ],
+            "enum": [0, 1, 2, 4, 8, 16, 32, 64, 128],
             "type": "integer",
             "format": "int32"
           },
@@ -706,7 +682,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }
