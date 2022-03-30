@@ -12,30 +12,30 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{#valueProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}])),
+    {{name}}: new FormControl([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}])),
 {{else}}
-    {{name}}: new FormControl([]{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}),
+    {{name}}: new FormControl([]{{#if required}}, Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}])),
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}])),
 {{else}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}),
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}),
 {{/if}}
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormArray([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}]),
+    {{name}}: new FormArray([], Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}])),
 {{else}}
-    {{name}}: new FormArray([]{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}),
+    {{name}}: new FormArray([]{{#if required}}, Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if minLength}}Validators.minLength({{minLength}}), {{/if}}{{#if maxLength}}Validators.maxLength({{maxLength}}), {{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}]),
+    {{name}}: new FormControl('', Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}])),
 {{else}}
-    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{#if minLength}}, Validators.minLength({{minLength}}){{/if}}{{#if maxLength}}, Validators.maxLength({{maxLength}}){{/if}}{{#if minimum}}Validators.min({{minimum}}), {{/if}}{{#if maximum}}Validators.max({{maximum}}), {{/if}}{{#if pattern}}Validators.pattern('{{pattern}}'), {{/if}}),
+    {{name}}: new FormControl(''{{#if required}}, Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}
