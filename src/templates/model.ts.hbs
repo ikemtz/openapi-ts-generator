@@ -7,8 +7,9 @@
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 {{#if importTypes}}
-{{#importTypes}}
-import { I{{name}} } from './{{kebabCasedTypeName}}.model';
+{{#importTypes}}{{#if isEnum}}
+import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
+import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}
 {{/importTypes}}
 
 {{/if}}{{#if description}}/**

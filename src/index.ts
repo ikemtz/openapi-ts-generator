@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { OpenAPIObject } from 'openapi3-ts';
-import { BarrelGenerator, FormGroupGenerator, ModelGenerator, ModelPropertiesGenerator } from './generators';
+import { BarrelGenerator, FormGroupGenerator, ModelGenerator, ModelPropertiesGenerator, EnumGenerator } from './generators';
 import { EndPointsGenerator } from './generators/endpoints-generator';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
 import { ITemplateData } from './models/template-data';
@@ -52,5 +52,7 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   const endpointGenerator = new EndPointsGenerator(options);
   endpointGenerator.generate(templateData);
   const barrelGenerator = new BarrelGenerator(options);
+  const enumGenerator = new EnumGenerator(options);
+  enumGenerator.generate(templateData);
   barrelGenerator.generate();
 }

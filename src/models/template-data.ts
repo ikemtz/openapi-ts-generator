@@ -7,7 +7,10 @@ export interface IPath {
   endpoint: string;
 }
 export interface IEntity {
+  isEnum?: boolean;
+  enumValues: (string | { key?: number; name: string; titleName: string; })[];
   name: string;
+  singularName: string;
   description?: string;
   importTypes: IImportType[];
   valueProperties: IValueProperty[];
@@ -16,6 +19,7 @@ export interface IEntity {
 export interface IImportType {
   kebabCasedTypeName: string;
   name: string;
+  isEnum: boolean;
 }
 export interface IValueProperty {
   name: string;
@@ -38,4 +42,5 @@ export interface IReferenceProperty {
   referenceTypeName: string;
   isArray: boolean;
   required: boolean;
+  isEnum?: boolean;
 }
