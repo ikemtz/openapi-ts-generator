@@ -5,16 +5,15 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-{{#if importTypes}}
-{{#importTypes}}
-import { I{{name}} } from './{{kebabCasedTypeName}}.model';
-{{/importTypes}}
+{{#if importTypes}}{{#importTypes}}{{#if isEnum}}
+import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
+import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/importTypes}}
 
 {{/if}}{{#if description}}/**
  * {{description}}
  */
-{{/if}}export interface I{{{name}}} {
+{{/if}}// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface I{{{name}}} {
 {{#valueProperties}}{{#if description}}/**
  * {{description}}
  */
@@ -22,6 +21,6 @@ import { I{{name}} } from './{{kebabCasedTypeName}}.model';
   {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}};
 {{/valueProperties}}
 {{#referenceProperties}}
-  {{name}}?: I{{referenceTypeName}}{{#if isArray}}[]{{/if}};
+  {{name}}?: {{#unless isEnum}}I{{/unless}}{{referenceTypeName}}{{#if isArray}}[]{{/if}};
 {{/referenceProperties}}
 }

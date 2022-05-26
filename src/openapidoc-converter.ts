@@ -3,9 +3,12 @@ import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
 import _ = require('lodash');
+import { singular } from 'pluralize';
+import { camelCase } from 'lodash';
 
 export class OpenApiDocConverter {
-  public readonly regex = /[A-z0-9]*$/s;
+  public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
+  public readonly startNumberregex = /^\d*/;
   constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
 
   public convertDocument(): ITemplateData {
@@ -34,10 +37,17 @@ export class OpenApiDocConverter {
     for (const schemaName in this.apiDocument.components?.schemas) {
       if (this.apiDocument.components?.schemas[schemaName]) {
         const schemaWrapperInfo = new SchemaWrapperInfo(this.apiDocument.components?.schemas[schemaName]);
-        this.buildSchemaWrapperInfo(schemaWrapperInfo);
+        if (schemaWrapperInfo.componentSchemaObject.enum) {
+          this.buildSchemaWrapperInfoForEnum(schemaWrapperInfo);
+        } else {
+          this.buildSchemaWrapperInfo(schemaWrapperInfo);
+        }
         schemaWrapperInfo.updateReferenceProperties(this.options);
-        const entity = {
+        const entity: IEntity = {
+          isEnum: schemaWrapperInfo.isEnum,
+          enumValues: schemaWrapperInfo.enumValues,
           name: schemaName,
+          camelSingularName: camelCase(singular(schemaName)),
           description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,
           valueProperties: schemaWrapperInfo.valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
@@ -47,6 +57,17 @@ export class OpenApiDocConverter {
       }
     }
     return entities.filter(this.options.typeFilterCallBack || defaultFilter);
+  }
+
+  public buildSchemaWrapperInfoForEnum(schemaWrapperInfo: SchemaWrapperInfo): void {
+    schemaWrapperInfo.isEnum = true;
+    schemaWrapperInfo.enumValues.push(
+      ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
+        const key = this.startNumberregex.exec(x)?.at(0);
+        const name = this.endAlphaNumRegex.exec(x)?.at(0) || '';
+        return { key: key ? +key : undefined, name, titleName: _.startCase(name) };
+      }),
+    );
   }
 
   public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo): void {
@@ -126,12 +147,14 @@ export class OpenApiDocConverter {
   }
 
   public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
+    const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
     return {
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       referenceTypeName: this.parseRef(schemaWrapperInfo),
       isArray: false,
       required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
+      isEnum: (propertySchema.enum || []).length > 0,
     };
   }
 
@@ -157,7 +180,7 @@ export class OpenApiDocConverter {
     if (
       schemaWrapperInfo.propertyReferenceObject.$ref &&
       // tslint:disable-next-line: no-conditional-assignment
-      (regexResult = this.regex.exec(schemaWrapperInfo.propertyReferenceObject.$ref) as RegExpExecArray) // NOSONAR
+      (regexResult = this.endAlphaNumRegex.exec(schemaWrapperInfo.propertyReferenceObject.$ref) as RegExpExecArray) // NOSONAR
     ) {
       schemaWrapperInfo.propertyReferenceObject.$ref = regexResult[0];
       result = schemaWrapperInfo.propertyReferenceObject.$ref;
@@ -170,7 +193,14 @@ export class OpenApiDocConverter {
       .map((t) => t.referenceTypeName)
       .filter((t) => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
-      .map((value) => ({ name: value, kebabCasedTypeName: _.kebabCase(value) }));
+      .map((value) => {
+        const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[value];
+        return {
+          name: value,
+          kebabCasedTypeName: _.kebabCase(value),
+          isEnum: (propertySchema.enum || []).length > 0,
+        };
+      });
   }
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
