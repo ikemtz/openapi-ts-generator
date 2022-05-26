@@ -8,9 +8,9 @@ export interface IPath {
 }
 export interface IEntity {
   isEnum?: boolean;
-  enumValues: (string | { key?: number; name: string; titleName: string; })[];
+  enumValues: (string | { key?: number; name: string; titleName: string })[];
   name: string;
-  singularName: string;
+  camelSingularName: string;
   description?: string;
   importTypes: IImportType[];
   valueProperties: IValueProperty[];

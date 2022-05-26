@@ -4,11 +4,12 @@ import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
 import _ = require('lodash');
 import { singular } from 'pluralize';
+import { camelCase } from 'lodash';
 
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
   public readonly startNumberregex = /^\d*/;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -46,7 +47,7 @@ export class OpenApiDocConverter {
           isEnum: schemaWrapperInfo.isEnum,
           enumValues: schemaWrapperInfo.enumValues,
           name: schemaName,
-          singularName: singular(schemaName),
+          camelSingularName: camelCase(singular(schemaName)),
           description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,
           valueProperties: schemaWrapperInfo.valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
@@ -64,7 +65,7 @@ export class OpenApiDocConverter {
       ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
         const key = this.startNumberregex.exec(x)?.at(0);
         const name = this.endAlphaNumRegex.exec(x)?.at(0) || '';
-        return { key: key ? +key : undefined, name, titleName: _.startCase(_.toLower(name)) };
+        return { key: key ? +key : undefined, name, titleName: _.startCase(name) };
       }),
     );
   }
@@ -113,11 +114,11 @@ export class OpenApiDocConverter {
       pattern: schemaWrapperInfo.propertySchemaObject.pattern,
       hasMultipleValidators:
         +required +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
         1,
     };
   }
@@ -153,13 +154,13 @@ export class OpenApiDocConverter {
       referenceTypeName: this.parseRef(schemaWrapperInfo),
       isArray: false,
       required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
-      isEnum: (propertySchema.enum || []).length > 0
+      isEnum: (propertySchema.enum || []).length > 0,
     };
   }
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string; }).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
@@ -188,16 +189,18 @@ export class OpenApiDocConverter {
   }
 
   public getImportTypes(entityName: string, schemaWrapperInfo: SchemaWrapperInfo): IImportType[] {
-    const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
     return schemaWrapperInfo.referenceProperties
       .map((t) => t.referenceTypeName)
       .filter((t) => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
-      .map((value) => ({
-        name: value,
-        kebabCasedTypeName: _.kebabCase(value),
-        isEnum: (propertySchema.enum || []).length > 0
-      }));
+      .map((value) => {
+        const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[value];
+        return {
+          name: value,
+          kebabCasedTypeName: _.kebabCase(value),
+          isEnum: (propertySchema.enum || []).length > 0,
+        };
+      });
   }
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {

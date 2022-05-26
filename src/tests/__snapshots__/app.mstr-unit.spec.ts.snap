@@ -88,10 +88,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ISite } from './site.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IBuilding {
   id?: string;
   siteId?: string;
@@ -224,11 +225,12 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ISiteCollection } from './site-collection.model';
 import { IBuilding } from './building.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISite {
   id?: string;
   tenantId?: string;
@@ -321,10 +323,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISiteCollection {
   id?: string;
   tenantId?: string;
@@ -404,9 +407,10 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IUnitTag } from './unit-tag.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ITag {
   id?: string;
   name?: string;
@@ -470,12 +474,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 import { IUnitType } from './unit-type.model';
 import { IUnitTag } from './unit-tag.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnit {
   id?: string;
   number?: string;
@@ -547,10 +552,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ITag } from './tag.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitTag {
   id?: string;
   unitId?: string;
@@ -719,10 +725,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ISite } from './site.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IBuilding {
   id?: string;
   siteId?: string;
@@ -814,11 +821,12 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ISiteCollection } from './site-collection.model';
 import { IBuilding } from './building.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISite {
   id?: string;
   tenantId?: string;
@@ -878,10 +886,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISiteCollection {
   id?: string;
   tenantId?: string;
@@ -939,9 +948,10 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IUnitTag } from './unit-tag.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ITag {
   id?: string;
   name?: string;
@@ -977,12 +987,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 import { IUnitType } from './unit-type.model';
 import { IUnitTag } from './unit-tag.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnit {
   id?: string;
   number?: string;
@@ -1030,10 +1041,11 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ITag } from './tag.model';
 import { IUnit } from './unit.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitTag {
   id?: string;
   unitId?: string;

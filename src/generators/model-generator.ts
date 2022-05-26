@@ -10,8 +10,10 @@ export class ModelGenerator extends BaseGenerator<IEntity> {
   }
 
   public generate(templateData: ITemplateData): void {
-    templateData.entities?.filter((entity) => !entity.isEnum).forEach((entity) => {
-      super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.model.ts`, entity);
-    });
+    templateData.entities
+      ?.filter((entity) => !entity.isEnum)
+      .forEach((entity) => {
+        super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.model.ts`, entity);
+      });
   }
 }

@@ -32,7 +32,6 @@ Array [
   "sales-agent.model.ts",
   "sales-agent.properties.ts",
   "shipping-types.enum.ts",
-  "shipping-types.model.ts",
 ]
 `;
 
@@ -72,11 +71,12 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ISalesAgent } from './sales-agent.model';
 import { ICustomerAddress } from './customer-address.model';
 import { IOrder } from './order.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ICustomer {
   id?: string;
   num?: string;
@@ -152,9 +152,10 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ICustomer } from './customer.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ICustomerAddress {
   id?: string;
   customerId?: string;
@@ -263,7 +264,6 @@ export * from './sales-agent.form-group-fac';
 export * from './sales-agent.model';
 export * from './sales-agent.properties';
 export * from './shipping-types.enum';
-export * from './shipping-types.model';
 "
 `;
 
@@ -317,12 +317,13 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-import { IShippingTypes } from './shipping-types.model';
+
+import { ShippingTypes } from './shipping-types.enum';
 import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
 import { IOrderLineItem } from './order-line-item.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrder {
   id?: string;
   orderId?: number;
@@ -343,7 +344,7 @@ export interface IOrder {
   freight?: number;
   totalDue?: number;
   comment?: string;
-  shippingType?: IShippingTypes;
+  shippingType?: ShippingTypes;
   customer?: ICustomer;
   shipToAddress?: IOrderAddress;
   billToAddress?: IOrderAddress;
@@ -425,9 +426,10 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IOrder } from './order.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrderAddress {
   id?: string;
   line1?: string;
@@ -500,10 +502,11 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IOrder } from './order.model';
 import { IProduct } from './product.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrderLineItem {
   id?: string;
   orderId?: string;
@@ -584,11 +587,12 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IProductModel } from './product-model.model';
 import { IProductCategory } from './product-category.model';
 import { IOrderLineItem } from './order-line-item.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProduct {
   id?: string;
   name?: string;
@@ -671,9 +675,10 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IProduct } from './product.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProductCategory {
   id?: string;
   name?: string;
@@ -729,9 +734,10 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { IProduct } from './product.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProductModel {
   id?: string;
   name?: string;
@@ -789,9 +795,10 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+
 import { ICustomer } from './customer.model';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISalesAgent {
   id?: number;
   name?: string;
@@ -836,26 +843,12 @@ export enum ShippingTypes {
   CargoTransport = 5,
 }
 
-export const ShippingTypeValues = [
-  { key: 1,name: 'Other'}
-  { key: 2,name: 'Air'}
-  { key: 3,name: 'Truck'}
-  { key: 4,name: 'Train'}
-  { key: 5,name: 'Cargotransport'}
+export const shippingTypeValues = [
+  { key: 1, name: 'Other'}
+  { key: 2, name: 'Air'}
+  { key: 3, name: 'Truck'}
+  { key: 4, name: 'Train'}
+  { key: 5, name: 'Cargo Transport'}
 ];
-"
-`;
-
-exports[`Url Based - Full Integration Tests Adventure Works Account Service should generate files: shipping-types.model.ts 1`] = `
-"/* istanbul ignore file */
-/**
- * This file is generated by the openapi-ts-generator
- * #model.ts.hbs
- * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
- * Do not edit.
- */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IShippingTypes {
-}
 "
 `;
