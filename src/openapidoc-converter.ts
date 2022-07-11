@@ -45,7 +45,15 @@ export class OpenApiDocConverter {
         schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity: IEntity = {
           isEnum: schemaWrapperInfo.isEnum,
-          enumValues: schemaWrapperInfo.enumValues,
+          enumValues: schemaWrapperInfo.enumValues.map((t) => {
+            if (typeof t === 'string' || t instanceof String) {
+              return t;
+            }
+            return {
+              ...t,
+              key: t.key || 0,
+            };
+          }),
           name: schemaName,
           camelSingularName: camelCase(singular(schemaName)),
           description: schemaWrapperInfo.description,
