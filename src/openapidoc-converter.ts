@@ -9,7 +9,7 @@ import { camelCase } from 'lodash';
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
   public readonly startNumberregex = /^\d*/;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -46,8 +46,7 @@ export class OpenApiDocConverter {
         const entity: IEntity = {
           isEnum: schemaWrapperInfo.isEnum,
           enumValues: schemaWrapperInfo.enumValues.map((t) =>
-            (typeof t === 'string' || t instanceof String) ? t :
-              ({ ...t, key: t.key || 0, })
+            typeof t === 'string' || t instanceof String ? t : { ...t, key: t.key || 0 },
           ),
           name: schemaName,
           camelSingularName: camelCase(singular(schemaName)),
@@ -117,11 +116,11 @@ export class OpenApiDocConverter {
       pattern: schemaWrapperInfo.propertySchemaObject.pattern,
       hasMultipleValidators:
         +required +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
-        +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
         1,
     };
   }
@@ -163,7 +162,7 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string; }).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
