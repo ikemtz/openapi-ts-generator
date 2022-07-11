@@ -11,12 +11,12 @@
  */
 {{/if}}export enum {{{name}}} {
 {{#enumValues}}
-  {{name}}{{#if key}} = {{key}}{{/if}},
+  {{name}} = {{key}},
 {{/enumValues}}
 }
 
 export const {{{camelSingularName}}}Values = [
 {{#enumValues}}
-  { {{#if key}}key: {{key}}, {{/if}}name: '{{titleName}}'},
+  { key: {{key}}, name: '{{titleName}}'},
 {{/enumValues}}
 ];
