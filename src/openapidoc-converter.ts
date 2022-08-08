@@ -102,6 +102,7 @@ export class OpenApiDocConverter {
 
   public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
@@ -114,14 +115,8 @@ export class OpenApiDocConverter {
       minimum: schemaWrapperInfo.propertySchemaObject.minimum,
       description: schemaWrapperInfo.propertySchemaObject.description,
       pattern: schemaWrapperInfo.propertySchemaObject.pattern,
-      hasMultipleValidators:
-        +required +
-          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
-          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
-          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
-          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
-          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
-        1,
+      hasMultipleValidators: validatorCount > 1,
+      hasValidators: validatorCount > 0,
     };
   }
   private convertValidator(validationValue: string | number | null | undefined): number {
@@ -131,6 +126,7 @@ export class OpenApiDocConverter {
 
   public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
@@ -138,6 +134,7 @@ export class OpenApiDocConverter {
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       hasMultipleValidators: false,
+      hasValidators: validatorCount > 0,
     };
   }
 
@@ -150,14 +147,29 @@ export class OpenApiDocConverter {
 
   public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
     const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
+    const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     return {
+      required,
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       referenceTypeName: this.parseRef(schemaWrapperInfo),
+      typeScriptType: this.parseRef(schemaWrapperInfo),
       isArray: false,
-      required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
       isEnum: (propertySchema.enum || []).length > 0,
+      hasValidators: validatorCount > 0,
     };
+  }
+  getValidatorCount(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): number {
+    const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    return (
+      +required +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern)
+    );
   }
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {

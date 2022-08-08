@@ -32,26 +32,26 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function EmployeeFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    lastName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250)])),
-    firstName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250)])),
-    birthDate: new FormControl(''),
-    mobilePhone: new FormControl('', Validators.maxLength(25)),
-    homePhone: new FormControl('', Validators.maxLength(25)),
-    photo: new FormControl('', Validators.maxLength(4000)),
-    email: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(250)])),
-    addressLine1: new FormControl('', Validators.maxLength(250)),
-    addressLine2: new FormControl('', Validators.maxLength(250)),
-    city: new FormControl('', Validators.maxLength(150)),
-    state: new FormControl('', Validators.compose([Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[A-Z]{2}$')])),
-    zip: new FormControl('', Validators.maxLength(10)),
-    isEnabled: new FormControl('', Validators.required),
-    hireDate: new FormControl('', Validators.required),
-    fireDate: new FormControl(''),
-    totalHoursOfService: new FormControl('', Validators.min(0)),
-    certificationCount: new FormControl('', Validators.compose([Validators.required, Validators.max(99)])),
-    competencyCount: new FormControl('', Validators.compose([Validators.required, Validators.min(0), Validators.max(99)])),
-    healthItemCount: new FormControl('', Validators.compose([Validators.required, Validators.min(0), Validators.max(99)])),
+    id: new FormControl<string | null>(''),
+    lastName: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    firstName: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    birthDate: new FormControl<Date | null>(''),
+    mobilePhone: new FormControl<string | null>('', { validators: , Validators.maxLength(25) } ),
+    homePhone: new FormControl<string | null>('', { validators: , Validators.maxLength(25) } ),
+    photo: new FormControl<string | null>('', { validators: , Validators.maxLength(4000) } ),
+    email: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    addressLine1: new FormControl<string | null>('', { validators: , Validators.maxLength(250) } ),
+    addressLine2: new FormControl<string | null>('', { validators: , Validators.maxLength(250) } ),
+    city: new FormControl<string | null>('', { validators: , Validators.maxLength(150) } ),
+    state: new FormControl<string | null>('', {validators: Validators.compose([Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[A-Z]{2}$')]) }),
+    zip: new FormControl<string | null>('', { validators: , Validators.maxLength(10) } ),
+    isEnabled: new FormControl<boolean>('', { validators: Validators.required, nonNullable: true } ),
+    hireDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    fireDate: new FormControl<Date | null>(''),
+    totalHoursOfService: new FormControl<number | null>('', { validators: , Validators.min(0) } ),
+    certificationCount: new FormControl<number>('', {validators: Validators.compose([Validators.required, Validators.max(99)]), nonNullable: true }),
+    competencyCount: new FormControl<number>('', {validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
+    healthItemCount: new FormControl<number>('', {validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
     employeeCertifications: new FormArray([]),
     employeeCompetencies: new FormArray([]),
     employeeHealthItems: new FormArray([]),
@@ -152,11 +152,11 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function EmployeeCertificationFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    employeeId: new FormControl(''),
-    certificationId: new FormControl(''),
-    certificationName: new FormControl(''),
-    expiresOnUtc: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    employeeId: new FormControl<string | null>(''),
+    certificationId: new FormControl<string | null>(''),
+    certificationName: new FormControl<string | null>(''),
+    expiresOnUtc: new FormControl<Date | null>(''),
   });
 }
 "
@@ -213,12 +213,12 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function EmployeeCompetencyFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    employeeId: new FormControl(''),
-    competencyId: new FormControl(''),
-    competencyName: new FormControl(''),
-    expiresOnUtc: new FormControl(''),
-    isEnabled: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    employeeId: new FormControl<string | null>(''),
+    competencyId: new FormControl<string | null>(''),
+    competencyName: new FormControl<string | null>(''),
+    expiresOnUtc: new FormControl<Date | null>(''),
+    isEnabled: new FormControl<boolean | null>(''),
   });
 }
 "
@@ -277,12 +277,12 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function EmployeeHealthItemFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    employeeId: new FormControl(''),
-    healthItemId: new FormControl(''),
-    healthItemName: new FormControl(''),
-    expiresOnUtc: new FormControl(''),
-    isEnabled: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    employeeId: new FormControl<string | null>(''),
+    healthItemId: new FormControl<string | null>(''),
+    healthItemName: new FormControl<string | null>(''),
+    expiresOnUtc: new FormControl<Date | null>(''),
+    isEnabled: new FormControl<boolean | null>(''),
   });
 }
 "

@@ -5,7 +5,7 @@ import { IGeneratorOptions } from '../models/generator-options';
 
 const optionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/enum-test.json',
-  outputPath: './jest_output/acct/',
+  outputPath: './jest_output/enums/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
   genAngularFormGroups: true,

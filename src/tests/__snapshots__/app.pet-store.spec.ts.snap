@@ -47,8 +47,8 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ErrorFormGroupFac(): FormGroup {
   return new FormGroup({
-    code: new FormControl('', Validators.required),
-    message: new FormControl('', Validators.required),
+    code: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    message: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
   });
 }
 "
@@ -118,9 +118,9 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function PetFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.required),
-    tag: new FormControl(''),
+    id: new FormControl<number | null>(''),
+    name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    tag: new FormControl<string | null>(''),
   });
 }
 "

@@ -9,7 +9,11 @@ export function ValidateFiles(options: IGeneratorOptions): void {
     expect(content).toMatchSnapshot(file);
     unlinkSync(`${options.outputPath}${file}`);
   });
-  rmdirSync(options.outputPath);
+  try {
+    rmdirSync(options.outputPath);
+  } catch (x) {
+    console.error(`*** Failed to remove directory ${options.outputPath}. ***`);
+  }
 }
 /*
  This test is just a place holder so that Jest does not throw the:

@@ -16,6 +16,7 @@ Array [
   "order-line-item.form-group-fac.ts",
   "order-line-item.model.ts",
   "order-line-item.properties.ts",
+  "order-status-types.enum.ts",
   "order.form-group-fac.ts",
   "order.model.ts",
   "order.properties.ts",
@@ -48,14 +49,14 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function CustomerFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    num: new FormControl('', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(15)])),
-    name: new FormControl('', Validators.maxLength(512)),
-    companyName: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(128)])),
-    salesAgentId: new FormControl('', Validators.required),
-    emailAddress: new FormControl('', Validators.maxLength(250)),
-    phone: new FormControl('', Validators.maxLength(25)),
-    salesAgent: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    num: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(15)]), nonNullable: true }),
+    name: new FormControl<string | null>('', { validators: , Validators.maxLength(512) } ),
+    companyName: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(128)]), nonNullable: true }),
+    salesAgentId: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    emailAddress: new FormControl<string | null>('', { validators: , Validators.maxLength(250) } ),
+    phone: new FormControl<string | null>('', { validators: , Validators.maxLength(25) } ),
+    salesAgent: new FormControl<SalesAgent | null>(''),
     customerAddresses: new FormArray([]),
     orders: new FormArray([]),
   });
@@ -129,16 +130,16 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function CustomerAddressFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    customerId: new FormControl('', Validators.required),
-    addressType: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    line1: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(60)])),
-    line2: new FormControl('', Validators.maxLength(60)),
-    city: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(30)])),
-    stateProvince: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    countryRegion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(15)])),
-    customer: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    customerId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    addressType: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    line1: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(60)]), nonNullable: true }),
+    line2: new FormControl<string | null>('', { validators: , Validators.maxLength(60) } ),
+    city: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(30)]), nonNullable: true }),
+    stateProvince: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    countryRegion: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    postalCode: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
+    customer: new FormControl<Customer | null>(''),
   });
 }
 "
@@ -248,6 +249,7 @@ export * from './order-address.properties';
 export * from './order-line-item.form-group-fac';
 export * from './order-line-item.model';
 export * from './order-line-item.properties';
+export * from './order-status-types.enum';
 export * from './order.form-group-fac';
 export * from './order.model';
 export * from './order.properties';
@@ -280,29 +282,29 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function OrderFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    orderId: new FormControl('', Validators.required),
-    revisionNum: new FormControl('', Validators.required),
-    date: new FormControl('', Validators.required),
-    dueDate: new FormControl('', Validators.required),
-    shipDate: new FormControl(''),
-    status: new FormControl('', Validators.required),
-    isOnlineOrder: new FormControl('', Validators.required),
-    num: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(25)])),
-    purchaseOrderNum: new FormControl('', Validators.maxLength(25)),
-    customerId: new FormControl('', Validators.required),
-    shipToAddressId: new FormControl(''),
-    billToAddressId: new FormControl(''),
-    creditCardApprovalCode: new FormControl('', Validators.maxLength(15)),
-    subTotal: new FormControl('', Validators.required),
-    taxAmt: new FormControl('', Validators.required),
-    freight: new FormControl('', Validators.required),
-    totalDue: new FormControl('', Validators.required),
-    comment: new FormControl('', Validators.maxLength(500)),
-    shippingType: new FormControl('', Validators.required),
-    customer: new FormControl(''),
-    shipToAddress: new FormControl(''),
-    billToAddress: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    orderId: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    revisionNum: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    date: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    dueDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    shipDate: new FormControl<Date | null>(''),
+    isOnlineOrder: new FormControl<boolean>('', { validators: Validators.required, nonNullable: true } ),
+    num: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(25)]), nonNullable: true }),
+    purchaseOrderNum: new FormControl<string | null>('', { validators: , Validators.maxLength(25) } ),
+    customerId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    shipToAddressId: new FormControl<string | null>(''),
+    billToAddressId: new FormControl<string | null>(''),
+    creditCardApprovalCode: new FormControl<string | null>('', { validators: , Validators.maxLength(15) } ),
+    subTotal: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    taxAmt: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    freight: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    totalDue: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    comment: new FormControl<string | null>('', { validators: , Validators.maxLength(500) } ),
+    statusType: new FormControl<OrderStatusTypes>('', { validators: Validators.required, nonNullable: true } ),
+    shippingType: new FormControl<ShippingTypes>('', { validators: Validators.required, nonNullable: true } ),
+    customer: new FormControl<Customer | null>(''),
+    shipToAddress: new FormControl<OrderAddress | null>(''),
+    billToAddress: new FormControl<OrderAddress | null>(''),
     orderLineItems: new FormArray([]),
   });
 }
@@ -318,6 +320,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
+import { OrderStatusTypes } from './order-status-types.enum';
 import { ShippingTypes } from './shipping-types.enum';
 import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
@@ -331,7 +334,6 @@ export interface IOrder {
   date?: Date;
   dueDate?: Date;
   shipDate?: Date;
-  status?: number;
   isOnlineOrder?: boolean;
   num?: string;
   purchaseOrderNum?: string;
@@ -344,6 +346,7 @@ export interface IOrder {
   freight?: number;
   totalDue?: number;
   comment?: string;
+  statusType?: OrderStatusTypes;
   shippingType?: ShippingTypes;
   customer?: ICustomer;
   shipToAddress?: IOrderAddress;
@@ -369,7 +372,6 @@ export enum OrderProperties {
   DATE = 'date',
   DUE_DATE = 'dueDate',
   SHIP_DATE = 'shipDate',
-  STATUS = 'status',
   IS_ONLINE_ORDER = 'isOnlineOrder',
   NUM = 'num',
   PURCHASE_ORDER_NUM = 'purchaseOrderNum',
@@ -382,6 +384,7 @@ export enum OrderProperties {
   FREIGHT = 'freight',
   TOTAL_DUE = 'totalDue',
   COMMENT = 'comment',
+  STATUS_TYPE = 'statusType',
   SHIPPING_TYPE = 'shippingType',
   CUSTOMER = 'customer',
   SHIP_TO_ADDRESS = 'shipToAddress',
@@ -404,13 +407,13 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function OrderAddressFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    line1: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(60)])),
-    line2: new FormControl('', Validators.maxLength(60)),
-    city: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(100)])),
-    stateProvince: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    countryRegion: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    postalCode: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(15)])),
+    id: new FormControl<string | null>(''),
+    line1: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(60)]), nonNullable: true }),
+    line2: new FormControl<string | null>('', { validators: , Validators.maxLength(60) } ),
+    city: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(100)]), nonNullable: true }),
+    stateProvince: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    countryRegion: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    postalCode: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
     billToOrders: new FormArray([]),
     shipToOrders: new FormArray([]),
   });
@@ -480,15 +483,15 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function OrderLineItemFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    orderId: new FormControl('', Validators.required),
-    orderQty: new FormControl('', Validators.required),
-    productId: new FormControl('', Validators.required),
-    unitPrice: new FormControl('', Validators.required),
-    unitPriceDiscount: new FormControl('', Validators.required),
-    lineTotal: new FormControl('', Validators.required),
-    order: new FormControl(''),
-    product: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    orderId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    orderQty: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    productId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    unitPrice: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    unitPriceDiscount: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    lineTotal: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    order: new FormControl<Order | null>(''),
+    product: new FormControl<Product | null>(''),
   });
 }
 "
@@ -544,6 +547,31 @@ export enum OrderLineItemProperties {
 "
 `;
 
+exports[`Url Based - Full Integration Tests Adventure Works Account Service should generate files: order-status-types.enum.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #enum.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+
+export enum OrderStatusTypes {
+  Processing = 0,
+  WaitingOnShipping = 10,
+  InTransit = 20,
+  Received = 50,
+}
+
+export const orderStatusTypeValues = [
+  { key: 0, name: 'Processing', displayText: 'Processing'},
+  { key: 10, name: 'WaitingOnShipping', displayText: 'Waiting On Shipping'},
+  { key: 20, name: 'InTransit', displayText: 'In Transit'},
+  { key: 50, name: 'Received', displayText: 'Received'},
+];
+"
+`;
+
 exports[`Url Based - Full Integration Tests Adventure Works Account Service should generate files: product.form-group-fac.ts 1`] = `
 "/* istanbul ignore file */
 /**
@@ -557,22 +585,22 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ProductFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)])),
-    num: new FormControl('', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(25)])),
-    color: new FormControl('', Validators.compose([Validators.minLength(3), Validators.maxLength(15)])),
-    standardCost: new FormControl('', Validators.required),
-    listPrice: new FormControl('', Validators.required),
-    size: new FormControl('', Validators.maxLength(5)),
-    weight: new FormControl(''),
-    productCategoryId: new FormControl(''),
-    productModelId: new FormControl(''),
-    sellStartDate: new FormControl('', Validators.required),
-    sellEndDate: new FormControl(''),
-    discontinuedDate: new FormControl(''),
-    thumbNailPhoto: new FormControl('', Validators.maxLength(5000)),
-    productModel: new FormControl(''),
-    productCategory: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    name: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)]), nonNullable: true }),
+    num: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(25)]), nonNullable: true }),
+    color: new FormControl<string | null>('', {validators: Validators.compose([Validators.minLength(3), Validators.maxLength(15)]) }),
+    standardCost: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    listPrice: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    size: new FormControl<string | null>('', { validators: , Validators.maxLength(5) } ),
+    weight: new FormControl<number | null>(''),
+    productCategoryId: new FormControl<string | null>(''),
+    productModelId: new FormControl<string | null>(''),
+    sellStartDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    sellEndDate: new FormControl<Date | null>(''),
+    discontinuedDate: new FormControl<Date | null>(''),
+    thumbNailPhoto: new FormControl<string | null>('', { validators: , Validators.maxLength(5000) } ),
+    productModel: new FormControl<ProductModel | null>(''),
+    productCategory: new FormControl<ProductCategory | null>(''),
     orderLineItems: new FormArray([]),
   });
 }
@@ -659,8 +687,8 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ProductCategoryFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
+    id: new FormControl<string | null>(''),
+    name: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     products: new FormArray([]),
   });
 }
@@ -717,9 +745,9 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ProductModelFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(50)])),
-    description: new FormControl('', Validators.maxLength(500)),
+    id: new FormControl<string | null>(''),
+    name: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
+    description: new FormControl<string | null>('', { validators: , Validators.maxLength(500) } ),
     products: new FormArray([]),
   });
 }
@@ -778,9 +806,9 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function SalesAgentFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    name: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(256)])),
-    loginId: new FormControl('', Validators.compose([Validators.required, Validators.maxLength(256)])),
+    id: new FormControl<number | null>(''),
+    name: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),
+    loginId: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),
     customers: new FormArray([]),
   });
 }
