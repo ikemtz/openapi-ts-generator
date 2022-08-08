@@ -118,9 +118,9 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function PetFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl<number | null>(''),
+    id: new FormControl<number | null>(null),
     name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    tag: new FormControl<string | null>(''),
+    tag: new FormControl<string | null>(null),
   });
 }
 "

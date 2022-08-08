@@ -62,7 +62,7 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function MessageDtoFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl<string | null>(''),
+    id: new FormControl<string | null>(null),
     body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     recipients: new FormArray([], { validators: Validators.required, nonNullable: true } ),
   });
@@ -120,13 +120,13 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function RecipientFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl<string | null>(''),
+    id: new FormControl<string | null>(null),
     ultiId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null>(''),
+    middleName: new FormControl<string | null>(null),
     lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    cellPhone1: new FormControl<string | null>(''),
-    homePhone1: new FormControl<string | null>(''),
+    cellPhone1: new FormControl<string | null>(null),
+    homePhone1: new FormControl<string | null>(null),
   });
 }
 "

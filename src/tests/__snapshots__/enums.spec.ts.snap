@@ -24,8 +24,8 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl<string | null>(''),
-    contactType: new FormControl<ContactTypes | null>(''),
+    id: new FormControl<string | null>(null),
+    contactType: new FormControl<ContactTypes | null>(null),
   });
 }
 "
