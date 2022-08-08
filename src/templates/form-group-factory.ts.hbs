@@ -19,7 +19,7 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>('', {validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>('', { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
     {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>(''{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
@@ -36,7 +36,7 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{#if hasMultipleValidators}}
     {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>('', { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
-    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>(''{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>(''{{#if hasValidators}} { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}
