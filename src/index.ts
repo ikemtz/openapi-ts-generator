@@ -39,13 +39,13 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
       try {
         fs.unlinkSync(`${options.outputPath}/${file}`);
       } catch (x) {
-        console.error(`*** Failed to remove file ${file}. ***`);
+        console.error(`*** Failed to remove file ${file}. ***`); //NOSONAR
       }
     });
     try {
       fs.rmdirSync(options.outputPath);
     } catch (x) {
-      console.error(`*** Failed to remove directory ${options.outputPath}. ***`);
+      console.error(`*** Failed to remove directory ${options.outputPath}. ***`); //NOSONAR
     }
   }
   fs.mkdirSync(options.outputPath, { recursive: true });
