@@ -35,18 +35,8 @@ async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<Open
 
 function generateOutput(options: IGeneratorOptions, templateData: ITemplateData) {
   if (fs.existsSync(options.outputPath)) {
-    fs.readdirSync(options.outputPath).forEach((file) => {
-      try {
-        fs.unlinkSync(`${options.outputPath}/${file}`);
-      } catch (x) {
-        console.error(`*** Failed to remove file ${file}. ***`); //NOSONAR
-      }
-    });
-    try {
-      fs.rmdirSync(options.outputPath);
-    } catch (x) {
-      console.error(`*** Failed to remove directory ${options.outputPath}. ***`); //NOSONAR
-    }
+    fs.readdirSync(options.outputPath).forEach((file) => fs.unlinkSync(`${options.outputPath}/${file}`));
+    fs.rmdirSync(options.outputPath);
   }
   fs.mkdirSync(options.outputPath, { recursive: true });
   const modelGenerator = new ModelGenerator(options);
