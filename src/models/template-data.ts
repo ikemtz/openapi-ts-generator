@@ -24,8 +24,9 @@ export interface IImportType {
 export interface IValueProperty {
   name: string;
   snakeCaseName: string;
-  typeScriptType?: string;
+  typeScriptType: string;
   isArray: boolean;
+  hasValidators: boolean;
   hasMultipleValidators: boolean;
   required: boolean;
   maxLength?: number;
@@ -40,6 +41,8 @@ export interface IReferenceProperty {
   name: string;
   snakeCaseName: string;
   referenceTypeName: string;
+  typeScriptType: string;
+  hasValidators: boolean;
   isArray: boolean;
   required: boolean;
   isEnum?: boolean;

@@ -38,15 +38,15 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function AccountFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    refId: new FormControl(''),
-    name: new FormControl(''),
-    parentAccountId: new FormControl(''),
-    isEnabled: new FormControl(''),
-    emailInvoice: new FormControl(''),
-    tenantId: new FormControl(''),
-    contactCount: new FormControl('', Validators.compose([Validators.min(1), Validators.max(99999)])),
-    parentAccount: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    refId: new FormControl<string | null>(''),
+    name: new FormControl<string | null>(''),
+    parentAccountId: new FormControl<string | null>(''),
+    isEnabled: new FormControl<boolean | null>(''),
+    emailInvoice: new FormControl<boolean | null>(''),
+    tenantId: new FormControl<string | null>(''),
+    contactCount: new FormControl<number | null>('', {validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
+    parentAccount: new FormControl<Account | null>(''),
     contacts: new FormArray([]),
     inverseParentAccount: new FormArray([]),
   });
@@ -126,11 +126,11 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function AccountInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    refId: new FormControl(''),
-    name: new FormControl('', Validators.required),
-    parentAccountId: new FormControl(''),
-    emailInvoice: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    refId: new FormControl<string | null>(''),
+    name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    parentAccountId: new FormControl<string | null>(''),
+    emailInvoice: new FormControl<boolean | null>(''),
     contacts: new FormArray([]),
   });
 }
@@ -193,12 +193,12 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    refId: new FormControl('', Validators.required),
-    name: new FormControl('', Validators.required),
-    parentAccountId: new FormControl(''),
-    isEnabled: new FormControl(''),
-    emailInvoice: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    refId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    parentAccountId: new FormControl<string | null>(''),
+    isEnabled: new FormControl<boolean | null>(''),
+    emailInvoice: new FormControl<boolean | null>(''),
     contacts: new FormArray([]),
   });
 }
@@ -263,22 +263,22 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    isEnabled: new FormControl(''),
-    contactTypeId: new FormControl('', Validators.required),
-    accountId: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    middleName: new FormControl(''),
-    addressLine1: new FormControl('', Validators.required),
-    addressLine2: new FormControl(''),
-    city: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    zip: new FormControl('', Validators.required),
-    emails: new FormControl(''),
-    phone1: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')])),
-    phone2: new FormControl('', Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')])),
-    account: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    isEnabled: new FormControl<boolean | null>(''),
+    contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    middleName: new FormControl<string | null>(''),
+    addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    addressLine2: new FormControl<string | null>(''),
+    city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    emails: new FormControl<string | null>(''),
+    phone1: new FormControl<string | null>('', {validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
+    phone2: new FormControl<string | null>('', {validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
+    account: new FormControl<Account | null>(''),
   });
 }
 "
@@ -366,20 +366,20 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ContactInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    contactTypeId: new FormControl('', Validators.required),
-    accountId: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    middleName: new FormControl(''),
-    addressLine1: new FormControl('', Validators.required),
-    addressLine2: new FormControl(''),
-    city: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    zip: new FormControl('', Validators.required),
-    emails: new FormControl(''),
-    phone1: new FormControl(''),
-    phone2: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    middleName: new FormControl<string | null>(''),
+    addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    addressLine2: new FormControl<string | null>(''),
+    city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    emails: new FormControl<string | null>(''),
+    phone1: new FormControl<string | null>(''),
+    phone2: new FormControl<string | null>(''),
   });
 }
 "
@@ -454,20 +454,20 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
-    id: new FormControl(''),
-    contactTypeId: new FormControl('', Validators.required),
-    accountId: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    middleName: new FormControl(''),
-    addressLine1: new FormControl('', Validators.required),
-    addressLine2: new FormControl(''),
-    city: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    zip: new FormControl('', Validators.required),
-    emails: new FormControl(''),
-    phone1: new FormControl(''),
-    phone2: new FormControl(''),
+    id: new FormControl<string | null>(''),
+    contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    middleName: new FormControl<string | null>(''),
+    addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    addressLine2: new FormControl<string | null>(''),
+    city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    emails: new FormControl<string | null>(''),
+    phone1: new FormControl<string | null>(''),
+    phone2: new FormControl<string | null>(''),
   });
 }
 "
