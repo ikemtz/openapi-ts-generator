@@ -45,9 +45,7 @@ export class FormGroupGenerator extends BaseGenerator<IEntity> {
     if (value !== undefined && value !== null) {
       const hasMultipleValidators = prop.hasMultipleValidators;
       value = typeof value === 'string' ? `'${value}'` : value;
-      return `${!hasMultipleValidators ? ', ' : ''}Validators.${angularValidatorFunctionName}(${value})${
-        hasMultipleValidators ? ', ' : ''
-      }`;
+      return `Validators.${angularValidatorFunctionName}(${value})${hasMultipleValidators ? ', ' : ''}`;
     }
     return '';
   }
