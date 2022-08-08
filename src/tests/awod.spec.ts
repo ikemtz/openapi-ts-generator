@@ -5,7 +5,7 @@ import { IGeneratorOptions } from '../models/generator-options';
 
 const optionsFactory = (): IGeneratorOptions => ({
   openApiJsonUrl: 'https://awod-ikemtz.azurewebsites.net/swagger/v1/swagger.json',
-  outputPath: './jest_output/acct/',
+  outputPath: './jest_output/awod-acct/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
   genAngularFormGroups: true,
