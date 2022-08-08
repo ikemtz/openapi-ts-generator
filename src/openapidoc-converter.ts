@@ -122,6 +122,14 @@ export class OpenApiDocConverter {
           +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
           +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
         1,
+      hasValidators:
+        +required +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
+        0,
     };
   }
   private convertValidator(validationValue: string | number | null | undefined): number {
@@ -138,6 +146,14 @@ export class OpenApiDocConverter {
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       hasMultipleValidators: false,
+      hasValidators:
+        +required +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
+        0,
     };
   }
 
@@ -150,6 +166,7 @@ export class OpenApiDocConverter {
 
   public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
     const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
+    const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     return {
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
@@ -157,6 +174,14 @@ export class OpenApiDocConverter {
       isArray: false,
       required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
       isEnum: (propertySchema.enum || []).length > 0,
+      hasValidators:
+        +required +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+          +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern) >
+        0,
     };
   }
 

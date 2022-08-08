@@ -26,6 +26,7 @@ export interface IValueProperty {
   snakeCaseName: string;
   typeScriptType?: string;
   isArray: boolean;
+  hasValidators: boolean;
   hasMultipleValidators: boolean;
   required: boolean;
   maxLength?: number;
@@ -40,6 +41,7 @@ export interface IReferenceProperty {
   name: string;
   snakeCaseName: string;
   referenceTypeName: string;
+  hasValidators: boolean;
   isArray: boolean;
   required: boolean;
   isEnum?: boolean;
