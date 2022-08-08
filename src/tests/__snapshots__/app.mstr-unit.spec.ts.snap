@@ -73,7 +73,7 @@ export function BuildingFormGroupFac(): FormGroup {
     siteId: new FormControl<string | null>(''),
     identifier: new FormControl<string | null>(''),
     isEnabled: new FormControl<boolean | null>(''),
-    site: new FormControl< | null>(''),
+    site: new FormControl<Site | null>(''),
     units: new FormArray([]),
   });
 }
@@ -209,7 +209,7 @@ export function SiteFormGroupFac(): FormGroup {
     state: new FormControl<string | null>(''),
     zip: new FormControl<string | null>(''),
     isEnabled: new FormControl<boolean | null>(''),
-    siteCollection: new FormControl< | null>(''),
+    siteCollection: new FormControl<SiteCollection | null>(''),
     buildings: new FormArray([]),
     units: new FormArray([]),
   });
@@ -457,9 +457,9 @@ export function UnitFormGroupFac(): FormGroup {
     siteId: new FormControl<string | null>(''),
     buildingId: new FormControl<string | null>(''),
     isEnabled: new FormControl<boolean | null>(''),
-    building: new FormControl< | null>(''),
-    site: new FormControl< | null>(''),
-    unitType: new FormControl< | null>(''),
+    building: new FormControl<Building | null>(''),
+    site: new FormControl<Site | null>(''),
+    unitType: new FormControl<UnitType | null>(''),
     unitTags: new FormArray([]),
   });
 }
@@ -537,8 +537,8 @@ export function UnitTagFormGroupFac(): FormGroup {
     unitId: new FormControl<string | null>(''),
     tagId: new FormControl<string | null>(''),
     value: new FormControl<string | null>(''),
-    tag: new FormControl< | null>(''),
-    unit: new FormControl< | null>(''),
+    tag: new FormControl<Tag | null>(''),
+    unit: new FormControl<Unit | null>(''),
   });
 }
 "

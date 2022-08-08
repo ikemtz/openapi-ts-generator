@@ -56,7 +56,7 @@ export function CustomerFormGroupFac(): FormGroup {
     salesAgentId: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     emailAddress: new FormControl<string | null>('', { validators: , Validators.maxLength(250) } ),
     phone: new FormControl<string | null>('', { validators: , Validators.maxLength(25) } ),
-    salesAgent: new FormControl< | null>(''),
+    salesAgent: new FormControl<SalesAgent | null>(''),
     customerAddresses: new FormArray([]),
     orders: new FormArray([]),
   });
@@ -139,7 +139,7 @@ export function CustomerAddressFormGroupFac(): FormGroup {
     stateProvince: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     countryRegion: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     postalCode: new FormControl<string>('', {validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
-    customer: new FormControl< | null>(''),
+    customer: new FormControl<Customer | null>(''),
   });
 }
 "
@@ -300,11 +300,11 @@ export function OrderFormGroupFac(): FormGroup {
     freight: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     totalDue: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     comment: new FormControl<string | null>('', { validators: , Validators.maxLength(500) } ),
-    statusType: new FormControl<>('', { validators: Validators.required, nonNullable: true } ),
-    shippingType: new FormControl<>('', { validators: Validators.required, nonNullable: true } ),
-    customer: new FormControl< | null>(''),
-    shipToAddress: new FormControl< | null>(''),
-    billToAddress: new FormControl< | null>(''),
+    statusType: new FormControl<OrderStatusTypes>('', { validators: Validators.required, nonNullable: true } ),
+    shippingType: new FormControl<ShippingTypes>('', { validators: Validators.required, nonNullable: true } ),
+    customer: new FormControl<Customer | null>(''),
+    shipToAddress: new FormControl<OrderAddress | null>(''),
+    billToAddress: new FormControl<OrderAddress | null>(''),
     orderLineItems: new FormArray([]),
   });
 }
@@ -490,8 +490,8 @@ export function OrderLineItemFormGroupFac(): FormGroup {
     unitPrice: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     unitPriceDiscount: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     lineTotal: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
-    order: new FormControl< | null>(''),
-    product: new FormControl< | null>(''),
+    order: new FormControl<Order | null>(''),
+    product: new FormControl<Product | null>(''),
   });
 }
 "
@@ -599,8 +599,8 @@ export function ProductFormGroupFac(): FormGroup {
     sellEndDate: new FormControl<Date | null>(''),
     discontinuedDate: new FormControl<Date | null>(''),
     thumbNailPhoto: new FormControl<string | null>('', { validators: , Validators.maxLength(5000) } ),
-    productModel: new FormControl< | null>(''),
-    productCategory: new FormControl< | null>(''),
+    productModel: new FormControl<ProductModel | null>(''),
+    productCategory: new FormControl<ProductCategory | null>(''),
     orderLineItems: new FormArray([]),
   });
 }

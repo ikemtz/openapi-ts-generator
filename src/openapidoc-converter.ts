@@ -171,6 +171,7 @@ export class OpenApiDocConverter {
       name: propertyName,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       referenceTypeName: this.parseRef(schemaWrapperInfo),
+      typeScriptType: this.parseRef(schemaWrapperInfo),
       isArray: false,
       required: (schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1,
       isEnum: (propertySchema.enum || []).length > 0,
