@@ -103,9 +103,11 @@ export class OpenApiDocConverter {
   public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
+    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
+      initialValue,
       isArray: false,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
@@ -127,15 +129,34 @@ export class OpenApiDocConverter {
   public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
+    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
     return {
       required,
+      typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
+      initialValue,
       name: propertyName,
       isArray: true,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
-      typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       hasMultipleValidators: false,
       hasValidators: validatorCount > 0,
     };
+  }
+  getInitialValue(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
+    const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
+    const isRequired = this.getIsRequired(propertyName, schemaWrapperInfo);
+    const defaultValue = (schemaWrapperInfo.componentSchemaObject.default ||
+      ((this.apiDocument.components?.schemas || {})[schemaWrapperInfo.propertyReferenceObject['$ref']] as SchemaObject)?.default) as string;
+    if (defaultValue) {
+      return `'${defaultValue.split(' ').pop() as string}'`;
+    } else if (!isRequired) {
+      return 'null';
+    } else if (typescriptType === 'Date') {
+      return 'new Date()';
+    } else if (typescriptType === 'boolean') {
+      return 'false';
+    } else {
+      return `''`;
+    }
   }
 
   public convertArrayObjectToReferencePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
@@ -149,9 +170,11 @@ export class OpenApiDocConverter {
     const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
+    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
+      initialValue,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
       referenceTypeName: this.parseRef(schemaWrapperInfo),
       typeScriptType: this.parseRef(schemaWrapperInfo),
@@ -182,10 +205,7 @@ export class OpenApiDocConverter {
     } else if (schemaWrapperInfo.propertySchemaObject.format === 'date-time') {
       return 'Date';
     }
-    if (!schemaWrapperInfo.propertySchemaObject.type) {
-      throw new Error('Invalid Property Type');
-    }
-    return schemaWrapperInfo.propertySchemaObject.type;
+    return schemaWrapperInfo.propertySchemaObject.type || 'string';
   }
 
   public parseRef(schemaWrapperInfo: SchemaWrapperInfo): string {

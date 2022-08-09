@@ -35,6 +35,7 @@ export interface IValueProperty {
   minimum?: number;
   description?: string;
   pattern?: string;
+  initialValue: string;
 }
 
 export interface IReferenceProperty {
@@ -46,4 +47,5 @@ export interface IReferenceProperty {
   isArray: boolean;
   required: boolean;
   isEnum?: boolean;
+  initialValue: string;
 }

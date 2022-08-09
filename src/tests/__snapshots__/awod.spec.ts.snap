@@ -46,6 +46,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ISalesAgent } from './sales-agent.model'; //NOSONAR
+import { ICustomerAddress } from './customer-address.model'; //NOSONAR
+import { IOrder } from './order.model'; //NOSONAR
 
 export function CustomerFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -56,7 +59,7 @@ export function CustomerFormGroupFac(): FormGroup {
     salesAgentId: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     emailAddress: new FormControl<string | null>(null, { validators: Validators.maxLength(250) } ),
     phone: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
-    salesAgent: new FormControl<SalesAgent | null>(null),
+    salesAgent: new FormControl<ISalesAgent | null>(null),
     customerAddresses: new FormArray([]),
     orders: new FormArray([]),
   });
@@ -127,6 +130,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ICustomer } from './customer.model'; //NOSONAR
 
 export function CustomerAddressFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -139,7 +143,7 @@ export function CustomerAddressFormGroupFac(): FormGroup {
     stateProvince: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     countryRegion: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     postalCode: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
-    customer: new FormControl<Customer | null>(null),
+    customer: new FormControl<ICustomer | null>(null),
   });
 }
 "
@@ -279,16 +283,21 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { OrderStatusTypes } from './order-status-types.enum'; //NOSONAR
+import { ShippingTypes } from './shipping-types.enum'; //NOSONAR
+import { ICustomer } from './customer.model'; //NOSONAR
+import { IOrderAddress } from './order-address.model'; //NOSONAR
+import { IOrderLineItem } from './order-line-item.model'; //NOSONAR
 
 export function OrderFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(null),
     orderId: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     revisionNum: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
-    date: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
-    dueDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    date: new FormControl<Date>(new Date(), { validators: Validators.required, nonNullable: true } ),
+    dueDate: new FormControl<Date>(new Date(), { validators: Validators.required, nonNullable: true } ),
     shipDate: new FormControl<Date | null>(null),
-    isOnlineOrder: new FormControl<boolean>('', { validators: Validators.required, nonNullable: true } ),
+    isOnlineOrder: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true } ),
     num: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(25)]), nonNullable: true }),
     purchaseOrderNum: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
     customerId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
@@ -300,11 +309,11 @@ export function OrderFormGroupFac(): FormGroup {
     freight: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     totalDue: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     comment: new FormControl<string | null>(null, { validators: Validators.maxLength(500) } ),
-    statusType: new FormControl<OrderStatusTypes>('' { validators: Validators.required, nonNullable: true } ),
-    shippingType: new FormControl<ShippingTypes>('' { validators: Validators.required, nonNullable: true } ),
-    customer: new FormControl<Customer | null>(null),
-    shipToAddress: new FormControl<OrderAddress | null>(null),
-    billToAddress: new FormControl<OrderAddress | null>(null),
+    statusType: new FormControl<OrderStatusTypes>('', { validators: Validators.required, nonNullable: true } ),
+    shippingType: new FormControl<ShippingTypes>('', { validators: Validators.required, nonNullable: true } ),
+    customer: new FormControl<ICustomer | null>(null),
+    shipToAddress: new FormControl<IOrderAddress | null>(null),
+    billToAddress: new FormControl<IOrderAddress | null>(null),
     orderLineItems: new FormArray([]),
   });
 }
@@ -404,6 +413,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IOrder } from './order.model'; //NOSONAR
 
 export function OrderAddressFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -480,6 +490,8 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IOrder } from './order.model'; //NOSONAR
+import { IProduct } from './product.model'; //NOSONAR
 
 export function OrderLineItemFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -490,8 +502,8 @@ export function OrderLineItemFormGroupFac(): FormGroup {
     unitPrice: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     unitPriceDiscount: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
     lineTotal: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
-    order: new FormControl<Order | null>(null),
-    product: new FormControl<Product | null>(null),
+    order: new FormControl<IOrder | null>(null),
+    product: new FormControl<IProduct | null>(null),
   });
 }
 "
@@ -582,6 +594,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IProductModel } from './product-model.model'; //NOSONAR
+import { IProductCategory } from './product-category.model'; //NOSONAR
+import { IOrderLineItem } from './order-line-item.model'; //NOSONAR
 
 export function ProductFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -595,12 +610,12 @@ export function ProductFormGroupFac(): FormGroup {
     weight: new FormControl<number | null>(null),
     productCategoryId: new FormControl<string | null>(null),
     productModelId: new FormControl<string | null>(null),
-    sellStartDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    sellStartDate: new FormControl<Date>(new Date(), { validators: Validators.required, nonNullable: true } ),
     sellEndDate: new FormControl<Date | null>(null),
     discontinuedDate: new FormControl<Date | null>(null),
     thumbNailPhoto: new FormControl<string | null>(null, { validators: Validators.maxLength(5000) } ),
-    productModel: new FormControl<ProductModel | null>(null),
-    productCategory: new FormControl<ProductCategory | null>(null),
+    productModel: new FormControl<IProductModel | null>(null),
+    productCategory: new FormControl<IProductCategory | null>(null),
     orderLineItems: new FormArray([]),
   });
 }
@@ -684,6 +699,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IProduct } from './product.model'; //NOSONAR
 
 export function ProductCategoryFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -742,6 +758,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IProduct } from './product.model'; //NOSONAR
 
 export function ProductModelFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -803,6 +820,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ICustomer } from './customer.model'; //NOSONAR
 
 export function SalesAgentFormGroupFac(): FormGroup {
   return new FormGroup({

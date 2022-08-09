@@ -21,11 +21,12 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ContactTypes } from './contact-types.enum'; //NOSONAR
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(null),
-    contactType: new FormControl<ContactTypes | null>(null),
+    contactType: new FormControl<ContactTypes | null>('Other'),
   });
 }
 "

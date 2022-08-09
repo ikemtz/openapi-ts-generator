@@ -59,6 +59,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IRecipient } from './recipient.model'; //NOSONAR
 
 export function MessageDtoFormGroupFac(): FormGroup {
   return new FormGroup({
