@@ -154,6 +154,8 @@ export class OpenApiDocConverter {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {
       return 'false';
+    } else if (typescriptType === 'number') {
+      return '0';
     } else {
       return `''`;
     }
