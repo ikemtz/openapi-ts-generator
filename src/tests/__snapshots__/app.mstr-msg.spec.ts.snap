@@ -65,7 +65,7 @@ export function MessageDtoFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(null),
     body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    recipients: new FormArray([], { validators: Validators.required, nonNullable: true } ),
+    recipients: new FormArray([], { validators: Validators.required } ),
   });
 }
 "
