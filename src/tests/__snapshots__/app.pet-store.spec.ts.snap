@@ -47,7 +47,7 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 
 export function ErrorFormGroupFac(): FormGroup {
   return new FormGroup({
-    code: new FormControl<number>('', { validators: Validators.required, nonNullable: true } ),
+    code: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     message: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
   });
 }
