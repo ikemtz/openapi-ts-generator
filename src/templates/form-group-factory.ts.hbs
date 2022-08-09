@@ -17,7 +17,7 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{#if hasMultipleValidators}}
     {{name}}: new FormControl([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]) })),
 {{else}}
-    {{name}}: new FormControl([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}{{#if required}}, nonNullable: true{{/if}} }{{/if}}),
+    {{name}}: new FormControl([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{{patternValidator "valueProperties"}}} }{{/if}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
@@ -30,9 +30,9 @@ export function {{name}}FormGroupFac(): FormGroup {
 {{#referenceProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormArray([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormArray([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
 {{else}}
-    {{name}}: new FormArray([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormArray([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
