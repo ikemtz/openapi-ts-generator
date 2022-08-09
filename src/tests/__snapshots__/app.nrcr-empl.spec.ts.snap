@@ -29,6 +29,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IEmployeeCertification } from './employee-certification.model'; //NOSONAR
+import { IEmployeeCompetency } from './employee-competency.model'; //NOSONAR
+import { IEmployeeHealthItem } from './employee-health-item.model'; //NOSONAR
 
 export function EmployeeFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -45,8 +48,8 @@ export function EmployeeFormGroupFac(): FormGroup {
     city: new FormControl<string | null>(null, { validators: Validators.maxLength(150) } ),
     state: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[A-Z]{2}$')]) }),
     zip: new FormControl<string | null>(null, { validators: Validators.maxLength(10) } ),
-    isEnabled: new FormControl<boolean>('', { validators: Validators.required, nonNullable: true } ),
-    hireDate: new FormControl<Date>('', { validators: Validators.required, nonNullable: true } ),
+    isEnabled: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true } ),
+    hireDate: new FormControl<Date>(new Date(), { validators: Validators.required, nonNullable: true } ),
     fireDate: new FormControl<Date | null>(null),
     totalHoursOfService: new FormControl<number | null>(null, { validators: Validators.min(0) } ),
     certificationCount: new FormControl<number>('', { validators: Validators.compose([Validators.required, Validators.max(99)]), nonNullable: true }),

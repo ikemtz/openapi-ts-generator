@@ -349,7 +349,8 @@
       },
       "ContactTypes": {
         "enum": ["0 - Other", "2 - Air", "3 - Truck", "4 - Train", "5 - CargoTransport"],
-        "type": "string"
+        "type": "string",
+        "default": "0 - Other"
       }
     },
     "securitySchemes": {
