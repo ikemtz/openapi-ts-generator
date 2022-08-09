@@ -35,7 +35,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IContact } from './contact.model'; //NOSONAR
+import { IAccount } from './account.model';
 
 export function AccountFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -124,7 +124,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IContact } from './contact.model'; //NOSONAR
 
 export function AccountInsertRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -192,7 +191,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IContact } from './contact.model'; //NOSONAR
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -263,7 +261,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IAccount } from './account.model'; //NOSONAR
+import { IAccount } from './account.model';
 
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({

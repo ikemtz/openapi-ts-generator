@@ -6,9 +6,9 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR{{#if importTypes}}{{#importTypes}}{{#if isEnum}}
-import { {{name}} } from './{{kebabCasedTypeName}}.enum'; //NOSONAR{{else}}
-import { I{{name}} } from './{{kebabCasedTypeName}}.model'; //NOSONAR{{/if}}{{/importTypes}}{{/if}}
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR{{#referenceProperties}}{{#unless isArray}}{{#if isEnum}}
+import { {{typeScriptType}} } from './{{kebabCasedTypeScriptType}}.enum';{{else}}
+import { I{{typeScriptType}} } from './{{kebabCasedTypeScriptType}}.model';{{/if}}{{/unless}}{{/referenceProperties}}
 
 export function {{name}}FormGroupFac(): FormGroup {
   return new FormGroup({

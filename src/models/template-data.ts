@@ -43,6 +43,7 @@ export interface IReferenceProperty {
   snakeCaseName: string;
   referenceTypeName: string;
   typeScriptType: string;
+  kebabCasedTypeScriptType: string;
   hasValidators: boolean;
   isArray: boolean;
   required: boolean;
