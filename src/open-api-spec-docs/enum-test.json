@@ -333,7 +333,7 @@
   "components": {
     "schemas": {
       "Contact": {
-        "required": ["accountId", "addressLine1", "city", "contactTypeId", "firstName", "lastName", "state", "zip"],
+        "required": ["accountId", "addressLine1", "city", "contactType", "contactType2", "firstName", "lastName", "state", "zip"],
         "type": "object",
         "properties": {
           "id": {
@@ -343,6 +343,9 @@
           },
           "contactType": {
             "$ref": "#/components/schemas/ContactTypes"
+          },
+          "contactType2": {
+            "$ref": "#/components/schemas/ContactTypes2"
           }
         },
         "additionalProperties": false
@@ -351,6 +354,10 @@
         "enum": ["0 - Other", "2 - Air", "3 - Truck", "4 - Train", "5 - CargoTransport"],
         "type": "string",
         "default": "0 - Other"
+      },
+      "ContactTypes2": {
+        "enum": ["0 - Other", "2 - Air", "3 - Truck", "4 - Train", "5 - CargoTransport"],
+        "type": "string"
       }
     },
     "securitySchemes": {

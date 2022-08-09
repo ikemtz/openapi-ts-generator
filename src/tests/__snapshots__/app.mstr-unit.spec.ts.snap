@@ -66,8 +66,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { ISite } from './site.model'; //NOSONAR
-import { IUnit } from './unit.model'; //NOSONAR
+import { ISite } from './site.model';
 
 export function BuildingFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -195,9 +194,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { ISiteCollection } from './site-collection.model'; //NOSONAR
-import { IBuilding } from './building.model'; //NOSONAR
-import { IUnit } from './unit.model'; //NOSONAR
+import { ISiteCollection } from './site-collection.model';
 
 export function SiteFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -297,8 +294,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IBuilding } from './building.model'; //NOSONAR
-import { ISite } from './site.model'; //NOSONAR
 
 export function SiteCollectionFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -394,7 +389,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IUnitTag } from './unit-tag.model'; //NOSONAR
 
 export function TagFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -456,10 +450,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IBuilding } from './building.model'; //NOSONAR
-import { ISite } from './site.model'; //NOSONAR
-import { IUnitType } from './unit-type.model'; //NOSONAR
-import { IUnitTag } from './unit-tag.model'; //NOSONAR
+import { IBuilding } from './building.model';
+import { ISite } from './site.model';
+import { IUnitType } from './unit-type.model';
 
 export function UnitFormGroupFac(): FormGroup {
   return new FormGroup({
@@ -542,8 +535,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { ITag } from './tag.model'; //NOSONAR
-import { IUnit } from './unit.model'; //NOSONAR
+import { ITag } from './tag.model';
+import { IUnit } from './unit.model';
 
 export function UnitTagFormGroupFac(): FormGroup {
   return new FormGroup({

@@ -4,7 +4,7 @@ import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
 import _ = require('lodash');
 import { singular } from 'pluralize';
-import { camelCase } from 'lodash';
+import { camelCase, kebabCase } from 'lodash';
 
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
@@ -144,8 +144,8 @@ export class OpenApiDocConverter {
   getInitialValue(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
     const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
     const isRequired = this.getIsRequired(propertyName, schemaWrapperInfo);
-    const defaultValue = (schemaWrapperInfo.componentSchemaObject.default ||
-      ((this.apiDocument.components?.schemas || {})[schemaWrapperInfo.propertyReferenceObject['$ref']] as SchemaObject)?.default) as string;
+    const refObject = (this.apiDocument.components?.schemas || {})[schemaWrapperInfo.propertyReferenceObject['$ref']] as SchemaObject;
+    const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
     if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
     } else if (!isRequired) {
@@ -173,13 +173,15 @@ export class OpenApiDocConverter {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const typeName = this.parseRef(schemaWrapperInfo);
     return {
       required,
       name: propertyName,
       initialValue,
       snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
-      referenceTypeName: this.parseRef(schemaWrapperInfo),
-      typeScriptType: this.parseRef(schemaWrapperInfo),
+      referenceTypeName: typeName,
+      typeScriptType: typeName,
+      kebabCasedTypeScriptType: kebabCase(typeName),
       isArray: false,
       isEnum: (propertySchema.enum || []).length > 0,
       hasValidators: validatorCount > 0,
