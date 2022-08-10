@@ -28,8 +28,8 @@ import { ContactTypes2 } from './contact-types-2.enum';
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(null),
-    contactType: new FormControl<ContactTypes>('Other', { validators: Validators.required, nonNullable: true } ),
-    contactType2: new FormControl<ContactTypes2>('Other', { validators: Validators.required, nonNullable: true } ),
+    contactType: new FormControl<ContactTypes>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
+    contactType2: new FormControl<ContactTypes2>(ContactTypes2.Other, { validators: Validators.required, nonNullable: true } ),
   });
 }
 "
