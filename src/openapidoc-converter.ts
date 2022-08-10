@@ -146,7 +146,9 @@ export class OpenApiDocConverter {
     const isRequired = this.getIsRequired(propertyName, schemaWrapperInfo);
     const refObject = (this.apiDocument.components?.schemas || {})[schemaWrapperInfo.propertyReferenceObject['$ref']] as SchemaObject;
     const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
-    if (defaultValue) {
+    if (defaultValue && refObject.enum) {
+      return `${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}`;
+    } else if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
     } else if (!isRequired) {
       return 'null';
