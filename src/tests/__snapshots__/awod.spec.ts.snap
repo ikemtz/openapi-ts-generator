@@ -48,8 +48,21 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ISalesAgent } from './sales-agent.model';
 
-export function CustomerFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ICustomerForm {
+    id: new FormControl<string | null>;
+    num: new FormControl<string>;
+    name: new FormControl<string | null>;
+    companyName: new FormControl<string>;
+    salesAgentId: new FormControl<number>;
+    emailAddress: new FormControl<string | null>;
+    phone: new FormControl<string | null>;
+    salesAgent: new FormControl<ISalesAgent | null>;
+    customerAddresses: new FormArray;
+    orders: new FormArray;
+}
+
+export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
+  return new FormGroup<ICustomerForm>({
     id: new FormControl<string | null>(null),
     num: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(15)]), nonNullable: true }),
     name: new FormControl<string | null>(null, { validators: Validators.maxLength(512) } ),
@@ -130,8 +143,21 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ICustomer } from './customer.model';
 
-export function CustomerAddressFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ICustomerAddressForm {
+    id: new FormControl<string | null>;
+    customerId: new FormControl<string>;
+    addressType: new FormControl<string>;
+    line1: new FormControl<string>;
+    line2: new FormControl<string | null>;
+    city: new FormControl<string>;
+    stateProvince: new FormControl<string>;
+    countryRegion: new FormControl<string>;
+    postalCode: new FormControl<string>;
+    customer: new FormControl<ICustomer | null>;
+}
+
+export function CustomerAddressFormGroupFac(): FormGroup<ICustomerAddressForm> {
+  return new FormGroup<ICustomerAddressForm>({
     id: new FormControl<string | null>(null),
     customerId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     addressType: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
@@ -286,8 +312,35 @@ import { ShippingTypes } from './shipping-types.enum';
 import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
 
-export function OrderFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IOrderForm {
+    id: new FormControl<string | null>;
+    orderId: new FormControl<number>;
+    revisionNum: new FormControl<number>;
+    date: new FormControl<Date>;
+    dueDate: new FormControl<Date>;
+    shipDate: new FormControl<Date | null>;
+    isOnlineOrder: new FormControl<boolean>;
+    num: new FormControl<string>;
+    purchaseOrderNum: new FormControl<string | null>;
+    customerId: new FormControl<string>;
+    shipToAddressId: new FormControl<string | null>;
+    billToAddressId: new FormControl<string | null>;
+    creditCardApprovalCode: new FormControl<string | null>;
+    subTotal: new FormControl<number>;
+    taxAmt: new FormControl<number>;
+    freight: new FormControl<number>;
+    totalDue: new FormControl<number>;
+    comment: new FormControl<string | null>;
+    statusType: new FormControl<OrderStatusTypes>;
+    shippingType: new FormControl<ShippingTypes>;
+    customer: new FormControl<ICustomer | null>;
+    shipToAddress: new FormControl<IOrderAddress | null>;
+    billToAddress: new FormControl<IOrderAddress | null>;
+    orderLineItems: new FormArray;
+}
+
+export function OrderFormGroupFac(): FormGroup<IOrderForm> {
+  return new FormGroup<IOrderForm>({
     id: new FormControl<string | null>(null),
     orderId: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     revisionNum: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
@@ -411,8 +464,20 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function OrderAddressFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IOrderAddressForm {
+    id: new FormControl<string | null>;
+    line1: new FormControl<string>;
+    line2: new FormControl<string | null>;
+    city: new FormControl<string>;
+    stateProvince: new FormControl<string>;
+    countryRegion: new FormControl<string>;
+    postalCode: new FormControl<string>;
+    billToOrders: new FormArray;
+    shipToOrders: new FormArray;
+}
+
+export function OrderAddressFormGroupFac(): FormGroup<IOrderAddressForm> {
+  return new FormGroup<IOrderAddressForm>({
     id: new FormControl<string | null>(null),
     line1: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(60)]), nonNullable: true }),
     line2: new FormControl<string | null>(null, { validators: Validators.maxLength(60) } ),
@@ -489,8 +554,20 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { IOrder } from './order.model';
 import { IProduct } from './product.model';
 
-export function OrderLineItemFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IOrderLineItemForm {
+    id: new FormControl<string | null>;
+    orderId: new FormControl<string>;
+    orderQty: new FormControl<number>;
+    productId: new FormControl<string>;
+    unitPrice: new FormControl<number>;
+    unitPriceDiscount: new FormControl<number>;
+    lineTotal: new FormControl<number>;
+    order: new FormControl<IOrder | null>;
+    product: new FormControl<IProduct | null>;
+}
+
+export function OrderLineItemFormGroupFac(): FormGroup<IOrderLineItemForm> {
+  return new FormGroup<IOrderLineItemForm>({
     id: new FormControl<string | null>(null),
     orderId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     orderQty: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
@@ -593,8 +670,28 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { IProductModel } from './product-model.model';
 import { IProductCategory } from './product-category.model';
 
-export function ProductFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IProductForm {
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    num: new FormControl<string>;
+    color: new FormControl<string | null>;
+    standardCost: new FormControl<number>;
+    listPrice: new FormControl<number>;
+    size: new FormControl<string | null>;
+    weight: new FormControl<number | null>;
+    productCategoryId: new FormControl<string | null>;
+    productModelId: new FormControl<string | null>;
+    sellStartDate: new FormControl<Date>;
+    sellEndDate: new FormControl<Date | null>;
+    discontinuedDate: new FormControl<Date | null>;
+    thumbNailPhoto: new FormControl<string | null>;
+    productModel: new FormControl<IProductModel | null>;
+    productCategory: new FormControl<IProductCategory | null>;
+    orderLineItems: new FormArray;
+}
+
+export function ProductFormGroupFac(): FormGroup<IProductForm> {
+  return new FormGroup<IProductForm>({
     id: new FormControl<string | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(50)]), nonNullable: true }),
     num: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(25)]), nonNullable: true }),
@@ -695,8 +792,14 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function ProductCategoryFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IProductCategoryForm {
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    products: new FormArray;
+}
+
+export function ProductCategoryFormGroupFac(): FormGroup<IProductCategoryForm> {
+  return new FormGroup<IProductCategoryForm>({
     id: new FormControl<string | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     products: new FormArray([]),
@@ -753,8 +856,15 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function ProductModelFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IProductModelForm {
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    description: new FormControl<string | null>;
+    products: new FormArray;
+}
+
+export function ProductModelFormGroupFac(): FormGroup<IProductModelForm> {
+  return new FormGroup<IProductModelForm>({
     id: new FormControl<string | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     description: new FormControl<string | null>(null, { validators: Validators.maxLength(500) } ),
@@ -814,8 +924,15 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function SalesAgentFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ISalesAgentForm {
+    id: new FormControl<number | null>;
+    name: new FormControl<string>;
+    loginId: new FormControl<string>;
+    customers: new FormArray;
+}
+
+export function SalesAgentFormGroupFac(): FormGroup<ISalesAgentForm> {
+  return new FormGroup<ISalesAgentForm>({
     id: new FormControl<number | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),
     loginId: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),

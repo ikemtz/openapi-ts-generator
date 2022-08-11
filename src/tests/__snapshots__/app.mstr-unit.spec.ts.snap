@@ -68,8 +68,17 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ISite } from './site.model';
 
-export function BuildingFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IBuildingForm {
+    id: new FormControl<string | null>;
+    siteId: new FormControl<string | null>;
+    identifier: new FormControl<string | null>;
+    isEnabled: new FormControl<boolean | null>;
+    site: new FormControl<ISite | null>;
+    units: new FormArray;
+}
+
+export function BuildingFormGroupFac(): FormGroup<IBuildingForm> {
+  return new FormGroup<IBuildingForm>({
     id: new FormControl<string | null>(null),
     siteId: new FormControl<string | null>(null),
     identifier: new FormControl<string | null>(null),
@@ -196,8 +205,27 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ISiteCollection } from './site-collection.model';
 
-export function SiteFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ISiteForm {
+    id: new FormControl<string | null>;
+    tenantId: new FormControl<string | null>;
+    accountId: new FormControl<string | null>;
+    accountName: new FormControl<string | null>;
+    siteCollectionId: new FormControl<string | null>;
+    number: new FormControl<string | null>;
+    name: new FormControl<string | null>;
+    addressLine1: new FormControl<string | null>;
+    addressLine2: new FormControl<string | null>;
+    city: new FormControl<string | null>;
+    state: new FormControl<string | null>;
+    zip: new FormControl<string | null>;
+    isEnabled: new FormControl<boolean | null>;
+    siteCollection: new FormControl<ISiteCollection | null>;
+    buildings: new FormArray;
+    units: new FormArray;
+}
+
+export function SiteFormGroupFac(): FormGroup<ISiteForm> {
+  return new FormGroup<ISiteForm>({
     id: new FormControl<string | null>(null),
     tenantId: new FormControl<string | null>(null),
     accountId: new FormControl<string | null>(null),
@@ -295,8 +323,26 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function SiteCollectionFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ISiteCollectionForm {
+    id: new FormControl<string | null>;
+    tenantId: new FormControl<string | null>;
+    number: new FormControl<string>;
+    name: new FormControl<string>;
+    code: new FormControl<string>;
+    addressLine1: new FormControl<string | null>;
+    addressLine2: new FormControl<string | null>;
+    city: new FormControl<string | null>;
+    state: new FormControl<string | null>;
+    zip: new FormControl<string | null>;
+    isSchedulerEnabled: new FormControl<boolean>;
+    siteCount: new FormControl<number | null>;
+    workCategoryTypes: new FormControl<string | number>;
+    buildings: new FormArray;
+    sites: new FormArray;
+}
+
+export function SiteCollectionFormGroupFac(): FormGroup<ISiteCollectionForm> {
+  return new FormGroup<ISiteCollectionForm>({
     id: new FormControl<string | null>(null),
     tenantId: new FormControl<string | null>(null),
     number: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
@@ -390,8 +436,15 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function TagFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface ITagForm {
+    id: new FormControl<string | null>;
+    name: new FormControl<string | null>;
+    value: new FormControl<string | null>;
+    unitTags: new FormArray;
+}
+
+export function TagFormGroupFac(): FormGroup<ITagForm> {
+  return new FormGroup<ITagForm>({
     id: new FormControl<string | null>(null),
     name: new FormControl<string | null>(null),
     value: new FormControl<string | null>(null),
@@ -454,8 +507,21 @@ import { IBuilding } from './building.model';
 import { ISite } from './site.model';
 import { IUnitType } from './unit-type.model';
 
-export function UnitFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IUnitForm {
+    id: new FormControl<string | null>;
+    number: new FormControl<string | null>;
+    unitTypeId: new FormControl<string | null>;
+    siteId: new FormControl<string | null>;
+    buildingId: new FormControl<string | null>;
+    isEnabled: new FormControl<boolean | null>;
+    building: new FormControl<IBuilding | null>;
+    site: new FormControl<ISite | null>;
+    unitType: new FormControl<IUnitType | null>;
+    unitTags: new FormArray;
+}
+
+export function UnitFormGroupFac(): FormGroup<IUnitForm> {
+  return new FormGroup<IUnitForm>({
     id: new FormControl<string | null>(null),
     number: new FormControl<string | null>(null),
     unitTypeId: new FormControl<string | null>(null),
@@ -538,8 +604,17 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ITag } from './tag.model';
 import { IUnit } from './unit.model';
 
-export function UnitTagFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IUnitTagForm {
+    id: new FormControl<string | null>;
+    unitId: new FormControl<string | null>;
+    tagId: new FormControl<string | null>;
+    value: new FormControl<string | null>;
+    tag: new FormControl<ITag | null>;
+    unit: new FormControl<IUnit | null>;
+}
+
+export function UnitTagFormGroupFac(): FormGroup<IUnitTagForm> {
+  return new FormGroup<IUnitTagForm>({
     id: new FormControl<string | null>(null),
     unitId: new FormControl<string | null>(null),
     tagId: new FormControl<string | null>(null),
@@ -606,8 +681,14 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function UnitTypeFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IUnitTypeForm {
+    id: new FormControl<string | null>;
+    code: new FormControl<string | null>;
+    description: new FormControl<string | null>;
+}
+
+export function UnitTypeFormGroupFac(): FormGroup<IUnitTypeForm> {
+  return new FormGroup<IUnitTypeForm>({
     id: new FormControl<string | null>(null),
     code: new FormControl<string | null>(null),
     description: new FormControl<string | null>(null),
