@@ -54,9 +54,15 @@ export interface IEmployeeForm {
     certificationCount: FormControl<number>;
     competencyCount: FormControl<number>;
     healthItemCount: FormControl<number>;
+<<<<<<< HEAD
     employeeCertifications: FormArray<FormGroup<IEmployeeCertificationForm>>;
     employeeCompetencies: FormArray<FormGroup<IEmployeeCompetencyForm>>;
     employeeHealthItems: FormArray<FormGroup<IEmployeeHealthItemForm>>;
+=======
+    employeeCertifications: FormArray;
+    employeeCompetencies: FormArray;
+    employeeHealthItems: FormArray;
+>>>>>>> origin/master
 }
 
 export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {

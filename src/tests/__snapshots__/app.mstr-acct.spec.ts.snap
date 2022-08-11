@@ -49,8 +49,13 @@ export interface IAccountForm {
     tenantId: FormControl<string | null>;
     contactCount: FormControl<number | null>;
     parentAccount: FormControl<IAccount | null>;
+<<<<<<< HEAD
     contacts: FormArray<FormGroup<IContactForm>>;
     inverseParentAccount: FormArray<FormGroup<IAccountForm>>;
+=======
+    contacts: FormArray;
+    inverseParentAccount: FormArray;
+>>>>>>> origin/master
 }
 
 export function AccountFormGroupFac(): FormGroup<IAccountForm> {
@@ -148,7 +153,11 @@ export interface IAccountInsertRequestForm {
     name: FormControl<string>;
     parentAccountId: FormControl<string | null>;
     emailInvoice: FormControl<boolean | null>;
+<<<<<<< HEAD
     contacts: FormArray<FormGroup<IContactForm>>;
+=======
+    contacts: FormArray;
+>>>>>>> origin/master
 }
 
 export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequestForm> {
@@ -226,7 +235,11 @@ export interface IAccountUpdateRequestForm {
     parentAccountId: FormControl<string | null>;
     isEnabled: FormControl<boolean | null>;
     emailInvoice: FormControl<boolean | null>;
+<<<<<<< HEAD
     contacts: FormArray<FormGroup<IContactForm>>;
+=======
+    contacts: FormArray;
+>>>>>>> origin/master
 }
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequestForm> {

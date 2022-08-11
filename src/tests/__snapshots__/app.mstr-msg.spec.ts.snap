@@ -64,7 +64,11 @@ import { IRecipientForm } from './recipient.form-group-fac';
 export interface IMessageDtoForm {
     id: FormControl<string | null>;
     body: FormControl<string>;
+<<<<<<< HEAD
     recipients: FormArray<FormGroup<IRecipientForm>>;
+=======
+    recipients: FormArray;
+>>>>>>> origin/master
 }
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
