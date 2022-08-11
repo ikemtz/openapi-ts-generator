@@ -347,6 +347,9 @@
           "contactType2": {
             "$ref": "#/components/schemas/ContactTypes2"
           },
+          "contactType3": {
+            "$ref": "#/components/schemas/ContactTypes"
+          },
           "accountId": {
             "type": "string",
             "format": "uuid"
