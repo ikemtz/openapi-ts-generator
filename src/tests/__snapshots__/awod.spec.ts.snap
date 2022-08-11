@@ -285,7 +285,6 @@ import { OrderStatusTypes } from './order-status-types.enum';
 import { ShippingTypes } from './shipping-types.enum';
 import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
-import { IOrderAddress } from './order-address.model';
 
 export function OrderFormGroupFac(): FormGroup {
   return new FormGroup({

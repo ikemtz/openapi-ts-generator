@@ -20,6 +20,8 @@ export interface IImportType {
   kebabCasedTypeName: string;
   name: string;
   isEnum: boolean;
+  areAllArrays: boolean;
+  isSelfReferencing: boolean;
 }
 export interface IValueProperty {
   name: string;
@@ -43,7 +45,6 @@ export interface IReferenceProperty {
   snakeCaseName: string;
   referenceTypeName: string;
   typeScriptType: string;
-  kebabCasedTypeScriptType: string;
   hasValidators: boolean;
   isArray: boolean;
   required: boolean;
