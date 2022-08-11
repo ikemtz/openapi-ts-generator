@@ -31,7 +31,7 @@ export function ContactFormGroupFac(): FormGroup {
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     contactType: new FormControl<ContactTypes>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
-    contactType2: new FormControl<ContactTypes2>(ContactTypes2.Other, { validators: Validators.required, nonNullable: true } ),
+    contactType2: new FormControl<ContactTypes2>(ContactTypes2.Air, { validators: Validators.required, nonNullable: true } ),
   });
 }
 "
@@ -122,7 +122,6 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  */
 
 export enum ContactTypes2 {
-  Other = 0,
   Air = 2,
   Truck = 3,
   Train = 4,
@@ -130,7 +129,6 @@ export enum ContactTypes2 {
 }
 
 export const contactTypes2Values = [
-  { key: 0, name: 'Other', displayText: 'Other'},
   { key: 2, name: 'Air', displayText: 'Air'},
   { key: 3, name: 'Truck', displayText: 'Truck'},
   { key: 4, name: 'Train', displayText: 'Train'},

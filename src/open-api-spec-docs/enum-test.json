@@ -363,7 +363,7 @@
         "default": "0 - Other"
       },
       "ContactTypes2": {
-        "enum": ["0 - Other", "2 - Air", "3 - Truck", "4 - Train", "5 - CargoTransport"],
+        "enum": ["2 - Air", "3 - Truck", "4 - Train", "5 - CargoTransport"],
         "type": "string"
       }
     },
