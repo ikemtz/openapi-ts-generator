@@ -2,9 +2,8 @@ import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'op
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
-import _ = require('lodash');
 import { singular } from 'pluralize';
-import { camelCase, kebabCase } from 'lodash';
+import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
 
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
@@ -25,7 +24,7 @@ export class OpenApiDocConverter {
       const tag: string = (tagLookup?.tags || ['unknown_endpoint'])[0];
 
       paths.push({
-        tag: _.snakeCase(tag),
+        tag: snakeCase(tag),
         endpoint: this.options.pathUrlFormattingCallBack ? this.options.pathUrlFormattingCallBack(key) : key,
       });
     }
@@ -67,7 +66,7 @@ export class OpenApiDocConverter {
       ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
         const key = this.startNumberregex.exec(x)?.at(0);
         const name = this.endAlphaNumRegex.exec(x)?.at(0) || '';
-        return { key: key ? +key : 0, name, titleName: _.startCase(name) };
+        return { key: key ? +key : 0, name, titleName: startCase(name) };
       }),
     );
   }
@@ -109,7 +108,7 @@ export class OpenApiDocConverter {
       name: propertyName,
       initialValue,
       isArray: false,
-      snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
@@ -136,7 +135,7 @@ export class OpenApiDocConverter {
       initialValue,
       name: propertyName,
       isArray: true,
-      snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: snakeCase(propertyName).toUpperCase(),
       hasMultipleValidators: false,
       hasValidators: validatorCount > 0,
     };
@@ -182,10 +181,9 @@ export class OpenApiDocConverter {
       required,
       name: propertyName,
       initialValue,
-      snakeCaseName: _.snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: snakeCase(propertyName).toUpperCase(),
       referenceTypeName: typeName,
       typeScriptType: typeName,
-      kebabCasedTypeScriptType: kebabCase(typeName),
       isArray: false,
       isEnum: (propertySchema.enum || []).length > 0,
       hasValidators: validatorCount > 0,
@@ -231,16 +229,27 @@ export class OpenApiDocConverter {
   }
 
   public getImportTypes(entityName: string, schemaWrapperInfo: SchemaWrapperInfo): IImportType[] {
+    const schemaProperties = ((this.apiDocument.components?.schemas || { properties: {} })[entityName] as SchemaObject).properties || {};
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const properties = Object.keys(schemaProperties).map((key) => ({
+      key,
+      ...schemaProperties[key],
+      $ref: (schemaProperties[key] as ReferenceObject).$ref,
+      items: (schemaProperties[key] as SchemaObject).items || {},
+      type: (schemaProperties[key] as SchemaObject).type,
+    }));
     return schemaWrapperInfo.referenceProperties
       .map((t) => t.referenceTypeName)
-      .filter((t) => t !== entityName)
       .filter((value, index, array) => array.indexOf(value) === index)
-      .map((value) => {
-        const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[value];
+      .map((value): IImportType => {
+        const refSchema: SchemaObject = (this.apiDocument.components?.schemas || {})[value];
+        const props = properties.filter((t) => t.items.$ref === value || t.$ref === value);
         return {
           name: value,
-          kebabCasedTypeName: _.kebabCase(value),
-          isEnum: (propertySchema.enum || []).length > 0,
+          kebabCasedTypeName: kebabCase(value),
+          isEnum: (refSchema.enum || []).length > 0,
+          areAllArrays: props.every((val) => val.type === 'array'),
+          isSelfReferencing: entityName === value,
         };
       });
   }

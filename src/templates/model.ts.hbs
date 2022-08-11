@@ -5,9 +5,9 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-{{#if importTypes}}{{#importTypes}}{{#if isEnum}}
+{{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/importTypes}}
+import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/unless}}{{/importTypes}}
 
 {{/if}}{{#if description}}/**
  * {{description}}
