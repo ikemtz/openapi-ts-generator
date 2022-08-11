@@ -144,14 +144,16 @@ export class OpenApiDocConverter {
   getInitialValue(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
     const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
     const isRequired = this.getIsRequired(propertyName, schemaWrapperInfo);
-    const refObject = (this.apiDocument.components?.schemas || {})[schemaWrapperInfo.propertyReferenceObject['$ref']] as SchemaObject;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const refName: string = ((schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject).$ref;
+    const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
     const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
-    if (defaultValue && refObject.enum) {
+    if (!isRequired) {
+      return 'null';
+    } else if (defaultValue && refObject.enum) {
       return `${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}`;
     } else if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
-    } else if (!isRequired) {
-      return 'null';
     } else if (typescriptType === 'Date') {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {

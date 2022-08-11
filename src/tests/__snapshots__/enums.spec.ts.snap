@@ -28,6 +28,8 @@ import { ContactTypes2 } from './contact-types-2.enum';
 export function ContactFormGroupFac(): FormGroup {
   return new FormGroup({
     id: new FormControl<string | null>(null),
+    accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     contactType: new FormControl<ContactTypes>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
     contactType2: new FormControl<ContactTypes2>(ContactTypes2.Other, { validators: Validators.required, nonNullable: true } ),
   });
@@ -53,6 +55,8 @@ export interface IContact {
  * Unique Identifier
  */
   id?: string;
+  accountId?: string;
+  addressLine1?: string;
   contactType?: ContactTypes;
   contactType2?: ContactTypes2;
 }
@@ -73,6 +77,8 @@ export enum ContactProperties {
  * Unique Identifier
  */
   ID = 'id',
+  ACCOUNT_ID = 'accountId',
+  ADDRESS_LINE_1 = 'addressLine1',
   CONTACT_TYPE = 'contactType',
   CONTACT_TYPE_2 = 'contactType2',
 }

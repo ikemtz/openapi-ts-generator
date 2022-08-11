@@ -346,6 +346,13 @@
           },
           "contactType2": {
             "$ref": "#/components/schemas/ContactTypes2"
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "addressLine1": {
+            "type": "string"
           }
         },
         "additionalProperties": false
