@@ -95,9 +95,9 @@ export interface IAccount {
   emailInvoice?: boolean | null;
   tenantId?: string | null;
   contactCount?: number | null;
-  parentAccount?: IAccount | null;;
-  contacts?: IContact[] | null;;
-  inverseParentAccount?: IAccount[] | null;;
+  parentAccount?: IAccount | null;
+  contacts?: IContact[] | null;
+  inverseParentAccount?: IAccount[] | null;
 }
 "
 `;
@@ -182,7 +182,7 @@ export interface IAccountInsertRequest {
   name?: string | null;
   parentAccountId?: string | null;
   emailInvoice?: boolean | null;
-  contacts?: IContact[] | null;;
+  contacts?: IContact[] | null;
 }
 "
 `;
@@ -262,7 +262,7 @@ export interface IAccountUpdateRequest {
   parentAccountId?: string | null;
   isEnabled?: boolean | null;
   emailInvoice?: boolean | null;
-  contacts?: IContact[] | null;;
+  contacts?: IContact[] | null;
 }
 "
 `;
@@ -373,7 +373,7 @@ export interface IContact {
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;
-  account?: IAccount | null;;
+  account?: IAccount | null;
 }
 "
 `;

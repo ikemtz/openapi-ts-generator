@@ -67,9 +67,9 @@ export interface IContact {
   id?: string | null;
   accountId?: string | null;
   addressLine1?: string | null;
-  contactType?: ContactTypes | null;;
-  contactType2?: ContactTypes2 | null;;
-  contactType3?: ContactTypes | null;;
+  contactType?: ContactTypes | null;
+  contactType2?: ContactTypes2 | null;
+  contactType3?: ContactTypes | null;
 }
 "
 `;
