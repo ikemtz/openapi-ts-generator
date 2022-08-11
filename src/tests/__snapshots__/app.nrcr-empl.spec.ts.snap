@@ -29,6 +29,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IEmployeeCertificationForm } from './employee-certification.form-group-fac';
+import { IEmployeeCompetencyForm } from './employee-competency.form-group-fac';
+import { IEmployeeHealthItemForm } from './employee-health-item.form-group-fac';
 
 export interface IEmployeeForm {
     id: FormControl<string | null>;
@@ -51,9 +54,9 @@ export interface IEmployeeForm {
     certificationCount: FormControl<number>;
     competencyCount: FormControl<number>;
     healthItemCount: FormControl<number>;
-    employeeCertifications: FormArray;
-    employeeCompetencies: FormArray;
-    employeeHealthItems: FormArray;
+    employeeCertifications: FormArray<FormGroup<IEmployeeCertificationForm>>;
+    employeeCompetencies: FormArray<FormGroup<IEmployeeCompetencyForm>>;
+    employeeHealthItems: FormArray<FormGroup<IEmployeeHealthItemForm>>;
 }
 
 export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {
@@ -78,9 +81,9 @@ export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {
     certificationCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.max(99)]), nonNullable: true }),
     competencyCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
     healthItemCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
-    employeeCertifications: new FormArray([]),
-    employeeCompetencies: new FormArray([]),
-    employeeHealthItems: new FormArray([]),
+    employeeCertifications: new FormArray<FormGroup<IEmployeeCertificationForm>>([]),
+    employeeCompetencies: new FormArray<FormGroup<IEmployeeCompetencyForm>>([]),
+    employeeHealthItems: new FormArray<FormGroup<IEmployeeHealthItemForm>>([]),
   });
 }
 "

@@ -21,6 +21,7 @@ export interface IImportType {
   name: string;
   isEnum: boolean;
   areAllArrays: boolean;
+  hasArrays: boolean;
   isSelfReferencing: boolean;
 }
 export interface IValueProperty {

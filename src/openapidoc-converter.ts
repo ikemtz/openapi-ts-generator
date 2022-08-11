@@ -261,6 +261,7 @@ export class OpenApiDocConverter {
           kebabCasedTypeName: kebabCase(value),
           isEnum: (refSchema.enum || []).length > 0,
           areAllArrays: props.every((val) => val.type === 'array'),
+          hasArrays: props.some((val) => val.type === 'array'),
           isSelfReferencing: entityName === value,
         };
       });
