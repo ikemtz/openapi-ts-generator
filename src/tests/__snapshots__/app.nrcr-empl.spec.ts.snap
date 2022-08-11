@@ -31,29 +31,29 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IEmployeeForm {
-    id: new FormControl<string | null>;
-    lastName: new FormControl<string>;
-    firstName: new FormControl<string>;
-    birthDate: new FormControl<Date | null>;
-    mobilePhone: new FormControl<string | null>;
-    homePhone: new FormControl<string | null>;
-    photo: new FormControl<string | null>;
-    email: new FormControl<string>;
-    addressLine1: new FormControl<string | null>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string | null>;
-    state: new FormControl<string | null>;
-    zip: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean>;
-    hireDate: new FormControl<Date>;
-    fireDate: new FormControl<Date | null>;
-    totalHoursOfService: new FormControl<number | null>;
-    certificationCount: new FormControl<number>;
-    competencyCount: new FormControl<number>;
-    healthItemCount: new FormControl<number>;
-    employeeCertifications: new FormArray;
-    employeeCompetencies: new FormArray;
-    employeeHealthItems: new FormArray;
+    id: FormControl<string | null>;
+    lastName: FormControl<string>;
+    firstName: FormControl<string>;
+    birthDate: FormControl<Date | null>;
+    mobilePhone: FormControl<string | null>;
+    homePhone: FormControl<string | null>;
+    photo: FormControl<string | null>;
+    email: FormControl<string>;
+    addressLine1: FormControl<string | null>;
+    addressLine2: FormControl<string | null>;
+    city: FormControl<string | null>;
+    state: FormControl<string | null>;
+    zip: FormControl<string | null>;
+    isEnabled: FormControl<boolean>;
+    hireDate: FormControl<Date>;
+    fireDate: FormControl<Date | null>;
+    totalHoursOfService: FormControl<number | null>;
+    certificationCount: FormControl<number>;
+    competencyCount: FormControl<number>;
+    healthItemCount: FormControl<number>;
+    employeeCertifications: FormArray;
+    employeeCompetencies: FormArray;
+    employeeHealthItems: FormArray;
 }
 
 export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {
@@ -177,11 +177,11 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IEmployeeCertificationForm {
-    id: new FormControl<string | null>;
-    employeeId: new FormControl<string | null>;
-    certificationId: new FormControl<string | null>;
-    certificationName: new FormControl<string | null>;
-    expiresOnUtc: new FormControl<Date | null>;
+    id: FormControl<string | null>;
+    employeeId: FormControl<string | null>;
+    certificationId: FormControl<string | null>;
+    certificationName: FormControl<string | null>;
+    expiresOnUtc: FormControl<Date | null>;
 }
 
 export function EmployeeCertificationFormGroupFac(): FormGroup<IEmployeeCertificationForm> {
@@ -246,12 +246,12 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IEmployeeCompetencyForm {
-    id: new FormControl<string | null>;
-    employeeId: new FormControl<string | null>;
-    competencyId: new FormControl<string | null>;
-    competencyName: new FormControl<string | null>;
-    expiresOnUtc: new FormControl<Date | null>;
-    isEnabled: new FormControl<boolean | null>;
+    id: FormControl<string | null>;
+    employeeId: FormControl<string | null>;
+    competencyId: FormControl<string | null>;
+    competencyName: FormControl<string | null>;
+    expiresOnUtc: FormControl<Date | null>;
+    isEnabled: FormControl<boolean | null>;
 }
 
 export function EmployeeCompetencyFormGroupFac(): FormGroup<IEmployeeCompetencyForm> {
@@ -319,12 +319,12 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IEmployeeHealthItemForm {
-    id: new FormControl<string | null>;
-    employeeId: new FormControl<string | null>;
-    healthItemId: new FormControl<string | null>;
-    healthItemName: new FormControl<string | null>;
-    expiresOnUtc: new FormControl<Date | null>;
-    isEnabled: new FormControl<boolean | null>;
+    id: FormControl<string | null>;
+    employeeId: FormControl<string | null>;
+    healthItemId: FormControl<string | null>;
+    healthItemName: FormControl<string | null>;
+    expiresOnUtc: FormControl<Date | null>;
+    isEnabled: FormControl<boolean | null>;
 }
 
 export function EmployeeHealthItemFormGroupFac(): FormGroup<IEmployeeHealthItemForm> {

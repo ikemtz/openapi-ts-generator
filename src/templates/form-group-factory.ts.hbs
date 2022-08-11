@@ -12,17 +12,17 @@ import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/unless}}{{/
 
 export interface I{{name}}Form {
 {{#valueProperties}}
-{{#if isArray}} 
-    {{name}}: new FormArray;
+{{#if isArray}}
+    {{name}}: FormArray;
 {{else}} 
-    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isArray}} 
-    {{name}}: new FormArray;
+    {{name}}: FormArray;
 {{else}} 
-    {{name}}: new FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+    {{name}}: FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
 {{/if}}
 {{/referenceProperties}}
 }
