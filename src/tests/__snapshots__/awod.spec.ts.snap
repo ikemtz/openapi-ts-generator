@@ -59,13 +59,8 @@ export interface ICustomerForm {
     emailAddress: FormControl<string | null>;
     phone: FormControl<string | null>;
     salesAgent: FormControl<ISalesAgent | null>;
-<<<<<<< HEAD
     customerAddresses: FormArray<FormGroup<ICustomerAddressForm>>;
     orders: FormArray<FormGroup<IOrderForm>>;
-=======
-    customerAddresses: FormArray;
-    orders: FormArray;
->>>>>>> origin/master
 }
 
 export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
@@ -344,11 +339,7 @@ export interface IOrderForm {
     customer: FormControl<ICustomer | null>;
     shipToAddress: FormControl<IOrderAddress | null>;
     billToAddress: FormControl<IOrderAddress | null>;
-<<<<<<< HEAD
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
-=======
-    orderLineItems: FormArray;
->>>>>>> origin/master
 }
 
 export function OrderFormGroupFac(): FormGroup<IOrderForm> {
@@ -485,13 +476,8 @@ export interface IOrderAddressForm {
     stateProvince: FormControl<string>;
     countryRegion: FormControl<string>;
     postalCode: FormControl<string>;
-<<<<<<< HEAD
     billToOrders: FormArray<FormGroup<IOrderForm>>;
     shipToOrders: FormArray<FormGroup<IOrderForm>>;
-=======
-    billToOrders: FormArray;
-    shipToOrders: FormArray;
->>>>>>> origin/master
 }
 
 export function OrderAddressFormGroupFac(): FormGroup<IOrderAddressForm> {
@@ -706,11 +692,7 @@ export interface IProductForm {
     thumbNailPhoto: FormControl<string | null>;
     productModel: FormControl<IProductModel | null>;
     productCategory: FormControl<IProductCategory | null>;
-<<<<<<< HEAD
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
-=======
-    orderLineItems: FormArray;
->>>>>>> origin/master
 }
 
 export function ProductFormGroupFac(): FormGroup<IProductForm> {
@@ -819,11 +801,7 @@ import { IProductForm } from './product.form-group-fac';
 export interface IProductCategoryForm {
     id: FormControl<string | null>;
     name: FormControl<string>;
-<<<<<<< HEAD
     products: FormArray<FormGroup<IProductForm>>;
-=======
-    products: FormArray;
->>>>>>> origin/master
 }
 
 export function ProductCategoryFormGroupFac(): FormGroup<IProductCategoryForm> {
@@ -889,11 +867,7 @@ export interface IProductModelForm {
     id: FormControl<string | null>;
     name: FormControl<string>;
     description: FormControl<string | null>;
-<<<<<<< HEAD
     products: FormArray<FormGroup<IProductForm>>;
-=======
-    products: FormArray;
->>>>>>> origin/master
 }
 
 export function ProductModelFormGroupFac(): FormGroup<IProductModelForm> {
@@ -962,11 +936,7 @@ export interface ISalesAgentForm {
     id: FormControl<number | null>;
     name: FormControl<string>;
     loginId: FormControl<string>;
-<<<<<<< HEAD
     customers: FormArray<FormGroup<ICustomerForm>>;
-=======
-    customers: FormArray;
->>>>>>> origin/master
 }
 
 export function SalesAgentFormGroupFac(): FormGroup<ISalesAgentForm> {

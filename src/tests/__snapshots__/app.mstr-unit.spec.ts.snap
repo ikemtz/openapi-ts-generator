@@ -75,11 +75,7 @@ export interface IBuildingForm {
     identifier: FormControl<string | null>;
     isEnabled: FormControl<boolean | null>;
     site: FormControl<ISite | null>;
-<<<<<<< HEAD
     units: FormArray<FormGroup<IUnitForm>>;
-=======
-    units: FormArray;
->>>>>>> origin/master
 }
 
 export function BuildingFormGroupFac(): FormGroup<IBuildingForm> {
@@ -227,13 +223,8 @@ export interface ISiteForm {
     zip: FormControl<string | null>;
     isEnabled: FormControl<boolean | null>;
     siteCollection: FormControl<ISiteCollection | null>;
-<<<<<<< HEAD
     buildings: FormArray<FormGroup<IBuildingForm>>;
     units: FormArray<FormGroup<IUnitForm>>;
-=======
-    buildings: FormArray;
-    units: FormArray;
->>>>>>> origin/master
 }
 
 export function SiteFormGroupFac(): FormGroup<ISiteForm> {
@@ -351,13 +342,8 @@ export interface ISiteCollectionForm {
     isSchedulerEnabled: FormControl<boolean>;
     siteCount: FormControl<number | null>;
     workCategoryTypes: FormControl<string | number>;
-<<<<<<< HEAD
     buildings: FormArray<FormGroup<IBuildingForm>>;
     sites: FormArray<FormGroup<ISiteForm>>;
-=======
-    buildings: FormArray;
-    sites: FormArray;
->>>>>>> origin/master
 }
 
 export function SiteCollectionFormGroupFac(): FormGroup<ISiteCollectionForm> {
@@ -460,11 +446,7 @@ export interface ITagForm {
     id: FormControl<string | null>;
     name: FormControl<string | null>;
     value: FormControl<string | null>;
-<<<<<<< HEAD
     unitTags: FormArray<FormGroup<IUnitTagForm>>;
-=======
-    unitTags: FormArray;
->>>>>>> origin/master
 }
 
 export function TagFormGroupFac(): FormGroup<ITagForm> {
@@ -542,11 +524,7 @@ export interface IUnitForm {
     building: FormControl<IBuilding | null>;
     site: FormControl<ISite | null>;
     unitType: FormControl<IUnitType | null>;
-<<<<<<< HEAD
     unitTags: FormArray<FormGroup<IUnitTagForm>>;
-=======
-    unitTags: FormArray;
->>>>>>> origin/master
 }
 
 export function UnitFormGroupFac(): FormGroup<IUnitForm> {
