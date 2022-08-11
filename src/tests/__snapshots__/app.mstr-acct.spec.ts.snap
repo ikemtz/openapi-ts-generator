@@ -38,17 +38,17 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { IAccount } from './account.model';
 
 export interface IAccountForm {
-    id: new FormControl<string | null>;
-    refId: new FormControl<string | null>;
-    name: new FormControl<string | null>;
-    parentAccountId: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    emailInvoice: new FormControl<boolean | null>;
-    tenantId: new FormControl<string | null>;
-    contactCount: new FormControl<number | null>;
-    parentAccount: new FormControl<IAccount | null>;
-    contacts: new FormArray;
-    inverseParentAccount: new FormArray;
+    id: FormControl<string | null>;
+    refId: FormControl<string | null>;
+    name: FormControl<string | null>;
+    parentAccountId: FormControl<string | null>;
+    isEnabled: FormControl<boolean | null>;
+    emailInvoice: FormControl<boolean | null>;
+    tenantId: FormControl<string | null>;
+    contactCount: FormControl<number | null>;
+    parentAccount: FormControl<IAccount | null>;
+    contacts: FormArray;
+    inverseParentAccount: FormArray;
 }
 
 export function AccountFormGroupFac(): FormGroup<IAccountForm> {
@@ -140,12 +140,12 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IAccountInsertRequestForm {
-    id: new FormControl<string | null>;
-    refId: new FormControl<string | null>;
-    name: new FormControl<string>;
-    parentAccountId: new FormControl<string | null>;
-    emailInvoice: new FormControl<boolean | null>;
-    contacts: new FormArray;
+    id: FormControl<string | null>;
+    refId: FormControl<string | null>;
+    name: FormControl<string>;
+    parentAccountId: FormControl<string | null>;
+    emailInvoice: FormControl<boolean | null>;
+    contacts: FormArray;
 }
 
 export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequestForm> {
@@ -216,13 +216,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IAccountUpdateRequestForm {
-    id: new FormControl<string | null>;
-    refId: new FormControl<string>;
-    name: new FormControl<string>;
-    parentAccountId: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    emailInvoice: new FormControl<boolean | null>;
-    contacts: new FormArray;
+    id: FormControl<string | null>;
+    refId: FormControl<string>;
+    name: FormControl<string>;
+    parentAccountId: FormControl<string | null>;
+    isEnabled: FormControl<boolean | null>;
+    emailInvoice: FormControl<boolean | null>;
+    contacts: FormArray;
 }
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequestForm> {
@@ -297,22 +297,22 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { IAccount } from './account.model';
 
 export interface IContactForm {
-    id: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    contactTypeId: new FormControl<string>;
-    accountId: new FormControl<string>;
-    firstName: new FormControl<string>;
-    lastName: new FormControl<string>;
-    middleName: new FormControl<string | null>;
-    addressLine1: new FormControl<string>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string>;
-    state: new FormControl<string>;
-    zip: new FormControl<string>;
-    emails: new FormControl<string | null>;
-    phone1: new FormControl<string | null>;
-    phone2: new FormControl<string | null>;
-    account: new FormControl<IAccount | null>;
+    id: FormControl<string | null>;
+    isEnabled: FormControl<boolean | null>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null>;
+    phone1: FormControl<string | null>;
+    phone2: FormControl<string | null>;
+    account: FormControl<IAccount | null>;
 }
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
@@ -419,20 +419,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IContactInsertRequestForm {
-    id: new FormControl<string | null>;
-    contactTypeId: new FormControl<string>;
-    accountId: new FormControl<string>;
-    firstName: new FormControl<string>;
-    lastName: new FormControl<string>;
-    middleName: new FormControl<string | null>;
-    addressLine1: new FormControl<string>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string>;
-    state: new FormControl<string>;
-    zip: new FormControl<string>;
-    emails: new FormControl<string | null>;
-    phone1: new FormControl<string | null>;
-    phone2: new FormControl<string | null>;
+    id: FormControl<string | null>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null>;
+    phone1: FormControl<string | null>;
+    phone2: FormControl<string | null>;
 }
 
 export function ContactInsertRequestFormGroupFac(): FormGroup<IContactInsertRequestForm> {
@@ -524,20 +524,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IContactUpdateRequestForm {
-    id: new FormControl<string | null>;
-    contactTypeId: new FormControl<string>;
-    accountId: new FormControl<string>;
-    firstName: new FormControl<string>;
-    lastName: new FormControl<string>;
-    middleName: new FormControl<string | null>;
-    addressLine1: new FormControl<string>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string>;
-    state: new FormControl<string>;
-    zip: new FormControl<string>;
-    emails: new FormControl<string | null>;
-    phone1: new FormControl<string | null>;
-    phone2: new FormControl<string | null>;
+    id: FormControl<string | null>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null>;
+    phone1: FormControl<string | null>;
+    phone2: FormControl<string | null>;
 }
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup<IContactUpdateRequestForm> {

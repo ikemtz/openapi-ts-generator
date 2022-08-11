@@ -26,12 +26,12 @@ import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
 
 export interface IContactForm {
-    id: new FormControl<string | null>;
-    accountId: new FormControl<string>;
-    addressLine1: new FormControl<string>;
-    contactType: new FormControl<ContactTypes>;
-    contactType2: new FormControl<ContactTypes2>;
-    contactType3: new FormControl<ContactTypes | null>;
+    id: FormControl<string | null>;
+    accountId: FormControl<string>;
+    addressLine1: FormControl<string>;
+    contactType: FormControl<ContactTypes>;
+    contactType2: FormControl<ContactTypes2>;
+    contactType3: FormControl<ContactTypes | null>;
 }
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
