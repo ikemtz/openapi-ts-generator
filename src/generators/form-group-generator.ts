@@ -31,6 +31,12 @@ export class FormGroupGenerator extends BaseGenerator<IEntity> {
     HandleBars.registerHelper('patternValidator', (x: PropertyType, y: IHelperContext) =>
       this.validatorFactory(x, y, 'pattern', 'pattern'),
     );
+    HandleBars.registerHelper('maxItemsValidator', (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, 'maxItems', 'maxItems'),
+    );
+    HandleBars.registerHelper('minItemsValidator', (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, 'minItems', 'minItems'),
+    );
   }
 
   public validatorFactory(
