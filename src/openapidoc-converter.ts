@@ -1,4 +1,4 @@
-import { isSchemaObject, OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
+import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';

@@ -48,7 +48,7 @@ export function AccountFormGroupFac(): FormGroup {
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
     parentAccount: new FormControl<IAccount | null>(null),
-    contacts: new FormArray([], { validators: Validators.compose([Validators.minItems(1), Validators.maxItems(3)]) }),
+    contacts: new FormArray([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     inverseParentAccount: new FormArray([]),
   });
 }
