@@ -49,6 +49,7 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ISalesAgent } from './sales-agent.model';
 
 export interface ICustomerForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     num: FormControl<string>;
     name: FormControl<string | null>;
@@ -59,6 +60,18 @@ export interface ICustomerForm {
     salesAgent: FormControl<ISalesAgent | null>;
     customerAddresses: FormArray;
     orders: FormArray;
+=======
+    id: new FormControl<string | null>;
+    num: new FormControl<string>;
+    name: new FormControl<string | null>;
+    companyName: new FormControl<string>;
+    salesAgentId: new FormControl<number>;
+    emailAddress: new FormControl<string | null>;
+    phone: new FormControl<string | null>;
+    salesAgent: new FormControl<ISalesAgent | null>;
+    customerAddresses: new FormArray;
+    orders: new FormArray;
+>>>>>>> origin/master
 }
 
 export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
@@ -144,6 +157,7 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ICustomer } from './customer.model';
 
 export interface ICustomerAddressForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     customerId: FormControl<string>;
     addressType: FormControl<string>;
@@ -154,6 +168,18 @@ export interface ICustomerAddressForm {
     countryRegion: FormControl<string>;
     postalCode: FormControl<string>;
     customer: FormControl<ICustomer | null>;
+=======
+    id: new FormControl<string | null>;
+    customerId: new FormControl<string>;
+    addressType: new FormControl<string>;
+    line1: new FormControl<string>;
+    line2: new FormControl<string | null>;
+    city: new FormControl<string>;
+    stateProvince: new FormControl<string>;
+    countryRegion: new FormControl<string>;
+    postalCode: new FormControl<string>;
+    customer: new FormControl<ICustomer | null>;
+>>>>>>> origin/master
 }
 
 export function CustomerAddressFormGroupFac(): FormGroup<ICustomerAddressForm> {
@@ -313,6 +339,7 @@ import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
 
 export interface IOrderForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     orderId: FormControl<number>;
     revisionNum: FormControl<number>;
@@ -337,6 +364,32 @@ export interface IOrderForm {
     shipToAddress: FormControl<IOrderAddress | null>;
     billToAddress: FormControl<IOrderAddress | null>;
     orderLineItems: FormArray;
+=======
+    id: new FormControl<string | null>;
+    orderId: new FormControl<number>;
+    revisionNum: new FormControl<number>;
+    date: new FormControl<Date>;
+    dueDate: new FormControl<Date>;
+    shipDate: new FormControl<Date | null>;
+    isOnlineOrder: new FormControl<boolean>;
+    num: new FormControl<string>;
+    purchaseOrderNum: new FormControl<string | null>;
+    customerId: new FormControl<string>;
+    shipToAddressId: new FormControl<string | null>;
+    billToAddressId: new FormControl<string | null>;
+    creditCardApprovalCode: new FormControl<string | null>;
+    subTotal: new FormControl<number>;
+    taxAmt: new FormControl<number>;
+    freight: new FormControl<number>;
+    totalDue: new FormControl<number>;
+    comment: new FormControl<string | null>;
+    statusType: new FormControl<OrderStatusTypes>;
+    shippingType: new FormControl<ShippingTypes>;
+    customer: new FormControl<ICustomer | null>;
+    shipToAddress: new FormControl<IOrderAddress | null>;
+    billToAddress: new FormControl<IOrderAddress | null>;
+    orderLineItems: new FormArray;
+>>>>>>> origin/master
 }
 
 export function OrderFormGroupFac(): FormGroup<IOrderForm> {
@@ -465,6 +518,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IOrderAddressForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     line1: FormControl<string>;
     line2: FormControl<string | null>;
@@ -474,6 +528,17 @@ export interface IOrderAddressForm {
     postalCode: FormControl<string>;
     billToOrders: FormArray;
     shipToOrders: FormArray;
+=======
+    id: new FormControl<string | null>;
+    line1: new FormControl<string>;
+    line2: new FormControl<string | null>;
+    city: new FormControl<string>;
+    stateProvince: new FormControl<string>;
+    countryRegion: new FormControl<string>;
+    postalCode: new FormControl<string>;
+    billToOrders: new FormArray;
+    shipToOrders: new FormArray;
+>>>>>>> origin/master
 }
 
 export function OrderAddressFormGroupFac(): FormGroup<IOrderAddressForm> {
@@ -555,6 +620,7 @@ import { IOrder } from './order.model';
 import { IProduct } from './product.model';
 
 export interface IOrderLineItemForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     orderId: FormControl<string>;
     orderQty: FormControl<number>;
@@ -564,6 +630,17 @@ export interface IOrderLineItemForm {
     lineTotal: FormControl<number>;
     order: FormControl<IOrder | null>;
     product: FormControl<IProduct | null>;
+=======
+    id: new FormControl<string | null>;
+    orderId: new FormControl<string>;
+    orderQty: new FormControl<number>;
+    productId: new FormControl<string>;
+    unitPrice: new FormControl<number>;
+    unitPriceDiscount: new FormControl<number>;
+    lineTotal: new FormControl<number>;
+    order: new FormControl<IOrder | null>;
+    product: new FormControl<IProduct | null>;
+>>>>>>> origin/master
 }
 
 export function OrderLineItemFormGroupFac(): FormGroup<IOrderLineItemForm> {
@@ -671,6 +748,7 @@ import { IProductModel } from './product-model.model';
 import { IProductCategory } from './product-category.model';
 
 export interface IProductForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     name: FormControl<string>;
     num: FormControl<string>;
@@ -688,6 +766,25 @@ export interface IProductForm {
     productModel: FormControl<IProductModel | null>;
     productCategory: FormControl<IProductCategory | null>;
     orderLineItems: FormArray;
+=======
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    num: new FormControl<string>;
+    color: new FormControl<string | null>;
+    standardCost: new FormControl<number>;
+    listPrice: new FormControl<number>;
+    size: new FormControl<string | null>;
+    weight: new FormControl<number | null>;
+    productCategoryId: new FormControl<string | null>;
+    productModelId: new FormControl<string | null>;
+    sellStartDate: new FormControl<Date>;
+    sellEndDate: new FormControl<Date | null>;
+    discontinuedDate: new FormControl<Date | null>;
+    thumbNailPhoto: new FormControl<string | null>;
+    productModel: new FormControl<IProductModel | null>;
+    productCategory: new FormControl<IProductCategory | null>;
+    orderLineItems: new FormArray;
+>>>>>>> origin/master
 }
 
 export function ProductFormGroupFac(): FormGroup<IProductForm> {
@@ -793,9 +890,15 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IProductCategoryForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     name: FormControl<string>;
     products: FormArray;
+=======
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    products: new FormArray;
+>>>>>>> origin/master
 }
 
 export function ProductCategoryFormGroupFac(): FormGroup<IProductCategoryForm> {
@@ -857,10 +960,17 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IProductModelForm {
+<<<<<<< HEAD
     id: FormControl<string | null>;
     name: FormControl<string>;
     description: FormControl<string | null>;
     products: FormArray;
+=======
+    id: new FormControl<string | null>;
+    name: new FormControl<string>;
+    description: new FormControl<string | null>;
+    products: new FormArray;
+>>>>>>> origin/master
 }
 
 export function ProductModelFormGroupFac(): FormGroup<IProductModelForm> {
@@ -925,10 +1035,17 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface ISalesAgentForm {
+<<<<<<< HEAD
     id: FormControl<number | null>;
     name: FormControl<string>;
     loginId: FormControl<string>;
     customers: FormArray;
+=======
+    id: new FormControl<number | null>;
+    name: new FormControl<string>;
+    loginId: new FormControl<string>;
+    customers: new FormArray;
+>>>>>>> origin/master
 }
 
 export function SalesAgentFormGroupFac(): FormGroup<ISalesAgentForm> {
