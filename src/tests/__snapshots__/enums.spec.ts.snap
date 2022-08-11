@@ -25,8 +25,17 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
 
-export function ContactFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IContactForm {
+    id: new FormControl<string | null>;
+    accountId: new FormControl<string>;
+    addressLine1: new FormControl<string>;
+    contactType: new FormControl<ContactTypes>;
+    contactType2: new FormControl<ContactTypes2>;
+    contactType3: new FormControl<ContactTypes | null>;
+}
+
+export function ContactFormGroupFac(): FormGroup<IContactForm> {
+  return new FormGroup<IContactForm>({
     id: new FormControl<string | null>(null),
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),

@@ -60,8 +60,14 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function MessageDtoFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IMessageDtoForm {
+    id: new FormControl<string | null>;
+    body: new FormControl<string>;
+    recipients: new FormArray;
+}
+
+export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
+  return new FormGroup<IMessageDtoForm>({
     id: new FormControl<string | null>(null),
     body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     recipients: new FormArray([], { validators: Validators.required } ),
@@ -118,8 +124,18 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function RecipientFormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface IRecipientForm {
+    id: new FormControl<string | null>;
+    ultiId: new FormControl<string>;
+    firstName: new FormControl<string>;
+    middleName: new FormControl<string | null>;
+    lastName: new FormControl<string>;
+    cellPhone1: new FormControl<string | null>;
+    homePhone1: new FormControl<string | null>;
+}
+
+export function RecipientFormGroupFac(): FormGroup<IRecipientForm> {
+  return new FormGroup<IRecipientForm>({
     id: new FormControl<string | null>(null),
     ultiId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
