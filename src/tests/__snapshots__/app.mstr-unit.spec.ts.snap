@@ -69,21 +69,12 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ISite } from './site.model';
 
 export interface IBuildingForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     siteId: FormControl<string | null>;
     identifier: FormControl<string | null>;
     isEnabled: FormControl<boolean | null>;
     site: FormControl<ISite | null>;
     units: FormArray;
-=======
-    id: new FormControl<string | null>;
-    siteId: new FormControl<string | null>;
-    identifier: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    site: new FormControl<ISite | null>;
-    units: new FormArray;
->>>>>>> origin/master
 }
 
 export function BuildingFormGroupFac(): FormGroup<IBuildingForm> {
@@ -215,7 +206,6 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ISiteCollection } from './site-collection.model';
 
 export interface ISiteForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     tenantId: FormControl<string | null>;
     accountId: FormControl<string | null>;
@@ -232,24 +222,6 @@ export interface ISiteForm {
     siteCollection: FormControl<ISiteCollection | null>;
     buildings: FormArray;
     units: FormArray;
-=======
-    id: new FormControl<string | null>;
-    tenantId: new FormControl<string | null>;
-    accountId: new FormControl<string | null>;
-    accountName: new FormControl<string | null>;
-    siteCollectionId: new FormControl<string | null>;
-    number: new FormControl<string | null>;
-    name: new FormControl<string | null>;
-    addressLine1: new FormControl<string | null>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string | null>;
-    state: new FormControl<string | null>;
-    zip: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    siteCollection: new FormControl<ISiteCollection | null>;
-    buildings: new FormArray;
-    units: new FormArray;
->>>>>>> origin/master
 }
 
 export function SiteFormGroupFac(): FormGroup<ISiteForm> {
@@ -352,7 +324,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface ISiteCollectionForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     tenantId: FormControl<string | null>;
     number: FormControl<string>;
@@ -368,23 +339,6 @@ export interface ISiteCollectionForm {
     workCategoryTypes: FormControl<string | number>;
     buildings: FormArray;
     sites: FormArray;
-=======
-    id: new FormControl<string | null>;
-    tenantId: new FormControl<string | null>;
-    number: new FormControl<string>;
-    name: new FormControl<string>;
-    code: new FormControl<string>;
-    addressLine1: new FormControl<string | null>;
-    addressLine2: new FormControl<string | null>;
-    city: new FormControl<string | null>;
-    state: new FormControl<string | null>;
-    zip: new FormControl<string | null>;
-    isSchedulerEnabled: new FormControl<boolean>;
-    siteCount: new FormControl<number | null>;
-    workCategoryTypes: new FormControl<string | number>;
-    buildings: new FormArray;
-    sites: new FormArray;
->>>>>>> origin/master
 }
 
 export function SiteCollectionFormGroupFac(): FormGroup<ISiteCollectionForm> {
@@ -483,17 +437,10 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface ITagForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     name: FormControl<string | null>;
     value: FormControl<string | null>;
     unitTags: FormArray;
-=======
-    id: new FormControl<string | null>;
-    name: new FormControl<string | null>;
-    value: new FormControl<string | null>;
-    unitTags: new FormArray;
->>>>>>> origin/master
 }
 
 export function TagFormGroupFac(): FormGroup<ITagForm> {
@@ -561,7 +508,6 @@ import { ISite } from './site.model';
 import { IUnitType } from './unit-type.model';
 
 export interface IUnitForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     number: FormControl<string | null>;
     unitTypeId: FormControl<string | null>;
@@ -572,18 +518,6 @@ export interface IUnitForm {
     site: FormControl<ISite | null>;
     unitType: FormControl<IUnitType | null>;
     unitTags: FormArray;
-=======
-    id: new FormControl<string | null>;
-    number: new FormControl<string | null>;
-    unitTypeId: new FormControl<string | null>;
-    siteId: new FormControl<string | null>;
-    buildingId: new FormControl<string | null>;
-    isEnabled: new FormControl<boolean | null>;
-    building: new FormControl<IBuilding | null>;
-    site: new FormControl<ISite | null>;
-    unitType: new FormControl<IUnitType | null>;
-    unitTags: new FormArray;
->>>>>>> origin/master
 }
 
 export function UnitFormGroupFac(): FormGroup<IUnitForm> {
@@ -671,21 +605,12 @@ import { ITag } from './tag.model';
 import { IUnit } from './unit.model';
 
 export interface IUnitTagForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     unitId: FormControl<string | null>;
     tagId: FormControl<string | null>;
     value: FormControl<string | null>;
     tag: FormControl<ITag | null>;
     unit: FormControl<IUnit | null>;
-=======
-    id: new FormControl<string | null>;
-    unitId: new FormControl<string | null>;
-    tagId: new FormControl<string | null>;
-    value: new FormControl<string | null>;
-    tag: new FormControl<ITag | null>;
-    unit: new FormControl<IUnit | null>;
->>>>>>> origin/master
 }
 
 export function UnitTagFormGroupFac(): FormGroup<IUnitTagForm> {
@@ -757,15 +682,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IUnitTypeForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     code: FormControl<string | null>;
     description: FormControl<string | null>;
-=======
-    id: new FormControl<string | null>;
-    code: new FormControl<string | null>;
-    description: new FormControl<string | null>;
->>>>>>> origin/master
 }
 
 export function UnitTypeFormGroupFac(): FormGroup<IUnitTypeForm> {

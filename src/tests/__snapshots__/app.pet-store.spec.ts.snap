@@ -46,13 +46,8 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IErrorForm {
-<<<<<<< HEAD
     code: FormControl<number>;
     message: FormControl<string>;
-=======
-    code: new FormControl<number>;
-    message: new FormControl<string>;
->>>>>>> origin/master
 }
 
 export function ErrorFormGroupFac(): FormGroup<IErrorForm> {
@@ -127,15 +122,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IPetForm {
-<<<<<<< HEAD
     id: FormControl<number | null>;
     name: FormControl<string>;
     tag: FormControl<string | null>;
-=======
-    id: new FormControl<number | null>;
-    name: new FormControl<string>;
-    tag: new FormControl<string | null>;
->>>>>>> origin/master
 }
 
 export function PetFormGroupFac(): FormGroup<IPetForm> {

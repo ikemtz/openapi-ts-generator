@@ -61,15 +61,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IMessageDtoForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     body: FormControl<string>;
     recipients: FormArray;
-=======
-    id: new FormControl<string | null>;
-    body: new FormControl<string>;
-    recipients: new FormArray;
->>>>>>> origin/master
 }
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
@@ -131,7 +125,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
 export interface IRecipientForm {
-<<<<<<< HEAD
     id: FormControl<string | null>;
     ultiId: FormControl<string>;
     firstName: FormControl<string>;
@@ -139,15 +132,6 @@ export interface IRecipientForm {
     lastName: FormControl<string>;
     cellPhone1: FormControl<string | null>;
     homePhone1: FormControl<string | null>;
-=======
-    id: new FormControl<string | null>;
-    ultiId: new FormControl<string>;
-    firstName: new FormControl<string>;
-    middleName: new FormControl<string | null>;
-    lastName: new FormControl<string>;
-    cellPhone1: new FormControl<string | null>;
-    homePhone1: new FormControl<string | null>;
->>>>>>> origin/master
 }
 
 export function RecipientFormGroupFac(): FormGroup<IRecipientForm> {
