@@ -114,6 +114,8 @@ export class OpenApiDocConverter {
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
       maximum: schemaWrapperInfo.propertySchemaObject.maximum,
       minimum: schemaWrapperInfo.propertySchemaObject.minimum,
+      minItems: schemaWrapperInfo.propertySchemaObject.minItems,
+      maxItems: schemaWrapperInfo.propertySchemaObject.maxItems,
       description: schemaWrapperInfo.propertySchemaObject.description,
       pattern: schemaWrapperInfo.propertySchemaObject.pattern,
       hasMultipleValidators: validatorCount > 1,
@@ -173,6 +175,7 @@ export class OpenApiDocConverter {
 
   public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
     const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
+    const refSchema = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
@@ -187,6 +190,13 @@ export class OpenApiDocConverter {
       isArray: false,
       isEnum: (propertySchema.enum || []).length > 0,
       hasValidators: validatorCount > 0,
+      hasMultipleValidators: validatorCount > 1,
+      maxLength: refSchema?.maxLength,
+      minLength: refSchema?.minLength,
+      maximum: refSchema?.maximum,
+      minimum: refSchema?.minimum,
+      minItems: refSchema?.minItems,
+      maxItems: refSchema?.maxItems,
     };
   }
   getValidatorCount(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): number {
@@ -197,6 +207,8 @@ export class OpenApiDocConverter {
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minimum) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxItems) +
+      +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minItems) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.pattern)
     );
   }
