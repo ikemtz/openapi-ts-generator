@@ -52,9 +52,13 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 
-export function StringArrayTestObjectFormGroupFac(): FormGroup {
-  return new FormGroup({
-    typeCodes: new FormControl([]),
+export interface IStringArrayTestObjectForm {
+    typeCodes: new FormArray;
+}
+
+export function StringArrayTestObjectFormGroupFac(): FormGroup<IStringArrayTestObjectForm> {
+  return new FormGroup<IStringArrayTestObjectForm>({
+    typeCodes: new FormArray([]),
   });
 }
 "

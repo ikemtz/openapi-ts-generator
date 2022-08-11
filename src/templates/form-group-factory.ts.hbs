@@ -10,14 +10,31 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
 import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 
-export function {{name}}FormGroupFac(): FormGroup {
-  return new FormGroup({
+export interface I{{name}}Form {
+{{#valueProperties}}
+{{#if isArray}} 
+    {{name}}: new FormArray;
+{{else}} 
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+{{/if}}
+{{/valueProperties}}
+{{#referenceProperties}}
+{{#if isArray}} 
+    {{name}}: new FormArray;
+{{else}} 
+    {{name}}: new FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+{{/if}}
+{{/referenceProperties}}
+}
+
+export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
+  return new FormGroup<I{{name}}Form>({
 {{#valueProperties}}
 {{#if isArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]) })),
+    {{name}}: new FormArray([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]) })),
 {{else}}
-    {{name}}: new FormControl([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}} }{{/if}}),
+    {{name}}: new FormArray([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}} }{{/if}}),
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
