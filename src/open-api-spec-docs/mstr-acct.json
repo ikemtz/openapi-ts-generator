@@ -711,6 +711,8 @@
             "$ref": "#/components/schemas/Account"
           },
           "contacts": {
+            "minItems": 1,
+            "maxItems": 3,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Contact"

@@ -20,16 +20,18 @@ export class FormGroupGenerator extends BaseGenerator<IEntity> {
       });
   }
   public registerHelpers() {
-    HandleBars.registerHelper('minimumValidator', (x: PropertyType, y: IHelperContext) => this.validatorFactory(x, y, 'minimum', 'min'));
-    HandleBars.registerHelper('maximumValidator', (x: PropertyType, y: IHelperContext) => this.validatorFactory(x, y, 'maximum', 'max'));
-    HandleBars.registerHelper('minLengthValidator', (x: PropertyType, y: IHelperContext) =>
-      this.validatorFactory(x, y, 'minLength', 'minLength'),
-    );
-    HandleBars.registerHelper('maxLengthValidator', (x: PropertyType, y: IHelperContext) =>
-      this.validatorFactory(x, y, 'maxLength', 'maxLength'),
-    );
-    HandleBars.registerHelper('patternValidator', (x: PropertyType, y: IHelperContext) =>
-      this.validatorFactory(x, y, 'pattern', 'pattern'),
+    this.registerValidatorHelper('minimum', 'min');
+    this.registerValidatorHelper('maximum', 'max');
+    this.registerValidatorHelper('minLength');
+    this.registerValidatorHelper('maxLength');
+    this.registerValidatorHelper('maxItems', 'maxLength');
+    this.registerValidatorHelper('minItems', 'minLength');
+    this.registerValidatorHelper('pattern');
+  }
+
+  public registerValidatorHelper(validatorName: string, angularValidatorName: string = validatorName): void {
+    HandleBars.registerHelper(`${validatorName}Validator`, (x: PropertyType, y: IHelperContext) =>
+      this.validatorFactory(x, y, validatorName, angularValidatorName),
     );
   }
 

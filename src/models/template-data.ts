@@ -35,6 +35,8 @@ export interface IValueProperty {
   minLength?: number;
   maximum?: number;
   minimum?: number;
+  maxItems?: number;
+  minItems?: number;
   description?: string;
   pattern?: string;
   initialValue: string;
@@ -46,6 +48,13 @@ export interface IReferenceProperty {
   referenceTypeName: string;
   typeScriptType: string;
   hasValidators: boolean;
+  hasMultipleValidators: boolean;
+  maxItems?: number;
+  minItems?: number;
+  maxLength?: number;
+  minLength?: number;
+  maximum?: number;
+  minimum?: number;
   isArray: boolean;
   required: boolean;
   isEnum?: boolean;
