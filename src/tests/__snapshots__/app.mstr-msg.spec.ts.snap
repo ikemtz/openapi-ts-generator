@@ -59,18 +59,19 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IRecipientForm } from './recipient.form-group-fac';
 
 export interface IMessageDtoForm {
     id: FormControl<string | null>;
     body: FormControl<string>;
-    recipients: FormArray;
+    recipients: FormArray<FormGroup<IRecipientForm>>;
 }
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
   return new FormGroup<IMessageDtoForm>({
     id: new FormControl<string | null>(null),
     body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    recipients: new FormArray([], { validators: Validators.required } ),
+    recipients: new FormArray<FormGroup<IRecipientForm>>([], { validators: Validators.required } ),
   });
 }
 "

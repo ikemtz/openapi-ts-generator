@@ -47,6 +47,8 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ISalesAgent } from './sales-agent.model';
+import { ICustomerAddressForm } from './customer-address.form-group-fac';
+import { IOrderForm } from './order.form-group-fac';
 
 export interface ICustomerForm {
     id: FormControl<string | null>;
@@ -57,8 +59,8 @@ export interface ICustomerForm {
     emailAddress: FormControl<string | null>;
     phone: FormControl<string | null>;
     salesAgent: FormControl<ISalesAgent | null>;
-    customerAddresses: FormArray;
-    orders: FormArray;
+    customerAddresses: FormArray<FormGroup<ICustomerAddressForm>>;
+    orders: FormArray<FormGroup<IOrderForm>>;
 }
 
 export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
@@ -71,8 +73,8 @@ export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
     emailAddress: new FormControl<string | null>(null, { validators: Validators.maxLength(250) } ),
     phone: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
     salesAgent: new FormControl<ISalesAgent | null>(null),
-    customerAddresses: new FormArray([]),
-    orders: new FormArray([]),
+    customerAddresses: new FormArray<FormGroup<ICustomerAddressForm>>([]),
+    orders: new FormArray<FormGroup<IOrderForm>>([]),
   });
 }
 "
@@ -311,6 +313,7 @@ import { OrderStatusTypes } from './order-status-types.enum';
 import { ShippingTypes } from './shipping-types.enum';
 import { ICustomer } from './customer.model';
 import { IOrderAddress } from './order-address.model';
+import { IOrderLineItemForm } from './order-line-item.form-group-fac';
 
 export interface IOrderForm {
     id: FormControl<string | null>;
@@ -336,7 +339,7 @@ export interface IOrderForm {
     customer: FormControl<ICustomer | null>;
     shipToAddress: FormControl<IOrderAddress | null>;
     billToAddress: FormControl<IOrderAddress | null>;
-    orderLineItems: FormArray;
+    orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 
 export function OrderFormGroupFac(): FormGroup<IOrderForm> {
@@ -364,7 +367,7 @@ export function OrderFormGroupFac(): FormGroup<IOrderForm> {
     customer: new FormControl<ICustomer | null>(null),
     shipToAddress: new FormControl<IOrderAddress | null>(null),
     billToAddress: new FormControl<IOrderAddress | null>(null),
-    orderLineItems: new FormArray([]),
+    orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
 "
@@ -463,6 +466,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IOrderForm } from './order.form-group-fac';
 
 export interface IOrderAddressForm {
     id: FormControl<string | null>;
@@ -472,8 +476,8 @@ export interface IOrderAddressForm {
     stateProvince: FormControl<string>;
     countryRegion: FormControl<string>;
     postalCode: FormControl<string>;
-    billToOrders: FormArray;
-    shipToOrders: FormArray;
+    billToOrders: FormArray<FormGroup<IOrderForm>>;
+    shipToOrders: FormArray<FormGroup<IOrderForm>>;
 }
 
 export function OrderAddressFormGroupFac(): FormGroup<IOrderAddressForm> {
@@ -485,8 +489,8 @@ export function OrderAddressFormGroupFac(): FormGroup<IOrderAddressForm> {
     stateProvince: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     countryRegion: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     postalCode: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
-    billToOrders: new FormArray([]),
-    shipToOrders: new FormArray([]),
+    billToOrders: new FormArray<FormGroup<IOrderForm>>([]),
+    shipToOrders: new FormArray<FormGroup<IOrderForm>>([]),
   });
 }
 "
@@ -669,6 +673,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { IProductModel } from './product-model.model';
 import { IProductCategory } from './product-category.model';
+import { IOrderLineItemForm } from './order-line-item.form-group-fac';
 
 export interface IProductForm {
     id: FormControl<string | null>;
@@ -687,7 +692,7 @@ export interface IProductForm {
     thumbNailPhoto: FormControl<string | null>;
     productModel: FormControl<IProductModel | null>;
     productCategory: FormControl<IProductCategory | null>;
-    orderLineItems: FormArray;
+    orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 
 export function ProductFormGroupFac(): FormGroup<IProductForm> {
@@ -708,7 +713,7 @@ export function ProductFormGroupFac(): FormGroup<IProductForm> {
     thumbNailPhoto: new FormControl<string | null>(null, { validators: Validators.maxLength(5000) } ),
     productModel: new FormControl<IProductModel | null>(null),
     productCategory: new FormControl<IProductCategory | null>(null),
-    orderLineItems: new FormArray([]),
+    orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
 "
@@ -791,18 +796,19 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IProductForm } from './product.form-group-fac';
 
 export interface IProductCategoryForm {
     id: FormControl<string | null>;
     name: FormControl<string>;
-    products: FormArray;
+    products: FormArray<FormGroup<IProductForm>>;
 }
 
 export function ProductCategoryFormGroupFac(): FormGroup<IProductCategoryForm> {
   return new FormGroup<IProductCategoryForm>({
     id: new FormControl<string | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
-    products: new FormArray([]),
+    products: new FormArray<FormGroup<IProductForm>>([]),
   });
 }
 "
@@ -855,12 +861,13 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IProductForm } from './product.form-group-fac';
 
 export interface IProductModelForm {
     id: FormControl<string | null>;
     name: FormControl<string>;
     description: FormControl<string | null>;
-    products: FormArray;
+    products: FormArray<FormGroup<IProductForm>>;
 }
 
 export function ProductModelFormGroupFac(): FormGroup<IProductModelForm> {
@@ -868,7 +875,7 @@ export function ProductModelFormGroupFac(): FormGroup<IProductModelForm> {
     id: new FormControl<string | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     description: new FormControl<string | null>(null, { validators: Validators.maxLength(500) } ),
-    products: new FormArray([]),
+    products: new FormArray<FormGroup<IProductForm>>([]),
   });
 }
 "
@@ -923,12 +930,13 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ICustomerForm } from './customer.form-group-fac';
 
 export interface ISalesAgentForm {
     id: FormControl<number | null>;
     name: FormControl<string>;
     loginId: FormControl<string>;
-    customers: FormArray;
+    customers: FormArray<FormGroup<ICustomerForm>>;
 }
 
 export function SalesAgentFormGroupFac(): FormGroup<ISalesAgentForm> {
@@ -936,7 +944,7 @@ export function SalesAgentFormGroupFac(): FormGroup<ISalesAgentForm> {
     id: new FormControl<number | null>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),
     loginId: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(256)]), nonNullable: true }),
-    customers: new FormArray([]),
+    customers: new FormArray<FormGroup<ICustomerForm>>([]),
   });
 }
 "

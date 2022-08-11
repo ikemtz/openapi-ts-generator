@@ -36,6 +36,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { IAccount } from './account.model';
+import { IAccountForm } from './account.form-group-fac';
+import { IContactForm } from './contact.form-group-fac';
 
 export interface IAccountForm {
     id: FormControl<string | null>;
@@ -47,8 +49,8 @@ export interface IAccountForm {
     tenantId: FormControl<string | null>;
     contactCount: FormControl<number | null>;
     parentAccount: FormControl<IAccount | null>;
-    contacts: FormArray;
-    inverseParentAccount: FormArray;
+    contacts: FormArray<FormGroup<IContactForm>>;
+    inverseParentAccount: FormArray<FormGroup<IAccountForm>>;
 }
 
 export function AccountFormGroupFac(): FormGroup<IAccountForm> {
@@ -62,8 +64,8 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
     parentAccount: new FormControl<IAccount | null>(null),
-    contacts: new FormArray([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
-    inverseParentAccount: new FormArray([]),
+    contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
+    inverseParentAccount: new FormArray<FormGroup<IAccountForm>>([]),
   });
 }
 "
@@ -138,6 +140,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IContactForm } from './contact.form-group-fac';
 
 export interface IAccountInsertRequestForm {
     id: FormControl<string | null>;
@@ -145,7 +148,7 @@ export interface IAccountInsertRequestForm {
     name: FormControl<string>;
     parentAccountId: FormControl<string | null>;
     emailInvoice: FormControl<boolean | null>;
-    contacts: FormArray;
+    contacts: FormArray<FormGroup<IContactForm>>;
 }
 
 export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequestForm> {
@@ -155,7 +158,7 @@ export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequ
     name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     parentAccountId: new FormControl<string | null>(null),
     emailInvoice: new FormControl<boolean | null>(null),
-    contacts: new FormArray([]),
+    contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
 }
 "
@@ -214,6 +217,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { IContactForm } from './contact.form-group-fac';
 
 export interface IAccountUpdateRequestForm {
     id: FormControl<string | null>;
@@ -222,7 +226,7 @@ export interface IAccountUpdateRequestForm {
     parentAccountId: FormControl<string | null>;
     isEnabled: FormControl<boolean | null>;
     emailInvoice: FormControl<boolean | null>;
-    contacts: FormArray;
+    contacts: FormArray<FormGroup<IContactForm>>;
 }
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequestForm> {
@@ -233,7 +237,7 @@ export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequ
     parentAccountId: new FormControl<string | null>(null),
     isEnabled: new FormControl<boolean | null>(null),
     emailInvoice: new FormControl<boolean | null>(null),
-    contacts: new FormArray([]),
+    contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
 }
 "
