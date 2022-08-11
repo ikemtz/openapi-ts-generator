@@ -90,9 +90,9 @@ import { IRecipient } from './recipient.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IMessageDto {
-  id?: string;
-  body?: string;
-  recipients?: IRecipient[];
+  id?: string | null;
+  body?: string | null;
+  recipients?: IRecipient[] | null;;
 }
 "
 `;
@@ -159,13 +159,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IRecipient {
-  id?: string;
-  ultiId?: string;
-  firstName?: string;
-  middleName?: string;
-  lastName?: string;
-  cellPhone1?: string;
-  homePhone1?: string;
+  id?: string | null;
+  ultiId?: string | null;
+  firstName?: string | null;
+  middleName?: string | null;
+  lastName?: string | null;
+  cellPhone1?: string | null;
+  homePhone1?: string | null;
 }
 "
 `;

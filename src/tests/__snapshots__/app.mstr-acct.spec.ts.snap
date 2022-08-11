@@ -87,17 +87,17 @@ import { IContact } from './contact.model';
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IAccount {
-  id?: string;
-  refId?: string;
-  name?: string;
-  parentAccountId?: string;
-  isEnabled?: boolean;
-  emailInvoice?: boolean;
-  tenantId?: string;
-  contactCount?: number;
-  parentAccount?: IAccount;
-  contacts?: IContact[];
-  inverseParentAccount?: IAccount[];
+  id?: string | null;
+  refId?: string | null;
+  name?: string | null;
+  parentAccountId?: string | null;
+  isEnabled?: boolean | null;
+  emailInvoice?: boolean | null;
+  tenantId?: string | null;
+  contactCount?: number | null;
+  parentAccount?: IAccount | null;;
+  contacts?: IContact[] | null;;
+  inverseParentAccount?: IAccount[] | null;;
 }
 "
 `;
@@ -177,12 +177,12 @@ import { IContact } from './contact.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IAccountInsertRequest {
-  id?: string;
-  refId?: string;
-  name?: string;
-  parentAccountId?: string;
-  emailInvoice?: boolean;
-  contacts?: IContact[];
+  id?: string | null;
+  refId?: string | null;
+  name?: string | null;
+  parentAccountId?: string | null;
+  emailInvoice?: boolean | null;
+  contacts?: IContact[] | null;;
 }
 "
 `;
@@ -256,13 +256,13 @@ import { IContact } from './contact.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IAccountUpdateRequest {
-  id?: string;
-  refId?: string;
-  name?: string;
-  parentAccountId?: string;
-  isEnabled?: boolean;
-  emailInvoice?: boolean;
-  contacts?: IContact[];
+  id?: string | null;
+  refId?: string | null;
+  name?: string | null;
+  parentAccountId?: string | null;
+  isEnabled?: boolean | null;
+  emailInvoice?: boolean | null;
+  contacts?: IContact[] | null;;
 }
 "
 `;
@@ -358,22 +358,22 @@ export interface IContact {
 /**
  * Unique Identifier
  */
-  id?: string;
-  isEnabled?: boolean;
-  contactTypeId?: string;
-  accountId?: string;
-  firstName?: string;
-  lastName?: string;
-  middleName?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  emails?: string;
-  phone1?: string;
-  phone2?: string;
-  account?: IAccount;
+  id?: string | null;
+  isEnabled?: boolean | null;
+  contactTypeId?: string | null;
+  accountId?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  middleName?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  emails?: string | null;
+  phone1?: string | null;
+  phone2?: string | null;
+  account?: IAccount | null;;
 }
 "
 `;
@@ -470,20 +470,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactInsertRequest {
-  id?: string;
-  contactTypeId?: string;
-  accountId?: string;
-  firstName?: string;
-  lastName?: string;
-  middleName?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  emails?: string;
-  phone1?: string;
-  phone2?: string;
+  id?: string | null;
+  contactTypeId?: string | null;
+  accountId?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  middleName?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  emails?: string | null;
+  phone1?: string | null;
+  phone2?: string | null;
 }
 "
 `;
@@ -575,20 +575,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactUpdateRequest {
-  id?: string;
-  contactTypeId?: string;
-  accountId?: string;
-  firstName?: string;
-  lastName?: string;
-  middleName?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  emails?: string;
-  phone1?: string;
-  phone2?: string;
+  id?: string | null;
+  contactTypeId?: string | null;
+  accountId?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  middleName?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  emails?: string | null;
+  phone1?: string | null;
+  phone2?: string | null;
 }
 "
 `;

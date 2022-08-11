@@ -105,12 +105,12 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IBuilding {
-  id?: string;
-  siteId?: string;
-  identifier?: string;
-  isEnabled?: boolean;
-  site?: ISite;
-  units?: IUnit[];
+  id?: string | null;
+  siteId?: string | null;
+  identifier?: string | null;
+  isEnabled?: boolean | null;
+  site?: ISite | null;;
+  units?: IUnit[] | null;;
 }
 "
 `;
@@ -265,22 +265,22 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISite {
-  id?: string;
-  tenantId?: string;
-  accountId?: string;
-  accountName?: string;
-  siteCollectionId?: string;
-  number?: string;
-  name?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  isEnabled?: boolean;
-  siteCollection?: ISiteCollection;
-  buildings?: IBuilding[];
-  units?: IUnit[];
+  id?: string | null;
+  tenantId?: string | null;
+  accountId?: string | null;
+  accountName?: string | null;
+  siteCollectionId?: string | null;
+  number?: string | null;
+  name?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  isEnabled?: boolean | null;
+  siteCollection?: ISiteCollection | null;;
+  buildings?: IBuilding[] | null;;
+  units?: IUnit[] | null;;
 }
 "
 `;
@@ -382,21 +382,21 @@ import { ISite } from './site.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISiteCollection {
-  id?: string;
-  tenantId?: string;
-  number?: string;
-  name?: string;
-  code?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  isSchedulerEnabled?: boolean;
-  siteCount?: number;
-  workCategoryTypes?: string | number;
-  buildings?: IBuilding[];
-  sites?: ISite[];
+  id?: string | null;
+  tenantId?: string | null;
+  number?: string | null;
+  name?: string | null;
+  code?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  isSchedulerEnabled?: boolean | null;
+  siteCount?: number | null;
+  workCategoryTypes?: string | number | null;
+  buildings?: IBuilding[] | null;;
+  sites?: ISite[] | null;;
 }
 "
 `;
@@ -473,10 +473,10 @@ import { IUnitTag } from './unit-tag.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ITag {
-  id?: string;
-  name?: string;
-  value?: string;
-  unitTags?: IUnitTag[];
+  id?: string | null;
+  name?: string | null;
+  value?: string | null;
+  unitTags?: IUnitTag[] | null;;
 }
 "
 `;
@@ -560,16 +560,16 @@ import { IUnitTag } from './unit-tag.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnit {
-  id?: string;
-  number?: string;
-  unitTypeId?: string;
-  siteId?: string;
-  buildingId?: string;
-  isEnabled?: boolean;
-  building?: IBuilding;
-  site?: ISite;
-  unitType?: IUnitType;
-  unitTags?: IUnitTag[];
+  id?: string | null;
+  number?: string | null;
+  unitTypeId?: string | null;
+  siteId?: string | null;
+  buildingId?: string | null;
+  isEnabled?: boolean | null;
+  building?: IBuilding | null;;
+  site?: ISite | null;;
+  unitType?: IUnitType | null;;
+  unitTags?: IUnitTag[] | null;;
 }
 "
 `;
@@ -647,12 +647,12 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitTag {
-  id?: string;
-  unitId?: string;
-  tagId?: string;
-  value?: string;
-  tag?: ITag;
-  unit?: IUnit;
+  id?: string | null;
+  unitId?: string | null;
+  tagId?: string | null;
+  value?: string | null;
+  tag?: ITag | null;;
+  unit?: IUnit | null;;
 }
 "
 `;
@@ -714,9 +714,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitType {
-  id?: string;
-  code?: string;
-  description?: string;
+  id?: string | null;
+  code?: string | null;
+  description?: string | null;
 }
 "
 `;
@@ -826,12 +826,12 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IBuilding {
-  id?: string;
-  siteId?: string;
-  identifier?: string;
-  isEnabled?: boolean;
-  site?: ISite;
-  units?: IUnit[];
+  id?: string | null;
+  siteId?: string | null;
+  identifier?: string | null;
+  isEnabled?: boolean | null;
+  site?: ISite | null;;
+  units?: IUnit[] | null;;
 }
 "
 `;
@@ -923,22 +923,22 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISite {
-  id?: string;
-  tenantId?: string;
-  accountId?: string;
-  accountName?: string;
-  siteCollectionId?: string;
-  number?: string;
-  name?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  isEnabled?: boolean;
-  siteCollection?: ISiteCollection;
-  buildings?: IBuilding[];
-  units?: IUnit[];
+  id?: string | null;
+  tenantId?: string | null;
+  accountId?: string | null;
+  accountName?: string | null;
+  siteCollectionId?: string | null;
+  number?: string | null;
+  name?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  isEnabled?: boolean | null;
+  siteCollection?: ISiteCollection | null;;
+  buildings?: IBuilding[] | null;;
+  units?: IUnit[] | null;;
 }
 "
 `;
@@ -987,21 +987,21 @@ import { ISite } from './site.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISiteCollection {
-  id?: string;
-  tenantId?: string;
-  number?: string;
-  name?: string;
-  code?: string;
-  addressLine1?: string;
-  addressLine2?: string;
-  city?: string;
-  state?: string;
-  zip?: string;
-  isSchedulerEnabled?: boolean;
-  siteCount?: number;
-  workCategoryTypes?: string | number;
-  buildings?: IBuilding[];
-  sites?: ISite[];
+  id?: string | null;
+  tenantId?: string | null;
+  number?: string | null;
+  name?: string | null;
+  code?: string | null;
+  addressLine1?: string | null;
+  addressLine2?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zip?: string | null;
+  isSchedulerEnabled?: boolean | null;
+  siteCount?: number | null;
+  workCategoryTypes?: string | number | null;
+  buildings?: IBuilding[] | null;;
+  sites?: ISite[] | null;;
 }
 "
 `;
@@ -1048,10 +1048,10 @@ import { IUnitTag } from './unit-tag.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ITag {
-  id?: string;
-  name?: string;
-  value?: string;
-  unitTags?: IUnitTag[];
+  id?: string | null;
+  name?: string | null;
+  value?: string | null;
+  unitTags?: IUnitTag[] | null;;
 }
 "
 `;
@@ -1090,16 +1090,16 @@ import { IUnitTag } from './unit-tag.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnit {
-  id?: string;
-  number?: string;
-  unitTypeId?: string;
-  siteId?: string;
-  buildingId?: string;
-  isEnabled?: boolean;
-  building?: IBuilding;
-  site?: ISite;
-  unitType?: IUnitType;
-  unitTags?: IUnitTag[];
+  id?: string | null;
+  number?: string | null;
+  unitTypeId?: string | null;
+  siteId?: string | null;
+  buildingId?: string | null;
+  isEnabled?: boolean | null;
+  building?: IBuilding | null;;
+  site?: ISite | null;;
+  unitType?: IUnitType | null;;
+  unitTags?: IUnitTag[] | null;;
 }
 "
 `;
@@ -1142,12 +1142,12 @@ import { IUnit } from './unit.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitTag {
-  id?: string;
-  unitId?: string;
-  tagId?: string;
-  value?: string;
-  tag?: ITag;
-  unit?: IUnit;
+  id?: string | null;
+  unitId?: string | null;
+  tagId?: string | null;
+  value?: string | null;
+  tag?: ITag | null;;
+  unit?: IUnit | null;;
 }
 "
 `;
@@ -1182,9 +1182,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IUnitType {
-  id?: string;
-  code?: string;
-  description?: string;
+  id?: string | null;
+  code?: string | null;
+  description?: string | null;
 }
 "
 `;

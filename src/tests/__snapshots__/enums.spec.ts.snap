@@ -64,12 +64,12 @@ export interface IContact {
 /**
  * Unique Identifier
  */
-  id?: string;
-  accountId?: string;
-  addressLine1?: string;
-  contactType?: ContactTypes;
-  contactType2?: ContactTypes2;
-  contactType3?: ContactTypes;
+  id?: string | null;
+  accountId?: string | null;
+  addressLine1?: string | null;
+  contactType?: ContactTypes | null;;
+  contactType2?: ContactTypes2 | null;;
+  contactType3?: ContactTypes | null;;
 }
 "
 `;
