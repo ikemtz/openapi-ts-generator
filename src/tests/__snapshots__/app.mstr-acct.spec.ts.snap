@@ -179,7 +179,7 @@ import { IContact } from './contact.model';
 export interface IAccountInsertRequest {
   id?: string | null;
   refId?: string | null;
-  name?: string | null;
+  name?: string;
   parentAccountId?: string | null;
   emailInvoice?: boolean | null;
   contacts?: IContact[] | null;
@@ -257,8 +257,8 @@ import { IContact } from './contact.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IAccountUpdateRequest {
   id?: string | null;
-  refId?: string | null;
-  name?: string | null;
+  refId?: string;
+  name?: string;
   parentAccountId?: string | null;
   isEnabled?: boolean | null;
   emailInvoice?: boolean | null;
@@ -360,16 +360,16 @@ export interface IContact {
  */
   id?: string | null;
   isEnabled?: boolean | null;
-  contactTypeId?: string | null;
-  accountId?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
+  contactTypeId?: string;
+  accountId?: string;
+  firstName?: string;
+  lastName?: string;
   middleName?: string | null;
-  addressLine1?: string | null;
+  addressLine1?: string;
   addressLine2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  zip?: string | null;
+  city?: string;
+  state?: string;
+  zip?: string;
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;
@@ -471,16 +471,16 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactInsertRequest {
   id?: string | null;
-  contactTypeId?: string | null;
-  accountId?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
+  contactTypeId?: string;
+  accountId?: string;
+  firstName?: string;
+  lastName?: string;
   middleName?: string | null;
-  addressLine1?: string | null;
+  addressLine1?: string;
   addressLine2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  zip?: string | null;
+  city?: string;
+  state?: string;
+  zip?: string;
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;
@@ -576,16 +576,16 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IContactUpdateRequest {
   id?: string | null;
-  contactTypeId?: string | null;
-  accountId?: string | null;
-  firstName?: string | null;
-  lastName?: string | null;
+  contactTypeId?: string;
+  accountId?: string;
+  firstName?: string;
+  lastName?: string;
   middleName?: string | null;
-  addressLine1?: string | null;
+  addressLine1?: string;
   addressLine2?: string | null;
-  city?: string | null;
-  state?: string | null;
-  zip?: string | null;
+  city?: string;
+  state?: string;
+  zip?: string;
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;

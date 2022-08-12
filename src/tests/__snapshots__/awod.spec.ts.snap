@@ -96,10 +96,10 @@ import { IOrder } from './order.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ICustomer {
   id?: string | null;
-  num?: string | null;
+  num?: string;
   name?: string | null;
-  companyName?: string | null;
-  salesAgentId?: number | null;
+  companyName?: string;
+  salesAgentId?: number;
   emailAddress?: string | null;
   phone?: string | null;
   salesAgent?: ISalesAgent | null;
@@ -189,14 +189,14 @@ import { ICustomer } from './customer.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ICustomerAddress {
   id?: string | null;
-  customerId?: string | null;
-  addressType?: string | null;
-  line1?: string | null;
+  customerId?: string;
+  addressType?: string;
+  line1?: string;
   line2?: string | null;
-  city?: string | null;
-  stateProvince?: string | null;
-  countryRegion?: string | null;
-  postalCode?: string | null;
+  city?: string;
+  stateProvince?: string;
+  countryRegion?: string;
+  postalCode?: string;
   customer?: ICustomer | null;
 }
 "
@@ -391,25 +391,25 @@ import { IOrderLineItem } from './order-line-item.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrder {
   id?: string | null;
-  orderId?: number | null;
-  revisionNum?: number | null;
-  date?: Date | null;
-  dueDate?: Date | null;
+  orderId?: number;
+  revisionNum?: number;
+  date?: Date;
+  dueDate?: Date;
   shipDate?: Date | null;
-  isOnlineOrder?: boolean | null;
-  num?: string | null;
+  isOnlineOrder?: boolean;
+  num?: string;
   purchaseOrderNum?: string | null;
-  customerId?: string | null;
+  customerId?: string;
   shipToAddressId?: string | null;
   billToAddressId?: string | null;
   creditCardApprovalCode?: string | null;
-  subTotal?: number | null;
-  taxAmt?: number | null;
-  freight?: number | null;
-  totalDue?: number | null;
+  subTotal?: number;
+  taxAmt?: number;
+  freight?: number;
+  totalDue?: number;
   comment?: string | null;
-  statusType?: OrderStatusTypes | null;
-  shippingType?: ShippingTypes | null;
+  statusType?: OrderStatusTypes;
+  shippingType?: ShippingTypes;
   customer?: ICustomer | null;
   shipToAddress?: IOrderAddress | null;
   billToAddress?: IOrderAddress | null;
@@ -510,12 +510,12 @@ import { IOrder } from './order.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrderAddress {
   id?: string | null;
-  line1?: string | null;
+  line1?: string;
   line2?: string | null;
-  city?: string | null;
-  stateProvince?: string | null;
-  countryRegion?: string | null;
-  postalCode?: string | null;
+  city?: string;
+  stateProvince?: string;
+  countryRegion?: string;
+  postalCode?: string;
   billToOrders?: IOrder[] | null;
   shipToOrders?: IOrder[] | null;
 }
@@ -601,12 +601,12 @@ import { IProduct } from './product.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IOrderLineItem {
   id?: string | null;
-  orderId?: string | null;
-  orderQty?: number | null;
-  productId?: string | null;
-  unitPrice?: number | null;
-  unitPriceDiscount?: number | null;
-  lineTotal?: number | null;
+  orderId?: string;
+  orderQty?: number;
+  productId?: string;
+  unitPrice?: number;
+  unitPriceDiscount?: number;
+  lineTotal?: number;
   order?: IOrder | null;
   product?: IProduct | null;
 }
@@ -735,16 +735,16 @@ import { IOrderLineItem } from './order-line-item.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProduct {
   id?: string | null;
-  name?: string | null;
-  num?: string | null;
+  name?: string;
+  num?: string;
   color?: string | null;
-  standardCost?: number | null;
-  listPrice?: number | null;
+  standardCost?: number;
+  listPrice?: number;
   size?: string | null;
   weight?: number | null;
   productCategoryId?: string | null;
   productModelId?: string | null;
-  sellStartDate?: Date | null;
+  sellStartDate?: Date;
   sellEndDate?: Date | null;
   discontinuedDate?: Date | null;
   thumbNailPhoto?: string | null;
@@ -828,7 +828,7 @@ import { IProduct } from './product.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProductCategory {
   id?: string | null;
-  name?: string | null;
+  name?: string;
   products?: IProduct[] | null;
 }
 "
@@ -895,7 +895,7 @@ import { IProduct } from './product.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IProductModel {
   id?: string | null;
-  name?: string | null;
+  name?: string;
   description?: string | null;
   products?: IProduct[] | null;
 }
@@ -964,8 +964,8 @@ import { ICustomer } from './customer.model';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISalesAgent {
   id?: number | null;
-  name?: string | null;
-  loginId?: string | null;
+  name?: string;
+  loginId?: string;
   customers?: ICustomer[] | null;
 }
 "
