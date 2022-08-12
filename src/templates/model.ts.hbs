@@ -18,9 +18,9 @@ export interface I{{{name}}} {
  * {{description}}
  */
 {{/if}}
-  {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}} | null;
+  {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
 {{/valueProperties}}
 {{#referenceProperties}}
-  {{name}}?: {{#unless isEnum}}I{{/unless}}{{referenceTypeName}}{{#if isArray}}[]{{/if}} | null;
+  {{name}}?: {{#unless isEnum}}I{{/unless}}{{referenceTypeName}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
 {{/referenceProperties}}
 }

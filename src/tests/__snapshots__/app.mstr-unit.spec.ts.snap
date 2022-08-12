@@ -384,17 +384,17 @@ import { ISite } from './site.model';
 export interface ISiteCollection {
   id?: string | null;
   tenantId?: string | null;
-  number?: string | null;
-  name?: string | null;
-  code?: string | null;
+  number?: string;
+  name?: string;
+  code?: string;
   addressLine1?: string | null;
   addressLine2?: string | null;
   city?: string | null;
   state?: string | null;
   zip?: string | null;
-  isSchedulerEnabled?: boolean | null;
+  isSchedulerEnabled?: boolean;
   siteCount?: number | null;
-  workCategoryTypes?: string | number | null;
+  workCategoryTypes?: string | number;
   buildings?: IBuilding[] | null;
   sites?: ISite[] | null;
 }
@@ -989,17 +989,17 @@ import { ISite } from './site.model';
 export interface ISiteCollection {
   id?: string | null;
   tenantId?: string | null;
-  number?: string | null;
-  name?: string | null;
-  code?: string | null;
+  number?: string;
+  name?: string;
+  code?: string;
   addressLine1?: string | null;
   addressLine2?: string | null;
   city?: string | null;
   state?: string | null;
   zip?: string | null;
-  isSchedulerEnabled?: boolean | null;
+  isSchedulerEnabled?: boolean;
   siteCount?: number | null;
-  workCategoryTypes?: string | number | null;
+  workCategoryTypes?: string | number;
   buildings?: IBuilding[] | null;
   sites?: ISite[] | null;
 }
