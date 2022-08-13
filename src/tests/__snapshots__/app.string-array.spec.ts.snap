@@ -121,8 +121,8 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * Do not edit.
  */
 
-import { IStringArrayTestObject } from './string-array-test-object.model.ts';
-import { StringArrayTestObjectProperties } from './string-array-test-object.properties.ts';
+import { IStringArrayTestObject } from './string-array-test-object.model';
+import { StringArrayTestObjectProperties } from './string-array-test-object.properties';
 
 export function createTestStringArrayTestObject(): Partial<IStringArrayTestObject> {
     return { 

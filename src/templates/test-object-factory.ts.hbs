@@ -8,8 +8,8 @@
 {{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
 import { createTest{{name}} } from './{{kebabCasedTypeName}}.test-obj-fac';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
-import { I{{name}} } from './{{kebabCasedName}}.model.ts';
-import { {{name}}Properties } from './{{kebabCasedName}}.properties.ts';
+import { I{{name}} } from './{{kebabCasedName}}.model';
+import { {{name}}Properties } from './{{kebabCasedName}}.properties';
 
 export function createTest{{name}}(): Partial<I{{name}}> {
     return { {{#valueProperties}}

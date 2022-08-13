@@ -126,8 +126,8 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
 
 import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
-import { IContact } from './contact.model.ts';
-import { ContactProperties } from './contact.properties.ts';
+import { IContact } from './contact.model';
+import { ContactProperties } from './contact.properties';
 
 export function createTestContact(): Partial<IContact> {
     return { 
