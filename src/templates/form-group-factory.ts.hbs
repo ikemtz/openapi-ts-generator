@@ -6,10 +6,9 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR{{#if importTypes}}{{#importTypes}}{{#unless areAllArrays}}{{#if isEnum}}
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR{{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { I{{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/unless}}{{#if hasArrays}}
-import { I{{name}}Form } from './{{kebabCasedTypeName}}.form-group-fac';{{/if}}{{/importTypes}}{{/if}}
+import { I{{name}}Form } from './{{kebabCasedTypeName}}.form-group-fac';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 
 export interface I{{name}}Form {
 {{#valueProperties}}
@@ -22,8 +21,10 @@ export interface I{{name}}Form {
 {{#referenceProperties}}
 {{#if isArray}} 
     {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
-{{else}} 
-    {{name}}: FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+{{else if isEnum}}
+    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+{{else}}
+    {{name}}: FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>;
 {{/if}}
 {{/referenceProperties}}
 }
@@ -52,11 +53,17 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{else}}
     {{name}}: new FormArray<FormGroup<I{{typeScriptType}}Form>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
 {{/if}}
+{{else if isEnum}}
+{{#if hasMultipleValidators}}
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+{{else}}
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+{{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
-    {{name}}: new FormControl<{{#unless isEnum}}I{{/unless}}{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}
