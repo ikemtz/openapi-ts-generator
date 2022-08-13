@@ -720,7 +720,7 @@
             "nullable": true,
             "readOnly": true
           },
-          "inverseParentAccount": {
+          "childAccounts": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Account"
@@ -779,10 +779,12 @@
           },
           "middleName": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "maxLength": 5
           },
           "addressLine1": {
-            "type": "string"
+            "type": "string",
+            "minLength": 50
           },
           "addressLine2": {
             "type": "string",

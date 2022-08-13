@@ -39,7 +39,7 @@ export class OpenApiDocConverter {
         if (schemaWrapperInfo.componentSchemaObject.enum) {
           this.buildSchemaWrapperInfoForEnum(schemaWrapperInfo);
         } else {
-          this.buildSchemaWrapperInfo(schemaWrapperInfo);
+          this.buildSchemaWrapperInfo(schemaName, schemaWrapperInfo);
         }
         schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity: IEntity = {
@@ -48,6 +48,7 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String ? t : { ...t, key: t.key || 0 },
           ),
           name: schemaName,
+          kebabCasedName: kebabCase(schemaName),
           camelSingularName: camelCase(singular(schemaName)),
           description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,
@@ -71,42 +72,52 @@ export class OpenApiDocConverter {
     );
   }
 
-  public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo): void {
+  public buildSchemaWrapperInfo(parentTypeName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     for (const propertyName in schemaWrapperInfo.componentSchemaObject.properties) {
       if (
         (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as SchemaObject).type && // NOSONAR
         schemaWrapperInfo.propertySchemaObject.type !== 'array'
       ) {
-        schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(propertyName, schemaWrapperInfo));
+        schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo));
       } else {
         schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as ReferenceObject;
         if (schemaWrapperInfo.propertyReferenceObject.$ref) {
-          schemaWrapperInfo.referenceProperties.push(this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo));
+          schemaWrapperInfo.referenceProperties.push(
+            this.convertReferenceObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo),
+          );
         } else if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-          this.convertArray(propertyName, schemaWrapperInfo);
+          this.convertArray(parentTypeName, propertyName, schemaWrapperInfo);
         }
       }
     }
   }
 
-  public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
+  public convertArray(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
     if (arraySchemaObject.type) {
-      schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo));
+      schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(parentTypeName, propertyName, schemaWrapperInfo));
     } else {
       schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.propertySchemaObject.items as ReferenceObject;
-      schemaWrapperInfo.referenceProperties.push(this.convertArrayObjectToReferencePropertyType(propertyName, schemaWrapperInfo));
+      schemaWrapperInfo.referenceProperties.push(
+        this.convertArrayObjectToReferencePropertyType(parentTypeName, propertyName, schemaWrapperInfo),
+      );
     }
   }
 
-  public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+  public convertSchemaObjectToPropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
       initialValue,
+      initialTestValue,
       isArray: false,
       snakeCaseName: snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
@@ -127,14 +138,20 @@ export class OpenApiDocConverter {
     return +exists;
   }
 
-  public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+  public convertArrayObjectToValuePropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       initialValue,
+      initialTestValue,
       name: propertyName,
       isArray: true,
       snakeCaseName: snakeCase(propertyName).toUpperCase(),
@@ -165,25 +182,66 @@ export class OpenApiDocConverter {
       return `''`;
     }
   }
+  getInitialTestValue(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
+    const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
+    const schemaObject = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
+    const maxLength = schemaWrapperInfo.propertySchemaObject.maxLength;
+    const minLength = schemaWrapperInfo.propertySchemaObject.minLength;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const refName: string = schemaObject.$ref || schemaObject.items?.$ref;
+    const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
+    const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
+    if (defaultValue && refObject.enum) {
+      return `${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}`;
+    } else if (refObject && parentTypeName !== refName) {
+      return schemaObject.type === 'array' ? `[createTest${refName}()]` : `createTest${refName}()`;
+    } else if (refObject && parentTypeName == refName) {
+      return schemaObject.type === 'array' ? `[]` : `null`;
+    } else if (defaultValue) {
+      return `'${defaultValue.split(' ').pop() as string}'`;
+    } else if (typescriptType === 'Date') {
+      return 'new Date()';
+    } else if (typescriptType === 'boolean') {
+      return 'false';
+    } else if (typescriptType === 'number') {
+      return '0';
+    } else {
+      let retValue = snakeCase(propertyName).toUpperCase();
+      while (minLength && retValue.length < minLength) {
+        retValue += retValue;
+      }
+      return `'${maxLength ? snakeCase(propertyName).toUpperCase().substring(0, maxLength) : snakeCase(propertyName).toUpperCase()}'`;
+    }
+  }
 
-  public convertArrayObjectToReferencePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
+  public convertArrayObjectToReferencePropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IReferenceProperty {
     return {
-      ...this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
+      ...this.convertReferenceObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo),
       isArray: true,
     };
   }
 
-  public convertReferenceObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IReferenceProperty {
+  public convertReferenceObjectToPropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IReferenceProperty {
     const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
     const refSchema = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     const typeName = this.parseRef(schemaWrapperInfo);
     return {
       required,
       name: propertyName,
       initialValue,
+      initialTestValue,
       snakeCaseName: snakeCase(propertyName).toUpperCase(),
       referenceTypeName: typeName,
       typeScriptType: typeName,

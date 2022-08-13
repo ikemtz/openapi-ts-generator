@@ -6,28 +6,10 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR{{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { I{{name}}Form } from './{{kebabCasedName}}.form';{{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { I{{name}}Form } from './{{kebabCasedTypeName}}.form-group-fac';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
-
-export interface I{{name}}Form {
-{{#valueProperties}}
-{{#if isArray}}
-    {{name}}: FormArray<FormControl<{{typeScriptType}}>>;
-{{else}} 
-    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
-{{/if}}
-{{/valueProperties}}
-{{#referenceProperties}}
-{{#if isArray}} 
-    {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
-{{else if isEnum}}
-    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
-{{else}}
-    {{name}}: FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>;
-{{/if}}
-{{/referenceProperties}}
-}
+import { I{{name}}Form } from './{{kebabCasedTypeName}}.form';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 
 export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
   return new FormGroup<I{{name}}Form>({

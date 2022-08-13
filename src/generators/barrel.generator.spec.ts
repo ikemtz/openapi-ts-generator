@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'fs';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
 import { MockConsoleLogger } from '../models/logger';
-import { BarrelGenerator } from './barrel-generator';
+import { BarrelGenerator } from './barrel.generator';
 
 const outputPath = './jest_output/barrel';
 
