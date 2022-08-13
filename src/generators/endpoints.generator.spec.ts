@@ -1,4 +1,4 @@
-import { EndPointsGenerator } from './endpoints-generator';
+import { EndPointsGenerator } from './endpoints.generator';
 
 describe('EndPointsGenerator', () => {
   it('should generate files', () => {

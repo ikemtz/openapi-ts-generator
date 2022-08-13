@@ -1,6 +1,6 @@
 import { IGeneratorOptions } from '../models/generator-options';
 import { IPath, ITemplateData } from '../models/template-data';
-import { BaseGenerator } from './base-generator';
+import { BaseGenerator } from './base.generator';
 import _ = require('lodash');
 
 export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {

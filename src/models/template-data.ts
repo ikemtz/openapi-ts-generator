@@ -10,6 +10,7 @@ export interface IEntity {
   isEnum?: boolean;
   enumValues: (string | { key?: number; name: string; titleName: string })[];
   name: string;
+  kebabCasedName: string;
   camelSingularName: string;
   description?: string;
   importTypes: IImportType[];
@@ -41,6 +42,7 @@ export interface IValueProperty {
   description?: string;
   pattern?: string;
   initialValue: string;
+  initialTestValue: string;
 }
 
 export interface IReferenceProperty {
@@ -60,4 +62,5 @@ export interface IReferenceProperty {
   required: boolean;
   isEnum?: boolean;
   initialValue: string;
+  initialTestValue: string;
 }
