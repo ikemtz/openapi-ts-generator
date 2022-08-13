@@ -9,7 +9,8 @@
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { I{{name}}Form } from './{{kebabCasedName}}.form';{{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { I{{name}}Form } from './{{kebabCasedTypeName}}.form';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
+import { I{{name}}Form } from './{{kebabCasedTypeName}}.form';{{#unless areAllArrays}}
+import { {{name}}FormGroupFac } from './{{kebabCasedTypeName}}.form-group-fac';{{/unless}}{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 
 export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
   return new FormGroup<I{{name}}Form>({
@@ -43,9 +44,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{typeScriptType}}FormGroupFac().controls, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
-    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{typeScriptType}}FormGroupFac().controls{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}
