@@ -1,7 +1,15 @@
 import * as fs from 'fs';
 import { OpenAPIObject } from 'openapi3-ts';
-import { BarrelGenerator, FormGroupGenerator, ModelGenerator, ModelPropertiesGenerator, EnumGenerator } from './generators';
-import { EndPointsGenerator } from './generators/endpoints-generator';
+import {
+  FormGenerator,
+  EndPointsGenerator,
+  BarrelGenerator,
+  FormGroupFactoryGenerator,
+  ModelGenerator,
+  ModelPropertiesGenerator,
+  EnumGenerator,
+  TestObjectFactoryGenerator,
+} from './generators';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
@@ -43,8 +51,10 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   modelGenerator.generate(templateData);
 
   if (options.genAngularFormGroups) {
-    const formGroupGenerator = new FormGroupGenerator(options);
+    const formGroupGenerator = new FormGroupFactoryGenerator(options);
     formGroupGenerator.generate(templateData);
+    const formGenerator = new FormGenerator(options);
+    formGenerator.generate(templateData);
   }
 
   const modelPropertiesGenerator = new ModelPropertiesGenerator(options);
@@ -54,5 +64,7 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
   const barrelGenerator = new BarrelGenerator(options);
   const enumGenerator = new EnumGenerator(options);
   enumGenerator.generate(templateData);
+  const testObjFacGenerator = new TestObjectFactoryGenerator(options);
+  testObjFacGenerator.generate(templateData);
   barrelGenerator.generate();
 }

@@ -17,6 +17,8 @@ export interface IGeneratorOptions {
 }
 export interface ITemplates {
   model?: string;
+  testObjectFactory?: string;
+  form?: string;
   formGroupFactory?: string;
   modelProperties?: string;
   barrel?: string;
@@ -24,9 +26,9 @@ export interface ITemplates {
   endpoints?: string;
 }
 export function defaultFilter(
-  value: IEntity | IValueProperty | IReferenceProperty,
-  index: number,
-  array: IEntity[] | IValueProperty[] | IReferenceProperty[],
+  _value: IEntity | IValueProperty | IReferenceProperty,
+  _index: number,
+  _array: IEntity[] | IValueProperty[] | IReferenceProperty[],
 ): boolean {
   return true;
 }
@@ -39,7 +41,9 @@ export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGenerat
   options.templates = {
     ...options.templates,
     model: options.templates?.model ?? `${templateFolder}/model.ts.hbs`,
+    form: options.templates?.form ?? `${templateFolder}/form.ts.hbs`,
     formGroupFactory: options.templates?.formGroupFactory ?? `${templateFolder}/form-group-factory.ts.hbs`,
+    testObjectFactory: options.templates?.testObjectFactory ?? `${templateFolder}/test-object-factory.ts.hbs`,
     barrel: options.templates?.barrel ?? `${templateFolder}/index.ts.hbs`,
     enum: options.templates?.barrel ?? `${templateFolder}/enum.ts.hbs`,
     modelProperties: options.templates?.barrel ?? `${templateFolder}/model-properties.ts.hbs`,

@@ -1,7 +1,7 @@
 import _ = require('lodash');
 import { IGeneratorOptions } from '../models/generator-options';
 import { IEntity, ITemplateData } from '../models/template-data';
-import { BaseGenerator } from './base-generator';
+import { BaseGenerator } from './base.generator';
 
 export class EnumGenerator extends BaseGenerator<IEntity> {
   public readonly GeneratorName = 'EnumGenerator';

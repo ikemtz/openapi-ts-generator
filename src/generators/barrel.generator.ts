@@ -1,6 +1,6 @@
 import { readdirSync } from 'fs';
 import { IGeneratorOptions } from '../models/generator-options';
-import { BaseGenerator } from './base-generator';
+import { BaseGenerator } from './base.generator';
 
 export class BarrelGenerator extends BaseGenerator<{ fileNames: string[] }> {
   public readonly GeneratorName = 'BarrelGenerator';

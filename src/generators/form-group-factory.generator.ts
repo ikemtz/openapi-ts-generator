@@ -1,12 +1,12 @@
 import _ = require('lodash');
 import { IGeneratorOptions } from '../models/generator-options';
 import { IEntity, ITemplateData, IValueProperty } from '../models/template-data';
-import { BaseGenerator } from './base-generator';
+import { BaseGenerator } from './base.generator';
 import * as HandleBars from 'handlebars';
 import { IHelperContext, PropertyType } from '../models/helper-context';
 
-export class FormGroupGenerator extends BaseGenerator<IEntity> {
-  public readonly GeneratorName = 'FormGroupGenerator';
+export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
+  public readonly GeneratorName = 'FormGroupFactoryGenerator';
   constructor(options: IGeneratorOptions) {
     super(options, options.templates?.formGroupFactory);
   }
