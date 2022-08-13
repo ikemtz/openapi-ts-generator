@@ -92,7 +92,7 @@ import { IRecipient } from './recipient.model';
 export interface IMessageDto {
   id?: string | null;
   body?: string;
-  recipients?: IRecipient[];
+  recipients?: Partial<IRecipient[]>;
 }
 "
 `;

@@ -21,6 +21,10 @@ export interface I{{{name}}} {
   {{name}}?: {{typeScriptType}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
 {{/valueProperties}}
 {{#referenceProperties}}
-  {{name}}?: {{#unless isEnum}}I{{/unless}}{{referenceTypeName}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
+{{#if isEnum}}
+  {{name}}?: {{referenceTypeName}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
+{{else}}
+  {{name}}?: Partial<I{{referenceTypeName}}{{#if isArray}}[]{{/if}}>;
+{{/if}}
 {{/referenceProperties}}
 }

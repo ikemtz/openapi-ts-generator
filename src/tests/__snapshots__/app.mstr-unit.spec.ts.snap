@@ -109,8 +109,8 @@ export interface IBuilding {
   siteId?: string | null;
   identifier?: string | null;
   isEnabled?: boolean | null;
-  site?: ISite | null;
-  units?: IUnit[] | null;
+  site?: Partial<ISite>;
+  units?: Partial<IUnit[]>;
 }
 "
 `;
@@ -278,9 +278,9 @@ export interface ISite {
   state?: string | null;
   zip?: string | null;
   isEnabled?: boolean | null;
-  siteCollection?: ISiteCollection | null;
-  buildings?: IBuilding[] | null;
-  units?: IUnit[] | null;
+  siteCollection?: Partial<ISiteCollection>;
+  buildings?: Partial<IBuilding[]>;
+  units?: Partial<IUnit[]>;
 }
 "
 `;
@@ -395,8 +395,8 @@ export interface ISiteCollection {
   isSchedulerEnabled?: boolean;
   siteCount?: number | null;
   workCategoryTypes?: string | number;
-  buildings?: IBuilding[] | null;
-  sites?: ISite[] | null;
+  buildings?: Partial<IBuilding[]>;
+  sites?: Partial<ISite[]>;
 }
 "
 `;
@@ -476,7 +476,7 @@ export interface ITag {
   id?: string | null;
   name?: string | null;
   value?: string | null;
-  unitTags?: IUnitTag[] | null;
+  unitTags?: Partial<IUnitTag[]>;
 }
 "
 `;
@@ -566,10 +566,10 @@ export interface IUnit {
   siteId?: string | null;
   buildingId?: string | null;
   isEnabled?: boolean | null;
-  building?: IBuilding | null;
-  site?: ISite | null;
-  unitType?: IUnitType | null;
-  unitTags?: IUnitTag[] | null;
+  building?: Partial<IBuilding>;
+  site?: Partial<ISite>;
+  unitType?: Partial<IUnitType>;
+  unitTags?: Partial<IUnitTag[]>;
 }
 "
 `;
@@ -651,8 +651,8 @@ export interface IUnitTag {
   unitId?: string | null;
   tagId?: string | null;
   value?: string | null;
-  tag?: ITag | null;
-  unit?: IUnit | null;
+  tag?: Partial<ITag>;
+  unit?: Partial<IUnit>;
 }
 "
 `;
@@ -830,8 +830,8 @@ export interface IBuilding {
   siteId?: string | null;
   identifier?: string | null;
   isEnabled?: boolean | null;
-  site?: ISite | null;
-  units?: IUnit[] | null;
+  site?: Partial<ISite>;
+  units?: Partial<IUnit[]>;
 }
 "
 `;
@@ -936,9 +936,9 @@ export interface ISite {
   state?: string | null;
   zip?: string | null;
   isEnabled?: boolean | null;
-  siteCollection?: ISiteCollection | null;
-  buildings?: IBuilding[] | null;
-  units?: IUnit[] | null;
+  siteCollection?: Partial<ISiteCollection>;
+  buildings?: Partial<IBuilding[]>;
+  units?: Partial<IUnit[]>;
 }
 "
 `;
@@ -1000,8 +1000,8 @@ export interface ISiteCollection {
   isSchedulerEnabled?: boolean;
   siteCount?: number | null;
   workCategoryTypes?: string | number;
-  buildings?: IBuilding[] | null;
-  sites?: ISite[] | null;
+  buildings?: Partial<IBuilding[]>;
+  sites?: Partial<ISite[]>;
 }
 "
 `;
@@ -1051,7 +1051,7 @@ export interface ITag {
   id?: string | null;
   name?: string | null;
   value?: string | null;
-  unitTags?: IUnitTag[] | null;
+  unitTags?: Partial<IUnitTag[]>;
 }
 "
 `;
@@ -1096,10 +1096,10 @@ export interface IUnit {
   siteId?: string | null;
   buildingId?: string | null;
   isEnabled?: boolean | null;
-  building?: IBuilding | null;
-  site?: ISite | null;
-  unitType?: IUnitType | null;
-  unitTags?: IUnitTag[] | null;
+  building?: Partial<IBuilding>;
+  site?: Partial<ISite>;
+  unitType?: Partial<IUnitType>;
+  unitTags?: Partial<IUnitTag[]>;
 }
 "
 `;
@@ -1146,8 +1146,8 @@ export interface IUnitTag {
   unitId?: string | null;
   tagId?: string | null;
   value?: string | null;
-  tag?: ITag | null;
-  unit?: IUnit | null;
+  tag?: Partial<ITag>;
+  unit?: Partial<IUnit>;
 }
 "
 `;
