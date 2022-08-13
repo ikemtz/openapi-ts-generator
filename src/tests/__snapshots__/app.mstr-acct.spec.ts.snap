@@ -47,7 +47,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IContactForm } from './contact.form-group-fac';
+import { IContactForm } from './contact.form';
 
 export interface IAccountForm {
     id: FormControl<string | null>;
@@ -120,9 +120,9 @@ export interface IAccount {
   emailInvoice?: boolean | null;
   tenantId?: string | null;
   contactCount?: number | null;
-  parentAccount?: Partial<IAccount>;
-  contacts?: Partial<IContact[]>;
-  childAccounts?: Partial<IAccount[]>;
+  parentAccount?: Partial<IAccount> | null;
+  contacts?: Partial<IContact[]> | null;
+  childAccounts?: Partial<IAccount[]> | null;
 }
 "
 `;
@@ -165,8 +165,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 
 import { createTestContact } from './contact.test-obj-fac';
-import { IAccount } from './account.model.ts';
-import { AccountProperties } from './account.properties.ts';
+import { IAccount } from './account.model';
+import { AccountProperties } from './account.properties';
 
 export function createTestAccount(): Partial<IAccount> {
     return { 
@@ -196,7 +196,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IContactForm } from './contact.form-group-fac';
+import { IContactForm } from './contact.form';
 
 export interface IAccountInsertRequestForm {
     id: FormControl<string | null>;
@@ -253,7 +253,7 @@ export interface IAccountInsertRequest {
   name?: string;
   parentAccountId?: string | null;
   emailInvoice?: boolean | null;
-  contacts?: Partial<IContact[]>;
+  contacts?: Partial<IContact[]> | null;
 }
 "
 `;
@@ -288,8 +288,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 
 import { createTestContact } from './contact.test-obj-fac';
-import { IAccountInsertRequest } from './account-insert-request.model.ts';
-import { AccountInsertRequestProperties } from './account-insert-request.properties.ts';
+import { IAccountInsertRequest } from './account-insert-request.model';
+import { AccountInsertRequestProperties } from './account-insert-request.properties';
 
 export function createTestAccountInsertRequest(): Partial<IAccountInsertRequest> {
     return { 
@@ -314,7 +314,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IContactForm } from './contact.form-group-fac';
+import { IContactForm } from './contact.form';
 
 export interface IAccountUpdateRequestForm {
     id: FormControl<string | null>;
@@ -374,7 +374,7 @@ export interface IAccountUpdateRequest {
   parentAccountId?: string | null;
   isEnabled?: boolean | null;
   emailInvoice?: boolean | null;
-  contacts?: Partial<IContact[]>;
+  contacts?: Partial<IContact[]> | null;
 }
 "
 `;
@@ -410,8 +410,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 
 import { createTestContact } from './contact.test-obj-fac';
-import { IAccountUpdateRequest } from './account-update-request.model.ts';
-import { AccountUpdateRequestProperties } from './account-update-request.properties.ts';
+import { IAccountUpdateRequest } from './account-update-request.model';
+import { AccountUpdateRequestProperties } from './account-update-request.properties';
 
 export function createTestAccountUpdateRequest(): Partial<IAccountUpdateRequest> {
     return { 
@@ -437,7 +437,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IAccountForm } from './account.form-group-fac';
+import { IAccountForm } from './account.form';
 
 export interface IContactForm {
     id: FormControl<string | null>;
@@ -527,7 +527,7 @@ export interface IContact {
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;
-  account?: Partial<IAccount>;
+  account?: Partial<IAccount> | null;
 }
 "
 `;
@@ -575,8 +575,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  */
 
 import { createTestAccount } from './account.test-obj-fac';
-import { IContact } from './contact.model.ts';
-import { ContactProperties } from './contact.properties.ts';
+import { IContact } from './contact.model';
+import { ContactProperties } from './contact.properties';
 
 export function createTestContact(): Partial<IContact> {
     return { 
@@ -729,8 +729,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { IContactInsertRequest } from './contact-insert-request.model.ts';
-import { ContactInsertRequestProperties } from './contact-insert-request.properties.ts';
+import { IContactInsertRequest } from './contact-insert-request.model';
+import { ContactInsertRequestProperties } from './contact-insert-request.properties';
 
 export function createTestContactInsertRequest(): Partial<IContactInsertRequest> {
     return { 
@@ -881,8 +881,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { IContactUpdateRequest } from './contact-update-request.model.ts';
-import { ContactUpdateRequestProperties } from './contact-update-request.properties.ts';
+import { IContactUpdateRequest } from './contact-update-request.model';
+import { ContactUpdateRequestProperties } from './contact-update-request.properties';
 
 export function createTestContactUpdateRequest(): Partial<IContactUpdateRequest> {
     return { 

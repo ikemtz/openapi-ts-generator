@@ -118,8 +118,8 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * Do not edit.
  */
 
-import { IError } from './error.model.ts';
-import { ErrorProperties } from './error.properties.ts';
+import { IError } from './error.model';
+import { ErrorProperties } from './error.properties';
 
 export function createTestError(): Partial<IError> {
     return { 
@@ -237,8 +237,8 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * Do not edit.
  */
 
-import { IPet } from './pet.model.ts';
-import { PetProperties } from './pet.properties.ts';
+import { IPet } from './pet.model';
+import { PetProperties } from './pet.properties';
 
 export function createTestPet(): Partial<IPet> {
     return { 

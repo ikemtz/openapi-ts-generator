@@ -94,8 +94,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ISiteForm } from './site.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ISiteForm } from './site.form';
+import { IUnitForm } from './unit.form';
 
 export interface IBuildingForm {
     id: FormControl<string | null>;
@@ -153,8 +153,8 @@ export interface IBuilding {
   siteId?: string | null;
   identifier?: string | null;
   isEnabled?: boolean | null;
-  site?: Partial<ISite>;
-  units?: Partial<IUnit[]>;
+  site?: Partial<ISite> | null;
+  units?: Partial<IUnit[]> | null;
 }
 "
 `;
@@ -190,8 +190,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IBuilding } from './building.model.ts';
-import { BuildingProperties } from './building.properties.ts';
+import { IBuilding } from './building.model';
+import { BuildingProperties } from './building.properties';
 
 export function createTestBuilding(): Partial<IBuilding> {
     return { 
@@ -289,9 +289,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ISiteCollectionForm } from './site-collection.form-group-fac';
-import { IBuildingForm } from './building.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ISiteCollectionForm } from './site-collection.form';
+import { IBuildingForm } from './building.form';
+import { IUnitForm } from './unit.form';
 
 export interface ISiteForm {
     id: FormControl<string | null>;
@@ -380,9 +380,9 @@ export interface ISite {
   state?: string | null;
   zip?: string | null;
   isEnabled?: boolean | null;
-  siteCollection?: Partial<ISiteCollection>;
-  buildings?: Partial<IBuilding[]>;
-  units?: Partial<IUnit[]>;
+  siteCollection?: Partial<ISiteCollection> | null;
+  buildings?: Partial<IBuilding[]> | null;
+  units?: Partial<IUnit[]> | null;
 }
 "
 `;
@@ -429,8 +429,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { createTestSiteCollection } from './site-collection.test-obj-fac';
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { ISite } from './site.model.ts';
-import { SiteProperties } from './site.properties.ts';
+import { ISite } from './site.model';
+import { SiteProperties } from './site.properties';
 
 export function createTestSite(): Partial<ISite> {
     return { 
@@ -465,8 +465,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IBuildingForm } from './building.form-group-fac';
-import { ISiteForm } from './site.form-group-fac';
+import { IBuildingForm } from './building.form';
+import { ISiteForm } from './site.form';
 
 export interface ISiteCollectionForm {
     id: FormControl<string | null>;
@@ -551,8 +551,8 @@ export interface ISiteCollection {
   isSchedulerEnabled?: boolean;
   siteCount?: number | null;
   workCategoryTypes?: string | number;
-  buildings?: Partial<IBuilding[]>;
-  sites?: Partial<ISite[]>;
+  buildings?: Partial<IBuilding[]> | null;
+  sites?: Partial<ISite[]> | null;
 }
 "
 `;
@@ -597,8 +597,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
-import { ISiteCollection } from './site-collection.model.ts';
-import { SiteCollectionProperties } from './site-collection.properties.ts';
+import { ISiteCollection } from './site-collection.model';
+import { SiteCollectionProperties } from './site-collection.properties';
 
 export function createTestSiteCollection(): Partial<ISiteCollection> {
     return { 
@@ -632,7 +632,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IUnitTagForm } from './unit-tag.form-group-fac';
+import { IUnitTagForm } from './unit-tag.form';
 
 export interface ITagForm {
     id: FormControl<string | null>;
@@ -683,7 +683,7 @@ export interface ITag {
   id?: string | null;
   name?: string | null;
   value?: string | null;
-  unitTags?: Partial<IUnitTag[]>;
+  unitTags?: Partial<IUnitTag[]> | null;
 }
 "
 `;
@@ -716,8 +716,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { ITag } from './tag.model.ts';
-import { TagProperties } from './tag.properties.ts';
+import { ITag } from './tag.model';
+import { TagProperties } from './tag.properties';
 
 export function createTestTag(): Partial<ITag> {
     return { 
@@ -740,10 +740,10 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IBuildingForm } from './building.form-group-fac';
-import { ISiteForm } from './site.form-group-fac';
-import { IUnitTypeForm } from './unit-type.form-group-fac';
-import { IUnitTagForm } from './unit-tag.form-group-fac';
+import { IBuildingForm } from './building.form';
+import { ISiteForm } from './site.form';
+import { IUnitTypeForm } from './unit-type.form';
+import { IUnitTagForm } from './unit-tag.form';
 
 export interface IUnitForm {
     id: FormControl<string | null>;
@@ -815,10 +815,10 @@ export interface IUnit {
   siteId?: string | null;
   buildingId?: string | null;
   isEnabled?: boolean | null;
-  building?: Partial<IBuilding>;
-  site?: Partial<ISite>;
-  unitType?: Partial<IUnitType>;
-  unitTags?: Partial<IUnitTag[]>;
+  building?: Partial<IBuilding> | null;
+  site?: Partial<ISite> | null;
+  unitType?: Partial<IUnitType> | null;
+  unitTags?: Partial<IUnitTag[]> | null;
 }
 "
 `;
@@ -860,8 +860,8 @@ import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnitType } from './unit-type.test-obj-fac';
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { IUnit } from './unit.model.ts';
-import { UnitProperties } from './unit.properties.ts';
+import { IUnit } from './unit.model';
+import { UnitProperties } from './unit.properties';
 
 export function createTestUnit(): Partial<IUnit> {
     return { 
@@ -890,8 +890,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ITagForm } from './tag.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ITagForm } from './tag.form';
+import { IUnitForm } from './unit.form';
 
 export interface IUnitTagForm {
     id: FormControl<string | null>;
@@ -949,8 +949,8 @@ export interface IUnitTag {
   unitId?: string | null;
   tagId?: string | null;
   value?: string | null;
-  tag?: Partial<ITag>;
-  unit?: Partial<IUnit>;
+  tag?: Partial<ITag> | null;
+  unit?: Partial<IUnit> | null;
 }
 "
 `;
@@ -986,8 +986,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 
 import { createTestTag } from './tag.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IUnitTag } from './unit-tag.model.ts';
-import { UnitTagProperties } from './unit-tag.properties.ts';
+import { IUnitTag } from './unit-tag.model';
+import { UnitTagProperties } from './unit-tag.properties';
 
 export function createTestUnitTag(): Partial<IUnitTag> {
     return { 
@@ -1086,8 +1086,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * Do not edit.
  */
 
-import { IUnitType } from './unit-type.model.ts';
-import { UnitTypeProperties } from './unit-type.properties.ts';
+import { IUnitType } from './unit-type.model';
+import { UnitTypeProperties } from './unit-type.properties';
 
 export function createTestUnitType(): Partial<IUnitType> {
     return { 
@@ -1129,8 +1129,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ISiteForm } from './site.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ISiteForm } from './site.form';
+import { IUnitForm } from './unit.form';
 
 export interface IBuildingForm {
     id: FormControl<string | null>;
@@ -1154,8 +1154,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IBuilding } from './building.model.ts';
-import { BuildingProperties } from './building.properties.ts';
+import { IBuilding } from './building.model';
+import { BuildingProperties } from './building.properties';
 
 export function createTestBuilding(): Partial<IBuilding> {
     return { 
@@ -1206,9 +1206,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ISiteCollectionForm } from './site-collection.form-group-fac';
-import { IBuildingForm } from './building.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ISiteCollectionForm } from './site-collection.form';
+import { IBuildingForm } from './building.form';
+import { IUnitForm } from './unit.form';
 
 export interface ISiteForm {
     id: FormControl<string | null>;
@@ -1243,8 +1243,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 import { createTestSiteCollection } from './site-collection.test-obj-fac';
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { ISite } from './site.model.ts';
-import { SiteProperties } from './site.properties.ts';
+import { ISite } from './site.model';
+import { SiteProperties } from './site.properties';
 
 export function createTestSite(): Partial<ISite> {
     return { 
@@ -1279,8 +1279,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IBuildingForm } from './building.form-group-fac';
-import { ISiteForm } from './site.form-group-fac';
+import { IBuildingForm } from './building.form';
+import { ISiteForm } from './site.form';
 
 export interface ISiteCollectionForm {
     id: FormControl<string | null>;
@@ -1313,8 +1313,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
-import { ISiteCollection } from './site-collection.model.ts';
-import { SiteCollectionProperties } from './site-collection.properties.ts';
+import { ISiteCollection } from './site-collection.model';
+import { SiteCollectionProperties } from './site-collection.properties';
 
 export function createTestSiteCollection(): Partial<ISiteCollection> {
     return { 
@@ -1348,7 +1348,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IUnitTagForm } from './unit-tag.form-group-fac';
+import { IUnitTagForm } from './unit-tag.form';
 
 export interface ITagForm {
     id: FormControl<string | null>;
@@ -1369,8 +1369,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { ITag } from './tag.model.ts';
-import { TagProperties } from './tag.properties.ts';
+import { ITag } from './tag.model';
+import { TagProperties } from './tag.properties';
 
 export function createTestTag(): Partial<ITag> {
     return { 
@@ -1393,10 +1393,10 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IBuildingForm } from './building.form-group-fac';
-import { ISiteForm } from './site.form-group-fac';
-import { IUnitTypeForm } from './unit-type.form-group-fac';
-import { IUnitTagForm } from './unit-tag.form-group-fac';
+import { IBuildingForm } from './building.form';
+import { ISiteForm } from './site.form';
+import { IUnitTypeForm } from './unit-type.form';
+import { IUnitTagForm } from './unit-tag.form';
 
 export interface IUnitForm {
     id: FormControl<string | null>;
@@ -1426,8 +1426,8 @@ import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnitType } from './unit-type.test-obj-fac';
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { IUnit } from './unit.model.ts';
-import { UnitProperties } from './unit.properties.ts';
+import { IUnit } from './unit.model';
+import { UnitProperties } from './unit.properties';
 
 export function createTestUnit(): Partial<IUnit> {
     return { 
@@ -1456,8 +1456,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { ITagForm } from './tag.form-group-fac';
-import { IUnitForm } from './unit.form-group-fac';
+import { ITagForm } from './tag.form';
+import { IUnitForm } from './unit.form';
 
 export interface IUnitTagForm {
     id: FormControl<string | null>;
@@ -1481,8 +1481,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 
 import { createTestTag } from './tag.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IUnitTag } from './unit-tag.model.ts';
-import { UnitTagProperties } from './unit-tag.properties.ts';
+import { IUnitTag } from './unit-tag.model';
+import { UnitTagProperties } from './unit-tag.properties';
 
 export function createTestUnitTag(): Partial<IUnitTag> {
     return { 
@@ -1525,8 +1525,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * Do not edit.
  */
 
-import { IUnitType } from './unit-type.model.ts';
-import { UnitTypeProperties } from './unit-type.properties.ts';
+import { IUnitType } from './unit-type.model';
+import { UnitTypeProperties } from './unit-type.properties';
 
 export function createTestUnitType(): Partial<IUnitType> {
     return { 
@@ -1612,8 +1612,8 @@ export interface IBuilding {
   siteId?: string | null;
   identifier?: string | null;
   isEnabled?: boolean | null;
-  site?: Partial<ISite>;
-  units?: Partial<IUnit[]>;
+  site?: Partial<ISite> | null;
+  units?: Partial<IUnit[]> | null;
 }
 "
 `;
@@ -1649,8 +1649,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IBuilding } from './building.model.ts';
-import { BuildingProperties } from './building.properties.ts';
+import { IBuilding } from './building.model';
+import { BuildingProperties } from './building.properties';
 
 export function createTestBuilding(): Partial<IBuilding> {
     return { 
@@ -1752,9 +1752,9 @@ export interface ISite {
   state?: string | null;
   zip?: string | null;
   isEnabled?: boolean | null;
-  siteCollection?: Partial<ISiteCollection>;
-  buildings?: Partial<IBuilding[]>;
-  units?: Partial<IUnit[]>;
+  siteCollection?: Partial<ISiteCollection> | null;
+  buildings?: Partial<IBuilding[]> | null;
+  units?: Partial<IUnit[]> | null;
 }
 "
 `;
@@ -1801,8 +1801,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 import { createTestSiteCollection } from './site-collection.test-obj-fac';
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { ISite } from './site.model.ts';
-import { SiteProperties } from './site.properties.ts';
+import { ISite } from './site.model';
+import { SiteProperties } from './site.properties';
 
 export function createTestSite(): Partial<ISite> {
     return { 
@@ -1854,8 +1854,8 @@ export interface ISiteCollection {
   isSchedulerEnabled?: boolean;
   siteCount?: number | null;
   workCategoryTypes?: string | number;
-  buildings?: Partial<IBuilding[]>;
-  sites?: Partial<ISite[]>;
+  buildings?: Partial<IBuilding[]> | null;
+  sites?: Partial<ISite[]> | null;
 }
 "
 `;
@@ -1900,8 +1900,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 
 import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
-import { ISiteCollection } from './site-collection.model.ts';
-import { SiteCollectionProperties } from './site-collection.properties.ts';
+import { ISiteCollection } from './site-collection.model';
+import { SiteCollectionProperties } from './site-collection.properties';
 
 export function createTestSiteCollection(): Partial<ISiteCollection> {
     return { 
@@ -1941,7 +1941,7 @@ export interface ITag {
   id?: string | null;
   name?: string | null;
   value?: string | null;
-  unitTags?: Partial<IUnitTag[]>;
+  unitTags?: Partial<IUnitTag[]> | null;
 }
 "
 `;
@@ -1974,8 +1974,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { ITag } from './tag.model.ts';
-import { TagProperties } from './tag.properties.ts';
+import { ITag } from './tag.model';
+import { TagProperties } from './tag.properties';
 
 export function createTestTag(): Partial<ITag> {
     return { 
@@ -2010,10 +2010,10 @@ export interface IUnit {
   siteId?: string | null;
   buildingId?: string | null;
   isEnabled?: boolean | null;
-  building?: Partial<IBuilding>;
-  site?: Partial<ISite>;
-  unitType?: Partial<IUnitType>;
-  unitTags?: Partial<IUnitTag[]>;
+  building?: Partial<IBuilding> | null;
+  site?: Partial<ISite> | null;
+  unitType?: Partial<IUnitType> | null;
+  unitTags?: Partial<IUnitTag[]> | null;
 }
 "
 `;
@@ -2055,8 +2055,8 @@ import { createTestBuilding } from './building.test-obj-fac';
 import { createTestSite } from './site.test-obj-fac';
 import { createTestUnitType } from './unit-type.test-obj-fac';
 import { createTestUnitTag } from './unit-tag.test-obj-fac';
-import { IUnit } from './unit.model.ts';
-import { UnitProperties } from './unit.properties.ts';
+import { IUnit } from './unit.model';
+import { UnitProperties } from './unit.properties';
 
 export function createTestUnit(): Partial<IUnit> {
     return { 
@@ -2093,8 +2093,8 @@ export interface IUnitTag {
   unitId?: string | null;
   tagId?: string | null;
   value?: string | null;
-  tag?: Partial<ITag>;
-  unit?: Partial<IUnit>;
+  tag?: Partial<ITag> | null;
+  unit?: Partial<IUnit> | null;
 }
 "
 `;
@@ -2130,8 +2130,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
 
 import { createTestTag } from './tag.test-obj-fac';
 import { createTestUnit } from './unit.test-obj-fac';
-import { IUnitTag } from './unit-tag.model.ts';
-import { UnitTagProperties } from './unit-tag.properties.ts';
+import { IUnitTag } from './unit-tag.model';
+import { UnitTagProperties } from './unit-tag.properties';
 
 export function createTestUnitTag(): Partial<IUnitTag> {
     return { 
@@ -2189,8 +2189,8 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * Do not edit.
  */
 
-import { IUnitType } from './unit-type.model.ts';
-import { UnitTypeProperties } from './unit-type.properties.ts';
+import { IUnitType } from './unit-type.model';
+import { UnitTypeProperties } from './unit-type.properties';
 
 export function createTestUnitType(): Partial<IUnitType> {
     return { 

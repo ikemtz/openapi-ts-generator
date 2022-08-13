@@ -37,9 +37,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IEmployeeCertificationForm } from './employee-certification.form-group-fac';
-import { IEmployeeCompetencyForm } from './employee-competency.form-group-fac';
-import { IEmployeeHealthItemForm } from './employee-health-item.form-group-fac';
+import { IEmployeeCertificationForm } from './employee-certification.form';
+import { IEmployeeCompetencyForm } from './employee-competency.form';
+import { IEmployeeHealthItemForm } from './employee-health-item.form';
 
 export interface IEmployeeForm {
     id: FormControl<string | null>;
@@ -149,9 +149,9 @@ export interface IEmployee {
   certificationCount?: number;
   competencyCount?: number;
   healthItemCount?: number;
-  employeeCertifications?: Partial<IEmployeeCertification[]>;
-  employeeCompetencies?: Partial<IEmployeeCompetency[]>;
-  employeeHealthItems?: Partial<IEmployeeHealthItem[]>;
+  employeeCertifications?: Partial<IEmployeeCertification[]> | null;
+  employeeCompetencies?: Partial<IEmployeeCompetency[]> | null;
+  employeeHealthItems?: Partial<IEmployeeHealthItem[]> | null;
 }
 "
 `;
@@ -205,8 +205,8 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
 import { createTestEmployeeCertification } from './employee-certification.test-obj-fac';
 import { createTestEmployeeCompetency } from './employee-competency.test-obj-fac';
 import { createTestEmployeeHealthItem } from './employee-health-item.test-obj-fac';
-import { IEmployee } from './employee.model.ts';
-import { EmployeeProperties } from './employee.properties.ts';
+import { IEmployee } from './employee.model';
+import { EmployeeProperties } from './employee.properties';
 
 export function createTestEmployee(): Partial<IEmployee> {
     return { 
@@ -330,8 +330,8 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 
-import { IEmployeeCertification } from './employee-certification.model.ts';
-import { EmployeeCertificationProperties } from './employee-certification.properties.ts';
+import { IEmployeeCertification } from './employee-certification.model';
+import { EmployeeCertificationProperties } from './employee-certification.properties';
 
 export function createTestEmployeeCertification(): Partial<IEmployeeCertification> {
     return { 
@@ -441,8 +441,8 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 
-import { IEmployeeCompetency } from './employee-competency.model.ts';
-import { EmployeeCompetencyProperties } from './employee-competency.properties.ts';
+import { IEmployeeCompetency } from './employee-competency.model';
+import { EmployeeCompetencyProperties } from './employee-competency.properties';
 
 export function createTestEmployeeCompetency(): Partial<IEmployeeCompetency> {
     return { 
@@ -553,8 +553,8 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * Do not edit.
  */
 
-import { IEmployeeHealthItem } from './employee-health-item.model.ts';
-import { EmployeeHealthItemProperties } from './employee-health-item.properties.ts';
+import { IEmployeeHealthItem } from './employee-health-item.model';
+import { EmployeeHealthItemProperties } from './employee-health-item.properties';
 
 export function createTestEmployeeHealthItem(): Partial<IEmployeeHealthItem> {
     return { 

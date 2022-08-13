@@ -24,7 +24,7 @@ export interface I{{{name}}} {
 {{#if isEnum}}
   {{name}}?: {{referenceTypeName}}{{#if isArray}}[]{{/if}}{{#unless required}} | null{{/unless}};
 {{else}}
-  {{name}}?: Partial<I{{referenceTypeName}}{{#if isArray}}[]{{/if}}>;
+  {{name}}?: Partial<I{{referenceTypeName}}{{#if isArray}}[]{{/if}}>{{#unless required}} | null{{/unless}};
 {{/if}}
 {{/referenceProperties}}
 }
