@@ -35,8 +35,6 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IAccount } from './account.model';
-import { IAccountForm } from './account.form-group-fac';
 import { IContactForm } from './contact.form-group-fac';
 
 export interface IAccountForm {
@@ -48,7 +46,7 @@ export interface IAccountForm {
     emailInvoice: FormControl<boolean | null>;
     tenantId: FormControl<string | null>;
     contactCount: FormControl<number | null>;
-    parentAccount: FormControl<IAccount | null>;
+    parentAccount: FormGroup<IAccountForm | null>;
     contacts: FormArray<FormGroup<IContactForm>>;
     inverseParentAccount: FormArray<FormGroup<IAccountForm>>;
 }
@@ -63,7 +61,7 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     emailInvoice: new FormControl<boolean | null>(null),
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
-    parentAccount: new FormControl<IAccount | null>(null),
+    parentAccount: new FormGroup<IAccountForm | null>(null),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     inverseParentAccount: new FormArray<FormGroup<IAccountForm>>([]),
   });
@@ -298,7 +296,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
-import { IAccount } from './account.model';
+import { IAccountForm } from './account.form-group-fac';
 
 export interface IContactForm {
     id: FormControl<string | null>;
@@ -316,7 +314,7 @@ export interface IContactForm {
     emails: FormControl<string | null>;
     phone1: FormControl<string | null>;
     phone2: FormControl<string | null>;
-    account: FormControl<IAccount | null>;
+    account: FormGroup<IAccountForm | null>;
 }
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
@@ -336,7 +334,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     emails: new FormControl<string | null>(null),
     phone1: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     phone2: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
-    account: new FormControl<IAccount | null>(null),
+    account: new FormGroup<IAccountForm | null>(null),
   });
 }
 "
