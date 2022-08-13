@@ -88,7 +88,7 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     emailInvoice: new FormControl<boolean | null>(null),
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
-    parentAccount: new FormGroup<IAccountForm | null>(null),
+    parentAccount: new FormGroup<IAccountForm | null>(AccountFormGroupFac().controls),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
   });
@@ -472,6 +472,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 import { IAccountForm } from './account.form';
+import { AccountFormGroupFac } from './account.form-group-fac';
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
   return new FormGroup<IContactForm>({
@@ -490,7 +491,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     emails: new FormControl<string | null>(null),
     phone1: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     phone2: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
-    account: new FormGroup<IAccountForm | null>(null),
+    account: new FormGroup<IAccountForm | null>(AccountFormGroupFac().controls),
   });
 }
 "
