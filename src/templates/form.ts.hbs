@@ -13,18 +13,18 @@ import { I{{name}}Form } from './{{kebabCasedTypeName}}.form';{{/if}}{{/unless}}
 export interface I{{name}}Form {
 {{#valueProperties}}
 {{#if isArray}}
-    {{name}}: FormArray<FormControl<{{typeScriptType}}>>;
+    {{name}}?: FormArray<FormControl<{{typeScriptType}}>>;
 {{else}} 
-    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}} | undefined>;
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isArray}} 
-    {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
+    {{name}}?: FormArray<FormGroup<I{{typeScriptType}}Form>>;
 {{else if isEnum}}
-    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
+    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}} | undefined>;
 {{else}}
-    {{name}}: FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>;
+    {{name}}?: FormGroup<I{{typeScriptType}}Form>;
 {{/if}}
 {{/referenceProperties}}
 }

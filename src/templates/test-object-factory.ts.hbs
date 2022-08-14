@@ -6,12 +6,10 @@
  * Do not edit.
  */
 {{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
-import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { createTest{{name}} } from './{{kebabCasedTypeName}}.test-obj-fac';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
-import { I{{name}} } from './{{kebabCasedName}}.model';
+import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 import { {{name}}Properties } from './{{kebabCasedName}}.properties';
 
-export function createTest{{name}}(): Partial<I{{name}}> {
+export function createTest{{name}}() {
     return { {{#valueProperties}}
       [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/valueProperties}} {{#referenceProperties}}
       [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/referenceProperties}}
