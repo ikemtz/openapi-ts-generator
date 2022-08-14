@@ -70,9 +70,9 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IRecipientForm } from './recipient.form';
 
 export interface IMessageDtoForm {
-    id: FormControl<string | null>;
-    body: FormControl<string>;
-    recipients: FormArray<FormGroup<IRecipientForm>>;
+    id?: FormControl<string | null | undefined>;
+    body?: FormControl<string | undefined>;
+    recipients?: FormArray<FormGroup<IRecipientForm>>;
 }
 "
 `;
@@ -146,15 +146,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * Do not edit.
  */
 
-import { createTestRecipient } from './recipient.test-obj-fac';
-import { IMessageDto } from './message-dto.model';
 import { MessageDtoProperties } from './message-dto.properties';
 
-export function createTestMessageDto(): Partial<IMessageDto> {
+export function createTestMessageDto() {
     return { 
       [MessageDtoProperties.ID]: 'ID',
       [MessageDtoProperties.BODY]: 'BODY', 
-      [MessageDtoProperties.RECIPIENTS]: [createTestRecipient()],
+      [MessageDtoProperties.RECIPIENTS]: [],
     };
 }
 "
@@ -172,13 +170,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IRecipientForm {
-    id: FormControl<string | null>;
-    ultiId: FormControl<string>;
-    firstName: FormControl<string>;
-    middleName: FormControl<string | null>;
-    lastName: FormControl<string>;
-    cellPhone1: FormControl<string | null>;
-    homePhone1: FormControl<string | null>;
+    id?: FormControl<string | null | undefined>;
+    ultiId?: FormControl<string | undefined>;
+    firstName?: FormControl<string | undefined>;
+    middleName?: FormControl<string | null | undefined>;
+    lastName?: FormControl<string | undefined>;
+    cellPhone1?: FormControl<string | null | undefined>;
+    homePhone1?: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -260,10 +258,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * Do not edit.
  */
 
-import { IRecipient } from './recipient.model';
 import { RecipientProperties } from './recipient.properties';
 
-export function createTestRecipient(): Partial<IRecipient> {
+export function createTestRecipient() {
     return { 
       [RecipientProperties.ID]: 'ID',
       [RecipientProperties.ULTI_ID]: 'ULTI_ID',

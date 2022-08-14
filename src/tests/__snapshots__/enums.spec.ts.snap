@@ -28,12 +28,12 @@ import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
 
 export interface IContactForm {
-    id: FormControl<string | null>;
-    accountId: FormControl<string>;
-    addressLine1: FormControl<string>;
-    contactType: FormControl<ContactTypes>;
-    contactType2: FormControl<ContactTypes2>;
-    contactType3: FormControl<ContactTypes | null>;
+    id?: FormControl<string | null | undefined>;
+    accountId?: FormControl<string | undefined>;
+    addressLine1?: FormControl<string | undefined>;
+    contactType?: FormControl<ContactTypes | undefined>;
+    contactType2?: FormControl<ContactTypes2 | undefined>;
+    contactType3?: FormControl<ContactTypes | null | undefined>;
 }
 "
 `;
@@ -87,7 +87,7 @@ export interface IContact {
   addressLine1?: string;
   contactType?: ContactTypes;
   contactType2?: ContactTypes2;
-  contactType3?: ContactTypes | null;
+  contactType3?: ContactTypes;
 }
 "
 `;
@@ -126,10 +126,9 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
 
 import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
-import { IContact } from './contact.model';
 import { ContactProperties } from './contact.properties';
 
-export function createTestContact(): Partial<IContact> {
+export function createTestContact() {
     return { 
       [ContactProperties.ID]: 'ID',
       [ContactProperties.ACCOUNT_ID]: 'ACCOUNT_ID',

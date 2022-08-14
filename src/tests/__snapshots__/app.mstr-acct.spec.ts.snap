@@ -50,17 +50,17 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountForm {
-    id: FormControl<string | null>;
-    refId: FormControl<string | null>;
-    name: FormControl<string | null>;
-    parentAccountId: FormControl<string | null>;
-    isEnabled: FormControl<boolean | null>;
-    emailInvoice: FormControl<boolean | null>;
-    tenantId: FormControl<string | null>;
-    contactCount: FormControl<number | null>;
-    parentAccount: FormGroup<IAccountForm | null>;
-    contacts: FormArray<FormGroup<IContactForm>>;
-    childAccounts: FormArray<FormGroup<IAccountForm>>;
+    id?: FormControl<string | null | undefined>;
+    refId?: FormControl<string | null | undefined>;
+    name?: FormControl<string | null | undefined>;
+    parentAccountId?: FormControl<string | null | undefined>;
+    isEnabled?: FormControl<boolean | null | undefined>;
+    emailInvoice?: FormControl<boolean | null | undefined>;
+    tenantId?: FormControl<string | null | undefined>;
+    contactCount?: FormControl<number | null | undefined>;
+    parentAccount?: FormGroup<IAccountForm>;
+    contacts?: FormArray<FormGroup<IContactForm>>;
+    childAccounts?: FormArray<FormGroup<IAccountForm>>;
 }
 "
 `;
@@ -88,7 +88,7 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     emailInvoice: new FormControl<boolean | null>(null),
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
-    parentAccount: new FormGroup<IAccountForm | null>(AccountFormGroupFac().controls),
+    parentAccount: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
   });
@@ -120,9 +120,9 @@ export interface IAccount {
   emailInvoice?: boolean | null;
   tenantId?: string | null;
   contactCount?: number | null;
-  parentAccount?: Partial<IAccount> | null;
-  contacts?: Partial<IContact[]> | null;
-  childAccounts?: Partial<IAccount[]> | null;
+  parentAccount?: Partial<IAccount>;
+  contacts?: Partial<IContact[]>;
+  childAccounts?: Partial<IAccount[]>;
 }
 "
 `;
@@ -164,11 +164,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { createTestContact } from './contact.test-obj-fac';
-import { IAccount } from './account.model';
 import { AccountProperties } from './account.properties';
 
-export function createTestAccount(): Partial<IAccount> {
+export function createTestAccount() {
     return { 
       [AccountProperties.ID]: 'ID',
       [AccountProperties.REF_ID]: 'REF_ID',
@@ -178,8 +176,8 @@ export function createTestAccount(): Partial<IAccount> {
       [AccountProperties.EMAIL_INVOICE]: false,
       [AccountProperties.TENANT_ID]: 'TENANT_ID',
       [AccountProperties.CONTACT_COUNT]: 0, 
-      [AccountProperties.PARENT_ACCOUNT]: null,
-      [AccountProperties.CONTACTS]: [createTestContact()],
+      [AccountProperties.PARENT_ACCOUNT]: undefined,
+      [AccountProperties.CONTACTS]: [],
       [AccountProperties.CHILD_ACCOUNTS]: [],
     };
 }
@@ -199,12 +197,12 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountInsertRequestForm {
-    id: FormControl<string | null>;
-    refId: FormControl<string | null>;
-    name: FormControl<string>;
-    parentAccountId: FormControl<string | null>;
-    emailInvoice: FormControl<boolean | null>;
-    contacts: FormArray<FormGroup<IContactForm>>;
+    id?: FormControl<string | null | undefined>;
+    refId?: FormControl<string | null | undefined>;
+    name?: FormControl<string | undefined>;
+    parentAccountId?: FormControl<string | null | undefined>;
+    emailInvoice?: FormControl<boolean | null | undefined>;
+    contacts?: FormArray<FormGroup<IContactForm>>;
 }
 "
 `;
@@ -253,7 +251,7 @@ export interface IAccountInsertRequest {
   name?: string;
   parentAccountId?: string | null;
   emailInvoice?: boolean | null;
-  contacts?: Partial<IContact[]> | null;
+  contacts?: Partial<IContact[]>;
 }
 "
 `;
@@ -287,18 +285,16 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { createTestContact } from './contact.test-obj-fac';
-import { IAccountInsertRequest } from './account-insert-request.model';
 import { AccountInsertRequestProperties } from './account-insert-request.properties';
 
-export function createTestAccountInsertRequest(): Partial<IAccountInsertRequest> {
+export function createTestAccountInsertRequest() {
     return { 
       [AccountInsertRequestProperties.ID]: 'ID',
       [AccountInsertRequestProperties.REF_ID]: 'REF_ID',
       [AccountInsertRequestProperties.NAME]: 'NAME',
       [AccountInsertRequestProperties.PARENT_ACCOUNT_ID]: 'PARENT_ACCOUNT_ID',
       [AccountInsertRequestProperties.EMAIL_INVOICE]: false, 
-      [AccountInsertRequestProperties.CONTACTS]: [createTestContact()],
+      [AccountInsertRequestProperties.CONTACTS]: [],
     };
 }
 "
@@ -317,13 +313,13 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountUpdateRequestForm {
-    id: FormControl<string | null>;
-    refId: FormControl<string>;
-    name: FormControl<string>;
-    parentAccountId: FormControl<string | null>;
-    isEnabled: FormControl<boolean | null>;
-    emailInvoice: FormControl<boolean | null>;
-    contacts: FormArray<FormGroup<IContactForm>>;
+    id?: FormControl<string | null | undefined>;
+    refId?: FormControl<string | undefined>;
+    name?: FormControl<string | undefined>;
+    parentAccountId?: FormControl<string | null | undefined>;
+    isEnabled?: FormControl<boolean | null | undefined>;
+    emailInvoice?: FormControl<boolean | null | undefined>;
+    contacts?: FormArray<FormGroup<IContactForm>>;
 }
 "
 `;
@@ -374,7 +370,7 @@ export interface IAccountUpdateRequest {
   parentAccountId?: string | null;
   isEnabled?: boolean | null;
   emailInvoice?: boolean | null;
-  contacts?: Partial<IContact[]> | null;
+  contacts?: Partial<IContact[]>;
 }
 "
 `;
@@ -409,11 +405,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { createTestContact } from './contact.test-obj-fac';
-import { IAccountUpdateRequest } from './account-update-request.model';
 import { AccountUpdateRequestProperties } from './account-update-request.properties';
 
-export function createTestAccountUpdateRequest(): Partial<IAccountUpdateRequest> {
+export function createTestAccountUpdateRequest() {
     return { 
       [AccountUpdateRequestProperties.ID]: 'ID',
       [AccountUpdateRequestProperties.REF_ID]: 'REF_ID',
@@ -421,7 +415,7 @@ export function createTestAccountUpdateRequest(): Partial<IAccountUpdateRequest>
       [AccountUpdateRequestProperties.PARENT_ACCOUNT_ID]: 'PARENT_ACCOUNT_ID',
       [AccountUpdateRequestProperties.IS_ENABLED]: false,
       [AccountUpdateRequestProperties.EMAIL_INVOICE]: false, 
-      [AccountUpdateRequestProperties.CONTACTS]: [createTestContact()],
+      [AccountUpdateRequestProperties.CONTACTS]: [],
     };
 }
 "
@@ -440,22 +434,22 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IAccountForm } from './account.form';
 
 export interface IContactForm {
-    id: FormControl<string | null>;
-    isEnabled: FormControl<boolean | null>;
-    contactTypeId: FormControl<string>;
-    accountId: FormControl<string>;
-    firstName: FormControl<string>;
-    lastName: FormControl<string>;
-    middleName: FormControl<string | null>;
-    addressLine1: FormControl<string>;
-    addressLine2: FormControl<string | null>;
-    city: FormControl<string>;
-    state: FormControl<string>;
-    zip: FormControl<string>;
-    emails: FormControl<string | null>;
-    phone1: FormControl<string | null>;
-    phone2: FormControl<string | null>;
-    account: FormGroup<IAccountForm | null>;
+    id?: FormControl<string | null | undefined>;
+    isEnabled?: FormControl<boolean | null | undefined>;
+    contactTypeId?: FormControl<string | undefined>;
+    accountId?: FormControl<string | undefined>;
+    firstName?: FormControl<string | undefined>;
+    lastName?: FormControl<string | undefined>;
+    middleName?: FormControl<string | null | undefined>;
+    addressLine1?: FormControl<string | undefined>;
+    addressLine2?: FormControl<string | null | undefined>;
+    city?: FormControl<string | undefined>;
+    state?: FormControl<string | undefined>;
+    zip?: FormControl<string | undefined>;
+    emails?: FormControl<string | null | undefined>;
+    phone1?: FormControl<string | null | undefined>;
+    phone2?: FormControl<string | null | undefined>;
+    account?: FormGroup<IAccountForm>;
 }
 "
 `;
@@ -491,7 +485,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     emails: new FormControl<string | null>(null),
     phone1: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     phone2: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
-    account: new FormGroup<IAccountForm | null>(AccountFormGroupFac().controls),
+    account: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
   });
 }
 "
@@ -528,7 +522,7 @@ export interface IContact {
   emails?: string | null;
   phone1?: string | null;
   phone2?: string | null;
-  account?: Partial<IAccount> | null;
+  account?: Partial<IAccount>;
 }
 "
 `;
@@ -575,11 +569,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { createTestAccount } from './account.test-obj-fac';
-import { IContact } from './contact.model';
 import { ContactProperties } from './contact.properties';
 
-export function createTestContact(): Partial<IContact> {
+export function createTestContact() {
     return { 
       [ContactProperties.ID]: 'ID',
       [ContactProperties.IS_ENABLED]: false,
@@ -588,15 +580,15 @@ export function createTestContact(): Partial<IContact> {
       [ContactProperties.FIRST_NAME]: 'FIRST_NAME',
       [ContactProperties.LAST_NAME]: 'LAST_NAME',
       [ContactProperties.MIDDLE_NAME]: 'MIDDL',
-      [ContactProperties.ADDRESS_LINE_1]: 'ADDRESS_LINE_1',
+      [ContactProperties.ADDRESS_LINE_1]: 'ADDRESS_LINE_1_ADDRESS_LINE_1_ADDRESS_LINE_1_ADDRESS_LINE_1',
       [ContactProperties.ADDRESS_LINE_2]: 'ADDRESS_LINE_2',
       [ContactProperties.CITY]: 'CITY',
       [ContactProperties.STATE]: 'STATE',
       [ContactProperties.ZIP]: 'ZIP',
       [ContactProperties.EMAILS]: 'EMAILS',
-      [ContactProperties.PHONE_1]: 'PHONE_1',
-      [ContactProperties.PHONE_2]: 'PHONE_2', 
-      [ContactProperties.ACCOUNT]: createTestAccount(),
+      [ContactProperties.PHONE_1]: 'PHONE_1_PHONE_',
+      [ContactProperties.PHONE_2]: 'PHONE_2_PHONE_', 
+      [ContactProperties.ACCOUNT]: undefined,
     };
 }
 "
@@ -614,20 +606,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactInsertRequestForm {
-    id: FormControl<string | null>;
-    contactTypeId: FormControl<string>;
-    accountId: FormControl<string>;
-    firstName: FormControl<string>;
-    lastName: FormControl<string>;
-    middleName: FormControl<string | null>;
-    addressLine1: FormControl<string>;
-    addressLine2: FormControl<string | null>;
-    city: FormControl<string>;
-    state: FormControl<string>;
-    zip: FormControl<string>;
-    emails: FormControl<string | null>;
-    phone1: FormControl<string | null>;
-    phone2: FormControl<string | null>;
+    id?: FormControl<string | null | undefined>;
+    contactTypeId?: FormControl<string | undefined>;
+    accountId?: FormControl<string | undefined>;
+    firstName?: FormControl<string | undefined>;
+    lastName?: FormControl<string | undefined>;
+    middleName?: FormControl<string | null | undefined>;
+    addressLine1?: FormControl<string | undefined>;
+    addressLine2?: FormControl<string | null | undefined>;
+    city?: FormControl<string | undefined>;
+    state?: FormControl<string | undefined>;
+    zip?: FormControl<string | undefined>;
+    emails?: FormControl<string | null | undefined>;
+    phone1?: FormControl<string | null | undefined>;
+    phone2?: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -730,10 +722,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { IContactInsertRequest } from './contact-insert-request.model';
 import { ContactInsertRequestProperties } from './contact-insert-request.properties';
 
-export function createTestContactInsertRequest(): Partial<IContactInsertRequest> {
+export function createTestContactInsertRequest() {
     return { 
       [ContactInsertRequestProperties.ID]: 'ID',
       [ContactInsertRequestProperties.CONTACT_TYPE_ID]: 'CONTACT_TYPE_ID',
@@ -766,20 +757,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactUpdateRequestForm {
-    id: FormControl<string | null>;
-    contactTypeId: FormControl<string>;
-    accountId: FormControl<string>;
-    firstName: FormControl<string>;
-    lastName: FormControl<string>;
-    middleName: FormControl<string | null>;
-    addressLine1: FormControl<string>;
-    addressLine2: FormControl<string | null>;
-    city: FormControl<string>;
-    state: FormControl<string>;
-    zip: FormControl<string>;
-    emails: FormControl<string | null>;
-    phone1: FormControl<string | null>;
-    phone2: FormControl<string | null>;
+    id?: FormControl<string | null | undefined>;
+    contactTypeId?: FormControl<string | undefined>;
+    accountId?: FormControl<string | undefined>;
+    firstName?: FormControl<string | undefined>;
+    lastName?: FormControl<string | undefined>;
+    middleName?: FormControl<string | null | undefined>;
+    addressLine1?: FormControl<string | undefined>;
+    addressLine2?: FormControl<string | null | undefined>;
+    city?: FormControl<string | undefined>;
+    state?: FormControl<string | undefined>;
+    zip?: FormControl<string | undefined>;
+    emails?: FormControl<string | null | undefined>;
+    phone1?: FormControl<string | null | undefined>;
+    phone2?: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -882,10 +873,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
  * Do not edit.
  */
 
-import { IContactUpdateRequest } from './contact-update-request.model';
 import { ContactUpdateRequestProperties } from './contact-update-request.properties';
 
-export function createTestContactUpdateRequest(): Partial<IContactUpdateRequest> {
+export function createTestContactUpdateRequest() {
     return { 
       [ContactUpdateRequestProperties.ID]: 'ID',
       [ContactUpdateRequestProperties.CONTACT_TYPE_ID]: 'CONTACT_TYPE_ID',
