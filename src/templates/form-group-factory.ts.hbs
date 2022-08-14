@@ -44,9 +44,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{typeScriptType}}FormGroupFac().controls, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form>({{typeScriptType}}FormGroupFac().controls, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
-    {{name}}: new FormGroup<I{{typeScriptType}}Form{{#unless required}} | null{{/unless}}>({{typeScriptType}}FormGroupFac().controls{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormGroup<I{{typeScriptType}}Form>({{typeScriptType}}FormGroupFac().controls{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
 {{/referenceProperties}}

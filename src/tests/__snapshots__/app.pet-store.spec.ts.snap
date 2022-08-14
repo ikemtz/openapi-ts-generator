@@ -50,8 +50,8 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IErrorForm {
-    code: FormControl<number>;
-    message: FormControl<string>;
+    code?: FormControl<number | undefined>;
+    message?: FormControl<string | undefined>;
 }
 "
 `;
@@ -118,10 +118,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * Do not edit.
  */
 
-import { IError } from './error.model';
 import { ErrorProperties } from './error.properties';
 
-export function createTestError(): Partial<IError> {
+export function createTestError() {
     return { 
       [ErrorProperties.CODE]: 0,
       [ErrorProperties.MESSAGE]: 'MESSAGE', 
@@ -165,9 +164,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IPetForm {
-    id: FormControl<number | null>;
-    name: FormControl<string>;
-    tag: FormControl<string | null>;
+    id?: FormControl<number | null | undefined>;
+    name?: FormControl<string | undefined>;
+    tag?: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -237,10 +236,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * Do not edit.
  */
 
-import { IPet } from './pet.model';
 import { PetProperties } from './pet.properties';
 
-export function createTestPet(): Partial<IPet> {
+export function createTestPet() {
     return { 
       [PetProperties.ID]: 0,
       [PetProperties.NAME]: 'NAME',

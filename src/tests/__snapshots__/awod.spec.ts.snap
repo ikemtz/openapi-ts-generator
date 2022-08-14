@@ -69,16 +69,16 @@ import { ICustomerAddressForm } from './customer-address.form';
 import { IOrderForm } from './order.form';
 
 export interface ICustomerForm {
-    id: FormControl<string | null>;
-    num: FormControl<string>;
-    name: FormControl<string | null>;
-    companyName: FormControl<string>;
-    salesAgentId: FormControl<number>;
-    emailAddress: FormControl<string | null>;
-    phone: FormControl<string | null>;
-    salesAgent: FormGroup<ISalesAgentForm | null>;
-    customerAddresses: FormArray<FormGroup<ICustomerAddressForm>>;
-    orders: FormArray<FormGroup<IOrderForm>>;
+    id?: FormControl<string | null | undefined>;
+    num?: FormControl<string | undefined>;
+    name?: FormControl<string | null | undefined>;
+    companyName?: FormControl<string | undefined>;
+    salesAgentId?: FormControl<number | undefined>;
+    emailAddress?: FormControl<string | null | undefined>;
+    phone?: FormControl<string | null | undefined>;
+    salesAgent?: FormGroup<ISalesAgentForm>;
+    customerAddresses?: FormArray<FormGroup<ICustomerAddressForm>>;
+    orders?: FormArray<FormGroup<IOrderForm>>;
 }
 "
 `;
@@ -108,7 +108,7 @@ export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
     salesAgentId: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     emailAddress: new FormControl<string | null>(null, { validators: Validators.maxLength(250) } ),
     phone: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
-    salesAgent: new FormGroup<ISalesAgentForm | null>(SalesAgentFormGroupFac().controls),
+    salesAgent: new FormGroup<ISalesAgentForm>(SalesAgentFormGroupFac().controls),
     customerAddresses: new FormArray<FormGroup<ICustomerAddressForm>>([]),
     orders: new FormArray<FormGroup<IOrderForm>>([]),
   });
@@ -138,9 +138,9 @@ export interface ICustomer {
   salesAgentId?: number;
   emailAddress?: string | null;
   phone?: string | null;
-  salesAgent?: Partial<ISalesAgent> | null;
-  customerAddresses?: Partial<ICustomerAddress[]> | null;
-  orders?: Partial<IOrder[]> | null;
+  salesAgent?: Partial<ISalesAgent>;
+  customerAddresses?: Partial<ICustomerAddress[]>;
+  orders?: Partial<IOrder[]>;
 }
 "
 `;
@@ -178,24 +178,20 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestSalesAgent } from './sales-agent.test-obj-fac';
-import { createTestCustomerAddress } from './customer-address.test-obj-fac';
-import { createTestOrder } from './order.test-obj-fac';
-import { ICustomer } from './customer.model';
 import { CustomerProperties } from './customer.properties';
 
-export function createTestCustomer(): Partial<ICustomer> {
+export function createTestCustomer() {
     return { 
       [CustomerProperties.ID]: 'ID',
-      [CustomerProperties.NUM]: 'NUM',
+      [CustomerProperties.NUM]: 'NUM_NUM_NUM_NUM',
       [CustomerProperties.NAME]: 'NAME',
       [CustomerProperties.COMPANY_NAME]: 'COMPANY_NAME',
       [CustomerProperties.SALES_AGENT_ID]: 0,
       [CustomerProperties.EMAIL_ADDRESS]: 'EMAIL_ADDRESS',
       [CustomerProperties.PHONE]: 'PHONE', 
-      [CustomerProperties.SALES_AGENT]: createTestSalesAgent(),
-      [CustomerProperties.CUSTOMER_ADDRESSES]: [createTestCustomerAddress()],
-      [CustomerProperties.ORDERS]: [createTestOrder()],
+      [CustomerProperties.SALES_AGENT]: undefined,
+      [CustomerProperties.CUSTOMER_ADDRESSES]: [],
+      [CustomerProperties.ORDERS]: [],
     };
 }
 "
@@ -214,16 +210,16 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { ICustomerForm } from './customer.form';
 
 export interface ICustomerAddressForm {
-    id: FormControl<string | null>;
-    customerId: FormControl<string>;
-    addressType: FormControl<string>;
-    line1: FormControl<string>;
-    line2: FormControl<string | null>;
-    city: FormControl<string>;
-    stateProvince: FormControl<string>;
-    countryRegion: FormControl<string>;
-    postalCode: FormControl<string>;
-    customer: FormGroup<ICustomerForm | null>;
+    id?: FormControl<string | null | undefined>;
+    customerId?: FormControl<string | undefined>;
+    addressType?: FormControl<string | undefined>;
+    line1?: FormControl<string | undefined>;
+    line2?: FormControl<string | null | undefined>;
+    city?: FormControl<string | undefined>;
+    stateProvince?: FormControl<string | undefined>;
+    countryRegion?: FormControl<string | undefined>;
+    postalCode?: FormControl<string | undefined>;
+    customer?: FormGroup<ICustomerForm>;
 }
 "
 `;
@@ -253,7 +249,7 @@ export function CustomerAddressFormGroupFac(): FormGroup<ICustomerAddressForm> {
     stateProvince: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     countryRegion: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(50)]), nonNullable: true }),
     postalCode: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(15)]), nonNullable: true }),
-    customer: new FormGroup<ICustomerForm | null>(CustomerFormGroupFac().controls),
+    customer: new FormGroup<ICustomerForm>(CustomerFormGroupFac().controls),
   });
 }
 "
@@ -281,7 +277,7 @@ export interface ICustomerAddress {
   stateProvince?: string;
   countryRegion?: string;
   postalCode?: string;
-  customer?: Partial<ICustomer> | null;
+  customer?: Partial<ICustomer>;
 }
 "
 `;
@@ -319,11 +315,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestCustomer } from './customer.test-obj-fac';
-import { ICustomerAddress } from './customer-address.model';
 import { CustomerAddressProperties } from './customer-address.properties';
 
-export function createTestCustomerAddress(): Partial<ICustomerAddress> {
+export function createTestCustomerAddress() {
     return { 
       [CustomerAddressProperties.ID]: 'ID',
       [CustomerAddressProperties.CUSTOMER_ID]: 'CUSTOMER_ID',
@@ -334,7 +328,7 @@ export function createTestCustomerAddress(): Partial<ICustomerAddress> {
       [CustomerAddressProperties.STATE_PROVINCE]: 'STATE_PROVINCE',
       [CustomerAddressProperties.COUNTRY_REGION]: 'COUNTRY_REGION',
       [CustomerAddressProperties.POSTAL_CODE]: 'POSTAL_CODE', 
-      [CustomerAddressProperties.CUSTOMER]: createTestCustomer(),
+      [CustomerAddressProperties.CUSTOMER]: undefined,
     };
 }
 "
@@ -448,30 +442,30 @@ import { IOrderAddressForm } from './order-address.form';
 import { IOrderLineItemForm } from './order-line-item.form';
 
 export interface IOrderForm {
-    id: FormControl<string | null>;
-    orderId: FormControl<number>;
-    revisionNum: FormControl<number>;
-    date: FormControl<Date>;
-    dueDate: FormControl<Date>;
-    shipDate: FormControl<Date | null>;
-    isOnlineOrder: FormControl<boolean>;
-    num: FormControl<string>;
-    purchaseOrderNum: FormControl<string | null>;
-    customerId: FormControl<string>;
-    shipToAddressId: FormControl<string | null>;
-    billToAddressId: FormControl<string | null>;
-    creditCardApprovalCode: FormControl<string | null>;
-    subTotal: FormControl<number>;
-    taxAmt: FormControl<number>;
-    freight: FormControl<number>;
-    totalDue: FormControl<number>;
-    comment: FormControl<string | null>;
-    statusType: FormControl<OrderStatusTypes>;
-    shippingType: FormControl<ShippingTypes>;
-    customer: FormGroup<ICustomerForm | null>;
-    shipToAddress: FormGroup<IOrderAddressForm | null>;
-    billToAddress: FormGroup<IOrderAddressForm | null>;
-    orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
+    id?: FormControl<string | null | undefined>;
+    orderId?: FormControl<number | undefined>;
+    revisionNum?: FormControl<number | undefined>;
+    date?: FormControl<Date | undefined>;
+    dueDate?: FormControl<Date | undefined>;
+    shipDate?: FormControl<Date | null | undefined>;
+    isOnlineOrder?: FormControl<boolean | undefined>;
+    num?: FormControl<string | undefined>;
+    purchaseOrderNum?: FormControl<string | null | undefined>;
+    customerId?: FormControl<string | undefined>;
+    shipToAddressId?: FormControl<string | null | undefined>;
+    billToAddressId?: FormControl<string | null | undefined>;
+    creditCardApprovalCode?: FormControl<string | null | undefined>;
+    subTotal?: FormControl<number | undefined>;
+    taxAmt?: FormControl<number | undefined>;
+    freight?: FormControl<number | undefined>;
+    totalDue?: FormControl<number | undefined>;
+    comment?: FormControl<string | null | undefined>;
+    statusType?: FormControl<OrderStatusTypes | undefined>;
+    shippingType?: FormControl<ShippingTypes | undefined>;
+    customer?: FormGroup<ICustomerForm>;
+    shipToAddress?: FormGroup<IOrderAddressForm>;
+    billToAddress?: FormGroup<IOrderAddressForm>;
+    orderLineItems?: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
 `;
@@ -517,9 +511,9 @@ export function OrderFormGroupFac(): FormGroup<IOrderForm> {
     comment: new FormControl<string | null>(null, { validators: Validators.maxLength(500) } ),
     statusType: new FormControl<OrderStatusTypes>(OrderStatusTypes.Processing, { validators: Validators.required, nonNullable: true } ),
     shippingType: new FormControl<ShippingTypes>(ShippingTypes.Other, { validators: Validators.required, nonNullable: true } ),
-    customer: new FormGroup<ICustomerForm | null>(CustomerFormGroupFac().controls),
-    shipToAddress: new FormGroup<IOrderAddressForm | null>(OrderAddressFormGroupFac().controls),
-    billToAddress: new FormGroup<IOrderAddressForm | null>(OrderAddressFormGroupFac().controls),
+    customer: new FormGroup<ICustomerForm>(CustomerFormGroupFac().controls),
+    shipToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
+    billToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
     orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
@@ -563,10 +557,10 @@ export interface IOrder {
   comment?: string | null;
   statusType?: OrderStatusTypes;
   shippingType?: ShippingTypes;
-  customer?: Partial<ICustomer> | null;
-  shipToAddress?: Partial<IOrderAddress> | null;
-  billToAddress?: Partial<IOrderAddress> | null;
-  orderLineItems?: Partial<IOrderLineItem[]> | null;
+  customer?: Partial<ICustomer>;
+  shipToAddress?: Partial<IOrderAddress>;
+  billToAddress?: Partial<IOrderAddress>;
+  orderLineItems?: Partial<IOrderLineItem[]>;
 }
 "
 `;
@@ -620,13 +614,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 
 import { OrderStatusTypes } from './order-status-types.enum';
 import { ShippingTypes } from './shipping-types.enum';
-import { createTestCustomer } from './customer.test-obj-fac';
-import { createTestOrderAddress } from './order-address.test-obj-fac';
-import { createTestOrderLineItem } from './order-line-item.test-obj-fac';
-import { IOrder } from './order.model';
 import { OrderProperties } from './order.properties';
 
-export function createTestOrder(): Partial<IOrder> {
+export function createTestOrder() {
     return { 
       [OrderProperties.ID]: 'ID',
       [OrderProperties.ORDER_ID]: 0,
@@ -648,10 +638,10 @@ export function createTestOrder(): Partial<IOrder> {
       [OrderProperties.COMMENT]: 'COMMENT', 
       [OrderProperties.STATUS_TYPE]: OrderStatusTypes.Processing,
       [OrderProperties.SHIPPING_TYPE]: ShippingTypes.Other,
-      [OrderProperties.CUSTOMER]: createTestCustomer(),
-      [OrderProperties.SHIP_TO_ADDRESS]: createTestOrderAddress(),
-      [OrderProperties.BILL_TO_ADDRESS]: createTestOrderAddress(),
-      [OrderProperties.ORDER_LINE_ITEMS]: [createTestOrderLineItem()],
+      [OrderProperties.CUSTOMER]: undefined,
+      [OrderProperties.SHIP_TO_ADDRESS]: undefined,
+      [OrderProperties.BILL_TO_ADDRESS]: undefined,
+      [OrderProperties.ORDER_LINE_ITEMS]: [],
     };
 }
 "
@@ -670,15 +660,15 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IOrderForm } from './order.form';
 
 export interface IOrderAddressForm {
-    id: FormControl<string | null>;
-    line1: FormControl<string>;
-    line2: FormControl<string | null>;
-    city: FormControl<string>;
-    stateProvince: FormControl<string>;
-    countryRegion: FormControl<string>;
-    postalCode: FormControl<string>;
-    billToOrders: FormArray<FormGroup<IOrderForm>>;
-    shipToOrders: FormArray<FormGroup<IOrderForm>>;
+    id?: FormControl<string | null | undefined>;
+    line1?: FormControl<string | undefined>;
+    line2?: FormControl<string | null | undefined>;
+    city?: FormControl<string | undefined>;
+    stateProvince?: FormControl<string | undefined>;
+    countryRegion?: FormControl<string | undefined>;
+    postalCode?: FormControl<string | undefined>;
+    billToOrders?: FormArray<FormGroup<IOrderForm>>;
+    shipToOrders?: FormArray<FormGroup<IOrderForm>>;
 }
 "
 `;
@@ -732,8 +722,8 @@ export interface IOrderAddress {
   stateProvince?: string;
   countryRegion?: string;
   postalCode?: string;
-  billToOrders?: Partial<IOrder[]> | null;
-  shipToOrders?: Partial<IOrder[]> | null;
+  billToOrders?: Partial<IOrder[]>;
+  shipToOrders?: Partial<IOrder[]>;
 }
 "
 `;
@@ -770,11 +760,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestOrder } from './order.test-obj-fac';
-import { IOrderAddress } from './order-address.model';
 import { OrderAddressProperties } from './order-address.properties';
 
-export function createTestOrderAddress(): Partial<IOrderAddress> {
+export function createTestOrderAddress() {
     return { 
       [OrderAddressProperties.ID]: 'ID',
       [OrderAddressProperties.LINE_1]: 'LINE_1',
@@ -783,8 +771,8 @@ export function createTestOrderAddress(): Partial<IOrderAddress> {
       [OrderAddressProperties.STATE_PROVINCE]: 'STATE_PROVINCE',
       [OrderAddressProperties.COUNTRY_REGION]: 'COUNTRY_REGION',
       [OrderAddressProperties.POSTAL_CODE]: 'POSTAL_CODE', 
-      [OrderAddressProperties.BILL_TO_ORDERS]: [createTestOrder()],
-      [OrderAddressProperties.SHIP_TO_ORDERS]: [createTestOrder()],
+      [OrderAddressProperties.BILL_TO_ORDERS]: [],
+      [OrderAddressProperties.SHIP_TO_ORDERS]: [],
     };
 }
 "
@@ -804,15 +792,15 @@ import { IOrderForm } from './order.form';
 import { IProductForm } from './product.form';
 
 export interface IOrderLineItemForm {
-    id: FormControl<string | null>;
-    orderId: FormControl<string>;
-    orderQty: FormControl<number>;
-    productId: FormControl<string>;
-    unitPrice: FormControl<number>;
-    unitPriceDiscount: FormControl<number>;
-    lineTotal: FormControl<number>;
-    order: FormGroup<IOrderForm | null>;
-    product: FormGroup<IProductForm | null>;
+    id?: FormControl<string | null | undefined>;
+    orderId?: FormControl<string | undefined>;
+    orderQty?: FormControl<number | undefined>;
+    productId?: FormControl<string | undefined>;
+    unitPrice?: FormControl<number | undefined>;
+    unitPriceDiscount?: FormControl<number | undefined>;
+    lineTotal?: FormControl<number | undefined>;
+    order?: FormGroup<IOrderForm>;
+    product?: FormGroup<IProductForm>;
 }
 "
 `;
@@ -842,8 +830,8 @@ export function OrderLineItemFormGroupFac(): FormGroup<IOrderLineItemForm> {
     unitPrice: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     unitPriceDiscount: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     lineTotal: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
-    order: new FormGroup<IOrderForm | null>(OrderFormGroupFac().controls),
-    product: new FormGroup<IProductForm | null>(ProductFormGroupFac().controls),
+    order: new FormGroup<IOrderForm>(OrderFormGroupFac().controls),
+    product: new FormGroup<IProductForm>(ProductFormGroupFac().controls),
   });
 }
 "
@@ -870,8 +858,8 @@ export interface IOrderLineItem {
   unitPrice?: number;
   unitPriceDiscount?: number;
   lineTotal?: number;
-  order?: Partial<IOrder> | null;
-  product?: Partial<IProduct> | null;
+  order?: Partial<IOrder>;
+  product?: Partial<IProduct>;
 }
 "
 `;
@@ -908,12 +896,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestOrder } from './order.test-obj-fac';
-import { createTestProduct } from './product.test-obj-fac';
-import { IOrderLineItem } from './order-line-item.model';
 import { OrderLineItemProperties } from './order-line-item.properties';
 
-export function createTestOrderLineItem(): Partial<IOrderLineItem> {
+export function createTestOrderLineItem() {
     return { 
       [OrderLineItemProperties.ID]: 'ID',
       [OrderLineItemProperties.ORDER_ID]: 'ORDER_ID',
@@ -922,8 +907,8 @@ export function createTestOrderLineItem(): Partial<IOrderLineItem> {
       [OrderLineItemProperties.UNIT_PRICE]: 0,
       [OrderLineItemProperties.UNIT_PRICE_DISCOUNT]: 0,
       [OrderLineItemProperties.LINE_TOTAL]: 0, 
-      [OrderLineItemProperties.ORDER]: createTestOrder(),
-      [OrderLineItemProperties.PRODUCT]: createTestProduct(),
+      [OrderLineItemProperties.ORDER]: undefined,
+      [OrderLineItemProperties.PRODUCT]: undefined,
     };
 }
 "
@@ -969,23 +954,23 @@ import { IProductCategoryForm } from './product-category.form';
 import { IOrderLineItemForm } from './order-line-item.form';
 
 export interface IProductForm {
-    id: FormControl<string | null>;
-    name: FormControl<string>;
-    num: FormControl<string>;
-    color: FormControl<string | null>;
-    standardCost: FormControl<number>;
-    listPrice: FormControl<number>;
-    size: FormControl<string | null>;
-    weight: FormControl<number | null>;
-    productCategoryId: FormControl<string | null>;
-    productModelId: FormControl<string | null>;
-    sellStartDate: FormControl<Date>;
-    sellEndDate: FormControl<Date | null>;
-    discontinuedDate: FormControl<Date | null>;
-    thumbNailPhoto: FormControl<string | null>;
-    productModel: FormGroup<IProductModelForm | null>;
-    productCategory: FormGroup<IProductCategoryForm | null>;
-    orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
+    id?: FormControl<string | null | undefined>;
+    name?: FormControl<string | undefined>;
+    num?: FormControl<string | undefined>;
+    color?: FormControl<string | null | undefined>;
+    standardCost?: FormControl<number | undefined>;
+    listPrice?: FormControl<number | undefined>;
+    size?: FormControl<string | null | undefined>;
+    weight?: FormControl<number | null | undefined>;
+    productCategoryId?: FormControl<string | null | undefined>;
+    productModelId?: FormControl<string | null | undefined>;
+    sellStartDate?: FormControl<Date | undefined>;
+    sellEndDate?: FormControl<Date | null | undefined>;
+    discontinuedDate?: FormControl<Date | null | undefined>;
+    thumbNailPhoto?: FormControl<string | null | undefined>;
+    productModel?: FormGroup<IProductModelForm>;
+    productCategory?: FormGroup<IProductCategoryForm>;
+    orderLineItems?: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
 `;
@@ -1023,8 +1008,8 @@ export function ProductFormGroupFac(): FormGroup<IProductForm> {
     sellEndDate: new FormControl<Date | null>(null),
     discontinuedDate: new FormControl<Date | null>(null),
     thumbNailPhoto: new FormControl<string | null>(null, { validators: Validators.maxLength(5000) } ),
-    productModel: new FormGroup<IProductModelForm | null>(ProductModelFormGroupFac().controls),
-    productCategory: new FormGroup<IProductCategoryForm | null>(ProductCategoryFormGroupFac().controls),
+    productModel: new FormGroup<IProductModelForm>(ProductModelFormGroupFac().controls),
+    productCategory: new FormGroup<IProductCategoryForm>(ProductCategoryFormGroupFac().controls),
     orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
@@ -1060,9 +1045,9 @@ export interface IProduct {
   sellEndDate?: Date | null;
   discontinuedDate?: Date | null;
   thumbNailPhoto?: string | null;
-  productModel?: Partial<IProductModel> | null;
-  productCategory?: Partial<IProductCategory> | null;
-  orderLineItems?: Partial<IOrderLineItem[]> | null;
+  productModel?: Partial<IProductModel>;
+  productCategory?: Partial<IProductCategory>;
+  orderLineItems?: Partial<IOrderLineItem[]>;
 }
 "
 `;
@@ -1107,17 +1092,13 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestProductModel } from './product-model.test-obj-fac';
-import { createTestProductCategory } from './product-category.test-obj-fac';
-import { createTestOrderLineItem } from './order-line-item.test-obj-fac';
-import { IProduct } from './product.model';
 import { ProductProperties } from './product.properties';
 
-export function createTestProduct(): Partial<IProduct> {
+export function createTestProduct() {
     return { 
       [ProductProperties.ID]: 'ID',
       [ProductProperties.NAME]: 'NAME',
-      [ProductProperties.NUM]: 'NUM',
+      [ProductProperties.NUM]: 'NUM_NUM_NUM_NUM',
       [ProductProperties.COLOR]: 'COLOR',
       [ProductProperties.STANDARD_COST]: 0,
       [ProductProperties.LIST_PRICE]: 0,
@@ -1129,9 +1110,9 @@ export function createTestProduct(): Partial<IProduct> {
       [ProductProperties.SELL_END_DATE]: new Date(),
       [ProductProperties.DISCONTINUED_DATE]: new Date(),
       [ProductProperties.THUMB_NAIL_PHOTO]: 'THUMB_NAIL_PHOTO', 
-      [ProductProperties.PRODUCT_MODEL]: createTestProductModel(),
-      [ProductProperties.PRODUCT_CATEGORY]: createTestProductCategory(),
-      [ProductProperties.ORDER_LINE_ITEMS]: [createTestOrderLineItem()],
+      [ProductProperties.PRODUCT_MODEL]: undefined,
+      [ProductProperties.PRODUCT_CATEGORY]: undefined,
+      [ProductProperties.ORDER_LINE_ITEMS]: [],
     };
 }
 "
@@ -1150,9 +1131,9 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IProductForm } from './product.form';
 
 export interface IProductCategoryForm {
-    id: FormControl<string | null>;
-    name: FormControl<string>;
-    products: FormArray<FormGroup<IProductForm>>;
+    id?: FormControl<string | null | undefined>;
+    name?: FormControl<string | undefined>;
+    products?: FormArray<FormGroup<IProductForm>>;
 }
 "
 `;
@@ -1195,7 +1176,7 @@ import { IProduct } from './product.model';
 export interface IProductCategory {
   id?: string | null;
   name?: string;
-  products?: Partial<IProduct[]> | null;
+  products?: Partial<IProduct[]>;
 }
 "
 `;
@@ -1226,15 +1207,13 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestProduct } from './product.test-obj-fac';
-import { IProductCategory } from './product-category.model';
 import { ProductCategoryProperties } from './product-category.properties';
 
-export function createTestProductCategory(): Partial<IProductCategory> {
+export function createTestProductCategory() {
     return { 
       [ProductCategoryProperties.ID]: 'ID',
       [ProductCategoryProperties.NAME]: 'NAME', 
-      [ProductCategoryProperties.PRODUCTS]: [createTestProduct()],
+      [ProductCategoryProperties.PRODUCTS]: [],
     };
 }
 "
@@ -1253,10 +1232,10 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IProductForm } from './product.form';
 
 export interface IProductModelForm {
-    id: FormControl<string | null>;
-    name: FormControl<string>;
-    description: FormControl<string | null>;
-    products: FormArray<FormGroup<IProductForm>>;
+    id?: FormControl<string | null | undefined>;
+    name?: FormControl<string | undefined>;
+    description?: FormControl<string | null | undefined>;
+    products?: FormArray<FormGroup<IProductForm>>;
 }
 "
 `;
@@ -1301,7 +1280,7 @@ export interface IProductModel {
   id?: string | null;
   name?: string;
   description?: string | null;
-  products?: Partial<IProduct[]> | null;
+  products?: Partial<IProduct[]>;
 }
 "
 `;
@@ -1333,16 +1312,14 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestProduct } from './product.test-obj-fac';
-import { IProductModel } from './product-model.model';
 import { ProductModelProperties } from './product-model.properties';
 
-export function createTestProductModel(): Partial<IProductModel> {
+export function createTestProductModel() {
     return { 
       [ProductModelProperties.ID]: 'ID',
       [ProductModelProperties.NAME]: 'NAME',
       [ProductModelProperties.DESCRIPTION]: 'DESCRIPTION', 
-      [ProductModelProperties.PRODUCTS]: [createTestProduct()],
+      [ProductModelProperties.PRODUCTS]: [],
     };
 }
 "
@@ -1361,10 +1338,10 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { ICustomerForm } from './customer.form';
 
 export interface ISalesAgentForm {
-    id: FormControl<number | null>;
-    name: FormControl<string>;
-    loginId: FormControl<string>;
-    customers: FormArray<FormGroup<ICustomerForm>>;
+    id?: FormControl<number | null | undefined>;
+    name?: FormControl<string | undefined>;
+    loginId?: FormControl<string | undefined>;
+    customers?: FormArray<FormGroup<ICustomerForm>>;
 }
 "
 `;
@@ -1409,7 +1386,7 @@ export interface ISalesAgent {
   id?: number | null;
   name?: string;
   loginId?: string;
-  customers?: Partial<ICustomer[]> | null;
+  customers?: Partial<ICustomer[]>;
 }
 "
 `;
@@ -1441,16 +1418,14 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * Do not edit.
  */
 
-import { createTestCustomer } from './customer.test-obj-fac';
-import { ISalesAgent } from './sales-agent.model';
 import { SalesAgentProperties } from './sales-agent.properties';
 
-export function createTestSalesAgent(): Partial<ISalesAgent> {
+export function createTestSalesAgent() {
     return { 
       [SalesAgentProperties.ID]: 0,
       [SalesAgentProperties.NAME]: 'NAME',
       [SalesAgentProperties.LOGIN_ID]: 'LOGIN_ID', 
-      [SalesAgentProperties.CUSTOMERS]: [createTestCustomer()],
+      [SalesAgentProperties.CUSTOMERS]: [],
     };
 }
 "

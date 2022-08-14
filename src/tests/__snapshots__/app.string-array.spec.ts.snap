@@ -57,7 +57,7 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IStringArrayTestObjectForm {
-    typeCodes: FormArray<FormControl<string>>;
+    typeCodes?: FormArray<FormControl<string>>;
 }
 "
 `;
@@ -121,10 +121,9 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * Do not edit.
  */
 
-import { IStringArrayTestObject } from './string-array-test-object.model';
 import { StringArrayTestObjectProperties } from './string-array-test-object.properties';
 
-export function createTestStringArrayTestObject(): Partial<IStringArrayTestObject> {
+export function createTestStringArrayTestObject() {
     return { 
       [StringArrayTestObjectProperties.TYPE_CODES]: 'TYPE_CODES', 
     };
