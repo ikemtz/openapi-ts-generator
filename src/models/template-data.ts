@@ -39,6 +39,7 @@ export interface IValueProperty {
   minimum?: number;
   maxItems?: number;
   minItems?: number;
+  email: boolean;
   description?: string;
   pattern?: string;
   initialValue: string;

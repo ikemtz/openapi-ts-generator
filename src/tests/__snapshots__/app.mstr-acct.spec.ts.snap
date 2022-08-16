@@ -482,7 +482,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    emails: new FormControl<string | null>(null),
+    emails: new FormControl<string | null>(null, { validators: Validators.email  } ),
     phone1: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     phone2: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     account: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),

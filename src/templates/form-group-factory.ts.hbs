@@ -23,9 +23,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{/if}}
 {{else}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if email}}Validators.email, {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
 {{else}}
-    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
+    {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{#if email}}Validators.email {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
 {{/valueProperties}}

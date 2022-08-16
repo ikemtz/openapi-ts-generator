@@ -181,7 +181,8 @@
           },
           "email": {
             "maxLength": 250,
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "addressLine1": {
             "maxLength": 250,

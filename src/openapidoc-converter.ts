@@ -121,6 +121,7 @@ export class OpenApiDocConverter {
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
       maximum: schemaWrapperInfo.propertySchemaObject.maximum,
       minimum: schemaWrapperInfo.propertySchemaObject.minimum,
+      email: schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email',
       minItems: schemaWrapperInfo.propertySchemaObject.minItems,
       maxItems: schemaWrapperInfo.propertySchemaObject.maxItems,
       description: schemaWrapperInfo.propertySchemaObject.description,
@@ -145,6 +146,7 @@ export class OpenApiDocConverter {
       initialValue,
       initialTestValue,
       name: propertyName,
+      email: false,
       isArray: true,
       snakeCaseName: snakeCase(propertyName).toUpperCase(),
       hasMultipleValidators: false,
@@ -251,8 +253,10 @@ export class OpenApiDocConverter {
   }
   getValidatorCount(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): number {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
+    const email = schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email' || false;
     return (
       +required +
+      +email +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
