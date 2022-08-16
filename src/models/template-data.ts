@@ -51,6 +51,7 @@ export interface IReferenceProperty {
   referenceTypeName: string;
   typeScriptType: string;
   hasValidators: boolean;
+  isSameAsParentTypescriptType: boolean;
   hasMultipleValidators: boolean;
   maxItems?: number;
   minItems?: number;
