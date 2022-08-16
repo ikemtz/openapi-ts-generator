@@ -179,6 +179,7 @@ export class OpenApiDocConverter {
     const schemaObject = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const maxLength = schemaWrapperInfo.propertySchemaObject.maxLength;
     const minLength = schemaWrapperInfo.propertySchemaObject.minLength;
+    const minValue = schemaWrapperInfo.propertySchemaObject.minimum;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const refName: string = schemaObject.$ref || schemaObject.items?.$ref;
     const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
@@ -194,7 +195,7 @@ export class OpenApiDocConverter {
     } else if (typescriptType === 'boolean') {
       return 'false';
     } else if (typescriptType === 'number') {
-      return '0';
+      return minValue ? `${minValue}` : '0';
     } else {
       let retValue = snakeCase(propertyName).toUpperCase();
       while (minLength && retValue.length < minLength) {
