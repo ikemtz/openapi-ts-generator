@@ -39,6 +39,7 @@ export interface IValueProperty {
   minimum?: number;
   maxItems?: number;
   minItems?: number;
+  email: boolean;
   description?: string;
   pattern?: string;
   initialValue: string;
@@ -51,6 +52,7 @@ export interface IReferenceProperty {
   referenceTypeName: string;
   typeScriptType: string;
   hasValidators: boolean;
+  isSameAsParentTypescriptType: boolean;
   hasMultipleValidators: boolean;
   maxItems?: number;
   minItems?: number;

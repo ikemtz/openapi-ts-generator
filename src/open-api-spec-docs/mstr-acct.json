@@ -801,7 +801,8 @@
           },
           "emails": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "format": "email"
           },
           "phone1": {
             "type": "string",
