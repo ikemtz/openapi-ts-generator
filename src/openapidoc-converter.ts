@@ -8,7 +8,7 @@ import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
   public readonly startNumberregex = /^\d*/;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) {}
+  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -39,7 +39,7 @@ export class OpenApiDocConverter {
         if (schemaWrapperInfo.componentSchemaObject.enum) {
           this.buildSchemaWrapperInfoForEnum(schemaWrapperInfo);
         } else {
-          this.buildSchemaWrapperInfo(schemaName, schemaWrapperInfo);
+          this.buildSchemaWrapperInfo(schemaWrapperInfo);
         }
         schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity: IEntity = {
@@ -72,7 +72,7 @@ export class OpenApiDocConverter {
     );
   }
 
-  public buildSchemaWrapperInfo(parentTypeName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
+  public buildSchemaWrapperInfo(schemaWrapperInfo: SchemaWrapperInfo): void {
     for (const propertyName in schemaWrapperInfo.componentSchemaObject.properties) {
       if (
         (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as SchemaObject).type && // NOSONAR
@@ -83,28 +83,35 @@ export class OpenApiDocConverter {
         schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as ReferenceObject;
         if (schemaWrapperInfo.propertyReferenceObject.$ref) {
           schemaWrapperInfo.referenceProperties.push(
-            this.convertReferenceObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo),
+            this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
           );
         } else if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-          this.convertArray(parentTypeName, propertyName, schemaWrapperInfo);
+          this.convertArray(propertyName, schemaWrapperInfo);
         }
       }
     }
   }
 
-  public convertArray(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
+  public convertArray(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
     if (arraySchemaObject.type) {
       schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo));
     } else {
       schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.propertySchemaObject.items as ReferenceObject;
       schemaWrapperInfo.referenceProperties.push(
-        this.convertArrayObjectToReferencePropertyType(parentTypeName, propertyName, schemaWrapperInfo),
+        this.convertArrayObjectToReferencePropertyType(propertyName, schemaWrapperInfo),
       );
     }
   }
 
+<<<<<<< HEAD
   public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+=======
+  public convertSchemaObjectToPropertyType(
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
+>>>>>>> origin/master
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
@@ -134,7 +141,14 @@ export class OpenApiDocConverter {
     return +exists;
   }
 
+<<<<<<< HEAD
   public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+=======
+  public convertArrayObjectToValuePropertyType(
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
+>>>>>>> origin/master
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
@@ -206,18 +220,16 @@ export class OpenApiDocConverter {
   }
 
   public convertArrayObjectToReferencePropertyType(
-    parentTypeName: string,
     propertyName: string,
     schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
     return {
-      ...this.convertReferenceObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo),
+      ...this.convertReferenceObjectToPropertyType(propertyName, schemaWrapperInfo),
       isArray: true,
     };
   }
 
   public convertReferenceObjectToPropertyType(
-    parentTypeName: string,
     propertyName: string,
     schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
@@ -265,7 +277,7 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string; }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
