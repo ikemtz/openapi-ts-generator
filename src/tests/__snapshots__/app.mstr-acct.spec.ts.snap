@@ -585,7 +585,7 @@ export function createTestContact() {
       [ContactProperties.CITY]: 'CITY',
       [ContactProperties.STATE]: 'STATE',
       [ContactProperties.ZIP]: 'ZIP',
-      [ContactProperties.EMAILS]: contact@email.org,
+      [ContactProperties.EMAILS]: 'contact@email.org',
       [ContactProperties.PHONE_1]: 'PHONE_1_PHONE_',
       [ContactProperties.PHONE_2]: 'PHONE_2_PHONE_', 
       [ContactProperties.ACCOUNT]: undefined,

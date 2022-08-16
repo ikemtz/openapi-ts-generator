@@ -202,7 +202,7 @@ export class OpenApiDocConverter {
     } else if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
     } else if (email) {
-      return `${kebabCase(parentTypeName)}@email.org`;
+      return `'${kebabCase(parentTypeName)}@email.org'`;
     } else if (typescriptType === 'Date') {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {
