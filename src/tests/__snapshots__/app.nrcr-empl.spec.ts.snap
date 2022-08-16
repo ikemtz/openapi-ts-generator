@@ -93,7 +93,7 @@ export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {
     mobilePhone: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
     homePhone: new FormControl<string | null>(null, { validators: Validators.maxLength(25) } ),
     photo: new FormControl<string | null>(null, { validators: Validators.maxLength(4000) } ),
-    email: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    email: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.email, Validators.maxLength(250)]), nonNullable: true }),
     addressLine1: new FormControl<string | null>(null, { validators: Validators.maxLength(250) } ),
     addressLine2: new FormControl<string | null>(null, { validators: Validators.maxLength(250) } ),
     city: new FormControl<string | null>(null, { validators: Validators.maxLength(150) } ),
