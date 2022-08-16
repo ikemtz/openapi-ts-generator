@@ -78,7 +78,7 @@ export class OpenApiDocConverter {
         (schemaWrapperInfo.propertySchemaObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as SchemaObject).type && // NOSONAR
         schemaWrapperInfo.propertySchemaObject.type !== 'array'
       ) {
-        schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(propertyName, schemaWrapperInfo));
+        schemaWrapperInfo.valueProperties.push(this.convertSchemaObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo));
       } else {
         schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.componentSchemaObject.properties[propertyName] as ReferenceObject;
         if (schemaWrapperInfo.propertyReferenceObject.$ref) {
@@ -95,7 +95,7 @@ export class OpenApiDocConverter {
   public convertArray(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
     const arraySchemaObject = schemaWrapperInfo.propertySchemaObject.items as SchemaObject;
     if (arraySchemaObject.type) {
-      schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(propertyName, schemaWrapperInfo));
+      schemaWrapperInfo.valueProperties.push(this.convertArrayObjectToValuePropertyType(parentTypeName, propertyName, schemaWrapperInfo));
     } else {
       schemaWrapperInfo.propertyReferenceObject = schemaWrapperInfo.propertySchemaObject.items as ReferenceObject;
       schemaWrapperInfo.referenceProperties.push(
@@ -104,11 +104,15 @@ export class OpenApiDocConverter {
     }
   }
 
-  public convertSchemaObjectToPropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+  public convertSchemaObjectToPropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
-    const initialTestValue = this.getInitialTestValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
       name: propertyName,
@@ -135,11 +139,15 @@ export class OpenApiDocConverter {
     return +exists;
   }
 
-  public convertArrayObjectToValuePropertyType(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): IValueProperty {
+  public convertArrayObjectToValuePropertyType(
+    parentTypeName: string,
+    propertyName: string,
+    schemaWrapperInfo: SchemaWrapperInfo,
+  ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
-    const initialTestValue = this.getInitialTestValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
@@ -176,12 +184,13 @@ export class OpenApiDocConverter {
       return `''`;
     }
   }
-  getInitialTestValue(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
+  getInitialTestValue(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
     const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
     const schemaObject = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const maxLength = schemaWrapperInfo.propertySchemaObject.maxLength;
     const minLength = schemaWrapperInfo.propertySchemaObject.minLength;
     const minValue = schemaWrapperInfo.propertySchemaObject.minimum;
+    const email = schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email';
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const refName: string = schemaObject.$ref || schemaObject.items?.$ref;
     const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
@@ -192,6 +201,8 @@ export class OpenApiDocConverter {
       return schemaObject.type === 'array' ? `[]` : `undefined`;
     } else if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
+    } else if (email) {
+      return `${kebabCase(parentTypeName)}@email.org`;
     } else if (typescriptType === 'Date') {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {
@@ -228,7 +239,7 @@ export class OpenApiDocConverter {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
     const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
-    const initialTestValue = this.getInitialTestValue(propertyName, schemaWrapperInfo);
+    const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     const typeName = this.parseRef(schemaWrapperInfo);
     return {
       required,
