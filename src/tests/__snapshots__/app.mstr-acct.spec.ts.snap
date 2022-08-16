@@ -88,7 +88,7 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     emailInvoice: new FormControl<boolean | null>(null),
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
-    parentAccount: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
+    parentAccount: new FormGroup<IAccountForm>({}),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
   });
