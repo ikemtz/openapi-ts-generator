@@ -88,11 +88,7 @@ export function AccountFormGroupFac(): FormGroup<IAccountForm> {
     emailInvoice: new FormControl<boolean | null>(null),
     tenantId: new FormControl<string | null>(null),
     contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
-<<<<<<< HEAD
     parentAccount: new FormGroup<IAccountForm>({}),
-=======
-    parentAccount: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
->>>>>>> origin/master
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
   });
@@ -179,11 +175,7 @@ export function createTestAccount() {
       [AccountProperties.IS_ENABLED]: false,
       [AccountProperties.EMAIL_INVOICE]: false,
       [AccountProperties.TENANT_ID]: 'TENANT_ID',
-<<<<<<< HEAD
       [AccountProperties.CONTACT_COUNT]: 1, 
-=======
-      [AccountProperties.CONTACT_COUNT]: 0, 
->>>>>>> origin/master
       [AccountProperties.PARENT_ACCOUNT]: undefined,
       [AccountProperties.CONTACTS]: [],
       [AccountProperties.CHILD_ACCOUNTS]: [],
