@@ -15,14 +15,14 @@ export interface I{{name}}Form {
 {{#if isArray}}
     {{name}}?: FormArray<FormControl<{{typeScriptType}}>>;
 {{else}} 
-    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}} | undefined>;
+    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isArray}} 
     {{name}}?: FormArray<FormGroup<I{{typeScriptType}}Form>>;
 {{else if isEnum}}
-    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}} | undefined>;
+    {{name}}?: FormControl<{{typeScriptType}}{{#unless required}} | null{{/unless}}>;
 {{else}}
     {{name}}?: FormGroup<I{{typeScriptType}}Form>;
 {{/if}}

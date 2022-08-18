@@ -70,8 +70,8 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IRecipientForm } from './recipient.form';
 
 export interface IMessageDtoForm {
-    id?: FormControl<string | null | undefined>;
-    body?: FormControl<string | undefined>;
+    id?: FormControl<string | null>;
+    body?: FormControl<string>;
     recipients?: FormArray<FormGroup<IRecipientForm>>;
 }
 "
@@ -170,13 +170,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IRecipientForm {
-    id?: FormControl<string | null | undefined>;
-    ultiId?: FormControl<string | undefined>;
-    firstName?: FormControl<string | undefined>;
-    middleName?: FormControl<string | null | undefined>;
-    lastName?: FormControl<string | undefined>;
-    cellPhone1?: FormControl<string | null | undefined>;
-    homePhone1?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    ultiId?: FormControl<string>;
+    firstName?: FormControl<string>;
+    middleName?: FormControl<string | null>;
+    lastName?: FormControl<string>;
+    cellPhone1?: FormControl<string | null>;
+    homePhone1?: FormControl<string | null>;
 }
 "
 `;
