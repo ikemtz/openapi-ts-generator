@@ -98,10 +98,10 @@ import { ISiteForm } from './site.form';
 import { IUnitForm } from './unit.form';
 
 export interface IBuildingForm {
-    id?: FormControl<string | null | undefined>;
-    siteId?: FormControl<string | null | undefined>;
-    identifier?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    siteId?: FormControl<string | null>;
+    identifier?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     site?: FormGroup<ISiteForm>;
     units?: FormArray<FormGroup<IUnitForm>>;
 }
@@ -292,19 +292,19 @@ import { IBuildingForm } from './building.form';
 import { IUnitForm } from './unit.form';
 
 export interface ISiteForm {
-    id?: FormControl<string | null | undefined>;
-    tenantId?: FormControl<string | null | undefined>;
-    accountId?: FormControl<string | null | undefined>;
-    accountName?: FormControl<string | null | undefined>;
-    siteCollectionId?: FormControl<string | null | undefined>;
-    number?: FormControl<string | null | undefined>;
-    name?: FormControl<string | null | undefined>;
-    addressLine1?: FormControl<string | null | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | null | undefined>;
-    state?: FormControl<string | null | undefined>;
-    zip?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    tenantId?: FormControl<string | null>;
+    accountId?: FormControl<string | null>;
+    accountName?: FormControl<string | null>;
+    siteCollectionId?: FormControl<string | null>;
+    number?: FormControl<string | null>;
+    name?: FormControl<string | null>;
+    addressLine1?: FormControl<string | null>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string | null>;
+    state?: FormControl<string | null>;
+    zip?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     siteCollection?: FormGroup<ISiteCollectionForm>;
     buildings?: FormArray<FormGroup<IBuildingForm>>;
     units?: FormArray<FormGroup<IUnitForm>>;
@@ -464,19 +464,19 @@ import { IBuildingForm } from './building.form';
 import { ISiteForm } from './site.form';
 
 export interface ISiteCollectionForm {
-    id?: FormControl<string | null | undefined>;
-    tenantId?: FormControl<string | null | undefined>;
-    number?: FormControl<string | undefined>;
-    name?: FormControl<string | undefined>;
-    code?: FormControl<string | undefined>;
-    addressLine1?: FormControl<string | null | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | null | undefined>;
-    state?: FormControl<string | null | undefined>;
-    zip?: FormControl<string | null | undefined>;
-    isSchedulerEnabled?: FormControl<boolean | undefined>;
-    siteCount?: FormControl<number | null | undefined>;
-    workCategoryTypes?: FormControl<string | number | undefined>;
+    id?: FormControl<string | null>;
+    tenantId?: FormControl<string | null>;
+    number?: FormControl<string>;
+    name?: FormControl<string>;
+    code?: FormControl<string>;
+    addressLine1?: FormControl<string | null>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string | null>;
+    state?: FormControl<string | null>;
+    zip?: FormControl<string | null>;
+    isSchedulerEnabled?: FormControl<boolean>;
+    siteCount?: FormControl<number | null>;
+    workCategoryTypes?: FormControl<string | number>;
     buildings?: FormArray<FormGroup<IBuildingForm>>;
     sites?: FormArray<FormGroup<ISiteForm>>;
 }
@@ -627,9 +627,9 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IUnitTagForm } from './unit-tag.form';
 
 export interface ITagForm {
-    id?: FormControl<string | null | undefined>;
-    name?: FormControl<string | null | undefined>;
-    value?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    name?: FormControl<string | null>;
+    value?: FormControl<string | null>;
     unitTags?: FormArray<FormGroup<IUnitTagForm>>;
 }
 "
@@ -736,12 +736,12 @@ import { IUnitTypeForm } from './unit-type.form';
 import { IUnitTagForm } from './unit-tag.form';
 
 export interface IUnitForm {
-    id?: FormControl<string | null | undefined>;
-    number?: FormControl<string | null | undefined>;
-    unitTypeId?: FormControl<string | null | undefined>;
-    siteId?: FormControl<string | null | undefined>;
-    buildingId?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    number?: FormControl<string | null>;
+    unitTypeId?: FormControl<string | null>;
+    siteId?: FormControl<string | null>;
+    buildingId?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     building?: FormGroup<IBuildingForm>;
     site?: FormGroup<ISiteForm>;
     unitType?: FormGroup<IUnitTypeForm>;
@@ -882,10 +882,10 @@ import { ITagForm } from './tag.form';
 import { IUnitForm } from './unit.form';
 
 export interface IUnitTagForm {
-    id?: FormControl<string | null | undefined>;
-    unitId?: FormControl<string | null | undefined>;
-    tagId?: FormControl<string | null | undefined>;
-    value?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    unitId?: FormControl<string | null>;
+    tagId?: FormControl<string | null>;
+    value?: FormControl<string | null>;
     tag?: FormGroup<ITagForm>;
     unit?: FormGroup<IUnitForm>;
 }
@@ -1001,9 +1001,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IUnitTypeForm {
-    id?: FormControl<string | null | undefined>;
-    code?: FormControl<string | null | undefined>;
-    description?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    code?: FormControl<string | null>;
+    description?: FormControl<string | null>;
 }
 "
 `;
@@ -1119,10 +1119,10 @@ import { ISiteForm } from './site.form';
 import { IUnitForm } from './unit.form';
 
 export interface IBuildingForm {
-    id?: FormControl<string | null | undefined>;
-    siteId?: FormControl<string | null | undefined>;
-    identifier?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    siteId?: FormControl<string | null>;
+    identifier?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     site?: FormGroup<ISiteForm>;
     units?: FormArray<FormGroup<IUnitForm>>;
 }
@@ -1194,19 +1194,19 @@ import { IBuildingForm } from './building.form';
 import { IUnitForm } from './unit.form';
 
 export interface ISiteForm {
-    id?: FormControl<string | null | undefined>;
-    tenantId?: FormControl<string | null | undefined>;
-    accountId?: FormControl<string | null | undefined>;
-    accountName?: FormControl<string | null | undefined>;
-    siteCollectionId?: FormControl<string | null | undefined>;
-    number?: FormControl<string | null | undefined>;
-    name?: FormControl<string | null | undefined>;
-    addressLine1?: FormControl<string | null | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | null | undefined>;
-    state?: FormControl<string | null | undefined>;
-    zip?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    tenantId?: FormControl<string | null>;
+    accountId?: FormControl<string | null>;
+    accountName?: FormControl<string | null>;
+    siteCollectionId?: FormControl<string | null>;
+    number?: FormControl<string | null>;
+    name?: FormControl<string | null>;
+    addressLine1?: FormControl<string | null>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string | null>;
+    state?: FormControl<string | null>;
+    zip?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     siteCollection?: FormGroup<ISiteCollectionForm>;
     buildings?: FormArray<FormGroup<IBuildingForm>>;
     units?: FormArray<FormGroup<IUnitForm>>;
@@ -1262,19 +1262,19 @@ import { IBuildingForm } from './building.form';
 import { ISiteForm } from './site.form';
 
 export interface ISiteCollectionForm {
-    id?: FormControl<string | null | undefined>;
-    tenantId?: FormControl<string | null | undefined>;
-    number?: FormControl<string | undefined>;
-    name?: FormControl<string | undefined>;
-    code?: FormControl<string | undefined>;
-    addressLine1?: FormControl<string | null | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | null | undefined>;
-    state?: FormControl<string | null | undefined>;
-    zip?: FormControl<string | null | undefined>;
-    isSchedulerEnabled?: FormControl<boolean | undefined>;
-    siteCount?: FormControl<number | null | undefined>;
-    workCategoryTypes?: FormControl<string | number | undefined>;
+    id?: FormControl<string | null>;
+    tenantId?: FormControl<string | null>;
+    number?: FormControl<string>;
+    name?: FormControl<string>;
+    code?: FormControl<string>;
+    addressLine1?: FormControl<string | null>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string | null>;
+    state?: FormControl<string | null>;
+    zip?: FormControl<string | null>;
+    isSchedulerEnabled?: FormControl<boolean>;
+    siteCount?: FormControl<number | null>;
+    workCategoryTypes?: FormControl<string | number>;
     buildings?: FormArray<FormGroup<IBuildingForm>>;
     sites?: FormArray<FormGroup<ISiteForm>>;
 }
@@ -1327,9 +1327,9 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IUnitTagForm } from './unit-tag.form';
 
 export interface ITagForm {
-    id?: FormControl<string | null | undefined>;
-    name?: FormControl<string | null | undefined>;
-    value?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    name?: FormControl<string | null>;
+    value?: FormControl<string | null>;
     unitTags?: FormArray<FormGroup<IUnitTagForm>>;
 }
 "
@@ -1373,12 +1373,12 @@ import { IUnitTypeForm } from './unit-type.form';
 import { IUnitTagForm } from './unit-tag.form';
 
 export interface IUnitForm {
-    id?: FormControl<string | null | undefined>;
-    number?: FormControl<string | null | undefined>;
-    unitTypeId?: FormControl<string | null | undefined>;
-    siteId?: FormControl<string | null | undefined>;
-    buildingId?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    number?: FormControl<string | null>;
+    unitTypeId?: FormControl<string | null>;
+    siteId?: FormControl<string | null>;
+    buildingId?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
     building?: FormGroup<IBuildingForm>;
     site?: FormGroup<ISiteForm>;
     unitType?: FormGroup<IUnitTypeForm>;
@@ -1429,10 +1429,10 @@ import { ITagForm } from './tag.form';
 import { IUnitForm } from './unit.form';
 
 export interface IUnitTagForm {
-    id?: FormControl<string | null | undefined>;
-    unitId?: FormControl<string | null | undefined>;
-    tagId?: FormControl<string | null | undefined>;
-    value?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    unitId?: FormControl<string | null>;
+    tagId?: FormControl<string | null>;
+    value?: FormControl<string | null>;
     tag?: FormGroup<ITagForm>;
     unit?: FormGroup<IUnitForm>;
 }
@@ -1475,9 +1475,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IUnitTypeForm {
-    id?: FormControl<string | null | undefined>;
-    code?: FormControl<string | null | undefined>;
-    description?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    code?: FormControl<string | null>;
+    description?: FormControl<string | null>;
 }
 "
 `;
