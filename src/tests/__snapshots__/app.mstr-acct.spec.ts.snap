@@ -50,14 +50,14 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountForm {
-    id?: FormControl<string | null | undefined>;
-    refId?: FormControl<string | null | undefined>;
-    name?: FormControl<string | null | undefined>;
-    parentAccountId?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
-    emailInvoice?: FormControl<boolean | null | undefined>;
-    tenantId?: FormControl<string | null | undefined>;
-    contactCount?: FormControl<number | null | undefined>;
+    id?: FormControl<string | null>;
+    refId?: FormControl<string | null>;
+    name?: FormControl<string | null>;
+    parentAccountId?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
+    emailInvoice?: FormControl<boolean | null>;
+    tenantId?: FormControl<string | null>;
+    contactCount?: FormControl<number | null>;
     parentAccount?: FormGroup<IAccountForm>;
     contacts?: FormArray<FormGroup<IContactForm>>;
     childAccounts?: FormArray<FormGroup<IAccountForm>>;
@@ -197,11 +197,11 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountInsertRequestForm {
-    id?: FormControl<string | null | undefined>;
-    refId?: FormControl<string | null | undefined>;
-    name?: FormControl<string | undefined>;
-    parentAccountId?: FormControl<string | null | undefined>;
-    emailInvoice?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    refId?: FormControl<string | null>;
+    name?: FormControl<string>;
+    parentAccountId?: FormControl<string | null>;
+    emailInvoice?: FormControl<boolean | null>;
     contacts?: FormArray<FormGroup<IContactForm>>;
 }
 "
@@ -313,12 +313,12 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountUpdateRequestForm {
-    id?: FormControl<string | null | undefined>;
-    refId?: FormControl<string | undefined>;
-    name?: FormControl<string | undefined>;
-    parentAccountId?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
-    emailInvoice?: FormControl<boolean | null | undefined>;
+    id?: FormControl<string | null>;
+    refId?: FormControl<string>;
+    name?: FormControl<string>;
+    parentAccountId?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
+    emailInvoice?: FormControl<boolean | null>;
     contacts?: FormArray<FormGroup<IContactForm>>;
 }
 "
@@ -434,21 +434,21 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IAccountForm } from './account.form';
 
 export interface IContactForm {
-    id?: FormControl<string | null | undefined>;
-    isEnabled?: FormControl<boolean | null | undefined>;
-    contactTypeId?: FormControl<string | undefined>;
-    accountId?: FormControl<string | undefined>;
-    firstName?: FormControl<string | undefined>;
-    lastName?: FormControl<string | undefined>;
-    middleName?: FormControl<string | null | undefined>;
-    addressLine1?: FormControl<string | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | undefined>;
-    state?: FormControl<string | undefined>;
-    zip?: FormControl<string | undefined>;
-    emails?: FormControl<string | null | undefined>;
-    phone1?: FormControl<string | null | undefined>;
-    phone2?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    isEnabled?: FormControl<boolean | null>;
+    contactTypeId?: FormControl<string>;
+    accountId?: FormControl<string>;
+    firstName?: FormControl<string>;
+    lastName?: FormControl<string>;
+    middleName?: FormControl<string | null>;
+    addressLine1?: FormControl<string>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string>;
+    state?: FormControl<string>;
+    zip?: FormControl<string>;
+    emails?: FormControl<string | null>;
+    phone1?: FormControl<string | null>;
+    phone2?: FormControl<string | null>;
     account?: FormGroup<IAccountForm>;
 }
 "
@@ -606,20 +606,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactInsertRequestForm {
-    id?: FormControl<string | null | undefined>;
-    contactTypeId?: FormControl<string | undefined>;
-    accountId?: FormControl<string | undefined>;
-    firstName?: FormControl<string | undefined>;
-    lastName?: FormControl<string | undefined>;
-    middleName?: FormControl<string | null | undefined>;
-    addressLine1?: FormControl<string | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | undefined>;
-    state?: FormControl<string | undefined>;
-    zip?: FormControl<string | undefined>;
-    emails?: FormControl<string | null | undefined>;
-    phone1?: FormControl<string | null | undefined>;
-    phone2?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    contactTypeId?: FormControl<string>;
+    accountId?: FormControl<string>;
+    firstName?: FormControl<string>;
+    lastName?: FormControl<string>;
+    middleName?: FormControl<string | null>;
+    addressLine1?: FormControl<string>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string>;
+    state?: FormControl<string>;
+    zip?: FormControl<string>;
+    emails?: FormControl<string | null>;
+    phone1?: FormControl<string | null>;
+    phone2?: FormControl<string | null>;
 }
 "
 `;
@@ -757,20 +757,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactUpdateRequestForm {
-    id?: FormControl<string | null | undefined>;
-    contactTypeId?: FormControl<string | undefined>;
-    accountId?: FormControl<string | undefined>;
-    firstName?: FormControl<string | undefined>;
-    lastName?: FormControl<string | undefined>;
-    middleName?: FormControl<string | null | undefined>;
-    addressLine1?: FormControl<string | undefined>;
-    addressLine2?: FormControl<string | null | undefined>;
-    city?: FormControl<string | undefined>;
-    state?: FormControl<string | undefined>;
-    zip?: FormControl<string | undefined>;
-    emails?: FormControl<string | null | undefined>;
-    phone1?: FormControl<string | null | undefined>;
-    phone2?: FormControl<string | null | undefined>;
+    id?: FormControl<string | null>;
+    contactTypeId?: FormControl<string>;
+    accountId?: FormControl<string>;
+    firstName?: FormControl<string>;
+    lastName?: FormControl<string>;
+    middleName?: FormControl<string | null>;
+    addressLine1?: FormControl<string>;
+    addressLine2?: FormControl<string | null>;
+    city?: FormControl<string>;
+    state?: FormControl<string>;
+    zip?: FormControl<string>;
+    emails?: FormControl<string | null>;
+    phone1?: FormControl<string | null>;
+    phone2?: FormControl<string | null>;
 }
 "
 `;

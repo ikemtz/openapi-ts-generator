@@ -28,12 +28,12 @@ import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
 
 export interface IContactForm {
-    id?: FormControl<string | null | undefined>;
-    accountId?: FormControl<string | undefined>;
-    addressLine1?: FormControl<string | undefined>;
-    contactType?: FormControl<ContactTypes | undefined>;
-    contactType2?: FormControl<ContactTypes2 | undefined>;
-    contactType3?: FormControl<ContactTypes | null | undefined>;
+    id?: FormControl<string | null>;
+    accountId?: FormControl<string>;
+    addressLine1?: FormControl<string>;
+    contactType?: FormControl<ContactTypes>;
+    contactType2?: FormControl<ContactTypes2>;
+    contactType3?: FormControl<ContactTypes | null>;
 }
 "
 `;
