@@ -369,6 +369,7 @@
       },
       "Unit": {
         "type": "object",
+        "required": ["building"],
         "properties": {
           "id": {
             "type": "string",
