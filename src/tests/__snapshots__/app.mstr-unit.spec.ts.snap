@@ -777,7 +777,7 @@ export function UnitFormGroupFac(): FormGroup<IUnitForm> {
     siteId: new FormControl<string | null>(null),
     buildingId: new FormControl<string | null>(null),
     isEnabled: new FormControl<boolean | null>(null),
-    building: new FormGroup<IBuildingForm>(BuildingFormGroupFac().controls),
+    building: new FormGroup<IBuildingForm>(BuildingFormGroupFac().controls, { validators: Validators.required } ),
     site: new FormGroup<ISiteForm>(SiteFormGroupFac().controls),
     unitType: new FormGroup<IUnitTypeForm>(UnitTypeFormGroupFac().controls),
     unitTags: new FormArray<FormGroup<IUnitTagForm>>([]),
