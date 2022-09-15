@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IEntity, IValueProperty } from './template-data';
+import { IEntity } from './entity';
+import { IValueProperty } from './value-property';
 const edmRegex = /^Edm[A-z]*Kind$/;
 
 export function nrsrxTypeFilterCallBack(val: IEntity, _i: number, _arr: IEntity[]): boolean {

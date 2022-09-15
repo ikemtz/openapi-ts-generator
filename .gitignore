@@ -10,4 +10,4 @@
 /bin
 /obj/Debug 
 /jest_output
-eslint-report.json
+eslint-report.*

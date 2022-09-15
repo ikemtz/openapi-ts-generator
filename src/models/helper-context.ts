@@ -1,4 +1,4 @@
-import { IEntity } from './template-data';
+import { IEntity } from './entity';
 
 export interface IHelperContext {
   data: {

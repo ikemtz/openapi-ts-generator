@@ -1,7 +1,10 @@
 import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
-import { IEntity, IImportType, IPath, IReferenceProperty, ITemplateData, IValueProperty } from './models/template-data';
+import { IImportType, IPath, ITemplateData } from './models/template-data';
+import { IEntity } from './models/entity';
+import { IReferenceProperty } from './models/reference-property';
+import { IValueProperty } from './models/value-property';
 import { singular } from 'pluralize';
 import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
 
@@ -126,6 +129,7 @@ export class OpenApiDocConverter {
       maximum: schemaWrapperInfo.propertySchemaObject.maximum,
       minimum: schemaWrapperInfo.propertySchemaObject.minimum,
       email: schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email',
+      uri: schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'uri',
       minItems: schemaWrapperInfo.propertySchemaObject.minItems,
       maxItems: schemaWrapperInfo.propertySchemaObject.maxItems,
       description: schemaWrapperInfo.propertySchemaObject.description,
@@ -155,6 +159,7 @@ export class OpenApiDocConverter {
       initialTestValue,
       name: propertyName,
       email: false,
+      uri: false,
       isArray: true,
       snakeCaseName: snakeCase(propertyName).toUpperCase(),
       hasMultipleValidators: false,
@@ -265,9 +270,11 @@ export class OpenApiDocConverter {
   getValidatorCount(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): number {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const email = schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email' || false;
+    const uri = schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'uri' || false;
     return (
       +required +
       +email +
+      +uri +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maxLength) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.minLength) +
       +this.convertValidator(schemaWrapperInfo.propertySchemaObject.maximum) +
