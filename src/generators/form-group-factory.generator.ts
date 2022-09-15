@@ -1,6 +1,8 @@
 import _ = require('lodash');
 import { IGeneratorOptions } from '../models/generator-options';
-import { IEntity, ITemplateData, IValueProperty } from '../models/template-data';
+import { ITemplateData } from '../models/template-data';
+import { IEntity } from '../models/entity';
+import { IValueProperty } from '../models/value-property';
 import { BaseGenerator } from './base.generator';
 import * as HandleBars from 'handlebars';
 import { IHelperContext, PropertyType } from '../models/helper-context';

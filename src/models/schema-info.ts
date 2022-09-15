@@ -1,6 +1,7 @@
 import { ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './generator-options';
-import { IReferenceProperty, IValueProperty } from './template-data';
+import { IReferenceProperty } from './reference-property';
+import { IValueProperty } from './value-property';
 
 export class SchemaWrapperInfo {
   public propertySchemaObject: SchemaObject = {};

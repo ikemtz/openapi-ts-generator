@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { resolve } from 'path';
 import { ILogger } from './logger';
-import { IEntity, IReferenceProperty, IValueProperty } from './template-data';
+import { IEntity } from './entity';
+import { IReferenceProperty } from './reference-property';
+import { IValueProperty } from './value-property';
 
 export interface IGeneratorOptions {
   logger?: ILogger;
