@@ -50,17 +50,17 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountForm {
-    id?: FormControl<string | null>;
-    refId?: FormControl<string | null>;
-    name?: FormControl<string | null>;
-    parentAccountId?: FormControl<string | null>;
-    isEnabled?: FormControl<boolean | null>;
-    emailInvoice?: FormControl<boolean | null>;
-    tenantId?: FormControl<string | null>;
-    contactCount?: FormControl<number | null>;
-    parentAccount?: FormGroup<IAccountForm>;
-    contacts?: FormArray<FormGroup<IContactForm>>;
-    childAccounts?: FormArray<FormGroup<IAccountForm>>;
+    id: FormControl<string | null | undefined>;
+    refId: FormControl<string | null | undefined>;
+    name: FormControl<string | null | undefined>;
+    parentAccountId: FormControl<string | null | undefined>;
+    isEnabled: FormControl<boolean | null | undefined>;
+    emailInvoice: FormControl<boolean | null | undefined>;
+    tenantId: FormControl<string | null | undefined>;
+    contactCount: FormControl<number | null | undefined>;
+    parentAccount: FormGroup<IAccountForm>;
+    contacts: FormArray<FormGroup<IContactForm>>;
+    childAccounts: FormArray<FormGroup<IAccountForm>>;
 }
 "
 `;
@@ -80,14 +80,14 @@ import { IContactForm } from './contact.form';
 
 export function AccountFormGroupFac(): FormGroup<IAccountForm> {
   return new FormGroup<IAccountForm>({
-    id: new FormControl<string | null>(null),
-    refId: new FormControl<string | null>(null),
-    name: new FormControl<string | null>(null),
-    parentAccountId: new FormControl<string | null>(null),
-    isEnabled: new FormControl<boolean | null>(null),
-    emailInvoice: new FormControl<boolean | null>(null),
-    tenantId: new FormControl<string | null>(null),
-    contactCount: new FormControl<number | null>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
+    id: new FormControl<string | null | undefined>(null),
+    refId: new FormControl<string | null | undefined>(null),
+    name: new FormControl<string | null | undefined>(null),
+    parentAccountId: new FormControl<string | null | undefined>(null),
+    isEnabled: new FormControl<boolean | null | undefined>(null),
+    emailInvoice: new FormControl<boolean | null | undefined>(null),
+    tenantId: new FormControl<string | null | undefined>(null),
+    contactCount: new FormControl<number | null | undefined>(null, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
     parentAccount: new FormGroup<IAccountForm>({}),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
@@ -197,12 +197,12 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountInsertRequestForm {
-    id?: FormControl<string | null>;
-    refId?: FormControl<string | null>;
-    name?: FormControl<string>;
-    parentAccountId?: FormControl<string | null>;
-    emailInvoice?: FormControl<boolean | null>;
-    contacts?: FormArray<FormGroup<IContactForm>>;
+    id: FormControl<string | null | undefined>;
+    refId: FormControl<string | null | undefined>;
+    name: FormControl<string>;
+    parentAccountId: FormControl<string | null | undefined>;
+    emailInvoice: FormControl<boolean | null | undefined>;
+    contacts: FormArray<FormGroup<IContactForm>>;
 }
 "
 `;
@@ -222,11 +222,11 @@ import { IContactForm } from './contact.form';
 
 export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequestForm> {
   return new FormGroup<IAccountInsertRequestForm>({
-    id: new FormControl<string | null>(null),
-    refId: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
+    refId: new FormControl<string | null | undefined>(null),
     name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    parentAccountId: new FormControl<string | null>(null),
-    emailInvoice: new FormControl<boolean | null>(null),
+    parentAccountId: new FormControl<string | null | undefined>(null),
+    emailInvoice: new FormControl<boolean | null | undefined>(null),
     contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
 }
@@ -313,13 +313,13 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IContactForm } from './contact.form';
 
 export interface IAccountUpdateRequestForm {
-    id?: FormControl<string | null>;
-    refId?: FormControl<string>;
-    name?: FormControl<string>;
-    parentAccountId?: FormControl<string | null>;
-    isEnabled?: FormControl<boolean | null>;
-    emailInvoice?: FormControl<boolean | null>;
-    contacts?: FormArray<FormGroup<IContactForm>>;
+    id: FormControl<string | null | undefined>;
+    refId: FormControl<string>;
+    name: FormControl<string>;
+    parentAccountId: FormControl<string | null | undefined>;
+    isEnabled: FormControl<boolean | null | undefined>;
+    emailInvoice: FormControl<boolean | null | undefined>;
+    contacts: FormArray<FormGroup<IContactForm>>;
 }
 "
 `;
@@ -339,12 +339,12 @@ import { IContactForm } from './contact.form';
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequestForm> {
   return new FormGroup<IAccountUpdateRequestForm>({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
     refId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    parentAccountId: new FormControl<string | null>(null),
-    isEnabled: new FormControl<boolean | null>(null),
-    emailInvoice: new FormControl<boolean | null>(null),
+    parentAccountId: new FormControl<string | null | undefined>(null),
+    isEnabled: new FormControl<boolean | null | undefined>(null),
+    emailInvoice: new FormControl<boolean | null | undefined>(null),
     contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
 }
@@ -434,22 +434,22 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IAccountForm } from './account.form';
 
 export interface IContactForm {
-    id?: FormControl<string | null>;
-    isEnabled?: FormControl<boolean | null>;
-    contactTypeId?: FormControl<string>;
-    accountId?: FormControl<string>;
-    firstName?: FormControl<string>;
-    lastName?: FormControl<string>;
-    middleName?: FormControl<string | null>;
-    addressLine1?: FormControl<string>;
-    addressLine2?: FormControl<string | null>;
-    city?: FormControl<string>;
-    state?: FormControl<string>;
-    zip?: FormControl<string>;
-    emails?: FormControl<string | null>;
-    phone1?: FormControl<string | null>;
-    phone2?: FormControl<string | null>;
-    account?: FormGroup<IAccountForm>;
+    id: FormControl<string | null | undefined>;
+    isEnabled: FormControl<boolean | null | undefined>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null | undefined>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null | undefined>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null | undefined>;
+    phone1: FormControl<string | null | undefined>;
+    phone2: FormControl<string | null | undefined>;
+    account: FormGroup<IAccountForm>;
 }
 "
 `;
@@ -470,21 +470,21 @@ import { AccountFormGroupFac } from './account.form-group-fac';
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
   return new FormGroup<IContactForm>({
-    id: new FormControl<string | null>(null),
-    isEnabled: new FormControl<boolean | null>(null),
+    id: new FormControl<string | null | undefined>(null),
+    isEnabled: new FormControl<boolean | null | undefined>(null),
     contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null>(null, { validators: Validators.maxLength(5) } ),
+    middleName: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(5) } ),
     addressLine1: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(50)]), nonNullable: true }),
-    addressLine2: new FormControl<string | null>(null),
+    addressLine2: new FormControl<string | null | undefined>(null),
     city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    emails: new FormControl<string | null>(null, { validators: Validators.email  } ),
-    phone1: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
-    phone2: new FormControl<string | null>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
+    emails: new FormControl<string | null | undefined>(null, { validators: Validators.email  } ),
+    phone1: new FormControl<string | null | undefined>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
+    phone2: new FormControl<string | null | undefined>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     account: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
   });
 }
@@ -606,20 +606,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactInsertRequestForm {
-    id?: FormControl<string | null>;
-    contactTypeId?: FormControl<string>;
-    accountId?: FormControl<string>;
-    firstName?: FormControl<string>;
-    lastName?: FormControl<string>;
-    middleName?: FormControl<string | null>;
-    addressLine1?: FormControl<string>;
-    addressLine2?: FormControl<string | null>;
-    city?: FormControl<string>;
-    state?: FormControl<string>;
-    zip?: FormControl<string>;
-    emails?: FormControl<string | null>;
-    phone1?: FormControl<string | null>;
-    phone2?: FormControl<string | null>;
+    id: FormControl<string | null | undefined>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null | undefined>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null | undefined>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null | undefined>;
+    phone1: FormControl<string | null | undefined>;
+    phone2: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -638,20 +638,20 @@ import { IContactInsertRequestForm } from './contact-insert-request.form';
 
 export function ContactInsertRequestFormGroupFac(): FormGroup<IContactInsertRequestForm> {
   return new FormGroup<IContactInsertRequestForm>({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
     contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null>(null),
+    middleName: new FormControl<string | null | undefined>(null),
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    addressLine2: new FormControl<string | null>(null),
+    addressLine2: new FormControl<string | null | undefined>(null),
     city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    emails: new FormControl<string | null>(null),
-    phone1: new FormControl<string | null>(null),
-    phone2: new FormControl<string | null>(null),
+    emails: new FormControl<string | null | undefined>(null),
+    phone1: new FormControl<string | null | undefined>(null),
+    phone2: new FormControl<string | null | undefined>(null),
   });
 }
 "
@@ -757,20 +757,20 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service should ge
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IContactUpdateRequestForm {
-    id?: FormControl<string | null>;
-    contactTypeId?: FormControl<string>;
-    accountId?: FormControl<string>;
-    firstName?: FormControl<string>;
-    lastName?: FormControl<string>;
-    middleName?: FormControl<string | null>;
-    addressLine1?: FormControl<string>;
-    addressLine2?: FormControl<string | null>;
-    city?: FormControl<string>;
-    state?: FormControl<string>;
-    zip?: FormControl<string>;
-    emails?: FormControl<string | null>;
-    phone1?: FormControl<string | null>;
-    phone2?: FormControl<string | null>;
+    id: FormControl<string | null | undefined>;
+    contactTypeId: FormControl<string>;
+    accountId: FormControl<string>;
+    firstName: FormControl<string>;
+    lastName: FormControl<string>;
+    middleName: FormControl<string | null | undefined>;
+    addressLine1: FormControl<string>;
+    addressLine2: FormControl<string | null | undefined>;
+    city: FormControl<string>;
+    state: FormControl<string>;
+    zip: FormControl<string>;
+    emails: FormControl<string | null | undefined>;
+    phone1: FormControl<string | null | undefined>;
+    phone2: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -789,20 +789,20 @@ import { IContactUpdateRequestForm } from './contact-update-request.form';
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup<IContactUpdateRequestForm> {
   return new FormGroup<IContactUpdateRequestForm>({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
     contactTypeId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null>(null),
+    middleName: new FormControl<string | null | undefined>(null),
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    addressLine2: new FormControl<string | null>(null),
+    addressLine2: new FormControl<string | null | undefined>(null),
     city: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     state: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     zip: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    emails: new FormControl<string | null>(null),
-    phone1: new FormControl<string | null>(null),
-    phone2: new FormControl<string | null>(null),
+    emails: new FormControl<string | null | undefined>(null),
+    phone1: new FormControl<string | null | undefined>(null),
+    phone2: new FormControl<string | null | undefined>(null),
   });
 }
 "
