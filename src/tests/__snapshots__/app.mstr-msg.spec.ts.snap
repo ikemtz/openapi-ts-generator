@@ -70,9 +70,9 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IRecipientForm } from './recipient.form';
 
 export interface IMessageDtoForm {
-    id?: FormControl<string | null>;
-    body?: FormControl<string>;
-    recipients?: FormArray<FormGroup<IRecipientForm>>;
+    id: FormControl<string | null | undefined>;
+    body: FormControl<string>;
+    recipients: FormArray<FormGroup<IRecipientForm>>;
 }
 "
 `;
@@ -92,7 +92,7 @@ import { IRecipientForm } from './recipient.form';
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
   return new FormGroup<IMessageDtoForm>({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
     body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     recipients: new FormArray<FormGroup<IRecipientForm>>([], { validators: Validators.required } ),
   });
@@ -170,13 +170,13 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IRecipientForm {
-    id?: FormControl<string | null>;
-    ultiId?: FormControl<string>;
-    firstName?: FormControl<string>;
-    middleName?: FormControl<string | null>;
-    lastName?: FormControl<string>;
-    cellPhone1?: FormControl<string | null>;
-    homePhone1?: FormControl<string | null>;
+    id: FormControl<string | null | undefined>;
+    ultiId: FormControl<string>;
+    firstName: FormControl<string>;
+    middleName: FormControl<string | null | undefined>;
+    lastName: FormControl<string>;
+    cellPhone1: FormControl<string | null | undefined>;
+    homePhone1: FormControl<string | null | undefined>;
 }
 "
 `;
@@ -195,13 +195,13 @@ import { IRecipientForm } from './recipient.form';
 
 export function RecipientFormGroupFac(): FormGroup<IRecipientForm> {
   return new FormGroup<IRecipientForm>({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null | undefined>(null),
     ultiId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null>(null),
+    middleName: new FormControl<string | null | undefined>(null),
     lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    cellPhone1: new FormControl<string | null>(null),
-    homePhone1: new FormControl<string | null>(null),
+    cellPhone1: new FormControl<string | null | undefined>(null),
+    homePhone1: new FormControl<string | null | undefined>(null),
   });
 }
 "

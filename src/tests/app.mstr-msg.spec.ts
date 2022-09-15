@@ -2,7 +2,7 @@ import { mkdirSync } from 'fs';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
 import { ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
-import { IEntity } from '../models/template-data';
+import { IEntity } from '../models/entity';
 
 const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/mstr-msg.json',
