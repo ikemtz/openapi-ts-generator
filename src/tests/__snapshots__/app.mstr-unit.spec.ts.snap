@@ -102,7 +102,7 @@ export interface IBuildingForm {
     siteId: FormControl<string | null | undefined>;
     identifier: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
-    site: FormGroup<ISiteForm | null | undefined>;
+    site: FormGroup<ISiteForm>;
     units: FormArray<FormGroup<IUnitForm>>;
 }
 "
@@ -305,7 +305,7 @@ export interface ISiteForm {
     state: FormControl<string | null | undefined>;
     zip: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
-    siteCollection: FormGroup<ISiteCollectionForm | null | undefined>;
+    siteCollection: FormGroup<ISiteCollectionForm>;
     buildings: FormArray<FormGroup<IBuildingForm>>;
     units: FormArray<FormGroup<IUnitForm>>;
 }
@@ -743,8 +743,8 @@ export interface IUnitForm {
     buildingId: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
     building: FormGroup<IBuildingForm>;
-    site: FormGroup<ISiteForm | null | undefined>;
-    unitType: FormGroup<IUnitTypeForm | null | undefined>;
+    site: FormGroup<ISiteForm>;
+    unitType: FormGroup<IUnitTypeForm>;
     unitTags: FormArray<FormGroup<IUnitTagForm>>;
 }
 "
@@ -886,8 +886,8 @@ export interface IUnitTagForm {
     unitId: FormControl<string | null | undefined>;
     tagId: FormControl<string | null | undefined>;
     value: FormControl<string | null | undefined>;
-    tag: FormGroup<ITagForm | null | undefined>;
-    unit: FormGroup<IUnitForm | null | undefined>;
+    tag: FormGroup<ITagForm>;
+    unit: FormGroup<IUnitForm>;
 }
 "
 `;
@@ -1123,7 +1123,7 @@ export interface IBuildingForm {
     siteId: FormControl<string | null | undefined>;
     identifier: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
-    site: FormGroup<ISiteForm | null | undefined>;
+    site: FormGroup<ISiteForm>;
     units: FormArray<FormGroup<IUnitForm>>;
 }
 "
@@ -1207,7 +1207,7 @@ export interface ISiteForm {
     state: FormControl<string | null | undefined>;
     zip: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
-    siteCollection: FormGroup<ISiteCollectionForm | null | undefined>;
+    siteCollection: FormGroup<ISiteCollectionForm>;
     buildings: FormArray<FormGroup<IBuildingForm>>;
     units: FormArray<FormGroup<IUnitForm>>;
 }
@@ -1380,8 +1380,8 @@ export interface IUnitForm {
     buildingId: FormControl<string | null | undefined>;
     isEnabled: FormControl<boolean | null | undefined>;
     building: FormGroup<IBuildingForm>;
-    site: FormGroup<ISiteForm | null | undefined>;
-    unitType: FormGroup<IUnitTypeForm | null | undefined>;
+    site: FormGroup<ISiteForm>;
+    unitType: FormGroup<IUnitTypeForm>;
     unitTags: FormArray<FormGroup<IUnitTagForm>>;
 }
 "
@@ -1433,8 +1433,8 @@ export interface IUnitTagForm {
     unitId: FormControl<string | null | undefined>;
     tagId: FormControl<string | null | undefined>;
     value: FormControl<string | null | undefined>;
-    tag: FormGroup<ITagForm | null | undefined>;
-    unit: FormGroup<IUnitForm | null | undefined>;
+    tag: FormGroup<ITagForm>;
+    unit: FormGroup<IUnitForm>;
 }
 "
 `;

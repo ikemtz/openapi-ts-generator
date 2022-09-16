@@ -76,7 +76,7 @@ export interface ICustomerForm {
     salesAgentId: FormControl<number>;
     emailAddress: FormControl<string | null | undefined>;
     phone: FormControl<string | null | undefined>;
-    salesAgent: FormGroup<ISalesAgentForm | null | undefined>;
+    salesAgent: FormGroup<ISalesAgentForm>;
     customerAddresses: FormArray<FormGroup<ICustomerAddressForm>>;
     orders: FormArray<FormGroup<IOrderForm>>;
 }
@@ -219,7 +219,7 @@ export interface ICustomerAddressForm {
     stateProvince: FormControl<string>;
     countryRegion: FormControl<string>;
     postalCode: FormControl<string>;
-    customer: FormGroup<ICustomerForm | null | undefined>;
+    customer: FormGroup<ICustomerForm>;
 }
 "
 `;
@@ -462,9 +462,9 @@ export interface IOrderForm {
     comment: FormControl<string | null | undefined>;
     statusType: FormControl<OrderStatusTypes>;
     shippingType: FormControl<ShippingTypes>;
-    customer: FormGroup<ICustomerForm | null | undefined>;
-    shipToAddress: FormGroup<IOrderAddressForm | null | undefined>;
-    billToAddress: FormGroup<IOrderAddressForm | null | undefined>;
+    customer: FormGroup<ICustomerForm>;
+    shipToAddress: FormGroup<IOrderAddressForm>;
+    billToAddress: FormGroup<IOrderAddressForm>;
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
@@ -799,8 +799,8 @@ export interface IOrderLineItemForm {
     unitPrice: FormControl<number>;
     unitPriceDiscount: FormControl<number>;
     lineTotal: FormControl<number>;
-    order: FormGroup<IOrderForm | null | undefined>;
-    product: FormGroup<IProductForm | null | undefined>;
+    order: FormGroup<IOrderForm>;
+    product: FormGroup<IProductForm>;
 }
 "
 `;
@@ -968,8 +968,8 @@ export interface IProductForm {
     sellEndDate: FormControl<Date | null | undefined>;
     discontinuedDate: FormControl<Date | null | undefined>;
     thumbNailPhoto: FormControl<string | null | undefined>;
-    productModel: FormGroup<IProductModelForm | null | undefined>;
-    productCategory: FormGroup<IProductCategoryForm | null | undefined>;
+    productModel: FormGroup<IProductModelForm>;
+    productCategory: FormGroup<IProductCategoryForm>;
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
