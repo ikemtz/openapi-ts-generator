@@ -76,7 +76,7 @@ export interface ICustomerForm {
     salesAgentId: FormControl<number>;
     emailAddress: FormControl<string | null | undefined>;
     phone: FormControl<string | null | undefined>;
-    salesAgent: FormGroup<ISalesAgentForm>;
+    salesAgent: FormGroup<ISalesAgentForm | null | undefined>;
     customerAddresses: FormArray<FormGroup<ICustomerAddressForm>>;
     orders: FormArray<FormGroup<IOrderForm>>;
 }
@@ -108,7 +108,7 @@ export function CustomerFormGroupFac(): FormGroup<ICustomerForm> {
     salesAgentId: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     emailAddress: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(250) } ),
     phone: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(25) } ),
-    salesAgent: new FormGroup<ISalesAgentForm>(SalesAgentFormGroupFac().controls),
+    salesAgent: new FormGroup<ISalesAgentForm | null | undefined>(SalesAgentFormGroupFac().controls),
     customerAddresses: new FormArray<FormGroup<ICustomerAddressForm>>([]),
     orders: new FormArray<FormGroup<IOrderForm>>([]),
   });
@@ -219,7 +219,7 @@ export interface ICustomerAddressForm {
     stateProvince: FormControl<string>;
     countryRegion: FormControl<string>;
     postalCode: FormControl<string>;
-    customer: FormGroup<ICustomerForm>;
+    customer: FormGroup<ICustomerForm | null | undefined>;
 }
 "
 `;
@@ -249,7 +249,7 @@ export function CustomerAddressFormGroupFac(): FormGroup<ICustomerAddressForm> {
     stateProvince: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)]), nonNullable: true }),
     countryRegion: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)]), nonNullable: true }),
     postalCode: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(15)]), nonNullable: true }),
-    customer: new FormGroup<ICustomerForm>(CustomerFormGroupFac().controls),
+    customer: new FormGroup<ICustomerForm | null | undefined>(CustomerFormGroupFac().controls),
   });
 }
 "
@@ -462,9 +462,9 @@ export interface IOrderForm {
     comment: FormControl<string | null | undefined>;
     statusType: FormControl<OrderStatusTypes>;
     shippingType: FormControl<ShippingTypes>;
-    customer: FormGroup<ICustomerForm>;
-    shipToAddress: FormGroup<IOrderAddressForm>;
-    billToAddress: FormGroup<IOrderAddressForm>;
+    customer: FormGroup<ICustomerForm | null | undefined>;
+    shipToAddress: FormGroup<IOrderAddressForm | null | undefined>;
+    billToAddress: FormGroup<IOrderAddressForm | null | undefined>;
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
@@ -511,9 +511,9 @@ export function OrderFormGroupFac(): FormGroup<IOrderForm> {
     comment: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(500) } ),
     statusType: new FormControl<OrderStatusTypes>(OrderStatusTypes.Processing, { validators: Validators.required, nonNullable: true } ),
     shippingType: new FormControl<ShippingTypes>(ShippingTypes.Other, { validators: Validators.required, nonNullable: true } ),
-    customer: new FormGroup<ICustomerForm>(CustomerFormGroupFac().controls),
-    shipToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
-    billToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
+    customer: new FormGroup<ICustomerForm | null | undefined>(CustomerFormGroupFac().controls),
+    shipToAddress: new FormGroup<IOrderAddressForm | null | undefined>(OrderAddressFormGroupFac().controls),
+    billToAddress: new FormGroup<IOrderAddressForm | null | undefined>(OrderAddressFormGroupFac().controls),
     orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
@@ -799,8 +799,8 @@ export interface IOrderLineItemForm {
     unitPrice: FormControl<number>;
     unitPriceDiscount: FormControl<number>;
     lineTotal: FormControl<number>;
-    order: FormGroup<IOrderForm>;
-    product: FormGroup<IProductForm>;
+    order: FormGroup<IOrderForm | null | undefined>;
+    product: FormGroup<IProductForm | null | undefined>;
 }
 "
 `;
@@ -830,8 +830,8 @@ export function OrderLineItemFormGroupFac(): FormGroup<IOrderLineItemForm> {
     unitPrice: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     unitPriceDiscount: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     lineTotal: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
-    order: new FormGroup<IOrderForm>(OrderFormGroupFac().controls),
-    product: new FormGroup<IProductForm>(ProductFormGroupFac().controls),
+    order: new FormGroup<IOrderForm | null | undefined>(OrderFormGroupFac().controls),
+    product: new FormGroup<IProductForm | null | undefined>(ProductFormGroupFac().controls),
   });
 }
 "
@@ -968,8 +968,8 @@ export interface IProductForm {
     sellEndDate: FormControl<Date | null | undefined>;
     discontinuedDate: FormControl<Date | null | undefined>;
     thumbNailPhoto: FormControl<string | null | undefined>;
-    productModel: FormGroup<IProductModelForm>;
-    productCategory: FormGroup<IProductCategoryForm>;
+    productModel: FormGroup<IProductModelForm | null | undefined>;
+    productCategory: FormGroup<IProductCategoryForm | null | undefined>;
     orderLineItems: FormArray<FormGroup<IOrderLineItemForm>>;
 }
 "
@@ -1008,8 +1008,8 @@ export function ProductFormGroupFac(): FormGroup<IProductForm> {
     sellEndDate: new FormControl<Date | null | undefined>(null),
     discontinuedDate: new FormControl<Date | null | undefined>(null),
     thumbNailPhoto: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(5000) } ),
-    productModel: new FormGroup<IProductModelForm>(ProductModelFormGroupFac().controls),
-    productCategory: new FormGroup<IProductCategoryForm>(ProductCategoryFormGroupFac().controls),
+    productModel: new FormGroup<IProductModelForm | null | undefined>(ProductModelFormGroupFac().controls),
+    productCategory: new FormGroup<IProductCategoryForm | null | undefined>(ProductCategoryFormGroupFac().controls),
     orderLineItems: new FormArray<FormGroup<IOrderLineItemForm>>([]),
   });
 }
