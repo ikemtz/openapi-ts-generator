@@ -484,7 +484,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     emails: new FormControl<string | null | undefined>(null, { validators: Validators.email  } ),
     phone1: new FormControl<string | null | undefined>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     phone2: new FormControl<string | null | undefined>(null, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
-    account: new FormGroup<IAccountForm | null | undefined>(AccountFormGroupFac().controls),
+    account: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
   });
 }
 "
