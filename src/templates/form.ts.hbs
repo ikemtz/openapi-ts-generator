@@ -24,7 +24,7 @@ export interface I{{name}}Form {
 {{else if isEnum}}
     {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null | undefined{{/unless}}>;
 {{else}}
-    {{name}}: FormGroup<I{{typeScriptType}}Form>;
+    {{name}}{{#if isSameAsParentTypescriptType}}?{{/if}}: FormGroup<I{{typeScriptType}}Form>;
 {{/if}}
 {{/referenceProperties}}
 }

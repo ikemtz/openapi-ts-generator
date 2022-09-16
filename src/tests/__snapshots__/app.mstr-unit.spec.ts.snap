@@ -129,7 +129,7 @@ export function BuildingFormGroupFac(): FormGroup<IBuildingForm> {
     siteId: new FormControl<string | null | undefined>(null),
     identifier: new FormControl<string | null | undefined>(null),
     isEnabled: new FormControl<boolean | null | undefined>(null),
-    site: new FormGroup<ISiteForm>(SiteFormGroupFac().controls),
+    site: new FormGroup<ISiteForm | null | undefined>(SiteFormGroupFac().controls),
     units: new FormArray<FormGroup<IUnitForm>>([]),
   });
 }
@@ -343,7 +343,7 @@ export function SiteFormGroupFac(): FormGroup<ISiteForm> {
     state: new FormControl<string | null | undefined>(null),
     zip: new FormControl<string | null | undefined>(null),
     isEnabled: new FormControl<boolean | null | undefined>(null),
-    siteCollection: new FormGroup<ISiteCollectionForm>(SiteCollectionFormGroupFac().controls),
+    siteCollection: new FormGroup<ISiteCollectionForm | null | undefined>(SiteCollectionFormGroupFac().controls),
     buildings: new FormArray<FormGroup<IBuildingForm>>([]),
     units: new FormArray<FormGroup<IUnitForm>>([]),
   });
@@ -778,8 +778,8 @@ export function UnitFormGroupFac(): FormGroup<IUnitForm> {
     buildingId: new FormControl<string | null | undefined>(null),
     isEnabled: new FormControl<boolean | null | undefined>(null),
     building: new FormGroup<IBuildingForm>(BuildingFormGroupFac().controls, { validators: Validators.required } ),
-    site: new FormGroup<ISiteForm>(SiteFormGroupFac().controls),
-    unitType: new FormGroup<IUnitTypeForm>(UnitTypeFormGroupFac().controls),
+    site: new FormGroup<ISiteForm | null | undefined>(SiteFormGroupFac().controls),
+    unitType: new FormGroup<IUnitTypeForm | null | undefined>(UnitTypeFormGroupFac().controls),
     unitTags: new FormArray<FormGroup<IUnitTagForm>>([]),
   });
 }
@@ -914,8 +914,8 @@ export function UnitTagFormGroupFac(): FormGroup<IUnitTagForm> {
     unitId: new FormControl<string | null | undefined>(null),
     tagId: new FormControl<string | null | undefined>(null),
     value: new FormControl<string | null | undefined>(null),
-    tag: new FormGroup<ITagForm>(TagFormGroupFac().controls),
-    unit: new FormGroup<IUnitForm>(UnitFormGroupFac().controls),
+    tag: new FormGroup<ITagForm | null | undefined>(TagFormGroupFac().controls),
+    unit: new FormGroup<IUnitForm | null | undefined>(UnitFormGroupFac().controls),
   });
 }
 "
