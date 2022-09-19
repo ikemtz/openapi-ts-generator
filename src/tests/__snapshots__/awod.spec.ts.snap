@@ -555,8 +555,8 @@ export interface IOrder {
   freight?: number;
   totalDue?: number;
   comment?: string | null;
-  statusType?: OrderStatusTypes;
-  shippingType?: ShippingTypes;
+  statusType?: OrderStatusTypes | string;
+  shippingType?: ShippingTypes | string;
   customer?: Partial<ICustomer>;
   shipToAddress?: Partial<IOrderAddress>;
   billToAddress?: Partial<IOrderAddress>;
