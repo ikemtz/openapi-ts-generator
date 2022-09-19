@@ -31,9 +31,9 @@ export interface IContactForm {
     id: FormControl<string | null | undefined>;
     accountId: FormControl<string>;
     addressLine1: FormControl<string>;
-    contactType: FormControl<ContactTypes>;
-    contactType2: FormControl<ContactTypes2>;
-    contactType3: FormControl<ContactTypes | null | undefined>;
+    contactType: FormControl<ContactTypes | string>;
+    contactType2: FormControl<ContactTypes2 | string>;
+    contactType3: FormControl<ContactTypes | string | null | undefined>;
 }
 "
 `;
@@ -57,9 +57,9 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     id: new FormControl<string | null | undefined>(null),
     accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    contactType: new FormControl<ContactTypes>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
-    contactType2: new FormControl<ContactTypes2>(ContactTypes2.Air, { validators: Validators.required, nonNullable: true } ),
-    contactType3: new FormControl<ContactTypes | null| undefined>(null),
+    contactType: new FormControl<ContactTypes | string>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
+    contactType2: new FormControl<ContactTypes2 | string>(ContactTypes2.Air, { validators: Validators.required, nonNullable: true } ),
+    contactType3: new FormControl<ContactTypes | string | null | undefined>(null),
   });
 }
 "

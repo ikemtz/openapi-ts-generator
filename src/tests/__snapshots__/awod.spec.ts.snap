@@ -460,8 +460,8 @@ export interface IOrderForm {
     freight: FormControl<number>;
     totalDue: FormControl<number>;
     comment: FormControl<string | null | undefined>;
-    statusType: FormControl<OrderStatusTypes>;
-    shippingType: FormControl<ShippingTypes>;
+    statusType: FormControl<OrderStatusTypes | string>;
+    shippingType: FormControl<ShippingTypes | string>;
     customer: FormGroup<ICustomerForm>;
     shipToAddress: FormGroup<IOrderAddressForm>;
     billToAddress: FormGroup<IOrderAddressForm>;
@@ -509,8 +509,8 @@ export function OrderFormGroupFac(): FormGroup<IOrderForm> {
     freight: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     totalDue: new FormControl<number>(0, { validators: Validators.required, nonNullable: true } ),
     comment: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(500) } ),
-    statusType: new FormControl<OrderStatusTypes>(OrderStatusTypes.Processing, { validators: Validators.required, nonNullable: true } ),
-    shippingType: new FormControl<ShippingTypes>(ShippingTypes.Other, { validators: Validators.required, nonNullable: true } ),
+    statusType: new FormControl<OrderStatusTypes | string>(OrderStatusTypes.Processing, { validators: Validators.required, nonNullable: true } ),
+    shippingType: new FormControl<ShippingTypes | string>(ShippingTypes.Other, { validators: Validators.required, nonNullable: true } ),
     customer: new FormGroup<ICustomerForm>(CustomerFormGroupFac().controls),
     shipToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
     billToAddress: new FormGroup<IOrderAddressForm>(OrderAddressFormGroupFac().controls),
