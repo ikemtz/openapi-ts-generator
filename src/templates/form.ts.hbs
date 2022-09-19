@@ -22,7 +22,7 @@ export interface I{{name}}Form {
 {{#if isArray}}
     {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
 {{else if isEnum}}
-    {{name}}: FormControl<{{typeScriptType}}{{#unless required}} | null | undefined{{/unless}}>;
+    {{name}}: FormControl<{{typeScriptType}} | string{{#unless required}} | null | undefined{{/unless}}>;
 {{else}}
     {{name}}{{#if isSameAsParentTypescriptType}}?{{/if}}: FormGroup<I{{typeScriptType}}Form>;
 {{/if}}
