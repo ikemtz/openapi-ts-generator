@@ -59,7 +59,7 @@ export function ContactFormGroupFac(): FormGroup<IContactForm> {
     addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     contactType: new FormControl<ContactTypes | string>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
     contactType2: new FormControl<ContactTypes2 | string>(ContactTypes2.Air, { validators: Validators.required, nonNullable: true } ),
-    contactType3: new FormControl<ContactTypes | string | null| undefined>(null),
+    contactType3: new FormControl<ContactTypes | string | null | undefined>(null),
   });
 }
 "
