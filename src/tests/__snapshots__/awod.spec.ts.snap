@@ -929,6 +929,12 @@ export enum OrderStatusTypes {
   InTransit = 20,
   Received = 50,
 }
+export enum OrderStatusTypesNames {
+  PROCESSING = 'Processing',
+  WAITING_ON_SHIPPING = 'WaitingOnShipping',
+  IN_TRANSIT = 'InTransit',
+  RECEIVED = 'Received',
+}
 
 export const orderStatusTypeValues = [
   { key: 0, name: 'Processing', displayText: 'Processing'},
@@ -1446,6 +1452,13 @@ export enum ShippingTypes {
   Truck = 3,
   Train = 4,
   CargoTransport = 5,
+}
+export enum ShippingTypesNames {
+  OTHER = 'Other',
+  AIR = 'Air',
+  TRUCK = 'Truck',
+  TRAIN = 'Train',
+  CARGO_TRANSPORT = 'CargoTransport',
 }
 
 export const shippingTypeValues = [

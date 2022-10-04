@@ -1,4 +1,5 @@
 import { ReferenceObject, SchemaObject } from 'openapi3-ts';
+import { IEnumValue } from './enum-value';
 import { defaultFilter, IGeneratorOptions } from './generator-options';
 import { IReferenceProperty } from './reference-property';
 import { IValueProperty } from './value-property';
@@ -8,7 +9,7 @@ export class SchemaWrapperInfo {
   public propertyReferenceObject: ReferenceObject = { $ref: '' };
   public isEnum?: boolean;
 
-  public readonly enumValues: (string | { key?: number; name: string; titleName: string })[];
+  public readonly enumValues: (string | IEnumValue)[];
 
   public readonly componentSchemaObject: SchemaObject;
   public readonly valueProperties: IValueProperty[];
