@@ -10,8 +10,22 @@
  * {{description}}
  */
 {{/if}}export enum {{{name}}} {
-{{#enumValues}}
+{{#enumValues}}{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}
   {{name}} = {{key}},
+{{/enumValues}}
+}
+{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}export enum {{name}}Names {
+{{#enumValues}}
+{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}  {{snakeCaseName}} = '{{name}}',
 {{/enumValues}}
 }
 

@@ -48,7 +48,12 @@ export class OpenApiDocConverter {
         const entity: IEntity = {
           isEnum: schemaWrapperInfo.isEnum,
           enumValues: schemaWrapperInfo.enumValues.map((t) =>
-            typeof t === 'string' || t instanceof String ? t : { ...t, key: t.key || 0 },
+            typeof t === 'string' || t instanceof String
+              ? t
+              : {
+                  ...t,
+                  key: t.key || 0,
+                },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
@@ -70,7 +75,12 @@ export class OpenApiDocConverter {
       ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
         const key = this.startNumberregex.exec(x)?.at(0);
         const name = this.endAlphaNumRegex.exec(x)?.at(0) || '';
-        return { key: key ? +key : 0, name, titleName: startCase(name) };
+        return {
+          key: key ? +key : 0,
+          name,
+          titleName: startCase(name),
+          snakeCaseName: snakeCase(name).toUpperCase(),
+        };
       }),
     );
   }
