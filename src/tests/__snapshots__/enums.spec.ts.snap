@@ -157,6 +157,13 @@ export enum ContactTypes {
   Train = 4,
   CargoTransport = 5,
 }
+export enum ContactTypesNames {
+  OTHER = 'Other',
+  AIR = 'Air',
+  TRUCK = 'Truck',
+  TRAIN = 'Train',
+  CARGO_TRANSPORT = 'CargoTransport',
+}
 
 export const contactTypeValues = [
   { key: 0, name: 'Other', displayText: 'Other'},
@@ -182,6 +189,12 @@ export enum ContactTypes2 {
   Truck = 3,
   Train = 4,
   CargoTransport = 5,
+}
+export enum ContactTypes2Names {
+  AIR = 'Air',
+  TRUCK = 'Truck',
+  TRAIN = 'Train',
+  CARGO_TRANSPORT = 'CargoTransport',
 }
 
 export const contactTypes2Values = [
