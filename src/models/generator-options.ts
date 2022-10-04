@@ -4,6 +4,7 @@ import { ILogger } from './logger';
 import { IEntity } from './entity';
 import { IReferenceProperty } from './reference-property';
 import { IValueProperty } from './value-property';
+import { AxiosRequestConfig } from 'axios';
 
 export interface IGeneratorOptions {
   logger?: ILogger;
@@ -16,6 +17,7 @@ export interface IGeneratorOptions {
   referencePropertyTypeFilterCallBack?: (referenceProperty: IReferenceProperty, index: number, array: IReferenceProperty[]) => boolean;
   pathUrlFormattingCallBack?: (url: string) => string;
   templates?: ITemplates | null;
+  axiosConfig?: AxiosRequestConfig<any>;
 }
 export interface ITemplates {
   model?: string;

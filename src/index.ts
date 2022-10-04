@@ -28,7 +28,7 @@ export async function generateTsModels(options: IGeneratorOptions): Promise<void
 async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<OpenAPIObject> {
   let apiDoc: OpenAPIObject;
   if (options.openApiJsonUrl) {
-    const response = await axios.get(options.openApiJsonUrl);
+    const response = await axios.get(options.openApiJsonUrl, options.axiosConfig);
     apiDoc = response.data as OpenAPIObject;
   } else if (options.openApiJsonFileName) {
     const response = fs.readFileSync(`${__dirname}/${options.openApiJsonFileName}`);
