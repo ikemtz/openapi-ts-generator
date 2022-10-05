@@ -17,10 +17,11 @@
   {{name}} = {{key}},
 {{/enumValues}}
 }
+
 {{#if description}}/**
  * {{description}}
  */
-{{/if}}export enum {{name}}Names {
+{{/if}}export enum {{singularName}}Names {
 {{#enumValues}}
 {{#if description}}/**
  * {{description}}
