@@ -57,6 +57,7 @@ export class OpenApiDocConverter {
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
+          singularName: singular(schemaName),
           camelSingularName: camelCase(singular(schemaName)),
           description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,

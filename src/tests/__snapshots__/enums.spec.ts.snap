@@ -157,7 +157,8 @@ export enum ContactTypes {
   Train = 4,
   CargoTransport = 5,
 }
-export enum ContactTypesNames {
+
+export enum ContactTypeNames {
   OTHER = 'Other',
   AIR = 'Air',
   TRUCK = 'Truck',
@@ -190,6 +191,7 @@ export enum ContactTypes2 {
   Train = 4,
   CargoTransport = 5,
 }
+
 export enum ContactTypes2Names {
   AIR = 'Air',
   TRUCK = 'Truck',
