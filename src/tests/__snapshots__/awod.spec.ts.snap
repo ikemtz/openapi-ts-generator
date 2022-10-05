@@ -929,7 +929,8 @@ export enum OrderStatusTypes {
   InTransit = 20,
   Received = 50,
 }
-export enum OrderStatusTypesNames {
+
+export enum OrderStatusTypeNames {
   PROCESSING = 'Processing',
   WAITING_ON_SHIPPING = 'WaitingOnShipping',
   IN_TRANSIT = 'InTransit',
@@ -1453,7 +1454,8 @@ export enum ShippingTypes {
   Train = 4,
   CargoTransport = 5,
 }
-export enum ShippingTypesNames {
+
+export enum ShippingTypeNames {
   OTHER = 'Other',
   AIR = 'Air',
   TRUCK = 'Truck',
