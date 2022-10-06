@@ -8,11 +8,12 @@ const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
   outputPath: './jest_output/acct/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
+  genClasses: true,
   genAngularFormGroups: true,
 });
 
 describe('Url Based - Full Integration Tests', () => {
-  describe('MasterCorp Account Service', () => {
+  describe('MasterCorp Account Service - Entities', () => {
     it('should generate files', async () => {
       const options = accountGenerationOptionsFactory();
       try {
