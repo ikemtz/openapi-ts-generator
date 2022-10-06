@@ -12,15 +12,22 @@ export interface IGeneratorOptions {
   openApiJsonUrl?: string;
   openApiJsonFileName?: string;
   genAngularFormGroups?: boolean;
+  // If set to true will generate classes instead of interfaces
+  genClasses?: boolean;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;
   valuePropertyTypeFilterCallBack?: (valueProperty: IValueProperty, index: number, array: IValueProperty[]) => boolean;
   referencePropertyTypeFilterCallBack?: (referenceProperty: IReferenceProperty, index: number, array: IReferenceProperty[]) => boolean;
   pathUrlFormattingCallBack?: (url: string) => string;
+  // This will give you the option to specify your own HandleBar templates
   templates?: ITemplates | null;
+  // If specified this the AxiosRequestConfig that will be used to request the OpenApi document.
   axiosConfig?: AxiosRequestConfig<any>;
 }
 export interface ITemplates {
+  // Used if genClasses is set to false (default)
   model?: string;
+  // Used if genClasses is set to true
+  entity?: string;
   testObjectFactory?: string;
   form?: string;
   formGroupFactory?: string;
@@ -45,6 +52,7 @@ export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGenerat
   options.templates = {
     ...options.templates,
     model: options.templates?.model ?? `${templateFolder}/model.ts.hbs`,
+    entity: options.templates?.entity ?? `${templateFolder}/entity.ts.hbs`,
     form: options.templates?.form ?? `${templateFolder}/form.ts.hbs`,
     formGroupFactory: options.templates?.formGroupFactory ?? `${templateFolder}/form-group-factory.ts.hbs`,
     testObjectFactory: options.templates?.testObjectFactory ?? `${templateFolder}/test-object-factory.ts.hbs`,
