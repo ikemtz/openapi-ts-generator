@@ -46,7 +46,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * Do not edit.
  */
 
-import { Contact } from './contact.model';
+import { Contact } from './contact.entity';
 
 /**
  * Customer Account
@@ -192,7 +192,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * Do not edit.
  */
 
-import { Contact } from './contact.model';
+import { Contact } from './contact.entity';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export class AccountInsertRequest {
@@ -308,7 +308,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * Do not edit.
  */
 
-import { Contact } from './contact.model';
+import { Contact } from './contact.entity';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export class AccountUpdateRequest {
@@ -429,7 +429,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * Do not edit.
  */
 
-import { Account } from './account.model';
+import { Account } from './account.entity';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export class Contact {

@@ -7,7 +7,7 @@
  */
 {{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{else}}
-import { {{name}} } from './{{kebabCasedTypeName}}.model';{{/if}}{{/unless}}{{/importTypes}}
+import { {{name}} } from './{{kebabCasedTypeName}}.entity';{{/if}}{{/unless}}{{/importTypes}}
 
 {{/if}}{{#if description}}/**
  * {{description}}
