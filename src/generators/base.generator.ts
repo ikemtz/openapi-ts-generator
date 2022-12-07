@@ -13,8 +13,12 @@ export abstract class BaseGenerator<TContextSchema> {
     }
   }
 
-  protected generateFile(outputFilePath: string, context: TContextSchema): string | null {
-    if (this.template) {
+  protected generateFile(outputFilePath: string, context: TContextSchema | null): string | null {
+    if (!this.template) {
+      this.generatorOptions.logger?.warn(`Template for ${this.GeneratorName} has not been specified.`);
+    } else if (!context) {
+      this.generatorOptions.logger?.warn(`Context for ${this.GeneratorName} has not been provided.`);
+    } else {
       try {
         const content = this.template(context).replace(this.emptyArrayRegex, ']');
         writeFileSync(outputFilePath, content, { encoding: 'utf8' });
@@ -27,8 +31,6 @@ export abstract class BaseGenerator<TContextSchema> {
         this.generatorOptions.logger?.error(JSON.stringify(err));
         throw err;
       }
-    } else {
-      this.generatorOptions.logger?.warn(`Template for ${this.GeneratorName} has not been specified`);
     }
     return null;
   }

@@ -12,6 +12,6 @@ export class BarrelGenerator extends BaseGenerator<{ fileNames: string[] }> {
   public generate(): string | null {
     let fileNames = readdirSync(this.generatorOptions.outputPath).map((value) => value.replace(this.tsRegex, ''));
     fileNames = fileNames.filter((x) => x !== 'endpoints');
-    return super.generateFile(`${this.generatorOptions.outputPath}/index.ts`, { fileNames });
+    return super.generateFile(`${this.generatorOptions.outputPath}/index.ts`, fileNames.length ? { fileNames } : null);
   }
 }
