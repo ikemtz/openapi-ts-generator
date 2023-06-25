@@ -267,7 +267,7 @@ export class OpenApiDocConverter {
       referenceTypeName: typeName,
       typeScriptType: typeName,
       isArray: false,
-      isEnum: (propertySchema.enum || []).length > 0,
+      isEnum: (propertySchema?.enum ?? []).length > 0,
       hasValidators: validatorCount > 0,
       hasMultipleValidators: validatorCount > 1,
       maxLength: refSchema?.maxLength,
@@ -342,7 +342,7 @@ export class OpenApiDocConverter {
         return {
           name: value,
           kebabCasedTypeName: kebabCase(value),
-          isEnum: (refSchema.enum || []).length > 0,
+          isEnum: (refSchema?.enum ?? []).length > 0,
           areAllArrays: props.every((val) => val.type === 'array'),
           hasArrays: props.some((val) => val.type === 'array'),
           isSelfReferencing: entityName === value,
