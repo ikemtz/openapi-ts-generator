@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "axios": ">=0.x",
-    "handlebars": ">=4.x",
+    "handlebars": ">=4.7.8",
     "lodash": ">=4.x",
     "pluralize": "^8.0.0"
   },
