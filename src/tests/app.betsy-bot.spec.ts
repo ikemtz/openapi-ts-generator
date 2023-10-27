@@ -4,7 +4,7 @@ import { ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 
 const generationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonUrl: ' https://qa.betsybot.xyz/betsyapi-qa/swagger/v1/swagger.json',
+  openApiJsonUrl: 'https://api.betsybot.xyz/swagger/v1/swagger.json',
   outputPath: './jest_output/betsy-bot/',
   genAngularFormGroups: true,
 });

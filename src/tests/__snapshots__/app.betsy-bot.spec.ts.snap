@@ -255,6 +255,11 @@ Array [
   "cowbot-server-models-database-models-discord-server-invite-settings.model.ts",
   "cowbot-server-models-database-models-discord-server-invite-settings.properties.ts",
   "cowbot-server-models-database-models-discord-server-invite-settings.test-obj-fac.ts",
+  "cowbot-server-models-database-models-discord-server-invite-whitelist.form-group-fac.ts",
+  "cowbot-server-models-database-models-discord-server-invite-whitelist.form.ts",
+  "cowbot-server-models-database-models-discord-server-invite-whitelist.model.ts",
+  "cowbot-server-models-database-models-discord-server-invite-whitelist.properties.ts",
+  "cowbot-server-models-database-models-discord-server-invite-whitelist.test-obj-fac.ts",
   "cowbot-server-models-database-models-discord-server-review-settings.form-group-fac.ts",
   "cowbot-server-models-database-models-discord-server-review-settings.form.ts",
   "cowbot-server-models-database-models-discord-server-review-settings.model.ts",
@@ -597,6 +602,11 @@ Array [
   "cowbot-server-models-dt-os-user-response-profile-response.model.ts",
   "cowbot-server-models-dt-os-user-response-profile-response.properties.ts",
   "cowbot-server-models-dt-os-user-response-profile-response.test-obj-fac.ts",
+  "cowbot-server-models-dt-os-user-response-user-name-response.form-group-fac.ts",
+  "cowbot-server-models-dt-os-user-response-user-name-response.form.ts",
+  "cowbot-server-models-dt-os-user-response-user-name-response.model.ts",
+  "cowbot-server-models-dt-os-user-response-user-name-response.properties.ts",
+  "cowbot-server-models-dt-os-user-response-user-name-response.test-obj-fac.ts",
   "cowbot-server-models-ip-quality-score-models-email-quality-response.form-group-fac.ts",
   "cowbot-server-models-ip-quality-score-models-email-quality-response.form.ts",
   "cowbot-server-models-ip-quality-score-models-email-quality-response.model.ts",
@@ -6532,6 +6542,7 @@ export interface ICowbot.Server.Models.DatabaseModels.DiscordServerForm {
     premiumUntil: FormControl<Date | null | undefined>;
     name: FormControl<string | null | undefined>;
     authorizedUsers: FormArray<FormControl<string>>;
+    authorizedOwners: FormArray<FormControl<string>>;
     coinbaseCommerceApiKey: FormControl<string | null | undefined>;
     coinbaseCommerceWebhookSecret: FormControl<string | null | undefined>;
     ipQualityScoreApiKey: FormControl<string | null | undefined>;
@@ -6613,6 +6624,7 @@ export function Cowbot.Server.Models.DatabaseModels.DiscordServerFormGroupFac():
     premiumUntil: new FormControl<Date | null | undefined>(null),
     name: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(50) } ),
     authorizedUsers: new FormArray<FormControl<string>>([], { validators:  }),
+    authorizedOwners: new FormArray<FormControl<string>>([], { validators:  }),
     coinbaseCommerceApiKey: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(1000) } ),
     coinbaseCommerceWebhookSecret: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(1000) } ),
     ipQualityScoreApiKey: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(1000) } ),
@@ -6685,6 +6697,7 @@ export interface ICowbot.Server.Models.DatabaseModels.DiscordServer {
   premiumUntil?: Date | null;
   name?: string | null;
   authorizedUsers?: string[] | null;
+  authorizedOwners?: string[] | null;
   coinbaseCommerceApiKey?: string | null;
   coinbaseCommerceWebhookSecret?: string | null;
   ipQualityScoreApiKey?: string | null;
@@ -6736,6 +6749,7 @@ export enum Cowbot.Server.Models.DatabaseModels.DiscordServerProperties {
   PREMIUM_UNTIL = 'premiumUntil',
   NAME = 'name',
   AUTHORIZED_USERS = 'authorizedUsers',
+  AUTHORIZED_OWNERS = 'authorizedOwners',
   COINBASE_COMMERCE_API_KEY = 'coinbaseCommerceApiKey',
   COINBASE_COMMERCE_WEBHOOK_SECRET = 'coinbaseCommerceWebhookSecret',
   IP_QUALITY_SCORE_API_KEY = 'ipQualityScoreApiKey',
@@ -6790,6 +6804,7 @@ export function createTestCowbot.Server.Models.DatabaseModels.DiscordServer() {
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.PREMIUM_UNTIL]: new Date(),
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.NAME]: 'NAME',
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.AUTHORIZED_USERS]: 'AUTHORIZED_USERS',
+      [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.AUTHORIZED_OWNERS]: 'AUTHORIZED_OWNERS',
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.COINBASE_COMMERCE_API_KEY]: 'COINBASE_COMMERCE_API_KEY',
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.COINBASE_COMMERCE_WEBHOOK_SECRET]: 'COINBASE_COMMERCE_WEBHOOK_SECRET',
       [Cowbot.Server.Models.DatabaseModels.DiscordServerProperties.IP_QUALITY_SCORE_API_KEY]: 'IP_QUALITY_SCORE_API_KEY',
@@ -7045,9 +7060,12 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IDiscordServerInviteRoleForm } from './discord-server-invite-role.form';
+import { IDiscordServerInviteWhitelistForm } from './discord-server-invite-whitelist.form';
 
 export interface ICowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsForm {
+    minimumAccountAgeInDays: FormControl<number | null | undefined>;
     inviteRoles: FormArray<FormGroup<IDiscordServerInviteRoleForm>>;
+    inviteWhitelists: FormArray<FormGroup<IDiscordServerInviteWhitelistForm>>;
 }
 "
 `;
@@ -7065,10 +7083,13 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ICowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsForm } from './cowbot-server-models-database-models-discord-server-invite-settings.form';
 import { IDiscordServerInviteRoleForm } from './discord-server-invite-role.form';
+import { IDiscordServerInviteWhitelistForm } from './discord-server-invite-whitelist.form';
 
 export function Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsFormGroupFac(): FormGroup<ICowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsForm> {
   return new FormGroup<ICowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsForm>({
+    minimumAccountAgeInDays: new FormControl<number | null | undefined>(null),
     inviteRoles: new FormArray<FormGroup<IDiscordServerInviteRoleForm>>([]),
+    inviteWhitelists: new FormArray<FormGroup<IDiscordServerInviteWhitelistForm>>([]),
   });
 }
 "
@@ -7084,10 +7105,13 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  */
 
 import { IDiscordServerInviteRole } from './discord-server-invite-role.model';
+import { IDiscordServerInviteWhitelist } from './discord-server-invite-whitelist.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ICowbot.Server.Models.DatabaseModels.DiscordServerInviteSettings {
+  minimumAccountAgeInDays?: number | null;
   inviteRoles?: Partial<IDiscordServerInviteRole[]>;
+  inviteWhitelists?: Partial<IDiscordServerInviteWhitelist[]>;
 }
 "
 `;
@@ -7102,7 +7126,9 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  */
 /* tslint:disable */
 export enum Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsProperties {
+  MINIMUM_ACCOUNT_AGE_IN_DAYS = 'minimumAccountAgeInDays',
   INVITE_ROLES = 'inviteRoles',
+  INVITE_WHITELISTS = 'inviteWhitelists',
 }
 "
 `;
@@ -7119,8 +7145,102 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
 import { Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsProperties } from './cowbot-server-models-database-models-discord-server-invite-settings.properties';
 
 export function createTestCowbot.Server.Models.DatabaseModels.DiscordServerInviteSettings() {
-    return {  
+    return { 
+      [Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsProperties.MINIMUM_ACCOUNT_AGE_IN_DAYS]: 0, 
       [Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsProperties.INVITE_ROLES]: 'INVITE_ROLES',
+      [Cowbot.Server.Models.DatabaseModels.DiscordServerInviteSettingsProperties.INVITE_WHITELISTS]: 'INVITE_WHITELISTS',
+    };
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-database-models-discord-server-invite-whitelist.form.ts 1`] = `
+"/* eslint-disable @typescript-eslint/no-unused-vars */
+/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #form.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
+
+export interface ICowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistForm {
+    discordUserId: FormControl<string | null | undefined>;
+    inviteCode: FormControl<string | null | undefined>;
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-database-models-discord-server-invite-whitelist.form-group-fac.ts 1`] = `
+"/* eslint-disable no-useless-escape */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #form-group-factory.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ICowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistForm } from './cowbot-server-models-database-models-discord-server-invite-whitelist.form';
+
+export function Cowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistFormGroupFac(): FormGroup<ICowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistForm> {
+  return new FormGroup<ICowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistForm>({
+    discordUserId: new FormControl<string | null | undefined>(null),
+    inviteCode: new FormControl<string | null | undefined>(null),
+  });
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-database-models-discord-server-invite-whitelist.model.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #model.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ICowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelist {
+  discordUserId?: string | null;
+  inviteCode?: string | null;
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-database-models-discord-server-invite-whitelist.properties.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #model-properties.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+/* tslint:disable */
+export enum Cowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistProperties {
+  DISCORD_USER_ID = 'discordUserId',
+  INVITE_CODE = 'inviteCode',
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-database-models-discord-server-invite-whitelist.test-obj-fac.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #test-object-factory.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+
+import { Cowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistProperties } from './cowbot-server-models-database-models-discord-server-invite-whitelist.properties';
+
+export function createTestCowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelist() {
+    return { 
+      [Cowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistProperties.DISCORD_USER_ID]: 'DISCORD_USER_ID',
+      [Cowbot.Server.Models.DatabaseModels.DiscordServerInviteWhitelistProperties.INVITE_CODE]: 'INVITE_CODE', 
     };
 }
 "
@@ -10158,6 +10278,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommand
     name: FormControl<string | null | undefined>;
     description: FormControl<string | null | undefined>;
     defaultPermission: FormControl<boolean | null | undefined>;
+    defaultMemberPermissions: FormControl<string | null | undefined>;
     options: FormArray<FormGroup<IDiscordApplicationCommandOptionForm>>;
     type: FormGroup<IDiscordApplicationCommandTypeForm>;
 }
@@ -10186,6 +10307,7 @@ export function Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.
     name: new FormControl<string | null | undefined>(null),
     description: new FormControl<string | null | undefined>(null),
     defaultPermission: new FormControl<boolean | null | undefined>(null),
+    defaultMemberPermissions: new FormControl<string | null | undefined>(null),
     options: new FormArray<FormGroup<IDiscordApplicationCommandOptionForm>>([]),
     type: new FormGroup<IDiscordApplicationCommandTypeForm>(DiscordApplicationCommandTypeFormGroupFac().controls),
   });
@@ -10211,6 +10333,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommand
   name?: string | null;
   description?: string | null;
   defaultPermission?: boolean | null;
+  defaultMemberPermissions?: string | null;
   options?: Partial<IDiscordApplicationCommandOption[]>;
   type?: Partial<IDiscordApplicationCommandType>;
 }
@@ -10231,6 +10354,7 @@ export enum Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.Disc
   NAME = 'name',
   DESCRIPTION = 'description',
   DEFAULT_PERMISSION = 'defaultPermission',
+  DEFAULT_MEMBER_PERMISSIONS = 'defaultMemberPermissions',
   OPTIONS = 'options',
   TYPE = 'type',
 }
@@ -10253,7 +10377,8 @@ export function createTestCowbot.Server.Models.DTOs.DiscordApi.Models.Applicatio
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.ID]: 'ID',
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.NAME]: 'NAME',
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.DESCRIPTION]: 'DESCRIPTION',
-      [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.DEFAULT_PERMISSION]: false, 
+      [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.DEFAULT_PERMISSION]: false,
+      [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.DEFAULT_MEMBER_PERMISSIONS]: 'DEFAULT_MEMBER_PERMISSIONS', 
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.OPTIONS]: 'OPTIONS',
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandProperties.TYPE]: 'TYPE',
     };
@@ -10273,6 +10398,7 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IDiscordApplicationCommandOptionTypeForm } from './discord-application-command-option-type.form';
 import { IDiscordApplicationCommandOptionChoiceForm } from './discord-application-command-option-choice.form';
+import { IDiscordApplicationCommandOptionForm } from './discord-application-command-option.form';
 import { IDiscordChannelTypeForm } from './discord-channel-type.form';
 
 export interface ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionForm {
@@ -10283,6 +10409,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommand
     autocomplete: FormControl<boolean | null | undefined>;
     type: FormGroup<IDiscordApplicationCommandOptionTypeForm>;
     choices: FormArray<FormGroup<IDiscordApplicationCommandOptionChoiceForm>>;
+    options: FormArray<FormGroup<IDiscordApplicationCommandOptionForm>>;
     channelTypes: FormArray<FormGroup<IDiscordChannelTypeForm>>;
 }
 "
@@ -10303,6 +10430,7 @@ import { ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.Discor
 import { IDiscordApplicationCommandOptionTypeForm } from './discord-application-command-option-type.form';
 import { DiscordApplicationCommandOptionTypeFormGroupFac } from './discord-application-command-option-type.form-group-fac';
 import { IDiscordApplicationCommandOptionChoiceForm } from './discord-application-command-option-choice.form';
+import { IDiscordApplicationCommandOptionForm } from './discord-application-command-option.form';
 import { IDiscordChannelTypeForm } from './discord-channel-type.form';
 
 export function Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionFormGroupFac(): FormGroup<ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionForm> {
@@ -10314,6 +10442,7 @@ export function Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.
     autocomplete: new FormControl<boolean | null | undefined>(null),
     type: new FormGroup<IDiscordApplicationCommandOptionTypeForm>(DiscordApplicationCommandOptionTypeFormGroupFac().controls),
     choices: new FormArray<FormGroup<IDiscordApplicationCommandOptionChoiceForm>>([]),
+    options: new FormArray<FormGroup<IDiscordApplicationCommandOptionForm>>([]),
     channelTypes: new FormArray<FormGroup<IDiscordChannelTypeForm>>([]),
   });
 }
@@ -10331,6 +10460,7 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
 
 import { IDiscordApplicationCommandOptionType } from './discord-application-command-option-type.model';
 import { IDiscordApplicationCommandOptionChoice } from './discord-application-command-option-choice.model';
+import { IDiscordApplicationCommandOption } from './discord-application-command-option.model';
 import { IDiscordChannelType } from './discord-channel-type.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -10342,6 +10472,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommand
   autocomplete?: boolean | null;
   type?: Partial<IDiscordApplicationCommandOptionType>;
   choices?: Partial<IDiscordApplicationCommandOptionChoice[]>;
+  options?: Partial<IDiscordApplicationCommandOption[]>;
   channelTypes?: Partial<IDiscordChannelType[]>;
 }
 "
@@ -10364,6 +10495,7 @@ export enum Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.Disc
   AUTOCOMPLETE = 'autocomplete',
   TYPE = 'type',
   CHOICES = 'choices',
+  OPTIONS = 'options',
   CHANNEL_TYPES = 'channelTypes',
 }
 "
@@ -10389,6 +10521,7 @@ export function createTestCowbot.Server.Models.DTOs.DiscordApi.Models.Applicatio
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionProperties.AUTOCOMPLETE]: false, 
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionProperties.TYPE]: 'TYPE',
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionProperties.CHOICES]: 'CHOICES',
+      [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionProperties.OPTIONS]: 'OPTIONS',
       [Cowbot.Server.Models.DTOs.DiscordApi.Models.ApplicationCommands.DiscordApplicationCommandOptionProperties.CHANNEL_TYPES]: 'CHANNEL_TYPES',
     };
 }
@@ -12563,6 +12696,7 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
+import { IUserNameResponseForm } from './user-name-response.form';
 import { IDiscordRoleForm } from './discord-role.form';
 import { IBaseDiscordCommandForm } from './base-discord-command.form';
 import { IBetsyBotFeatureForm } from './betsy-bot-feature.form';
@@ -12578,6 +12712,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerForm 
     name: FormControl<string | null | undefined>;
     ownerId: FormControl<string | null | undefined>;
     authorizedUsers: FormArray<FormControl<string>>;
+    authorizedOwners: FormArray<FormControl<string>>;
     coinbaseCommerceApiKey: FormControl<string | null | undefined>;
     ipQualityScoreApiKey: FormControl<string | null | undefined>;
     verifiedRoleId: FormControl<string | null | undefined>;
@@ -12585,6 +12720,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerForm 
     customBotApplicationId: FormControl<string | null | undefined>;
     customBotActive: FormControl<boolean | null | undefined>;
     customBotStatus: FormControl<string | null | undefined>;
+    owner: FormGroup<IUserNameResponseForm>;
     authorizedRoles: FormArray<FormGroup<IDiscordRoleForm>>;
     commands: FormArray<FormGroup<IBaseDiscordCommandForm>>;
     activeFeatures: FormGroup<IBetsyBotFeatureForm>;
@@ -12608,6 +12744,8 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ICowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerForm } from './cowbot-server-models-dt-os-discord-server-base-discord-server.form';
+import { IUserNameResponseForm } from './user-name-response.form';
+import { UserNameResponseFormGroupFac } from './user-name-response.form-group-fac';
 import { IDiscordRoleForm } from './discord-role.form';
 import { IBaseDiscordCommandForm } from './base-discord-command.form';
 import { IBetsyBotFeatureForm } from './betsy-bot-feature.form';
@@ -12629,6 +12767,7 @@ export function Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerFormGro
     name: new FormControl<string | null | undefined>(null),
     ownerId: new FormControl<string | null | undefined>(null),
     authorizedUsers: new FormArray<FormControl<string>>([]),
+    authorizedOwners: new FormArray<FormControl<string>>([]),
     coinbaseCommerceApiKey: new FormControl<string | null | undefined>(null),
     ipQualityScoreApiKey: new FormControl<string | null | undefined>(null),
     verifiedRoleId: new FormControl<string | null | undefined>(null),
@@ -12636,6 +12775,7 @@ export function Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerFormGro
     customBotApplicationId: new FormControl<string | null | undefined>(null),
     customBotActive: new FormControl<boolean | null | undefined>(null),
     customBotStatus: new FormControl<string | null | undefined>(null),
+    owner: new FormGroup<IUserNameResponseForm>(UserNameResponseFormGroupFac().controls),
     authorizedRoles: new FormArray<FormGroup<IDiscordRoleForm>>([]),
     commands: new FormArray<FormGroup<IBaseDiscordCommandForm>>([]),
     activeFeatures: new FormGroup<IBetsyBotFeatureForm>(BetsyBotFeatureFormGroupFac().controls),
@@ -12657,6 +12797,7 @@ exports[`Url Based - Full Integration Tests Sample BetsyBot Service should gener
  * Do not edit.
  */
 
+import { IUserNameResponse } from './user-name-response.model';
 import { IDiscordRole } from './discord-role.model';
 import { IBaseDiscordCommand } from './base-discord-command.model';
 import { IBetsyBotFeature } from './betsy-bot-feature.model';
@@ -12673,6 +12814,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServer {
   name?: string | null;
   ownerId?: string | null;
   authorizedUsers?: string[] | null;
+  authorizedOwners?: string[] | null;
   coinbaseCommerceApiKey?: string | null;
   ipQualityScoreApiKey?: string | null;
   verifiedRoleId?: string | null;
@@ -12680,6 +12822,7 @@ export interface ICowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServer {
   customBotApplicationId?: string | null;
   customBotActive?: boolean | null;
   customBotStatus?: string | null;
+  owner?: Partial<IUserNameResponse>;
   authorizedRoles?: Partial<IDiscordRole[]>;
   commands?: Partial<IBaseDiscordCommand[]>;
   activeFeatures?: Partial<IBetsyBotFeature>;
@@ -12707,6 +12850,7 @@ export enum Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties 
   NAME = 'name',
   OWNER_ID = 'ownerId',
   AUTHORIZED_USERS = 'authorizedUsers',
+  AUTHORIZED_OWNERS = 'authorizedOwners',
   COINBASE_COMMERCE_API_KEY = 'coinbaseCommerceApiKey',
   IP_QUALITY_SCORE_API_KEY = 'ipQualityScoreApiKey',
   VERIFIED_ROLE_ID = 'verifiedRoleId',
@@ -12714,6 +12858,7 @@ export enum Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties 
   CUSTOM_BOT_APPLICATION_ID = 'customBotApplicationId',
   CUSTOM_BOT_ACTIVE = 'customBotActive',
   CUSTOM_BOT_STATUS = 'customBotStatus',
+  OWNER = 'owner',
   AUTHORIZED_ROLES = 'authorizedRoles',
   COMMANDS = 'commands',
   ACTIVE_FEATURES = 'activeFeatures',
@@ -12744,6 +12889,7 @@ export function createTestCowbot.Server.Models.DTOs.DiscordServer.BaseDiscordSer
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.NAME]: 'NAME',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.OWNER_ID]: 'OWNER_ID',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.AUTHORIZED_USERS]: 'AUTHORIZED_USERS',
+      [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.AUTHORIZED_OWNERS]: 'AUTHORIZED_OWNERS',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.COINBASE_COMMERCE_API_KEY]: 'COINBASE_COMMERCE_API_KEY',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.IP_QUALITY_SCORE_API_KEY]: 'IP_QUALITY_SCORE_API_KEY',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.VERIFIED_ROLE_ID]: 'VERIFIED_ROLE_ID',
@@ -12751,6 +12897,7 @@ export function createTestCowbot.Server.Models.DTOs.DiscordServer.BaseDiscordSer
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.CUSTOM_BOT_APPLICATION_ID]: 'CUSTOM_BOT_APPLICATION_ID',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.CUSTOM_BOT_ACTIVE]: false,
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.CUSTOM_BOT_STATUS]: 'CUSTOM_BOT_STATUS', 
+      [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.OWNER]: 'OWNER',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.AUTHORIZED_ROLES]: 'AUTHORIZED_ROLES',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.COMMANDS]: 'COMMANDS',
       [Cowbot.Server.Models.DTOs.DiscordServer.BaseDiscordServerProperties.ACTIVE_FEATURES]: 'ACTIVE_FEATURES',
@@ -15510,6 +15657,103 @@ export function createTestCowbot.Server.Models.DTOs.User.Response.ProfileRespons
 "
 `;
 
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-dt-os-user-response-user-name-response.form.ts 1`] = `
+"/* eslint-disable @typescript-eslint/no-unused-vars */
+/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #form.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
+
+export interface ICowbot.Server.Models.DTOs.User.Response.UserNameResponseForm {
+    firstName: FormControl<string | null | undefined>;
+    lastName: FormControl<string | null | undefined>;
+    discordId: FormControl<string | null | undefined>;
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-dt-os-user-response-user-name-response.form-group-fac.ts 1`] = `
+"/* eslint-disable no-useless-escape */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #form-group-factory.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
+import { ICowbot.Server.Models.DTOs.User.Response.UserNameResponseForm } from './cowbot-server-models-dt-os-user-response-user-name-response.form';
+
+export function Cowbot.Server.Models.DTOs.User.Response.UserNameResponseFormGroupFac(): FormGroup<ICowbot.Server.Models.DTOs.User.Response.UserNameResponseForm> {
+  return new FormGroup<ICowbot.Server.Models.DTOs.User.Response.UserNameResponseForm>({
+    firstName: new FormControl<string | null | undefined>(null),
+    lastName: new FormControl<string | null | undefined>(null),
+    discordId: new FormControl<string | null | undefined>(null),
+  });
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-dt-os-user-response-user-name-response.model.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #model.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ICowbot.Server.Models.DTOs.User.Response.UserNameResponse {
+  firstName?: string | null;
+  lastName?: string | null;
+  discordId?: string | null;
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-dt-os-user-response-user-name-response.properties.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #model-properties.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+/* tslint:disable */
+export enum Cowbot.Server.Models.DTOs.User.Response.UserNameResponseProperties {
+  FIRST_NAME = 'firstName',
+  LAST_NAME = 'lastName',
+  DISCORD_ID = 'discordId',
+}
+"
+`;
+
+exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-dt-os-user-response-user-name-response.test-obj-fac.ts 1`] = `
+"/* istanbul ignore file */
+/**
+ * This file is generated by the openapi-ts-generator
+ * #test-object-factory.ts.hbs
+ * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
+ * Do not edit.
+ */
+
+import { Cowbot.Server.Models.DTOs.User.Response.UserNameResponseProperties } from './cowbot-server-models-dt-os-user-response-user-name-response.properties';
+
+export function createTestCowbot.Server.Models.DTOs.User.Response.UserNameResponse() {
+    return { 
+      [Cowbot.Server.Models.DTOs.User.Response.UserNameResponseProperties.FIRST_NAME]: 'FIRST_NAME',
+      [Cowbot.Server.Models.DTOs.User.Response.UserNameResponseProperties.LAST_NAME]: 'LAST_NAME',
+      [Cowbot.Server.Models.DTOs.User.Response.UserNameResponseProperties.DISCORD_ID]: 'DISCORD_ID', 
+    };
+}
+"
+`;
+
 exports[`Url Based - Full Integration Tests Sample BetsyBot Service should generate files: cowbot-server-models-ip-quality-score-models-email-quality-response.form.ts 1`] = `
 "/* eslint-disable @typescript-eslint/no-unused-vars */
 /* istanbul ignore file */
@@ -15816,6 +16060,7 @@ export enum Endpoints {
   discordCommand2 = '/Discord/ApplicationCommand/{id}',
   discord = '/Discord/OAuth/ExchangeCode',
   discordRefreshToken = '/Discord/OAuth/RefreshToken',
+  discordTest = '/Discord/Test',
   discordAutoResponder = '/DiscordAutoResponder',
   discordAutoResponder2 = '/DiscordAutoResponder/{id}',
   discordAutoResponderToggleActive = '/DiscordAutoResponder/{id}/ToggleActive',
@@ -15839,6 +16084,7 @@ export enum Endpoints {
   discordGuildActivateCustomBot = '/DiscordGuild/{guildId}/ActivateCustomBot',
   discordGuildApiKeys = '/DiscordGuild/{guildId}/ApiKeys',
   discordGuildAuditLogs = '/DiscordGuild/{guildId}/AuditLogs',
+  discordGuildAuthorizedOwners = '/DiscordGuild/{guildId}/AuthorizedOwners',
   discordGuildAuthorizedUsers = '/DiscordGuild/{guildId}/AuthorizedUsers',
   discordGuildAutoResponders = '/DiscordGuild/{guildId}/AutoResponders',
   discordGuildAutoRoleContainers = '/DiscordGuild/{guildId}/AutoRoleContainers',
@@ -15846,6 +16092,7 @@ export enum Endpoints {
   discordGuildSendMessage = '/DiscordGuild/{guildId}/Channel/{channelId}/SendMessage',
   discordGuildChannels = '/DiscordGuild/{guildId}/Channels',
   discordGuildCommands = '/DiscordGuild/{guildId}/Commands',
+  discordGuild2 = '/DiscordGuild/{guildId}/ConfigurationOwner/{newOwnerDiscordId}',
   discordGuildDiscordChannelBackups = '/DiscordGuild/{guildId}/DiscordChannelBackups',
   discordGuildDiscordChannelCleaners = '/DiscordGuild/{guildId}/DiscordChannelCleaners',
   discordGuildToggleActive = '/DiscordGuild/{guildId}/DiscordCommand/{commandId}/ToggleActive',
@@ -15860,6 +16107,13 @@ export enum Endpoints {
   discordGuildInvites = '/DiscordGuild/{guildId}/Invites',
   discordGuildInviteSettings = '/DiscordGuild/{guildId}/InviteSettings',
   discordGuildKeyValueCategories = '/DiscordGuild/{guildId}/KeyValueCategories',
+  discordGuildAi = '/DiscordGuild/{guildId}/RegisterGlobalCommands/AI',
+  discordGuildGiveaway = '/DiscordGuild/{guildId}/RegisterGlobalCommands/Giveaway',
+  discordGuildKeyValue = '/DiscordGuild/{guildId}/RegisterGlobalCommands/KeyValue',
+  discordGuildPayments = '/DiscordGuild/{guildId}/RegisterGlobalCommands/Payments',
+  discordGuildPoll = '/DiscordGuild/{guildId}/RegisterGlobalCommands/Poll',
+  discordGuildReview = '/DiscordGuild/{guildId}/RegisterGlobalCommands/Review',
+  discordGuildTicket = '/DiscordGuild/{guildId}/RegisterGlobalCommands/Ticket',
   discordGuildRequiresLogin = '/DiscordGuild/{guildId}/RequiresLogin',
   discordGuildMessages = '/DiscordGuild/{guildId}/Resources/Messages',
   discordGuildReviewSettings = '/DiscordGuild/{guildId}/ReviewSettings',
@@ -15889,6 +16143,7 @@ export enum Endpoints {
   discordSupportTicketClose = '/DiscordSupportTicket/{id}/Close',
   discordSupportTicketPublic = '/DiscordSupportTicket/{id}/Public',
   discordSupportTicketSettings = '/DiscordSupportTicketSettings/{id}',
+  discordSupportTicketSettingsCloseOpenTickets = '/DiscordSupportTicketSettings/{id}/CloseOpenTickets',
   discordThreadChannel = '/DiscordThreadChannel',
   discordThreadChannel2 = '/DiscordThreadChannel/{id}',
   discordThreadChannelToggleActive = '/DiscordThreadChannel/{id}/ToggleActive',
@@ -15917,6 +16172,7 @@ export interface IEndpoints {
   readonly discordCommand2: string;
   readonly discord: string;
   readonly discordRefreshToken: string;
+  readonly discordTest: string;
   readonly discordAutoResponder: string;
   readonly discordAutoResponder2: string;
   readonly discordAutoResponderToggleActive: string;
@@ -15940,6 +16196,7 @@ export interface IEndpoints {
   readonly discordGuildActivateCustomBot: string;
   readonly discordGuildApiKeys: string;
   readonly discordGuildAuditLogs: string;
+  readonly discordGuildAuthorizedOwners: string;
   readonly discordGuildAuthorizedUsers: string;
   readonly discordGuildAutoResponders: string;
   readonly discordGuildAutoRoleContainers: string;
@@ -15947,6 +16204,7 @@ export interface IEndpoints {
   readonly discordGuildSendMessage: string;
   readonly discordGuildChannels: string;
   readonly discordGuildCommands: string;
+  readonly discordGuild2: string;
   readonly discordGuildDiscordChannelBackups: string;
   readonly discordGuildDiscordChannelCleaners: string;
   readonly discordGuildToggleActive: string;
@@ -15961,6 +16219,13 @@ export interface IEndpoints {
   readonly discordGuildInvites: string;
   readonly discordGuildInviteSettings: string;
   readonly discordGuildKeyValueCategories: string;
+  readonly discordGuildAi: string;
+  readonly discordGuildGiveaway: string;
+  readonly discordGuildKeyValue: string;
+  readonly discordGuildPayments: string;
+  readonly discordGuildPoll: string;
+  readonly discordGuildReview: string;
+  readonly discordGuildTicket: string;
   readonly discordGuildRequiresLogin: string;
   readonly discordGuildMessages: string;
   readonly discordGuildReviewSettings: string;
@@ -15990,6 +16255,7 @@ export interface IEndpoints {
   readonly discordSupportTicketClose: string;
   readonly discordSupportTicketPublic: string;
   readonly discordSupportTicketSettings: string;
+  readonly discordSupportTicketSettingsCloseOpenTickets: string;
   readonly discordThreadChannel: string;
   readonly discordThreadChannel2: string;
   readonly discordThreadChannelToggleActive: string;
@@ -16276,6 +16542,11 @@ export * from './cowbot-server-models-database-models-discord-server-invite-sett
 export * from './cowbot-server-models-database-models-discord-server-invite-settings.model';
 export * from './cowbot-server-models-database-models-discord-server-invite-settings.properties';
 export * from './cowbot-server-models-database-models-discord-server-invite-settings.test-obj-fac';
+export * from './cowbot-server-models-database-models-discord-server-invite-whitelist.form-group-fac';
+export * from './cowbot-server-models-database-models-discord-server-invite-whitelist.form';
+export * from './cowbot-server-models-database-models-discord-server-invite-whitelist.model';
+export * from './cowbot-server-models-database-models-discord-server-invite-whitelist.properties';
+export * from './cowbot-server-models-database-models-discord-server-invite-whitelist.test-obj-fac';
 export * from './cowbot-server-models-database-models-discord-server-review-settings.form-group-fac';
 export * from './cowbot-server-models-database-models-discord-server-review-settings.form';
 export * from './cowbot-server-models-database-models-discord-server-review-settings.model';
@@ -16618,6 +16889,11 @@ export * from './cowbot-server-models-dt-os-user-response-profile-response.form'
 export * from './cowbot-server-models-dt-os-user-response-profile-response.model';
 export * from './cowbot-server-models-dt-os-user-response-profile-response.properties';
 export * from './cowbot-server-models-dt-os-user-response-profile-response.test-obj-fac';
+export * from './cowbot-server-models-dt-os-user-response-user-name-response.form-group-fac';
+export * from './cowbot-server-models-dt-os-user-response-user-name-response.form';
+export * from './cowbot-server-models-dt-os-user-response-user-name-response.model';
+export * from './cowbot-server-models-dt-os-user-response-user-name-response.properties';
+export * from './cowbot-server-models-dt-os-user-response-user-name-response.test-obj-fac';
 export * from './cowbot-server-models-ip-quality-score-models-email-quality-response.form-group-fac';
 export * from './cowbot-server-models-ip-quality-score-models-email-quality-response.form';
 export * from './cowbot-server-models-ip-quality-score-models-email-quality-response.model';
