@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { OpenAPIObject } from 'openapi3-ts';
+import { OpenAPIObject } from 'openapi3-ts/dist/oas30';
 import {
   FormGenerator,
   EndPointsGenerator,
@@ -13,7 +13,7 @@ import {
 import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
 import { ITemplateData } from './models/template-data';
 import { OpenApiDocConverter } from './openapidoc-converter';
-import axios from 'axios';
+import Axios from 'axios';
 
 export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
 
@@ -28,7 +28,7 @@ export async function generateTsModels(options: IGeneratorOptions): Promise<void
 async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<OpenAPIObject> {
   let apiDoc: OpenAPIObject;
   if (options.openApiJsonUrl) {
-    const response = await axios.get(options.openApiJsonUrl, options.axiosConfig);
+    const response = await Axios.get(options.openApiJsonUrl, options.axiosConfig);
     apiDoc = response.data as OpenAPIObject;
   } else if (options.openApiJsonFileName) {
     const response = fs.readFileSync(`${__dirname}/${options.openApiJsonFileName}`);

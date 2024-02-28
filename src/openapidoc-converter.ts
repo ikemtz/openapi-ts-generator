@@ -1,4 +1,3 @@
-import { OpenAPIObject, PathItemObject, ReferenceObject, SchemaObject } from 'openapi3-ts';
 import { defaultFilter, IGeneratorOptions } from './models/generator-options';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { IImportType, IPath, ITemplateData } from './models/template-data';
@@ -7,11 +6,15 @@ import { IReferenceProperty } from './models/reference-property';
 import { IValueProperty } from './models/value-property';
 import { singular } from 'pluralize';
 import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
+import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts/dist/oas30';
 
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
   public readonly startNumberregex = /^\d*/;
-  constructor(private readonly options: IGeneratorOptions, private readonly apiDocument: OpenAPIObject) { }
+  constructor(
+    private readonly options: IGeneratorOptions,
+    private readonly apiDocument: OpenAPIObject,
+  ) {}
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -21,7 +24,7 @@ export class OpenApiDocConverter {
   public convertPaths(): IPath[] {
     const paths: IPath[] = [];
     for (const key in this.apiDocument.paths) {
-      const path = (this.apiDocument.paths[key] as PathItemObject) || {};
+      const path = this.apiDocument.paths[key] || {};
       let tagLookup = path.get || path.post || path.put;
       tagLookup = tagLookup || path.delete || path.patch;
       const tag: string = (tagLookup?.tags || ['unknown_endpoint'])[0];
@@ -38,7 +41,7 @@ export class OpenApiDocConverter {
 
     for (const schemaName in this.apiDocument.components?.schemas) {
       if (this.apiDocument.components?.schemas[schemaName]) {
-        const schemaWrapperInfo = new SchemaWrapperInfo(this.apiDocument.components?.schemas[schemaName]);
+        const schemaWrapperInfo = new SchemaWrapperInfo(this.apiDocument.components?.schemas[schemaName] as SchemaObject);
         if (schemaWrapperInfo.componentSchemaObject.enum) {
           this.buildSchemaWrapperInfoForEnum(schemaWrapperInfo);
         } else {
@@ -51,9 +54,9 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                ...t,
-                key: t.key || 0,
-              },
+                  ...t,
+                  key: t.key || 0,
+                },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
@@ -75,7 +78,7 @@ export class OpenApiDocConverter {
     schemaWrapperInfo.enumValues.push(
       ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
         const key = this.startNumberregex.exec(x)?.at(0);
-        const name = this.endAlphaNumRegex.exec(x)?.at(0) || '';
+        const name = this.endAlphaNumRegex.exec(x)?.at(0) ?? '';
         return {
           key: key ? +key : 0,
           name,
@@ -181,7 +184,7 @@ export class OpenApiDocConverter {
     const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
     const isRequired = this.getIsRequired(propertyName, schemaWrapperInfo);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const refName: string = ((schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject).$ref;
+    const refName: string = ((schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as ReferenceObject).$ref;
     const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
     const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
     if (!isRequired) {
@@ -202,14 +205,14 @@ export class OpenApiDocConverter {
   }
   getInitialTestValue(parentTypeName: string, propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): string {
     const typescriptType = this.getPropertyTypeScriptType(schemaWrapperInfo);
-    const schemaObject = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
+    const schemaObject = (schemaWrapperInfo?.componentSchemaObject?.properties ?? {})[propertyName] as SchemaObject;
     const maxLength = schemaWrapperInfo.propertySchemaObject.maxLength;
     const minLength = schemaWrapperInfo.propertySchemaObject.minLength;
     const minValue = schemaWrapperInfo.propertySchemaObject.minimum;
     const email = schemaWrapperInfo.propertySchemaObject.format?.toLowerCase() === 'email';
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const refName: string = schemaObject.$ref || schemaObject.items?.$ref;
-    const refObject = (this.apiDocument.components?.schemas || {})[refName] as SchemaObject;
+    const refName: string = (schemaObject as unknown as ReferenceObject)?.$ref || (schemaObject.items as unknown as ReferenceObject)?.$ref;
+    const refObject = (this.apiDocument.components?.schemas ?? {})[refName] as SchemaObject;
     const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
     if (defaultValue && refObject.enum) {
       return `${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}`;
@@ -250,7 +253,7 @@ export class OpenApiDocConverter {
     propertyName: string,
     schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
-    const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)];
+    const propertySchema: SchemaObject = (this.apiDocument.components?.schemas || {})[this.parseRef(schemaWrapperInfo)] as SchemaObject;
     const refSchema = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
@@ -298,7 +301,7 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string; }).type;
+      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {
@@ -306,7 +309,7 @@ export class OpenApiDocConverter {
     } else if (schemaWrapperInfo.propertySchemaObject.format === 'date' || schemaWrapperInfo.propertySchemaObject.format === 'date-time') {
       return 'Date';
     }
-    return schemaWrapperInfo.propertySchemaObject.type || 'string';
+    return (schemaWrapperInfo.propertySchemaObject.type as string) ?? 'string';
   }
 
   public parseRef(schemaWrapperInfo: SchemaWrapperInfo): string {
@@ -324,7 +327,8 @@ export class OpenApiDocConverter {
   }
 
   public getImportTypes(entityName: string, schemaWrapperInfo: SchemaWrapperInfo): IImportType[] {
-    const schemaProperties = ((this.apiDocument.components?.schemas || { properties: {} })[entityName] as SchemaObject).properties || {};
+    const schemaProperties =
+      ((this.apiDocument.components?.schemas ?? { [entityName]: { properties: {} } })[entityName] as SchemaObject).properties ?? {};
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const properties = Object.keys(schemaProperties).map((key) => ({
       key,
@@ -337,8 +341,8 @@ export class OpenApiDocConverter {
       .map((t) => t.referenceTypeName)
       .filter((value, index, array) => array.indexOf(value) === index)
       .map((value): IImportType => {
-        const refSchema: SchemaObject = (this.apiDocument.components?.schemas || {})[value];
-        const props = properties.filter((t) => t.items.$ref === value || t.$ref === value);
+        const refSchema = (this.apiDocument.components?.schemas || {})[value] as SchemaObject;
+        const props = properties.filter((t) => (t.items as ReferenceObject).$ref === value || t.$ref === value);
         return {
           name: value,
           kebabCasedTypeName: kebabCase(value),
@@ -352,7 +356,7 @@ export class OpenApiDocConverter {
 
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
     return (
-      ((schemaWrapperInfo.componentSchemaObject.required || []).indexOf(propertyName) > -1 ||
+      ((schemaWrapperInfo.componentSchemaObject.required ?? []).indexOf(propertyName) > -1 ||
         (schemaWrapperInfo.propertySchemaObject.nullable === undefined ? false : !schemaWrapperInfo.propertySchemaObject.nullable)) &&
       propertyName !== 'id'
     );

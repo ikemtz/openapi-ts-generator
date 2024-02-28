@@ -6,7 +6,10 @@ export abstract class BaseGenerator<TContextSchema> {
   public abstract readonly GeneratorName: string;
   public readonly template?: HandlebarsTemplateDelegate<TContextSchema>;
   public readonly emptyArrayRegex = /, ]/g;
-  public constructor(public readonly generatorOptions: IGeneratorOptions, public readonly templateFilePath: string | undefined) {
+  public constructor(
+    public readonly generatorOptions: IGeneratorOptions,
+    public readonly templateFilePath: string | undefined,
+  ) {
     if (templateFilePath) {
       const templateSource = readFileSync(templateFilePath, { encoding: 'utf8' });
       this.template = compile(templateSource);
