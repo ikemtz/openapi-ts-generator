@@ -21,7 +21,7 @@ export interface IGeneratorOptions {
   // This will give you the option to specify your own HandleBar templates
   templates?: ITemplates | null;
   // If specified this the AxiosRequestConfig that will be used to request the OpenApi document.
-  axiosConfig?: AxiosRequestConfig<any>;
+  axiosConfig?: AxiosRequestConfig<unknown>;
 }
 export interface ITemplates {
   // Used if genClasses is set to false (default)

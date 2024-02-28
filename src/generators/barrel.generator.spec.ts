@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmdirSync, unlinkSync } from 'fs';
+import { existsSync, mkdirSync, rmdirSync } from 'fs';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
 import { MockConsoleLogger } from '../models/logger';
 import { BarrelGenerator } from './barrel.generator';

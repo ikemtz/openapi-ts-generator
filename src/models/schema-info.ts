@@ -1,4 +1,4 @@
-import { ReferenceObject, SchemaObject } from 'openapi3-ts';
+import { ReferenceObject, SchemaObject } from 'openapi3-ts/dist/oas30';
 import { IEnumValue } from './enum-value';
 import { defaultFilter, IGeneratorOptions } from './generator-options';
 import { IReferenceProperty } from './reference-property';
@@ -25,6 +25,6 @@ export class SchemaWrapperInfo {
   }
 
   public updateReferenceProperties(options: IGeneratorOptions): void {
-    this.referenceProperties = this.referenceProperties.filter(options.referencePropertyTypeFilterCallBack || defaultFilter);
+    this.referenceProperties = this.referenceProperties.filter(options.referencePropertyTypeFilterCallBack ?? defaultFilter);
   }
 }

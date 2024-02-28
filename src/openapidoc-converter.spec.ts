@@ -1,4 +1,4 @@
-import { OpenAPIObject } from 'openapi3-ts';
+import { OpenAPIObject } from 'openapi3-ts/dist/oas30';
 import { SchemaWrapperInfo } from './models/schema-info';
 import { OpenApiDocConverter } from './openapidoc-converter';
 
