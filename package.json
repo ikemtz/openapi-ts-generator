@@ -4,6 +4,18 @@
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for services with OpenApi spec documentation.",
   "main": "index.js",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./interfaces": {
+      "import": "./interfaces/index.js",
+      "require": "./interfaces/index.js",
+      "types": "./interfaces/index.d.ts"
+    }
+  },
   "scripts": {
     "build": "npm run format && npm run lint && tsc && cp -rfv ./src/templates ./lib",
     "format": "prettier --write \"src/**/*.ts\"",
