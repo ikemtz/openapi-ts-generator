@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`File Based - Full Integration Tests Enums Test Service should generate files 1`] = `
-Array [
+[
   "contact-types-2.enum.ts",
   "contact-types.enum.ts",
   "contact.form-group-fac.ts",
@@ -150,6 +150,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+import { IEnumValue } from 'openapi-ts-generator/interfaces';
 
 export enum ContactTypes {
   Other = 0,
@@ -167,7 +168,7 @@ export enum ContactTypeNames {
   CARGO_TRANSPORT = 'CargoTransport',
 }
 
-export const contactTypeValues = [
+export const contactTypeValues : IEnumValue[] = [
   { key: 0, name: 'Other', displayText: 'Other'},
   { key: 2, name: 'Air', displayText: 'Air'},
   { key: 3, name: 'Truck', displayText: 'Truck'},
@@ -185,6 +186,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+import { IEnumValue } from 'openapi-ts-generator/interfaces';
 
 export enum ContactTypes2 {
   Air = 2,
@@ -200,7 +202,7 @@ export enum ContactTypes2Names {
   CARGO_TRANSPORT = 'CargoTransport',
 }
 
-export const contactTypes2Values = [
+export const contactTypes2Values : IEnumValue[] = [
   { key: 2, name: 'Air', displayText: 'Air'},
   { key: 3, name: 'Truck', displayText: 'Truck'},
   { key: 4, name: 'Train', displayText: 'Train'},

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Url Based - Full Integration Tests Adventure Works Account Service should generate files 1`] = `
-Array [
+[
   "customer-address.form-group-fac.ts",
   "customer-address.form.ts",
   "customer-address.model.ts",
@@ -927,6 +927,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+import { IEnumValue } from 'openapi-ts-generator/interfaces';
 
 export enum OrderStatusTypes {
   Processing = 0,
@@ -942,7 +943,7 @@ export enum OrderStatusTypeNames {
   RECEIVED = 'Received',
 }
 
-export const orderStatusTypeValues = [
+export const orderStatusTypeValues : IEnumValue[] = [
   { key: 0, name: 'Processing', displayText: 'Processing'},
   { key: 10, name: 'WaitingOnShipping', displayText: 'Waiting On Shipping'},
   { key: 20, name: 'InTransit', displayText: 'In Transit'},
@@ -1455,6 +1456,7 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+import { IEnumValue } from 'openapi-ts-generator/interfaces';
 
 export enum ShippingTypes {
   Other = 1,
@@ -1472,7 +1474,7 @@ export enum ShippingTypeNames {
   CARGO_TRANSPORT = 'CargoTransport',
 }
 
-export const shippingTypeValues = [
+export const shippingTypeValues : IEnumValue[] = [
   { key: 1, name: 'Other', displayText: 'Other'},
   { key: 2, name: 'Air', displayText: 'Air'},
   { key: 3, name: 'Truck', displayText: 'Truck'},

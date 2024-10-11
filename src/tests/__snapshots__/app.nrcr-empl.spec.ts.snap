@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice should generate files 1`] = `
-Array [
+[
   "employee-certification.form-group-fac.ts",
   "employee-certification.form.ts",
   "employee-certification.model.ts",

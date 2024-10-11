@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Url Based - Full Integration Tests MasterCorp Unit Service should generate files 1`] = `
-Array [
+[
   "building.form-group-fac.ts",
   "building.form.ts",
   "building.model.ts",
@@ -43,7 +43,7 @@ Array [
 `;
 
 exports[`Url Based - Full Integration Tests MasterCorp Unit Service should generate files 2`] = `
-Array [
+[
   "building.form-group-fac.ts",
   "building.form.ts",
   "building.model.ts",
@@ -1093,7 +1093,7 @@ export function createTestUnitType() {
 `;
 
 exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not generate files 1`] = `
-Array [
+[
   "building.form.ts",
   "building.test-obj-fac.ts",
   "endpoints.ts",
@@ -1511,7 +1511,7 @@ export function createTestUnitType() {
 `;
 
 exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip formGroup Fac files 1`] = `
-Array [
+[
   "building.model.ts",
   "building.properties.ts",
   "building.test-obj-fac.ts",
@@ -1539,7 +1539,7 @@ Array [
 `;
 
 exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip formGroup Fac files 2`] = `
-Array [
+[
   "building.model.ts",
   "building.properties.ts",
   "building.test-obj-fac.ts",

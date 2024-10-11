@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entities should generate files 1`] = `
-Array [
+[
   "account-insert-request.entity.ts",
   "account-insert-request.form-group-fac.ts",
   "account-insert-request.form.ts",
