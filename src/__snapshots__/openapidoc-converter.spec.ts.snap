@@ -3,24 +3,24 @@
 exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[TypeError: done.fail is not a function]`;
 
 exports[`OpenApiDocConverter Tests should properly convertPaths 1`] = `
-Array [
-  Object {
+[
+  {
     "endpoint": "GET_Employees",
     "tag": "employees",
   },
-  Object {
+  {
     "endpoint": "POST_Employees",
     "tag": "employees",
   },
-  Object {
+  {
     "endpoint": "PUT_Employees",
     "tag": "employees",
   },
-  Object {
+  {
     "endpoint": "DELETE_Employees",
     "tag": "employees",
   },
-  Object {
+  {
     "endpoint": "PATCH_Employees",
     "tag": "employees",
   },

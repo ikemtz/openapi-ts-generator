@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Url Based - Full Integration Tests Sample PetStore Service should generate files 1`] = `
-Array [
+[
   "endpoints.ts",
   "error.form-group-fac.ts",
   "error.form.ts",

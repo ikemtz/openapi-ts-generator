@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Url Based - Full Integration Tests Adventure Works Account Service should generate files 1`] = `
-Array [
+[
   "customer-address.form-group-fac.ts",
   "customer-address.form.ts",
   "customer-address.model.ts",
