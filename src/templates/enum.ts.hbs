@@ -5,6 +5,7 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+import { IEnumValue } from 'openapi-ts-generator/interfaces';
 
 {{#if description}}/**
  * {{description}}
@@ -30,7 +31,7 @@
 {{/enumValues}}
 }
 
-export const {{{camelSingularName}}}Values = [
+export const {{{camelSingularName}}}Values : IEnumValue[] = [
 {{#enumValues}}
   { key: {{key}}, name: '{{name}}', displayText: '{{titleName}}'},
 {{/enumValues}}

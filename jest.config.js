@@ -18,7 +18,5 @@ module.exports = {
   coverageReporters: ['html', 'json', 'lcov', 'text', 'clover', 'cobertura'],
   maxConcurrency: 1,
   testTimeout: 30000,
-  moduleNameMapper: {
-    "^axios$": "axios/dist/node/axios.cjs"
-  }
+  moduleNameMapper: {},
 };

@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EndPointsGenerator should generate files 1`] = `
-Array [
-  Object {
+[
+  {
     "endpoint": "api/v1/Lookup.{format}",
     "tag": "lookup",
   },
-  Object {
+  {
     "endpoint": "api/v1/Lookup.{format}",
     "tag": "lookup2",
   },
-  Object {
+  {
     "endpoint": "api/v1/Lookup.{format}",
     "tag": "lookupSnakeTest",
   },
-  Object {
+  {
     "endpoint": "api/v1/Lookup.{format}",
     "tag": "lookupSnakeTest2",
   },
-  Object {
+  {
     "endpoint": "api/v1/Lookup.{format}/GetLookup1",
     "tag": "lookupGetLookup1",
   },
-  Object {
+  {
     "endpoint": "api/v1/Lookup.{format}/GetLookup2",
     "tag": "lookupGetLookup2",
   },
