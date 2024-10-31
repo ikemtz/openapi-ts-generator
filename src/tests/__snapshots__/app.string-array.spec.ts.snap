@@ -20,7 +20,7 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
 }
 export interface IEndpoints {
@@ -36,7 +36,7 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './string-array-test-object.form-group-fac';
 export * from './string-array-test-object.form';
 export * from './string-array-test-object.model';
@@ -106,7 +106,7 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum StringArrayTestObjectProperties {
   TYPE_CODES = 'typeCodes',
 }
@@ -126,7 +126,7 @@ import { StringArrayTestObjectProperties } from './string-array-test-object.prop
 
 export function createTestStringArrayTestObject() {
     return { 
-      [StringArrayTestObjectProperties.TYPE_CODES]: 'TYPE_CODES', 
+      [StringArrayTestObjectProperties.TYPE_CODES]: [], 
     };
 }
 "

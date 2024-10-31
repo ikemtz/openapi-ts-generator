@@ -101,7 +101,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum ContactProperties {
 /**
  * Unique Identifier
@@ -219,7 +219,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   contacts = '/api/v1/Contacts.{format}',
 }
@@ -237,7 +237,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './contact-types-2.enum';
 export * from './contact-types.enum';
 export * from './contact.form-group-fac';

@@ -135,7 +135,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 /**
  * Customer Account
  */
@@ -201,6 +201,8 @@ export class AccountInsertRequest {
   refId?: string | null;
   name?: string;
   parentAccountId?: string | null;
+  contactIds?: number[] | null;
+  contactGuids?: string[] | null;
   emailInvoice?: boolean | null;
   contacts?: Partial<Contact[]>;
 }
@@ -224,6 +226,8 @@ export interface IAccountInsertRequestForm {
     refId: FormControl<string | null | undefined>;
     name: FormControl<string>;
     parentAccountId: FormControl<string | null | undefined>;
+    contactIds: FormArray<FormControl<number>>;
+    contactGuids: FormArray<FormControl<string>>;
     emailInvoice: FormControl<boolean | null | undefined>;
     contacts: FormArray<FormGroup<IContactForm>>;
 }
@@ -250,6 +254,8 @@ export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequ
     refId: new FormControl<string | null | undefined>(null),
     name: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     parentAccountId: new FormControl<string | null | undefined>(null),
+    contactIds: new FormArray<FormControl<number>>([]),
+    contactGuids: new FormArray<FormControl<string>>([]),
     emailInvoice: new FormControl<boolean | null | undefined>(null),
     contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
@@ -265,12 +271,14 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum AccountInsertRequestProperties {
   ID = 'id',
   REF_ID = 'refId',
   NAME = 'name',
   PARENT_ACCOUNT_ID = 'parentAccountId',
+  CONTACT_IDS = 'contactIds',
+  CONTACT_GUIDS = 'contactGuids',
   EMAIL_INVOICE = 'emailInvoice',
   CONTACTS = 'contacts',
 }
@@ -294,6 +302,8 @@ export function createTestAccountInsertRequest() {
       [AccountInsertRequestProperties.REF_ID]: 'REF_ID',
       [AccountInsertRequestProperties.NAME]: 'NAME',
       [AccountInsertRequestProperties.PARENT_ACCOUNT_ID]: 'PARENT_ACCOUNT_ID',
+      [AccountInsertRequestProperties.CONTACT_IDS]: [0],
+      [AccountInsertRequestProperties.CONTACT_GUIDS]: [],
       [AccountInsertRequestProperties.EMAIL_INVOICE]: false, 
       [AccountInsertRequestProperties.CONTACTS]: [],
     };
@@ -385,7 +395,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum AccountUpdateRequestProperties {
   ID = 'id',
   REF_ID = 'refId',
@@ -538,7 +548,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum ContactProperties {
 /**
  * Unique Identifier
@@ -697,7 +707,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum ContactInsertRequestProperties {
   ID = 'id',
   CONTACT_TYPE_ID = 'contactTypeId',
@@ -849,7 +859,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum ContactUpdateRequestProperties {
   ID = 'id',
   CONTACT_TYPE_ID = 'contactTypeId',
@@ -909,7 +919,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   accounts = '/api/v1/Accounts.{format}',
   contacts = '/api/v1/Contacts.{format}',
@@ -929,7 +939,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './account-insert-request.entity';
 export * from './account-insert-request.form-group-fac';
 export * from './account-insert-request.form';

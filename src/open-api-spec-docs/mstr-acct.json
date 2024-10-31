@@ -850,6 +850,24 @@
             "nullable": true,
             "readOnly": true
           },
+          "contactIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "contactGuids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
           "emailInvoice": {
             "type": "boolean"
           }

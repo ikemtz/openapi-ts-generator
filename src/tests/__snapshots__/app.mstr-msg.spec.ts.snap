@@ -25,7 +25,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   sms = '/api/v1/Sms.{format}',
 }
@@ -43,7 +43,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './message-dto.form-group-fac';
 export * from './message-dto.form';
 export * from './message-dto.model';
@@ -129,7 +129,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum MessageDtoProperties {
   ID = 'id',
   BODY = 'body',
@@ -238,7 +238,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum RecipientProperties {
   ID = 'id',
   ULTI_ID = 'ultiId',

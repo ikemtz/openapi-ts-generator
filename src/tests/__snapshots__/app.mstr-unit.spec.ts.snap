@@ -169,7 +169,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum BuildingProperties {
   ID = 'id',
   SITE_ID = 'siteId',
@@ -213,7 +213,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
   siteCollections = '/odata/v1/SiteCollections',
@@ -239,7 +239,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './building.form-group-fac';
 export * from './building.form';
 export * from './building.model';
@@ -396,7 +396,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum SiteProperties {
   ID = 'id',
   TENANT_ID = 'tenantId',
@@ -563,7 +563,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum SiteCollectionProperties {
   ID = 'id',
   TENANT_ID = 'tenantId',
@@ -692,7 +692,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum TagProperties {
   ID = 'id',
   NAME = 'name',
@@ -829,7 +829,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitProperties {
   ID = 'id',
   NUMBER = 'number',
@@ -959,7 +959,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitTagProperties {
   ID = 'id',
   UNIT_ID = 'unitId',
@@ -1062,7 +1062,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitTypeProperties {
   ID = 'id',
   CODE = 'code',
@@ -1168,7 +1168,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
   siteCollections = '/odata/v1/SiteCollections',
@@ -1598,7 +1598,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum BuildingProperties {
   ID = 'id',
   SITE_ID = 'siteId',
@@ -1642,7 +1642,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   buildings = '/odata/v1/Buildings',
   siteCollections = '/odata/v1/SiteCollections',
@@ -1668,7 +1668,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './building.model';
 export * from './building.properties';
 export * from './building.test-obj-fac';
@@ -1736,7 +1736,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum SiteProperties {
   ID = 'id',
   TENANT_ID = 'tenantId',
@@ -1833,7 +1833,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum SiteCollectionProperties {
   ID = 'id',
   TENANT_ID = 'tenantId',
@@ -1916,7 +1916,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum TagProperties {
   ID = 'id',
   NAME = 'name',
@@ -1986,7 +1986,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitProperties {
   ID = 'id',
   NUMBER = 'number',
@@ -2062,7 +2062,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitTagProperties {
   ID = 'id',
   UNIT_ID = 'unitId',
@@ -2123,7 +2123,7 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum UnitTypeProperties {
   ID = 'id',
   CODE = 'code',

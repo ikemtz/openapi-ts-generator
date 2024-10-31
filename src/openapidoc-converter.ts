@@ -14,7 +14,7 @@ export class OpenApiDocConverter {
   constructor(
     private readonly options: IGeneratorOptions,
     private readonly apiDocument: OpenAPIObject,
-  ) {}
+  ) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -54,9 +54,9 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                  ...t,
-                  key: t.key || 0,
-                },
+                ...t,
+                key: t.key || 0,
+              },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
@@ -226,6 +226,10 @@ export class OpenApiDocConverter {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {
       return 'false';
+    } else if (typescriptType === 'number' && schemaObject.type === 'array') {
+      return minValue ? `[${minValue}]` : '[0]';
+    } else if (schemaObject.type === 'array') {
+      return defaultValue ? `[${defaultValue}]` : '[]';
     } else if (typescriptType === 'number') {
       return minValue ? `${minValue}` : '0';
     } else {
@@ -301,7 +305,8 @@ export class OpenApiDocConverter {
 
   public getPropertyTypeScriptType(schemaWrapperInfo: SchemaWrapperInfo): string {
     if (schemaWrapperInfo.propertySchemaObject.type === 'array' && schemaWrapperInfo.propertySchemaObject.items) {
-      return (schemaWrapperInfo.propertySchemaObject.items as { type: string }).type;
+      const type = (schemaWrapperInfo.propertySchemaObject.items as SchemaObject).type;
+      return type === 'integer' ? 'number' : (type as string);
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer' && schemaWrapperInfo.propertySchemaObject.enum) {
       return 'string | number';
     } else if (schemaWrapperInfo.propertySchemaObject.type === 'integer') {

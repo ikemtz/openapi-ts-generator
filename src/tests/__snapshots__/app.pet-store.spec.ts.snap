@@ -26,7 +26,7 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   pets = '/pets',
   pets2 = '/pets/{petId}',
@@ -102,7 +102,7 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum ErrorProperties {
   CODE = 'code',
   MESSAGE = 'message',
@@ -138,7 +138,7 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './error.form-group-fac';
 export * from './error.form';
 export * from './error.model';
@@ -220,7 +220,7 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum PetProperties {
   ID = 'id',
   NAME = 'name',
