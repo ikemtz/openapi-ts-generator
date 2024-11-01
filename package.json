@@ -21,7 +21,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts --output-file ./eslint-report.json --format json && eslint . --ext .ts --output-file ./eslint-report.html --format html ",
     "link": "npm run build && cd lib && npm link && cd ..",
-    "test": "npm run build && jest --collect-coverage",
+    "te st": "npm run build && jest --collect-coverage",
     "prep:lib": "rm -rv ./lib/*.spec.* && rm -rv ./lib/**/*.spec.* && cp -v ./package.json ./lib/ && cp -v ./LICENSE ./lib/ && cp -v ./README.md ./lib/",
     "debug": "npm run build && node --inspect-brk ./lib/app.js"
   },

@@ -165,7 +165,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum EmployeeProperties {
   ID = 'id',
   LAST_NAME = 'lastName',
@@ -308,7 +308,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum EmployeeCertificationProperties {
   ID = 'id',
   EMPLOYEE_ID = 'employeeId',
@@ -418,7 +418,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum EmployeeCompetencyProperties {
   ID = 'id',
   EMPLOYEE_ID = 'employeeId',
@@ -530,7 +530,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum EmployeeHealthItemProperties {
   ID = 'id',
   EMPLOYEE_ID = 'employeeId',
@@ -574,7 +574,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export enum Endpoints {
   employees = '/odata/v1/Employees',
 }
@@ -592,7 +592,7 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-/* tslint:disable */
+/* eslint-disable */
 export * from './employee-certification.form-group-fac';
 export * from './employee-certification.form';
 export * from './employee-certification.model';
