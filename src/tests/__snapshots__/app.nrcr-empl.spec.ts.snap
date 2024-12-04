@@ -87,26 +87,26 @@ import { IEmployeeHealthItemForm } from './employee-health-item.form';
 
 export function EmployeeFormGroupFac(): FormGroup<IEmployeeForm> {
   return new FormGroup<IEmployeeForm>({
-    id: new FormControl<string | null | undefined>(null),
-    lastName: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
-    firstName: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
-    birthDate: new FormControl<Date | null | undefined>(null),
-    mobilePhone: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(25) } ),
-    homePhone: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(25) } ),
-    photo: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(4000) } ),
-    email: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.email, Validators.maxLength(250)]), nonNullable: true }),
-    addressLine1: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(250) } ),
-    addressLine2: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(250) } ),
-    city: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(150) } ),
-    state: new FormControl<string | null | undefined>(null, { validators: Validators.compose([Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[A-Z]{2}$')]) }),
-    zip: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(10) } ),
-    isEnabled: new FormControl<boolean>(false, { validators: Validators.required, nonNullable: true } ),
-    hireDate: new FormControl<Date>(new Date(), { validators: Validators.required, nonNullable: true } ),
-    fireDate: new FormControl<Date | null | undefined>(null),
-    totalHoursOfService: new FormControl<number | null | undefined>(null, { validators: Validators.min(0) } ),
-    certificationCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.max(99)]), nonNullable: true }),
-    competencyCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
-    healthItemCount: new FormControl<number>(0, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
+    id: new FormControl<string | null | undefined>(undefined),
+    lastName: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    firstName: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.maxLength(250)]), nonNullable: true }),
+    birthDate: new FormControl<Date | null | undefined>(undefined),
+    mobilePhone: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(25) } ),
+    homePhone: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(25) } ),
+    photo: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(4000) } ),
+    email: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.email, Validators.maxLength(250)]), nonNullable: true }),
+    addressLine1: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(250) } ),
+    addressLine2: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(250) } ),
+    city: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(150) } ),
+    state: new FormControl<string | null | undefined>(undefined, { validators: Validators.compose([Validators.minLength(2), Validators.maxLength(2), Validators.pattern('^[A-Z]{2}$')]) }),
+    zip: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(10) } ),
+    isEnabled: new FormControl<boolean>(undefined, { validators: Validators.required, nonNullable: true } ),
+    hireDate: new FormControl<Date>(undefined, { validators: Validators.required, nonNullable: true } ),
+    fireDate: new FormControl<Date | null | undefined>(undefined),
+    totalHoursOfService: new FormControl<number | null | undefined>(undefined, { validators: Validators.min(0) } ),
+    certificationCount: new FormControl<number>(undefined, { validators: Validators.compose([Validators.required, Validators.max(99)]), nonNullable: true }),
+    competencyCount: new FormControl<number>(undefined, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
+    healthItemCount: new FormControl<number>(undefined, { validators: Validators.compose([Validators.required, Validators.min(0), Validators.max(99)]), nonNullable: true }),
     employeeCertifications: new FormArray<FormGroup<IEmployeeCertificationForm>>([]),
     employeeCompetencies: new FormArray<FormGroup<IEmployeeCompetencyForm>>([]),
     employeeHealthItems: new FormArray<FormGroup<IEmployeeHealthItemForm>>([]),
@@ -271,11 +271,11 @@ import { IEmployeeCertificationForm } from './employee-certification.form';
 
 export function EmployeeCertificationFormGroupFac(): FormGroup<IEmployeeCertificationForm> {
   return new FormGroup<IEmployeeCertificationForm>({
-    id: new FormControl<string | null | undefined>(null),
-    employeeId: new FormControl<string | null | undefined>(null),
-    certificationId: new FormControl<string | null | undefined>(null),
-    certificationName: new FormControl<string | null | undefined>(null),
-    expiresOnUtc: new FormControl<Date | null | undefined>(null),
+    id: new FormControl<string | null | undefined>(undefined),
+    employeeId: new FormControl<string | null | undefined>(undefined),
+    certificationId: new FormControl<string | null | undefined>(undefined),
+    certificationName: new FormControl<string | null | undefined>(undefined),
+    expiresOnUtc: new FormControl<Date | null | undefined>(undefined),
   });
 }
 "
@@ -379,12 +379,12 @@ import { IEmployeeCompetencyForm } from './employee-competency.form';
 
 export function EmployeeCompetencyFormGroupFac(): FormGroup<IEmployeeCompetencyForm> {
   return new FormGroup<IEmployeeCompetencyForm>({
-    id: new FormControl<string | null | undefined>(null),
-    employeeId: new FormControl<string | null | undefined>(null),
-    competencyId: new FormControl<string | null | undefined>(null),
-    competencyName: new FormControl<string | null | undefined>(null),
-    expiresOnUtc: new FormControl<Date | null | undefined>(null),
-    isEnabled: new FormControl<boolean | null | undefined>(null),
+    id: new FormControl<string | null | undefined>(undefined),
+    employeeId: new FormControl<string | null | undefined>(undefined),
+    competencyId: new FormControl<string | null | undefined>(undefined),
+    competencyName: new FormControl<string | null | undefined>(undefined),
+    expiresOnUtc: new FormControl<Date | null | undefined>(undefined),
+    isEnabled: new FormControl<boolean | null | undefined>(undefined),
   });
 }
 "
@@ -491,12 +491,12 @@ import { IEmployeeHealthItemForm } from './employee-health-item.form';
 
 export function EmployeeHealthItemFormGroupFac(): FormGroup<IEmployeeHealthItemForm> {
   return new FormGroup<IEmployeeHealthItemForm>({
-    id: new FormControl<string | null | undefined>(null),
-    employeeId: new FormControl<string | null | undefined>(null),
-    healthItemId: new FormControl<string | null | undefined>(null),
-    healthItemName: new FormControl<string | null | undefined>(null),
-    expiresOnUtc: new FormControl<Date | null | undefined>(null),
-    isEnabled: new FormControl<boolean | null | undefined>(null),
+    id: new FormControl<string | null | undefined>(undefined),
+    employeeId: new FormControl<string | null | undefined>(undefined),
+    healthItemId: new FormControl<string | null | undefined>(undefined),
+    healthItemName: new FormControl<string | null | undefined>(undefined),
+    expiresOnUtc: new FormControl<Date | null | undefined>(undefined),
+    isEnabled: new FormControl<boolean | null | undefined>(undefined),
   });
 }
 "

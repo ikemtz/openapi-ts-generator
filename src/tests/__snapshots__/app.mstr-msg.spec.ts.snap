@@ -93,8 +93,8 @@ import { IRecipientForm } from './recipient.form';
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
   return new FormGroup<IMessageDtoForm>({
-    id: new FormControl<string | null | undefined>(null),
-    body: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    id: new FormControl<string | null | undefined>(undefined),
+    body: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
     recipients: new FormArray<FormGroup<IRecipientForm>>([], { validators: Validators.required } ),
   });
 }
@@ -197,13 +197,13 @@ import { IRecipientForm } from './recipient.form';
 
 export function RecipientFormGroupFac(): FormGroup<IRecipientForm> {
   return new FormGroup<IRecipientForm>({
-    id: new FormControl<string | null | undefined>(null),
-    ultiId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    firstName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    middleName: new FormControl<string | null | undefined>(null),
-    lastName: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    cellPhone1: new FormControl<string | null | undefined>(null),
-    homePhone1: new FormControl<string | null | undefined>(null),
+    id: new FormControl<string | null | undefined>(undefined),
+    ultiId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    firstName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    middleName: new FormControl<string | null | undefined>(undefined),
+    lastName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    cellPhone1: new FormControl<string | null | undefined>(undefined),
+    homePhone1: new FormControl<string | null | undefined>(undefined),
   });
 }
 "
