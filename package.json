@@ -10,10 +10,10 @@
       "require": "./index.js",
       "types": "./index.d.ts"
     },
-    "./interfaces": {
-      "import": "./interfaces/index.js",
-      "require": "./interfaces/index.js",
-      "types": "./interfaces/index.d.ts"
+    "./enums": {
+      "import": "./enums/index.js",
+      "require": "./enums/index.js",
+      "types": "./enums/index.d.ts"
     }
   },
   "scripts": {
