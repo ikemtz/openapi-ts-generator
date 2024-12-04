@@ -55,12 +55,12 @@ import { ContactTypes2 } from './contact-types-2.enum';
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
   return new FormGroup<IContactForm>({
-    id: new FormControl<string | null | undefined>(null),
-    accountId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    addressLine1: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    contactType: new FormControl<ContactTypes | string>(ContactTypes.Other, { validators: Validators.required, nonNullable: true } ),
-    contactType2: new FormControl<ContactTypes2 | string>(ContactTypes2.Air, { validators: Validators.required, nonNullable: true } ),
-    contactType3: new FormControl<ContactTypes | string | null | undefined>(null),
+    id: new FormControl<string | null | undefined>(undefined),
+    accountId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    addressLine1: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    contactType: new FormControl<ContactTypes | string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    contactType2: new FormControl<ContactTypes2 | string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    contactType3: new FormControl<ContactTypes | string | null | undefined>(undefined),
   });
 }
 "
@@ -150,7 +150,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-import { IEnumValue } from 'openapi-ts-generator/interfaces';
+import { IEnumValue } from 'openapi-ts-generator/enums';
 
 export enum ContactTypes {
   Other = 0,
@@ -186,7 +186,7 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-import { IEnumValue } from 'openapi-ts-generator/interfaces';
+import { IEnumValue } from 'openapi-ts-generator/enums';
 
 export enum ContactTypes2 {
   Air = 2,

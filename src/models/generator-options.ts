@@ -12,6 +12,7 @@ export interface IGeneratorOptions {
   openApiJsonUrl?: string;
   openApiJsonFileName?: string;
   genAngularFormGroups?: boolean;
+  genAngularFormGroupsWithDefaultValues?: boolean;
   // If set to true will generate classes instead of interfaces
   genClasses?: boolean;
   typeFilterCallBack?: (entity: IEntity, index: number, array: IEntity[]) => boolean;

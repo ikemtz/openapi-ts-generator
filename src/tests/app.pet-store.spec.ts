@@ -4,7 +4,7 @@ import { ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 
 const accountGenerationOptionsFactory = (): IGeneratorOptions => ({
-  openApiJsonUrl: 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.json',
+  openApiJsonUrl: 'https://petstore3.swagger.io/api/v3/openapi.json',
   outputPath: './jest_output/pet-store/',
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
