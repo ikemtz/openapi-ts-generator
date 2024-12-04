@@ -55,7 +55,7 @@ export class OpenApiDocConverter {
               ? t
               : {
                 ...t,
-                key: t.key || 0,
+                key: t.key ?? 0,
               },
           ),
           name: schemaName,
@@ -128,7 +128,7 @@ export class OpenApiDocConverter {
   ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
-    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialValue = this.options.genAngularFormGroupsWithDefaultValues ? this.getInitialValue(propertyName, schemaWrapperInfo) : 'undefined';
     const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
@@ -164,7 +164,7 @@ export class OpenApiDocConverter {
   ): IValueProperty {
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
-    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialValue = this.options.genAngularFormGroupsWithDefaultValues ? this.getInitialValue(propertyName, schemaWrapperInfo) : 'undefined';
     const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     return {
       required,
@@ -261,7 +261,7 @@ export class OpenApiDocConverter {
     const refSchema = (schemaWrapperInfo?.componentSchemaObject?.properties || {})[propertyName] as SchemaObject;
     const required = this.getIsRequired(propertyName, schemaWrapperInfo);
     const validatorCount = this.getValidatorCount(propertyName, schemaWrapperInfo);
-    const initialValue = this.getInitialValue(propertyName, schemaWrapperInfo);
+    const initialValue = this.options.genAngularFormGroupsWithDefaultValues ? this.getInitialValue(propertyName, schemaWrapperInfo) : 'undefined';
     const initialTestValue = this.getInitialTestValue(parentTypeName, propertyName, schemaWrapperInfo);
     const typeName = this.parseRef(schemaWrapperInfo);
     return {
