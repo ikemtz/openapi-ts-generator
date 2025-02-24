@@ -20,7 +20,7 @@ export interface I{{name}}Form {
 {{/valueProperties}}
 {{#referenceProperties}}
 {{#if isEnumAndArray}}
-    {{name}}: FormArray<{{typeScriptType}}>;
+    {{name}}: FormArray<FormControl<{{typeScriptType}} | string>>;
 {{else if isArray}}
     {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
 {{else if isEnum}}

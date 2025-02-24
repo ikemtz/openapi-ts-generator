@@ -67,7 +67,7 @@ export interface ICourseForm {
     status: FormControl<CourseStatus | string | null | undefined>;
     studentCourses: FormArray<FormGroup<IStudentCourseForm>>;
     schoolCourses: FormArray<FormGroup<ISchoolCourseForm>>;
-    courseTypes: FormArray<CourseTypes>;
+    courseTypes: FormArray<FormControl<CourseTypes | string>>;
 }
 "
 `;
@@ -102,7 +102,7 @@ export function CourseFormGroupFac(): FormGroup<ICourseForm> {
     status: new FormControl<CourseStatus | string | null | undefined>(undefined),
     studentCourses: new FormArray<FormGroup<IStudentCourseForm>>([]),
     schoolCourses: new FormArray<FormGroup<ISchoolCourseForm>>([]),
-    courseTypes: new FormArray<CourseTypes>([]),
+    courseTypes: new FormArray<FormConrol<CourseTypes | string>>([]),
   });
 }
 "
