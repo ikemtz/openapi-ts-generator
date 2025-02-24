@@ -3,3 +3,5 @@ dist
 coverage
 lib
 jest_output
+jest.config.js
+.eslintrc.js

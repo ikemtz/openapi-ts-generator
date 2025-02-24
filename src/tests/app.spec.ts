@@ -3,7 +3,7 @@ import { IGeneratorOptions } from '../models/generator-options';
 
 export function createDirectory(path: string): void {
   try {
-    //   rmdirSync(path, { recursive: true });
+    rmdirSync(path, { recursive: true });
     mkdirSync(path, { recursive: true });
   } catch {
     // ignore
