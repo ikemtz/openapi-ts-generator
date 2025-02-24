@@ -14,7 +14,8 @@ export interface IReferenceProperty {
   minimum?: number;
   isArray: boolean;
   required: boolean;
-  isEnum?: boolean;
+  isEnum: boolean;
+  isEnumAndArray: boolean;
   initialValue: string;
   initialTestValue: string;
 }

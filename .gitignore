@@ -11,3 +11,4 @@
 /obj/Debug 
 /jest_output
 eslint-report.*
+refresh-local-branch.sh

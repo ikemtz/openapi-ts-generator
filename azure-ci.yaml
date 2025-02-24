@@ -41,6 +41,13 @@ steps:
          sonar.typescript.exclusions=**/node_modules/**
 
   - task: Npm@1
+    displayName: 'npm lint'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run lint'
+
+  - task: Npm@1
     displayName: 'npm build'
     inputs:
       command: custom
