@@ -14,4 +14,4 @@ git push origin -d $1 || true
 
 echo "Creating local branch $1 and pushing it up to origin"
 git checkout -b $1
-git push origin
+git push origin $1

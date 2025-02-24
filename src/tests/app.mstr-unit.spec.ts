@@ -1,8 +1,8 @@
-import { mkdirSync, readdirSync } from 'fs';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { ValidateFiles } from './app.spec';
+import { createDirectory, ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 import { MockConsoleLogger } from '../models/logger';
+import { readdirSync } from 'fs';
 
 const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/mstr-unit.json',
@@ -16,11 +16,8 @@ describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Unit Service', () => {
     it('should generate files', async () => {
       const options = unitGenerationOptionsFactory();
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
+
       await generateTsModels(options);
       const files = readdirSync(options.outputPath).sort();
       ValidateFiles(options);
@@ -32,11 +29,8 @@ describe('Url Based - Full Integration Tests', () => {
         ...unitGenerationOptionsFactory(),
         genAngularFormGroups: false,
       };
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
+
       await generateTsModels(options);
       const files = readdirSync(options.outputPath).sort();
       ValidateFiles(options);
@@ -46,11 +40,7 @@ describe('Url Based - Full Integration Tests', () => {
     it('should not generate files', async () => {
       const options = unitGenerationOptionsFactory();
       options.outputPath = './jest_output/unit_noFiles/';
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
 
       await generateTsModels({
         ...options,

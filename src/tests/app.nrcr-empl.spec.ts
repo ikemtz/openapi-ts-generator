@@ -1,6 +1,5 @@
-import { mkdirSync } from 'fs';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { ValidateFiles } from './app.spec';
+import { createDirectory, ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 
 const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
@@ -15,11 +14,7 @@ describe('File Based - Full Integration Tests', () => {
   describe('NRSRx Employee OData Microservice', () => {
     const options = fileEmployeeGenerationOptionsFactory();
     it('should generate files', async () => {
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
       await generateTsModels(options);
       ValidateFiles(options);
     });
