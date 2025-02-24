@@ -1,6 +1,14 @@
-import { readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
+import { mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
 import { IGeneratorOptions } from '../models/generator-options';
 
+export function createDirectory(path: string): void {
+  try {
+    //   rmdirSync(path, { recursive: true });
+    mkdirSync(path, { recursive: true });
+  } catch {
+    // ignore
+  }
+}
 export function ValidateFiles(options: IGeneratorOptions): void {
   const files = readdirSync(options.outputPath).sort();
   expect(files).toMatchSnapshot();
@@ -9,11 +17,6 @@ export function ValidateFiles(options: IGeneratorOptions): void {
     expect(content).toMatchSnapshot(file);
     unlinkSync(`${options.outputPath}${file}`);
   });
-  try {
-    rmdirSync(options.outputPath);
-  } catch (x) {
-    console.error(`*** Failed to remove directory ${options.outputPath}. ***`);
-  }
 }
 /*
  This test is just a place holder so that Jest does not throw the:

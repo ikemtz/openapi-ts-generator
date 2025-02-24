@@ -17,7 +17,7 @@
     }
   },
   "scripts": {
-    "build": "npm run format && npm run lint && tsc && cp -rfv ./src/templates ./lib",
+    "build": "tsc && cp -rfv ./src/templates ./lib",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint . --ext .ts --output-file ./eslint-report.json --format json && eslint . --ext .ts --output-file ./eslint-report.html --format html ",
     "link": "npm run build && cd lib && npm link && cd ..",
@@ -49,8 +49,8 @@
   ],
   "homepage": "https://github.com/ikemtz/OpenApi-TS-Generator#readme",
   "devDependencies": {
-    "@types/jest": "^27.5.2",
-    "@types/lodash": "^4.17.10",
+    "@types/jest": "^29.5.14",
+    "@types/lodash": "^4.17.15",
     "@types/node": "^20.11.21",
     "@types/pluralize": "^0.0.33",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
@@ -58,15 +58,15 @@
     "eslint": "8.56",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.6.0",
     "jest": "^29.7.0",
-    "jest-junit": "^13.2.0",
-    "openapi3-ts": "^4.2.2",
-    "prettier": "^3.3.3",
+    "jest-junit": "^16.0.0",
+    "openapi3-ts": "^4.4.0",
+    "prettier": "^3.5.2",
     "rxjs": "^7.6.0",
-    "ts-jest": "^29.2.5",
+    "ts-jest": "^29.2.6",
     "typescript": "^4.9.5"
   },
   "dependencies": {

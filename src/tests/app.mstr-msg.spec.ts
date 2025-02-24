@@ -1,6 +1,5 @@
-import { mkdirSync } from 'fs';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { ValidateFiles } from './app.spec';
+import { createDirectory, ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 import { IEntity } from '../models/entity';
 
@@ -17,11 +16,8 @@ describe('Url Based - Full Integration Tests', () => {
   describe('MasterCorp Messaging Service', () => {
     it('should generate files', async () => {
       const options = messageGenerationOptionsFactory();
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
+
       await generateTsModels(options);
       ValidateFiles(options);
     });

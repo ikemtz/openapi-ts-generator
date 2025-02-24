@@ -1,6 +1,5 @@
-import { mkdirSync } from 'fs';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { ValidateFiles } from './app.spec';
+import { createDirectory, ValidateFiles } from './app.spec';
 import { IGeneratorOptions } from '../models/generator-options';
 
 const optionsFactory = (): IGeneratorOptions => ({
@@ -15,11 +14,8 @@ describe('File Based - Full Integration Tests', () => {
   describe('Enums Test Service', () => {
     it('should generate files', async () => {
       const options = optionsFactory();
-      try {
-        mkdirSync(options.outputPath, { recursive: true });
-      } catch {
-        // ignore
-      }
+      createDirectory(options.outputPath);
+
       await generateTsModels(options);
       ValidateFiles(options);
     });
