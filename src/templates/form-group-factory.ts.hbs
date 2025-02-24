@@ -33,9 +33,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{#referenceProperties}}
 {{#if isEnumAndArray}}
 {{#if hasMultipleValidators}}
-    {{name}}: new FormArray<{{typeScriptType}}>([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
+    {{name}}: new FormArray<FormControl<{{typeScriptType}} | string>>([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
 {{else}}
-    {{name}}: new FormArray<{{typeScriptType}}>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
+    {{name}}: new FormArray<FormConrol<{{typeScriptType}} | string>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
 {{/if}}
 {{else if isArray}}
 {{#if hasMultipleValidators}}
