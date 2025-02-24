@@ -14,7 +14,7 @@ export class OpenApiDocConverter {
   constructor(
     private readonly options: IGeneratorOptions,
     private readonly apiDocument: OpenAPIObject,
-  ) { }
+  ) {}
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -54,9 +54,9 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                ...t,
-                key: t.key ?? 0,
-              },
+                  ...t,
+                  key: t.key ?? 0,
+                },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
