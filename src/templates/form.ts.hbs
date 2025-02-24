@@ -19,7 +19,9 @@ export interface I{{name}}Form {
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
-{{#if isArray}}
+{{#if isEnumAndArray}}
+    {{name}}: FormArray<{{typeScriptType}}>;
+{{else if isArray}}
     {{name}}: FormArray<FormGroup<I{{typeScriptType}}Form>>;
 {{else if isEnum}}
     {{name}}: FormControl<{{typeScriptType}} | string{{#unless required}} | null | undefined{{/unless}}>;

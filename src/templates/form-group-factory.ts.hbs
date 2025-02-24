@@ -31,7 +31,13 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{/if}}
 {{/valueProperties}}
 {{#referenceProperties}}
-{{#if isArray}}
+{{#if isEnumAndArray}}
+{{#if hasMultipleValidators}}
+    {{name}}: new FormArray<{{typeScriptType}}>([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
+{{else}}
+    {{name}}: new FormArray<{{typeScriptType}}>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
+{{/if}}
+{{else if isArray}}
 {{#if hasMultipleValidators}}
     {{name}}: new FormArray<FormGroup<I{{typeScriptType}}Form>>([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
 {{else}}

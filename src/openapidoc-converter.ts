@@ -14,7 +14,7 @@ export class OpenApiDocConverter {
   constructor(
     private readonly options: IGeneratorOptions,
     private readonly apiDocument: OpenAPIObject,
-  ) {}
+  ) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -54,9 +54,9 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                  ...t,
-                  key: t.key ?? 0,
-                },
+                ...t,
+                key: t.key ?? 0,
+              },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
@@ -218,7 +218,9 @@ export class OpenApiDocConverter {
     const refName: string = (schemaObject as unknown as ReferenceObject)?.$ref || (schemaObject.items as unknown as ReferenceObject)?.$ref;
     const refObject = (this.apiDocument.components?.schemas ?? {})[refName] as SchemaObject;
     const defaultValue = (schemaWrapperInfo.componentSchemaObject.default || refObject?.default || (refObject?.enum || [])[0]) as string;
-    if (defaultValue && refObject.enum) {
+    if (defaultValue && refObject.enum && schemaObject.type === 'array') {
+      return `[${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}]`;
+    } else if (defaultValue && refObject.enum) {
       return `${schemaWrapperInfo.propertyReferenceObject['$ref']}.${defaultValue.split(' ').pop() as string}`;
     } else if (refObject) {
       return schemaObject.type === 'array' ? `[]` : `undefined`;
@@ -250,10 +252,12 @@ export class OpenApiDocConverter {
     propertyName: string,
     schemaWrapperInfo: SchemaWrapperInfo,
   ): IReferenceProperty {
-    return {
+    const refProperty = {
       ...this.convertReferenceObjectToPropertyType(parentTypeName, propertyName, schemaWrapperInfo),
       isArray: true,
     };
+    refProperty.isEnumAndArray = refProperty.isEnum && refProperty.isArray;
+    return refProperty;
   }
 
   public convertReferenceObjectToPropertyType(
@@ -281,6 +285,7 @@ export class OpenApiDocConverter {
       typeScriptType: typeName,
       isArray: false,
       isEnum: (propertySchema?.enum ?? []).length > 0,
+      isEnumAndArray: false,
       hasValidators: validatorCount > 0,
       hasMultipleValidators: validatorCount > 1,
       maxLength: refSchema?.maxLength,
