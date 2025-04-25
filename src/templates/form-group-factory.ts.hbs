@@ -35,7 +35,7 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
 {{#if hasMultipleValidators}}
     {{name}}: new FormArray<FormControl<{{typeScriptType}} | string>>([], { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]) }),
 {{else}}
-    {{name}}: new FormArray<FormConrol<{{typeScriptType}} | string>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
+    {{name}}: new FormArray<FormControl<{{typeScriptType}} | string>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
 {{/if}}
 {{else if isArray}}
 {{#if hasMultipleValidators}}

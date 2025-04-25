@@ -102,7 +102,7 @@ export function CourseFormGroupFac(): FormGroup<ICourseForm> {
     status: new FormControl<CourseStatus | string | null | undefined>(undefined),
     studentCourses: new FormArray<FormGroup<IStudentCourseForm>>([]),
     schoolCourses: new FormArray<FormGroup<ISchoolCourseForm>>([]),
-    courseTypes: new FormArray<FormConrol<CourseTypes | string>>([]),
+    courseTypes: new FormArray<FormControl<CourseTypes | string>>([]),
   });
 }
 "
