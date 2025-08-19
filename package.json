@@ -79,6 +79,7 @@
     "axios": ">=1.x",
     "handlebars": ">=4.x",
     "lodash": ">=4.x",
-    "rxjs": "*"
+    "rxjs": "*",
+    "pluralize": "^8.0.0"
   }
 }
