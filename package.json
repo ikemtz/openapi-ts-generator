@@ -72,7 +72,7 @@
   "dependencies": {
     "axios": ">=1.12.2",
     "handlebars": ">=4.x",
-    "lodash": ">=4.x",
+    "lodash": ">=4.17.23",
     "pluralize": "^8.0.0"
   },
   "peerDependencies": {
