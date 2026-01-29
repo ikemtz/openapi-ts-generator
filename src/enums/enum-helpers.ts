@@ -7,7 +7,7 @@ import { IEnumValue } from './enum-value';
  * @param lookupValue - The value to look up in the enum, which can be a number or a string.
  * @returns The key of the enum value if found, otherwise `undefined`.
  */
-export function getEnumKey(data: IEnumValue[], lookupValue: number | string): number | undefined {
+export function getEnumKey(data: IEnumValue[], lookupValue: number | string): number | string | undefined {
   return getEnum(data, lookupValue)?.key;
 }
 /**

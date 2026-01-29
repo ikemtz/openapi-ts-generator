@@ -1,5 +1,5 @@
 export interface IEnumValue {
-  key: number;
-  name: string;
-  displayText: string;
+  key?: number | string;
+  name?: string;
+  displayText?: string;
 }
