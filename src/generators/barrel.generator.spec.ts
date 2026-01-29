@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, rmdirSync } from 'fs';
+import { existsSync, mkdirSync, rmdirSync } from 'node:fs';
 import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
 import { MockConsoleLogger } from '../models/logger';
 import { BarrelGenerator } from './barrel.generator';
@@ -33,7 +33,8 @@ describe('BarrelGenerator', () => {
         setGeneratorOptionDefaults({
           outputPath,
           openApiJsonUrl: '',
-          logger: { ...new MockConsoleLogger(), error: (x) => errorLogs.push(x) },
+          // eslint-disable-next-line @typescript-eslint/no-misused-spread
+          logger: { ...new MockConsoleLogger(), error: (x: string) => errorLogs.push(x) },
         }),
       );
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
@@ -42,7 +43,7 @@ describe('BarrelGenerator', () => {
       };
       generator.generate();
       done.fail('Exception logic was not triggered.');
-    } catch (err) {
+    } catch {
       const firstMessage = errorLogs.shift();
       expect(firstMessage?.startsWith('Error executing template: ')).toBeUndefined();
       done();

@@ -1,4 +1,4 @@
-import _ = require('lodash');
+import { kebabCase } from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options';
 import { ITemplateData } from '../models/template-data';
 import { IEntity } from '../models/entity';
@@ -14,7 +14,7 @@ export class EnumGenerator extends BaseGenerator<IEntity> {
     templateData.entities
       ?.filter((entity) => entity.isEnum)
       .forEach((entity) => {
-        super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.enum.ts`, entity);
+        super.generateFile(`${this.generatorOptions.outputPath}/${kebabCase(entity.name)}.enum.ts`, entity);
       });
   }
 }
