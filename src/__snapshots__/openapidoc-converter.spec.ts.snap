@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[TypeError: done.fail is not a function]`;
 

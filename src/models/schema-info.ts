@@ -1,4 +1,4 @@
-import { ReferenceObject, SchemaObject } from 'openapi3-ts/dist/oas30';
+import { ReferenceObject, SchemaObject } from 'openapi3-ts/oas31';
 import { IEnumValue } from './enum-value';
 import { defaultFilter, IGeneratorOptions } from './generator-options';
 import { IReferenceProperty } from './reference-property';
