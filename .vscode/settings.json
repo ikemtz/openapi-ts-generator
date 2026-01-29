@@ -17,5 +17,9 @@
   "javascript.preferences.quoteStyle": "single",
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "ikemtz",
+    "projectKey": "ikemtz_openapi-ts-generator"
   }
 }

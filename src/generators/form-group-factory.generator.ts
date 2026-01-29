@@ -1,4 +1,5 @@
-import _ = require('lodash');
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+import { kebabCase } from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options';
 import { ITemplateData } from '../models/template-data';
 import { IEntity } from '../models/entity';
@@ -18,7 +19,7 @@ export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
     templateData.entities
       ?.filter((val) => val.valueProperties?.length + val.referenceProperties?.length > 0)
       .forEach((entity) => {
-        super.generateFile(`${this.generatorOptions.outputPath}/${_.kebabCase(entity.name)}.form-group-fac.ts`, entity);
+        super.generateFile(`${this.generatorOptions.outputPath}/${kebabCase(entity.name)}.form-group-fac.ts`, entity);
       });
   }
   public registerHelpers() {
@@ -49,6 +50,7 @@ export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
     if (value !== undefined && value !== null) {
       const hasMultipleValidators = prop.hasMultipleValidators;
       value = typeof value === 'string' ? `'${value}'` : value;
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       return `Validators.${angularValidatorFunctionName}(${value})${hasMultipleValidators ? ', ' : ''}`;
     }
     return '';

@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import { OpenAPIObject } from 'openapi3-ts/dist/oas30';
+import * as fs from 'node:fs';
+import { OpenAPIObject } from 'openapi3-ts/oas31';
 import {
   FormGenerator,
   EndPointsGenerator,
@@ -43,7 +43,9 @@ async function getOpenApiDocumentAsync(options: IGeneratorOptions): Promise<Open
 
 function generateOutput(options: IGeneratorOptions, templateData: ITemplateData) {
   if (fs.existsSync(options.outputPath)) {
-    fs.readdirSync(options.outputPath).forEach((file) => fs.unlinkSync(`${options.outputPath}/${file}`));
+    fs.readdirSync(options.outputPath).forEach((file) => {
+      fs.unlinkSync(`${options.outputPath}/${file}`);
+    });
     fs.rmdirSync(options.outputPath);
   }
   fs.mkdirSync(options.outputPath, { recursive: true });
