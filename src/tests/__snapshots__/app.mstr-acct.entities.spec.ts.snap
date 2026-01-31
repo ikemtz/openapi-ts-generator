@@ -175,7 +175,7 @@ export function createTestAccount() {
       [AccountProperties.IS_ENABLED]: false,
       [AccountProperties.EMAIL_INVOICE]: false,
       [AccountProperties.TENANT_ID]: 'TENANT_ID',
-      [AccountProperties.CONTACT_COUNT]: 1, 
+      [AccountProperties.CONTACT_COUNT]: 1,
       [AccountProperties.PARENT_ACCOUNT]: undefined,
       [AccountProperties.CONTACTS]: [],
       [AccountProperties.CHILD_ACCOUNTS]: [],
@@ -304,7 +304,7 @@ export function createTestAccountInsertRequest() {
       [AccountInsertRequestProperties.PARENT_ACCOUNT_ID]: 'PARENT_ACCOUNT_ID',
       [AccountInsertRequestProperties.CONTACT_IDS]: [0],
       [AccountInsertRequestProperties.CONTACT_GUIDS]: [],
-      [AccountInsertRequestProperties.EMAIL_INVOICE]: false, 
+      [AccountInsertRequestProperties.EMAIL_INVOICE]: false,
       [AccountInsertRequestProperties.CONTACTS]: [],
     };
 }
@@ -426,7 +426,7 @@ export function createTestAccountUpdateRequest() {
       [AccountUpdateRequestProperties.NAME]: 'NAME',
       [AccountUpdateRequestProperties.PARENT_ACCOUNT_ID]: 'PARENT_ACCOUNT_ID',
       [AccountUpdateRequestProperties.IS_ENABLED]: false,
-      [AccountUpdateRequestProperties.EMAIL_INVOICE]: false, 
+      [AccountUpdateRequestProperties.EMAIL_INVOICE]: false,
       [AccountUpdateRequestProperties.CONTACTS]: [],
     };
 }
@@ -600,7 +600,7 @@ export function createTestContact() {
       [ContactProperties.ZIP]: 'ZIP',
       [ContactProperties.EMAILS]: 'contact@email.org',
       [ContactProperties.PHONE_1]: 'PHONE_1_PHONE_',
-      [ContactProperties.PHONE_2]: 'PHONE_2_PHONE_', 
+      [ContactProperties.PHONE_2]: 'PHONE_2_PHONE_',
       [ContactProperties.ACCOUNT]: undefined,
     };
 }
@@ -753,7 +753,7 @@ export function createTestContactInsertRequest() {
       [ContactInsertRequestProperties.ZIP]: 'ZIP',
       [ContactInsertRequestProperties.EMAILS]: 'EMAILS',
       [ContactInsertRequestProperties.PHONE_1]: 'PHONE_1',
-      [ContactInsertRequestProperties.PHONE_2]: 'PHONE_2', 
+      [ContactInsertRequestProperties.PHONE_2]: 'PHONE_2',
     };
 }
 "
@@ -905,7 +905,7 @@ export function createTestContactUpdateRequest() {
       [ContactUpdateRequestProperties.ZIP]: 'ZIP',
       [ContactUpdateRequestProperties.EMAILS]: 'EMAILS',
       [ContactUpdateRequestProperties.PHONE_1]: 'PHONE_1',
-      [ContactUpdateRequestProperties.PHONE_2]: 'PHONE_2', 
+      [ContactUpdateRequestProperties.PHONE_2]: 'PHONE_2',
     };
 }
 "

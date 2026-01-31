@@ -11,7 +11,7 @@ import { {{name}}Properties } from './{{kebabCasedName}}.properties';
 
 export function createTest{{name}}() {
     return { {{#valueProperties}}
-      [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/valueProperties}} {{#referenceProperties}}
+      [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/valueProperties}}{{#referenceProperties}}
       [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/referenceProperties}}
     };
 }

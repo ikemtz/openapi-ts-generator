@@ -126,7 +126,7 @@ import { StringArrayTestObjectProperties } from './string-array-test-object.prop
 
 export function createTestStringArrayTestObject() {
     return { 
-      [StringArrayTestObjectProperties.TYPE_CODES]: [], 
+      [StringArrayTestObjectProperties.TYPE_CODES]: [],
     };
 }
 "

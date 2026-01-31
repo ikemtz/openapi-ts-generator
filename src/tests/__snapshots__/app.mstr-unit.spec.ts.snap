@@ -197,7 +197,7 @@ export function createTestBuilding() {
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
       [BuildingProperties.IDENTIFIER]: 'IDENTIFIER',
-      [BuildingProperties.IS_ENABLED]: false, 
+      [BuildingProperties.IS_ENABLED]: false,
       [BuildingProperties.SITE]: undefined,
       [BuildingProperties.UNITS]: [],
     };
@@ -443,7 +443,7 @@ export function createTestSite() {
       [SiteProperties.CITY]: 'CITY',
       [SiteProperties.STATE]: 'STATE',
       [SiteProperties.ZIP]: 'ZIP',
-      [SiteProperties.IS_ENABLED]: false, 
+      [SiteProperties.IS_ENABLED]: false,
       [SiteProperties.SITE_COLLECTION]: undefined,
       [SiteProperties.BUILDINGS]: [],
       [SiteProperties.UNITS]: [],
@@ -609,7 +609,7 @@ export function createTestSiteCollection() {
       [SiteCollectionProperties.ZIP]: 'ZIP_ZIP',
       [SiteCollectionProperties.IS_SCHEDULER_ENABLED]: false,
       [SiteCollectionProperties.SITE_COUNT]: -250,
-      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES', 
+      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES',
       [SiteCollectionProperties.BUILDINGS]: [],
       [SiteCollectionProperties.SITES]: [],
     };
@@ -717,7 +717,7 @@ export function createTestTag() {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
-      [TagProperties.VALUE]: 'VALUE', 
+      [TagProperties.VALUE]: 'VALUE',
       [TagProperties.UNIT_TAGS]: [],
     };
 }
@@ -863,7 +863,7 @@ export function createTestUnit() {
       [UnitProperties.UNIT_TYPE_ID]: 'UNIT_TYPE_ID',
       [UnitProperties.SITE_ID]: 'SITE_ID',
       [UnitProperties.BUILDING_ID]: 'BUILDING_ID',
-      [UnitProperties.IS_ENABLED]: false, 
+      [UnitProperties.IS_ENABLED]: false,
       [UnitProperties.BUILDING]: undefined,
       [UnitProperties.SITE]: undefined,
       [UnitProperties.UNIT_TYPE]: undefined,
@@ -987,7 +987,7 @@ export function createTestUnitTag() {
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
       [UnitTagProperties.TAG_ID]: 'TAG_ID',
-      [UnitTagProperties.VALUE]: 'VALUE', 
+      [UnitTagProperties.VALUE]: 'VALUE',
       [UnitTagProperties.TAG]: undefined,
       [UnitTagProperties.UNIT]: undefined,
     };
@@ -1086,7 +1086,7 @@ export function createTestUnitType() {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
-      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION', 
+      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION',
     };
 }
 "
@@ -1152,7 +1152,7 @@ export function createTestBuilding() {
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
       [BuildingProperties.IDENTIFIER]: 'IDENTIFIER',
-      [BuildingProperties.IS_ENABLED]: false, 
+      [BuildingProperties.IS_ENABLED]: false,
       [BuildingProperties.SITE]: undefined,
       [BuildingProperties.UNITS]: [],
     };
@@ -1246,7 +1246,7 @@ export function createTestSite() {
       [SiteProperties.CITY]: 'CITY',
       [SiteProperties.STATE]: 'STATE',
       [SiteProperties.ZIP]: 'ZIP',
-      [SiteProperties.IS_ENABLED]: false, 
+      [SiteProperties.IS_ENABLED]: false,
       [SiteProperties.SITE_COLLECTION]: undefined,
       [SiteProperties.BUILDINGS]: [],
       [SiteProperties.UNITS]: [],
@@ -1313,7 +1313,7 @@ export function createTestSiteCollection() {
       [SiteCollectionProperties.ZIP]: 'ZIP_ZIP',
       [SiteCollectionProperties.IS_SCHEDULER_ENABLED]: false,
       [SiteCollectionProperties.SITE_COUNT]: -250,
-      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES', 
+      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES',
       [SiteCollectionProperties.BUILDINGS]: [],
       [SiteCollectionProperties.SITES]: [],
     };
@@ -1357,7 +1357,7 @@ export function createTestTag() {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
-      [TagProperties.VALUE]: 'VALUE', 
+      [TagProperties.VALUE]: 'VALUE',
       [TagProperties.UNIT_TAGS]: [],
     };
 }
@@ -1412,7 +1412,7 @@ export function createTestUnit() {
       [UnitProperties.UNIT_TYPE_ID]: 'UNIT_TYPE_ID',
       [UnitProperties.SITE_ID]: 'SITE_ID',
       [UnitProperties.BUILDING_ID]: 'BUILDING_ID',
-      [UnitProperties.IS_ENABLED]: false, 
+      [UnitProperties.IS_ENABLED]: false,
       [UnitProperties.BUILDING]: undefined,
       [UnitProperties.SITE]: undefined,
       [UnitProperties.UNIT_TYPE]: undefined,
@@ -1462,7 +1462,7 @@ export function createTestUnitTag() {
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
       [UnitTagProperties.TAG_ID]: 'TAG_ID',
-      [UnitTagProperties.VALUE]: 'VALUE', 
+      [UnitTagProperties.VALUE]: 'VALUE',
       [UnitTagProperties.TAG]: undefined,
       [UnitTagProperties.UNIT]: undefined,
     };
@@ -1504,7 +1504,7 @@ export function createTestUnitType() {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
-      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION', 
+      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION',
     };
 }
 "
@@ -1626,7 +1626,7 @@ export function createTestBuilding() {
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
       [BuildingProperties.IDENTIFIER]: 'IDENTIFIER',
-      [BuildingProperties.IS_ENABLED]: false, 
+      [BuildingProperties.IS_ENABLED]: false,
       [BuildingProperties.SITE]: undefined,
       [BuildingProperties.UNITS]: [],
     };
@@ -1783,7 +1783,7 @@ export function createTestSite() {
       [SiteProperties.CITY]: 'CITY',
       [SiteProperties.STATE]: 'STATE',
       [SiteProperties.ZIP]: 'ZIP',
-      [SiteProperties.IS_ENABLED]: false, 
+      [SiteProperties.IS_ENABLED]: false,
       [SiteProperties.SITE_COLLECTION]: undefined,
       [SiteProperties.BUILDINGS]: [],
       [SiteProperties.UNITS]: [],
@@ -1879,7 +1879,7 @@ export function createTestSiteCollection() {
       [SiteCollectionProperties.ZIP]: 'ZIP_ZIP',
       [SiteCollectionProperties.IS_SCHEDULER_ENABLED]: false,
       [SiteCollectionProperties.SITE_COUNT]: -250,
-      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES', 
+      [SiteCollectionProperties.WORK_CATEGORY_TYPES]: 'WORK_CATEGORY_TYPES',
       [SiteCollectionProperties.BUILDINGS]: [],
       [SiteCollectionProperties.SITES]: [],
     };
@@ -1941,7 +1941,7 @@ export function createTestTag() {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
-      [TagProperties.VALUE]: 'VALUE', 
+      [TagProperties.VALUE]: 'VALUE',
       [TagProperties.UNIT_TAGS]: [],
     };
 }
@@ -2020,7 +2020,7 @@ export function createTestUnit() {
       [UnitProperties.UNIT_TYPE_ID]: 'UNIT_TYPE_ID',
       [UnitProperties.SITE_ID]: 'SITE_ID',
       [UnitProperties.BUILDING_ID]: 'BUILDING_ID',
-      [UnitProperties.IS_ENABLED]: false, 
+      [UnitProperties.IS_ENABLED]: false,
       [UnitProperties.BUILDING]: undefined,
       [UnitProperties.SITE]: undefined,
       [UnitProperties.UNIT_TYPE]: undefined,
@@ -2090,7 +2090,7 @@ export function createTestUnitTag() {
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
       [UnitTagProperties.TAG_ID]: 'TAG_ID',
-      [UnitTagProperties.VALUE]: 'VALUE', 
+      [UnitTagProperties.VALUE]: 'VALUE',
       [UnitTagProperties.TAG]: undefined,
       [UnitTagProperties.UNIT]: undefined,
     };
@@ -2147,7 +2147,7 @@ export function createTestUnitType() {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
-      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION', 
+      [UnitTypeProperties.DESCRIPTION]: 'DESCRIPTION',
     };
 }
 "
