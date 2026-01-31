@@ -10,6 +10,7 @@ import { IValueProperty } from './models/value-property';
 import { singular } from 'pluralize';
 import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
 import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts/oas31';
+import { IEnumValue } from './models/enum-value';
 
 export class OpenApiDocConverter {
   public readonly endAlphaNumRegex = /[A-z0-9]*$/s;
@@ -17,7 +18,7 @@ export class OpenApiDocConverter {
   constructor(
     private readonly options: IGeneratorOptions,
     private readonly apiDocument: OpenAPIObject,
-  ) {}
+  ) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -53,13 +54,14 @@ export class OpenApiDocConverter {
         schemaWrapperInfo.updateReferenceProperties(this.options);
         const entity: IEntity = {
           isEnum: schemaWrapperInfo.isEnum,
+          isCharEnum: schemaWrapperInfo.isCharEnum || false,
           enumValues: schemaWrapperInfo.enumValues.map((t) =>
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                  ...t,
-                  key: t.key ?? 0,
-                },
+                ...t,
+                key: schemaWrapperInfo.isCharEnum ? t.key : +(t.key as number),
+              },
           ),
           name: schemaName,
           kebabCasedName: kebabCase(schemaName),
@@ -78,18 +80,28 @@ export class OpenApiDocConverter {
 
   public buildSchemaWrapperInfoForEnum(schemaWrapperInfo: SchemaWrapperInfo): void {
     schemaWrapperInfo.isEnum = true;
-    schemaWrapperInfo.enumValues.push(
-      ...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
-        const key = this.startNumberregex.exec(x)?.at(0);
-        const name = this.endAlphaNumRegex.exec(x)?.at(0) ?? '';
-        return {
-          key: key ? +key : 0,
-          name,
-          titleName: startCase(name),
-          snakeCaseName: snakeCase(name).toUpperCase(),
-        };
-      }),
-    );
+    let enumValues: IEnumValue[] = [...(schemaWrapperInfo.componentSchemaObject.enum || []).map((x: string) => {
+      const key = this.startNumberregex.exec(x)?.at(0);
+      const name = this.endAlphaNumRegex.exec(x)?.at(0) ?? '';
+      return {
+        key: key ? +key : 0,
+        name,
+        titleName: startCase(name),
+        snakeCaseName: snakeCase(name).toUpperCase(),
+      };
+    })];
+    schemaWrapperInfo.isCharEnum = enumValues.length > 0 &&
+      enumValues
+        .filter((enumVal): enumVal is IEnumValue => typeof enumVal !== 'string' && typeof enumVal.key === 'number')
+        .map((enumVal: IEnumValue) => enumVal.key as number)
+        .every((val: number) => val >= 65 && val <= 90); // A-Z ASCII range
+    if (schemaWrapperInfo.isCharEnum) {
+      enumValues = enumValues.map(enumvalue => ({
+        ...enumvalue,
+        key: String.fromCharCode(enumvalue.key as number)
+      }));
+    }
+    schemaWrapperInfo.enumValues.push(...enumValues);
   }
 
   public buildSchemaWrapperInfo(parentTypeName: string, schemaWrapperInfo: SchemaWrapperInfo): void {
@@ -376,9 +388,9 @@ export class OpenApiDocConverter {
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
     return (
       ((schemaWrapperInfo.componentSchemaObject.required ?? []).includes(propertyName) ||
-        ((schemaWrapperInfo.propertySchemaObject as { nullable?: boolean }).nullable === undefined
+        ((schemaWrapperInfo.propertySchemaObject as { nullable?: boolean; }).nullable === undefined
           ? false
-          : !(schemaWrapperInfo.propertySchemaObject as { nullable?: boolean }).nullable)) &&
+          : !(schemaWrapperInfo.propertySchemaObject as { nullable?: boolean; }).nullable)) &&
       propertyName !== 'id'
     );
   }

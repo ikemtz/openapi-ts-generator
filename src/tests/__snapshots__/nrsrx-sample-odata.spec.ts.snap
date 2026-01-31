@@ -188,7 +188,7 @@ export function createTestCourse() {
       [CourseProperties.DESCRIPTION]: 'DESCRIPTION',
       [CourseProperties.PASS_RATE]: 0,
       [CourseProperties.AVG_SCORE]: 0,
-      [CourseProperties.UPDATE_COUNT]: 0, 
+      [CourseProperties.UPDATE_COUNT]: 0,
       [CourseProperties.STATUS]: CourseStatus.PendingCertification,
       [CourseProperties.STUDENT_COURSES]: [],
       [CourseProperties.SCHOOL_COURSES]: [],
@@ -239,9 +239,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
 import { IEnumValue } from 'openapi-ts-generator/enums';
 
 export enum CourseTypes {
-  Lab = 76,
-  Online = 79,
-  OnSite = 83,
+  Lab = 'L',
+  Online = 'O',
+  OnSite = 'S',
 }
 
 export enum CourseTypeNames {
@@ -251,9 +251,9 @@ export enum CourseTypeNames {
 }
 
 export const courseTypeValues : IEnumValue[] = [
-  { key: 76, name: 'Lab', displayText: 'Lab'},
-  { key: 79, name: 'Online', displayText: 'Online'},
-  { key: 83, name: 'OnSite', displayText: 'On Site'},
+  { key: 'L', name: 'Lab', displayText: 'Lab'},
+  { key: 'O', name: 'Online', displayText: 'Online'},
+  { key: 'S', name: 'OnSite', displayText: 'On Site'},
 ];
 "
 `;
@@ -487,7 +487,7 @@ export function createTestSchool() {
       [SchoolProperties.NAME]: 'NAME',
       [SchoolProperties.FULL_NAME]: 'FULL_NAME',
       [SchoolProperties.TENANT_ID]: 'TENAN',
-      [SchoolProperties.UPDATE_COUNT]: 0, 
+      [SchoolProperties.UPDATE_COUNT]: 0,
       [SchoolProperties.SCHOOL_COURSES]: [],
       [SchoolProperties.STUDENT_SCHOOLS]: [],
     };
@@ -619,7 +619,7 @@ export function createTestSchoolCourse() {
       [SchoolCourseProperties.COURSE_ID]: 'COURSE_ID',
       [SchoolCourseProperties.PASS_RATE]: 0,
       [SchoolCourseProperties.AVG_SCORE]: 0,
-      [SchoolCourseProperties.UPDATE_COUNT]: 0, 
+      [SchoolCourseProperties.UPDATE_COUNT]: 0,
       [SchoolCourseProperties.SCHOOL]: undefined,
       [SchoolCourseProperties.COURSE]: undefined,
     };
@@ -782,7 +782,7 @@ export function createTestStudent() {
       [StudentProperties.TEL_1]: 'TEL_1',
       [StudentProperties.TEL_2]: 'TEL_2',
       [StudentProperties.COURSE_COUNT]: 0,
-      [StudentProperties.UPDATE_COUNT]: 0, 
+      [StudentProperties.UPDATE_COUNT]: 0,
       [StudentProperties.GENDER]: Gender.Unknown,
       [StudentProperties.STUDENT_COURSES]: [],
       [StudentProperties.STUDENT_SCHOOLS]: [],
@@ -946,7 +946,7 @@ export function createTestStudentCourse() {
       [StudentCourseProperties.SEMESTER]: 'SEMESTER',
       [StudentCourseProperties.FINAL_SCORE]: 0,
       [StudentCourseProperties.YEAR]: 0,
-      [StudentCourseProperties.UPDATE_COUNT]: 0, 
+      [StudentCourseProperties.UPDATE_COUNT]: 0,
       [StudentCourseProperties.STUDENT]: undefined,
       [StudentCourseProperties.SCHOOL]: undefined,
       [StudentCourseProperties.COURSE]: undefined,
@@ -1080,7 +1080,7 @@ export function createTestStudentSchool() {
       [StudentSchoolProperties.STUDENT_ID]: 'STUDENT_ID',
       [StudentSchoolProperties.TENANT_ID]: 'TENAN',
       [StudentSchoolProperties.ENROLLMENT_DATE]: new Date(),
-      [StudentSchoolProperties.UPDATE_COUNT]: 0, 
+      [StudentSchoolProperties.UPDATE_COUNT]: 0,
       [StudentSchoolProperties.STUDENT]: undefined,
       [StudentSchoolProperties.SCHOOL]: undefined,
     };

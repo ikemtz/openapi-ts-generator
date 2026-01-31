@@ -128,7 +128,7 @@ export function createTestApiResponse() {
     return { 
       [ApiResponseProperties.CODE]: 0,
       [ApiResponseProperties.TYPE]: 'TYPE',
-      [ApiResponseProperties.MESSAGE]: 'MESSAGE', 
+      [ApiResponseProperties.MESSAGE]: 'MESSAGE',
     };
 }
 "
@@ -220,7 +220,7 @@ import { CategoryProperties } from './category.properties';
 export function createTestCategory() {
     return { 
       [CategoryProperties.ID]: 0,
-      [CategoryProperties.NAME]: 'NAME', 
+      [CategoryProperties.NAME]: 'NAME',
     };
 }
 "
@@ -422,7 +422,7 @@ export function createTestOrder() {
       [OrderProperties.QUANTITY]: 0,
       [OrderProperties.SHIP_DATE]: new Date(),
       [OrderProperties.STATUS]: 'STATUS',
-      [OrderProperties.COMPLETE]: false, 
+      [OrderProperties.COMPLETE]: false,
     };
 }
 "
@@ -547,7 +547,7 @@ export function createTestPet() {
       [PetProperties.ID]: 0,
       [PetProperties.NAME]: 'NAME',
       [PetProperties.PHOTO_URLS]: [],
-      [PetProperties.STATUS]: 'STATUS', 
+      [PetProperties.STATUS]: 'STATUS',
       [PetProperties.CATEGORY]: undefined,
       [PetProperties.TAGS]: [],
     };
@@ -641,7 +641,7 @@ import { TagProperties } from './tag.properties';
 export function createTestTag() {
     return { 
       [TagProperties.ID]: 0,
-      [TagProperties.NAME]: 'NAME', 
+      [TagProperties.NAME]: 'NAME',
     };
 }
 "
@@ -769,7 +769,7 @@ export function createTestUser() {
       [UserProperties.EMAIL]: 'EMAIL',
       [UserProperties.PASSWORD]: 'PASSWORD',
       [UserProperties.PHONE]: 'PHONE',
-      [UserProperties.USER_STATUS]: 0, 
+      [UserProperties.USER_STATUS]: 0,
     };
 }
 "

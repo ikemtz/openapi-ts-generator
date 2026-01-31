@@ -8,6 +8,7 @@ export class SchemaWrapperInfo {
   public propertySchemaObject: SchemaObject = {};
   public propertyReferenceObject: ReferenceObject = { $ref: '' };
   public isEnum?: boolean;
+  public isCharEnum?: boolean = false;
 
   public readonly enumValues: (string | IEnumValue)[];
 
