@@ -189,7 +189,7 @@ export function createTestCustomer() {
       [CustomerProperties.COMPANY_NAME]: 'COMPANY_NAME',
       [CustomerProperties.SALES_AGENT_ID]: 0,
       [CustomerProperties.EMAIL_ADDRESS]: 'EMAIL_ADDRESS',
-      [CustomerProperties.PHONE]: 'PHONE', 
+      [CustomerProperties.PHONE]: 'PHONE',
       [CustomerProperties.SALES_AGENT]: undefined,
       [CustomerProperties.CUSTOMER_ADDRESSES]: [],
       [CustomerProperties.ORDERS]: [],
@@ -329,7 +329,7 @@ export function createTestCustomerAddress() {
       [CustomerAddressProperties.CITY]: 'CITY',
       [CustomerAddressProperties.STATE_PROVINCE]: 'STATE_PROVINCE',
       [CustomerAddressProperties.COUNTRY_REGION]: 'COUNTRY_REGION',
-      [CustomerAddressProperties.POSTAL_CODE]: 'POSTAL_CODE', 
+      [CustomerAddressProperties.POSTAL_CODE]: 'POSTAL_CODE',
       [CustomerAddressProperties.CUSTOMER]: undefined,
     };
 }
@@ -638,7 +638,7 @@ export function createTestOrder() {
       [OrderProperties.TAX_AMT]: 0,
       [OrderProperties.FREIGHT]: 0,
       [OrderProperties.TOTAL_DUE]: 0,
-      [OrderProperties.COMMENT]: 'COMMENT', 
+      [OrderProperties.COMMENT]: 'COMMENT',
       [OrderProperties.STATUS_TYPE]: OrderStatusTypes.Processing,
       [OrderProperties.SHIPPING_TYPE]: ShippingTypes.Other,
       [OrderProperties.CUSTOMER]: undefined,
@@ -774,7 +774,7 @@ export function createTestOrderAddress() {
       [OrderAddressProperties.CITY]: 'CITY',
       [OrderAddressProperties.STATE_PROVINCE]: 'STATE_PROVINCE',
       [OrderAddressProperties.COUNTRY_REGION]: 'COUNTRY_REGION',
-      [OrderAddressProperties.POSTAL_CODE]: 'POSTAL_CODE', 
+      [OrderAddressProperties.POSTAL_CODE]: 'POSTAL_CODE',
       [OrderAddressProperties.BILL_TO_ORDERS]: [],
       [OrderAddressProperties.SHIP_TO_ORDERS]: [],
     };
@@ -911,7 +911,7 @@ export function createTestOrderLineItem() {
       [OrderLineItemProperties.PRODUCT_ID]: 'PRODUCT_ID',
       [OrderLineItemProperties.UNIT_PRICE]: 0,
       [OrderLineItemProperties.UNIT_PRICE_DISCOUNT]: 0,
-      [OrderLineItemProperties.LINE_TOTAL]: 0, 
+      [OrderLineItemProperties.LINE_TOTAL]: 0,
       [OrderLineItemProperties.ORDER]: undefined,
       [OrderLineItemProperties.PRODUCT]: undefined,
     };
@@ -1123,7 +1123,7 @@ export function createTestProduct() {
       [ProductProperties.SELL_START_DATE]: new Date(),
       [ProductProperties.SELL_END_DATE]: new Date(),
       [ProductProperties.DISCONTINUED_DATE]: new Date(),
-      [ProductProperties.THUMB_NAIL_PHOTO]: 'THUMB_NAIL_PHOTO', 
+      [ProductProperties.THUMB_NAIL_PHOTO]: 'THUMB_NAIL_PHOTO',
       [ProductProperties.PRODUCT_MODEL]: undefined,
       [ProductProperties.PRODUCT_CATEGORY]: undefined,
       [ProductProperties.ORDER_LINE_ITEMS]: [],
@@ -1227,7 +1227,7 @@ import { ProductCategoryProperties } from './product-category.properties';
 export function createTestProductCategory() {
     return { 
       [ProductCategoryProperties.ID]: 'ID',
-      [ProductCategoryProperties.NAME]: 'NAME', 
+      [ProductCategoryProperties.NAME]: 'NAME',
       [ProductCategoryProperties.PRODUCTS]: [],
     };
 }
@@ -1334,7 +1334,7 @@ export function createTestProductModel() {
     return { 
       [ProductModelProperties.ID]: 'ID',
       [ProductModelProperties.NAME]: 'NAME',
-      [ProductModelProperties.DESCRIPTION]: 'DESCRIPTION', 
+      [ProductModelProperties.DESCRIPTION]: 'DESCRIPTION',
       [ProductModelProperties.PRODUCTS]: [],
     };
 }
@@ -1441,7 +1441,7 @@ export function createTestSalesAgent() {
     return { 
       [SalesAgentProperties.ID]: 0,
       [SalesAgentProperties.NAME]: 'NAME',
-      [SalesAgentProperties.LOGIN_ID]: 'LOGIN_ID', 
+      [SalesAgentProperties.LOGIN_ID]: 'LOGIN_ID',
       [SalesAgentProperties.CUSTOMERS]: [],
     };
 }

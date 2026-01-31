@@ -226,7 +226,7 @@ export function createTestEmployee() {
       [EmployeeProperties.TOTAL_HOURS_OF_SERVICE]: 0,
       [EmployeeProperties.CERTIFICATION_COUNT]: 0,
       [EmployeeProperties.COMPETENCY_COUNT]: 0,
-      [EmployeeProperties.HEALTH_ITEM_COUNT]: 0, 
+      [EmployeeProperties.HEALTH_ITEM_COUNT]: 0,
       [EmployeeProperties.EMPLOYEE_CERTIFICATIONS]: [],
       [EmployeeProperties.EMPLOYEE_COMPETENCIES]: [],
       [EmployeeProperties.EMPLOYEE_HEALTH_ITEMS]: [],
@@ -336,7 +336,7 @@ export function createTestEmployeeCertification() {
       [EmployeeCertificationProperties.EMPLOYEE_ID]: 'EMPLOYEE_ID',
       [EmployeeCertificationProperties.CERTIFICATION_ID]: 'CERTIFICATION_ID',
       [EmployeeCertificationProperties.CERTIFICATION_NAME]: 'CERTIFICATION_NAME',
-      [EmployeeCertificationProperties.EXPIRES_ON_UTC]: new Date(), 
+      [EmployeeCertificationProperties.EXPIRES_ON_UTC]: new Date(),
     };
 }
 "
@@ -448,7 +448,7 @@ export function createTestEmployeeCompetency() {
       [EmployeeCompetencyProperties.COMPETENCY_ID]: 'COMPETENCY_ID',
       [EmployeeCompetencyProperties.COMPETENCY_NAME]: 'COMPETENCY_NAME',
       [EmployeeCompetencyProperties.EXPIRES_ON_UTC]: new Date(),
-      [EmployeeCompetencyProperties.IS_ENABLED]: false, 
+      [EmployeeCompetencyProperties.IS_ENABLED]: false,
     };
 }
 "
@@ -560,7 +560,7 @@ export function createTestEmployeeHealthItem() {
       [EmployeeHealthItemProperties.HEALTH_ITEM_ID]: 'HEALTH_ITEM_ID',
       [EmployeeHealthItemProperties.HEALTH_ITEM_NAME]: 'HEALTH_ITEM_NAME',
       [EmployeeHealthItemProperties.EXPIRES_ON_UTC]: new Date(),
-      [EmployeeHealthItemProperties.IS_ENABLED]: false, 
+      [EmployeeHealthItemProperties.IS_ENABLED]: false,
     };
 }
 "

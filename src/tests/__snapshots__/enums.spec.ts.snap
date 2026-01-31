@@ -133,7 +133,7 @@ export function createTestContact() {
     return { 
       [ContactProperties.ID]: 'ID',
       [ContactProperties.ACCOUNT_ID]: 'ACCOUNT_ID',
-      [ContactProperties.ADDRESS_LINE_1]: 'ADDRESS_LINE_1', 
+      [ContactProperties.ADDRESS_LINE_1]: 'ADDRESS_LINE_1',
       [ContactProperties.CONTACT_TYPE]: ContactTypes.Other,
       [ContactProperties.CONTACT_TYPE_2]: ContactTypes2.Air,
       [ContactProperties.CONTACT_TYPE_3]: ContactTypes.Other,

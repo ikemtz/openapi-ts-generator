@@ -11,12 +11,21 @@ import { IEnumValue } from 'openapi-ts-generator/enums';
  * {{description}}
  */
 {{/if}}export enum {{{name}}} {
+{{#if isCharEnum}}
+{{#enumValues}}{{#if description}}/**
+ * {{description}}
+ */
+{{/if}}
+  {{name}} = '{{key}}',
+{{/enumValues}}
+{{else}}
 {{#enumValues}}{{#if description}}/**
  * {{description}}
  */
 {{/if}}
   {{name}} = {{key}},
 {{/enumValues}}
+{{/if}}
 }
 
 {{#if description}}/**
@@ -31,8 +40,15 @@ import { IEnumValue } from 'openapi-ts-generator/enums';
 {{/enumValues}}
 }
 
+{{#if isCharEnum}}
+export const {{{camelSingularName}}}Values : IEnumValue[] = [
+{{#enumValues}}
+  { key: '{{key}}', name: '{{name}}', displayText: '{{titleName}}'},
+{{/enumValues}}
+{{else}}
 export const {{{camelSingularName}}}Values : IEnumValue[] = [
 {{#enumValues}}
   { key: {{key}}, name: '{{name}}', displayText: '{{titleName}}'},
 {{/enumValues}}
+{{/if}}
 ];

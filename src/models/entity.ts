@@ -5,6 +5,7 @@ import { IEnumValue } from './enum-value';
 
 export interface IEntity {
   isEnum?: boolean;
+  isCharEnum: boolean;
   enumValues: (string | IEnumValue)[];
   name: string;
   kebabCasedName: string;

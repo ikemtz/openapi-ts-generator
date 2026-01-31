@@ -152,7 +152,7 @@ import { MessageDtoProperties } from './message-dto.properties';
 export function createTestMessageDto() {
     return { 
       [MessageDtoProperties.ID]: 'ID',
-      [MessageDtoProperties.BODY]: 'BODY', 
+      [MessageDtoProperties.BODY]: 'BODY',
       [MessageDtoProperties.RECIPIENTS]: [],
     };
 }
@@ -270,7 +270,7 @@ export function createTestRecipient() {
       [RecipientProperties.MIDDLE_NAME]: 'MIDDLE_NAME',
       [RecipientProperties.LAST_NAME]: 'LAST_NAME',
       [RecipientProperties.CELL_PHONE_1]: 'CELL_PHONE_1',
-      [RecipientProperties.HOME_PHONE_1]: 'HOME_PHONE_1', 
+      [RecipientProperties.HOME_PHONE_1]: 'HOME_PHONE_1',
     };
 }
 "
