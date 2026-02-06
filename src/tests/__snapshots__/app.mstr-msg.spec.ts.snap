@@ -93,7 +93,9 @@ import { IRecipientForm } from './recipient.form';
 
 export function MessageDtoFormGroupFac(): FormGroup<IMessageDtoForm> {
   return new FormGroup<IMessageDtoForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     body: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
     recipients: new FormArray<FormGroup<IRecipientForm>>([], { validators: Validators.required } ),
   });
@@ -197,12 +199,19 @@ import { IRecipientForm } from './recipient.form';
 
 export function RecipientFormGroupFac(): FormGroup<IRecipientForm> {
   return new FormGroup<IRecipientForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     ultiId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     firstName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     middleName: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     lastName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     cellPhone1: new FormControl<string | null | undefined>(undefined),
+
     homePhone1: new FormControl<string | null | undefined>(undefined),
   });
 }

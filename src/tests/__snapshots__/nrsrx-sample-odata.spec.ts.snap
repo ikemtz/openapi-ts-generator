@@ -91,14 +91,23 @@ import { CourseTypes } from './course-types.enum';
 
 export function CourseFormGroupFac(): FormGroup<ICourseForm> {
   return new FormGroup<ICourseForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     department: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(150)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     num: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(10)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     title: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(150)]), nonNullable: true }),
+
     description: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(500) } ),
+
     passRate: new FormControl<number | null | undefined>(undefined),
+
     avgScore: new FormControl<number | null | undefined>(undefined),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
+
     status: new FormControl<CourseStatus | string | null | undefined>(undefined),
     studentCourses: new FormArray<FormGroup<IStudentCourseForm>>([]),
     schoolCourses: new FormArray<FormGroup<ISchoolCourseForm>>([]),
@@ -412,10 +421,15 @@ import { IStudentSchoolForm } from './student-school.form';
 
 export function SchoolFormGroupFac(): FormGroup<ISchoolForm> {
   return new FormGroup<ISchoolForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     name: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     fullName: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(250)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     tenantId: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(5)]), nonNullable: true }),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
     schoolCourses: new FormArray<FormGroup<ISchoolCourseForm>>([]),
     studentSchools: new FormArray<FormGroup<IStudentSchoolForm>>([]),
@@ -540,11 +554,17 @@ import { CourseFormGroupFac } from './course.form-group-fac';
 
 export function SchoolCourseFormGroupFac(): FormGroup<ISchoolCourseForm> {
   return new FormGroup<ISchoolCourseForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     schoolId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     courseId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     passRate: new FormControl<number>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     avgScore: new FormControl<number>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
     school: new FormGroup<ISchoolForm>(SchoolFormGroupFac().controls),
     course: new FormGroup<ICourseForm>(CourseFormGroupFac().controls),
@@ -678,17 +698,29 @@ import { IStudentSchoolForm } from './student-school.form';
 
 export function StudentFormGroupFac(): FormGroup<IStudentForm> {
   return new FormGroup<IStudentForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+
     title: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(50) } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     firstName: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(250)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     lastName: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(250)]), nonNullable: true }),
+
     middleName: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(250) } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     birthDate: new FormControl<Date>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     email: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.email, Validators.minLength(1), Validators.maxLength(250)]), nonNullable: true }),
+
     tel1: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(15) } ),
+
     tel2: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(15) } ),
+
     courseCount: new FormControl<number | null | undefined>(undefined),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     gender: new FormControl<Gender | string>(undefined, { validators: Validators.required, nonNullable: true } ),
     studentCourses: new FormArray<FormGroup<IStudentCourseForm>>([]),
     studentSchools: new FormArray<FormGroup<IStudentSchoolForm>>([]),
@@ -847,14 +879,23 @@ import { SchoolCourseFormGroupFac } from './school-course.form-group-fac';
 
 export function StudentCourseFormGroupFac(): FormGroup<IStudentCourseForm> {
   return new FormGroup<IStudentCourseForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     studentId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     schoolId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     courseId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     schoolCourseId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     semester: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     finalScore: new FormControl<number>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     year: new FormControl<number>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
     student: new FormGroup<IStudentForm>(StudentFormGroupFac().controls),
     school: new FormGroup<ISchoolForm>(SchoolFormGroupFac().controls),
@@ -1001,11 +1042,17 @@ import { SchoolFormGroupFac } from './school.form-group-fac';
 
 export function StudentSchoolFormGroupFac(): FormGroup<IStudentSchoolForm> {
   return new FormGroup<IStudentSchoolForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     schoolId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     studentId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     tenantId: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(5)]), nonNullable: true }),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     enrollmentDate: new FormControl<Date>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     updateCount: new FormControl<number | null | undefined>(undefined),
     student: new FormGroup<IStudentForm>(StudentFormGroupFac().controls),
     school: new FormGroup<ISchoolForm>(SchoolFormGroupFac().controls),

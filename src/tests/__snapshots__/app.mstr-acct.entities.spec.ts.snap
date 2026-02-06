@@ -112,13 +112,21 @@ import { IContactForm } from './contact.form';
 
 export function AccountFormGroupFac(): FormGroup<IAccountForm> {
   return new FormGroup<IAccountForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+
     refId: new FormControl<string | null | undefined>(undefined),
+
     name: new FormControl<string | null | undefined>(undefined),
+
     parentAccountId: new FormControl<string | null | undefined>(undefined),
+
     isEnabled: new FormControl<boolean | null | undefined>(undefined),
+
     emailInvoice: new FormControl<boolean | null | undefined>(undefined),
+
     tenantId: new FormControl<string | null | undefined>(undefined),
+
     contactCount: new FormControl<number | null | undefined>(undefined, { validators: Validators.compose([Validators.min(1), Validators.max(99999)]) }),
     contacts: new FormArray<FormGroup<IContactForm>>([], { validators: Validators.compose([Validators.minLength(1), Validators.maxLength(3)]) }),
     childAccounts: new FormArray<FormGroup<IAccountForm>>([]),
@@ -250,12 +258,17 @@ import { IContactForm } from './contact.form';
 
 export function AccountInsertRequestFormGroupFac(): FormGroup<IAccountInsertRequestForm> {
   return new FormGroup<IAccountInsertRequestForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+
     refId: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     name: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     parentAccountId: new FormControl<string | null | undefined>(undefined),
     contactIds: new FormArray<FormControl<number>>([]),
     contactGuids: new FormArray<FormControl<string>>([]),
+
     emailInvoice: new FormControl<boolean | null | undefined>(undefined),
     contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
@@ -375,11 +388,17 @@ import { IContactForm } from './contact.form';
 
 export function AccountUpdateRequestFormGroupFac(): FormGroup<IAccountUpdateRequestForm> {
   return new FormGroup<IAccountUpdateRequestForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     refId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     name: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     parentAccountId: new FormControl<string | null | undefined>(undefined),
+
     isEnabled: new FormControl<boolean | null | undefined>(undefined),
+
     emailInvoice: new FormControl<boolean | null | undefined>(undefined),
     contacts: new FormArray<FormGroup<IContactForm>>([]),
   });
@@ -519,20 +538,35 @@ import { AccountFormGroupFac } from './account.form-group-fac';
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
   return new FormGroup<IContactForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+
     isEnabled: new FormControl<boolean | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     contactTypeId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     accountId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     firstName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     lastName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     middleName: new FormControl<string | null | undefined>(undefined, { validators: Validators.maxLength(5) } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     addressLine1: new FormControl<string>(undefined, { validators: Validators.compose([Validators.required, Validators.minLength(50)]), nonNullable: true }),
+
     addressLine2: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     city: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     state: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     zip: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     emails: new FormControl<string | null | undefined>(undefined, { validators: Validators.email  } ),
+
     phone1: new FormControl<string | null | undefined>(undefined, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
+
     phone2: new FormControl<string | null | undefined>(undefined, { validators: Validators.compose([Validators.minLength(13), Validators.maxLength(14), Validators.pattern('^(d{3}) ?d{3}-d{4}$')]) }),
     account: new FormGroup<IAccountForm>(AccountFormGroupFac().controls),
   });
@@ -680,19 +714,33 @@ import { IContactInsertRequestForm } from './contact-insert-request.form';
 
 export function ContactInsertRequestFormGroupFac(): FormGroup<IContactInsertRequestForm> {
   return new FormGroup<IContactInsertRequestForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     contactTypeId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     accountId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     firstName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     lastName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     middleName: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     addressLine1: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     addressLine2: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     city: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     state: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     zip: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     emails: new FormControl<string | null | undefined>(undefined),
+
     phone1: new FormControl<string | null | undefined>(undefined),
+
     phone2: new FormControl<string | null | undefined>(undefined),
   });
 }
@@ -832,19 +880,33 @@ import { IContactUpdateRequestForm } from './contact-update-request.form';
 
 export function ContactUpdateRequestFormGroupFac(): FormGroup<IContactUpdateRequestForm> {
   return new FormGroup<IContactUpdateRequestForm>({
+
     id: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     contactTypeId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     accountId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     firstName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     lastName: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     middleName: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     addressLine1: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     addressLine2: new FormControl<string | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     city: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     state: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     zip: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
+
     emails: new FormControl<string | null | undefined>(undefined),
+
     phone1: new FormControl<string | null | undefined>(undefined),
+
     phone2: new FormControl<string | null | undefined>(undefined),
   });
 }

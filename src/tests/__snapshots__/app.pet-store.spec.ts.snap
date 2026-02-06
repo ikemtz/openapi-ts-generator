@@ -71,8 +71,11 @@ import { IApiResponseForm } from './api-response.form';
 
 export function ApiResponseFormGroupFac(): FormGroup<IApiResponseForm> {
   return new FormGroup<IApiResponseForm>({
+
     code: new FormControl<number | null | undefined>(undefined),
+
     type: new FormControl<string | null | undefined>(undefined),
+
     message: new FormControl<string | null | undefined>(undefined),
   });
 }
@@ -167,7 +170,9 @@ import { ICategoryForm } from './category.form';
 
 export function CategoryFormGroupFac(): FormGroup<ICategoryForm> {
   return new FormGroup<ICategoryForm>({
+
     id: new FormControl<number | null | undefined>(undefined),
+
     name: new FormControl<string | null | undefined>(undefined),
   });
 }
@@ -347,11 +352,17 @@ import { IOrderForm } from './order.form';
 
 export function OrderFormGroupFac(): FormGroup<IOrderForm> {
   return new FormGroup<IOrderForm>({
+
     id: new FormControl<number | null | undefined>(undefined),
+
     petId: new FormControl<number | null | undefined>(undefined),
+
     quantity: new FormControl<number | null | undefined>(undefined),
+
     shipDate: new FormControl<Date | null | undefined>(undefined),
+
     status: new FormControl<string | null | undefined>(undefined),
+
     complete: new FormControl<boolean | null | undefined>(undefined),
   });
 }
@@ -470,9 +481,12 @@ import { ITagForm } from './tag.form';
 
 export function PetFormGroupFac(): FormGroup<IPetForm> {
   return new FormGroup<IPetForm>({
+
     id: new FormControl<number | null | undefined>(undefined),
+    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     name: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
     photoUrls: new FormArray<FormControl<string>>([], { validators: Validators.required }),
+
     status: new FormControl<string | null | undefined>(undefined),
     category: new FormGroup<ICategoryForm>(CategoryFormGroupFac().controls),
     tags: new FormArray<FormGroup<ITagForm>>([]),
@@ -588,7 +602,9 @@ import { ITagForm } from './tag.form';
 
 export function TagFormGroupFac(): FormGroup<ITagForm> {
   return new FormGroup<ITagForm>({
+
     id: new FormControl<number | null | undefined>(undefined),
+
     name: new FormControl<string | null | undefined>(undefined),
   });
 }
@@ -686,13 +702,21 @@ import { IUserForm } from './user.form';
 
 export function UserFormGroupFac(): FormGroup<IUserForm> {
   return new FormGroup<IUserForm>({
+
     id: new FormControl<number | null | undefined>(undefined),
+
     username: new FormControl<string | null | undefined>(undefined),
+
     firstName: new FormControl<string | null | undefined>(undefined),
+
     lastName: new FormControl<string | null | undefined>(undefined),
+
     email: new FormControl<string | null | undefined>(undefined),
+
     password: new FormControl<string | null | undefined>(undefined),
+
     phone: new FormControl<string | null | undefined>(undefined),
+
     userStatus: new FormControl<number | null | undefined>(undefined),
   });
 }
