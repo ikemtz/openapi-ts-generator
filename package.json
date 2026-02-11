@@ -54,8 +54,8 @@
     "@types/lodash": "^4.17.23",
     "@types/node": "^22.19.7",
     "@types/pluralize": "^0.0.33",
-    "@typescript-eslint/eslint-plugin": "^8.54.0",
-    "@typescript-eslint/parser": "^8.54.0",
+    "@typescript-eslint/eslint-plugin": "^8.55.0",
+    "@typescript-eslint/parser": "^8.55.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
@@ -69,16 +69,15 @@
     "rxjs": "^7.6.0",
     "ts-jest": "^29.4.6",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.54.0"
+    "typescript-eslint": "^8.55.0"
   },
   "dependencies": {
-    "axios": ">=1.13.x",
+    "axios": "^1.13.5",
     "handlebars": ">=4.x",
     "lodash": "^4.17.23",
     "pluralize": ">=8.x"
   },
   "peerDependencies": {
-    "axios": ">=1.13.x",
     "handlebars": ">=4.x",
     "pluralize": ">=8.x",
     "rxjs": "*"
