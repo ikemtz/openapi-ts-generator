@@ -54,6 +54,12 @@ steps:
       verbose: true
       customCommand: 'run lint-html'
 
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)\eslint-report.*'
+      artifact: 'eslint-reports'
+      publishLocation: 'pipeline'
+
   - task: Npm@1
     displayName: 'npm build'
     inputs:
