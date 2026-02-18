@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import { kebabCase } from 'lodash';
-import { IGeneratorOptions } from '../models/generator-options';
-import { ITemplateData } from '../models/template-data';
-import { IEntity } from '../models/entity';
-import { BaseGenerator } from './base.generator';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { ITemplateData } from '../models/template-data.ts';
+import { IEntity } from '../models/entity.ts';
+import { BaseGenerator } from './base.generator.ts';
 
 export class ModelPropertiesGenerator extends BaseGenerator<IEntity> {
   public readonly GeneratorName = 'ModelPropertiesGenerator';

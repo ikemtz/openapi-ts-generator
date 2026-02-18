@@ -1,7 +1,8 @@
-import { existsSync, mkdirSync, rmdirSync } from 'node:fs';
-import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options';
-import { MockConsoleLogger } from '../models/logger';
-import { BarrelGenerator } from './barrel.generator';
+import { describe, it, expect, beforeEach } from '@jest/globals';
+import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import { IGeneratorOptions, setGeneratorOptionDefaults } from '../models/generator-options.ts';
+import { MockConsoleLogger } from '../models/logger.ts';
+import { BarrelGenerator } from './barrel.generator.ts';
 
 const outputPath = './jest_output/barrel';
 
@@ -23,30 +24,31 @@ describe('BarrelGenerator', () => {
     const generator = new BarrelGenerator(setGeneratorOptionDefaults(options));
     const result = generator.generate();
     expect(result).toBeNull();
-    rmdirSync(outputPath);
+    rmSync(outputPath, { recursive: true });
   });
 
-  it('should handle exceptions', (done) => {
+  it('should handle exceptions', () => {
+
+    const infoLogs: string[] = [];
     const errorLogs: string[] = [];
-    try {
-      const generator = new BarrelGenerator(
-        setGeneratorOptionDefaults({
-          outputPath,
-          openApiJsonUrl: '',
-          // eslint-disable-next-line @typescript-eslint/no-misused-spread
-          logger: { ...new MockConsoleLogger(), error: (x: string) => errorLogs.push(x) },
-        }),
-      );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
-      (generator as any).template = () => {
-        throw new Error('This error is to validate unit tests.');
-      };
-      generator.generate();
-      done.fail('Exception logic was not triggered.');
-    } catch {
-      const firstMessage = errorLogs.shift();
-      expect(firstMessage?.startsWith('Error executing template: ')).toBeUndefined();
-      done();
-    }
+    const warnLogs: string[] = [];
+
+    const generator = new BarrelGenerator(
+      setGeneratorOptionDefaults({
+        outputPath,
+        openApiJsonUrl: '',
+        logger: {
+          log: (x: string) => infoLogs.push(x),
+          error: (x: string) => errorLogs.push(x),
+          warn: (x: string) => warnLogs.push(x)
+        },
+      }),
+    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
+    (generator as any).template = () => {
+      throw new Error('This error is to validate unit tests.');
+    };
+    generator.generate();
+    expect(warnLogs).toMatchSnapshot();
   });
 });

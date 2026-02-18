@@ -1,4 +1,4 @@
-import { IEntity } from './entity';
+import { IEntity } from './entity.ts';
 
 export interface ITemplateData {
   entities?: IEntity[];

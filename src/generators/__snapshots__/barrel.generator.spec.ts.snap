@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`BarrelGenerator should handle exceptions 1`] = `
+[
+  "Context for BarrelGenerator has not been provided.",
+]
+`;

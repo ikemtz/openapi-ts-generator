@@ -1,7 +1,8 @@
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { createDirectory, ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from '../models/generator-options';
-import { IEntity } from '../models/entity';
+import { describe, it } from '@jest/globals';
+import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '../index.ts';
+import { createDirectory, ValidateFiles } from './app.spec.ts';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { IEntity } from '../models/entity.ts';
 
 const messageGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/mstr-msg.json',
