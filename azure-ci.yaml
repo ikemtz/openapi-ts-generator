@@ -44,14 +44,14 @@ steps:
     displayName: 'npm lint-json'
     inputs:
       command: custom
-      verbose: false
+      verbose: true
       customCommand: 'run lint-json'
 
   - task: Npm@1
     displayName: 'npm lint-html'
     inputs:
       command: custom
-      verbose: false
+      verbose: true
       customCommand: 'run lint-html'
 
   - task: Npm@1
