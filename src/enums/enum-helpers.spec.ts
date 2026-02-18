@@ -1,5 +1,6 @@
-import { getEnumDisplayText, getEnumKey } from './enum-helpers';
-import { IEnumValue } from './enum-value';
+import { describe, expect, it } from '@jest/globals';
+import { getEnumDisplayText, getEnumKey } from './enum-helpers.ts';
+import { IEnumValue } from './enum-value.ts';
 
 export enum CourseTypes {
   Lab = 76,
@@ -20,12 +21,12 @@ export const courseTypeValues: IEnumValue[] = [
 ];
 
 describe('Enum Helpers', () => {
-  test('should get by key', () => {
+  it('should get by key', () => {
     const numResult = getEnumKey(courseTypeValues, 'Lab');
     expect(CourseTypes.Lab).toBe(numResult);
   });
 
-  test('should get by display text', () => {
+  it('should get by display text', () => {
     const stringResult = getEnumDisplayText(courseTypeValues, 'Lab');
     expect(CourseTypeNames.LAB).toBe(stringResult);
   });

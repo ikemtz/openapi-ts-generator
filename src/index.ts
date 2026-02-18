@@ -9,13 +9,13 @@ import {
   ModelPropertiesGenerator,
   EnumGenerator,
   TestObjectFactoryGenerator,
-} from './generators';
-import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options';
-import { ITemplateData } from './models/template-data';
-import { OpenApiDocConverter } from './openapidoc-converter';
+} from './generators/index.ts';
+import { IGeneratorOptions, setGeneratorOptionDefaults } from './models/generator-options.ts';
+import { ITemplateData } from './models/template-data.ts';
+import { OpenApiDocConverter } from './openapidoc-converter.ts';
 import Axios from 'axios';
 
-export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters';
+export { nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from './models/nrsrx-filters.ts';
 
 export async function generateTsModels(options: IGeneratorOptions): Promise<void> {
   options = setGeneratorOptionDefaults(options);
@@ -46,7 +46,7 @@ function generateOutput(options: IGeneratorOptions, templateData: ITemplateData)
     fs.readdirSync(options.outputPath).forEach((file) => {
       fs.unlinkSync(`${options.outputPath}/${file}`);
     });
-    fs.rmdirSync(options.outputPath);
+    fs.rmSync(options.outputPath, { recursive: true });
   }
   fs.mkdirSync(options.outputPath, { recursive: true });
   const modelGenerator = new ModelGenerator(options);

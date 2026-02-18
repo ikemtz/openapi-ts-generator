@@ -1,6 +1,6 @@
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { compile } from 'handlebars';
-import { IGeneratorOptions } from '../models/generator-options';
+import { IGeneratorOptions } from '../models/generator-options.ts';
 
 export abstract class BaseGenerator<TContextSchema> {
   public abstract readonly GeneratorName: string;

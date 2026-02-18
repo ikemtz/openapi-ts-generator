@@ -41,11 +41,25 @@ steps:
          sonar.typescript.exclusions=**/node_modules/**
 
   - task: Npm@1
-    displayName: 'npm lint'
+    displayName: 'npm lint-json'
     inputs:
       command: custom
       verbose: false
-      customCommand: 'run lint'
+      customCommand: 'run lint-json'
+
+  - task: Npm@1
+    displayName: 'npm lint-html'
+    inputs:
+      command: custom
+      verbose: true
+      customCommand: 'run lint-html'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish eslint reports'
+    inputs:
+      targetPath: '$(System.DefaultWorkingDirectory)/eslint-report.html'
+      artifact: 'eslint-reports'
+      publishLocation: 'pipeline'
 
   - task: Npm@1
     displayName: 'npm build'
@@ -61,10 +75,10 @@ steps:
       verbose: false
       customCommand: 'run test'
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: 'Publish code coverage cobertura-coverage.xml'
     inputs:
-      codeCoverageTool: Cobertura
+      pathToSources: '$(System.DefaultWorkingDirectory)/src'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
       failIfCoverageEmpty: true
 
@@ -75,6 +89,7 @@ steps:
       testResultsFiles: junit.xml
       mergeTestResults: true
       failTaskOnFailedTests: true
+
 
   - task: SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'

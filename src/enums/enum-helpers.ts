@@ -1,4 +1,4 @@
-import { IEnumValue } from './enum-value';
+import { IEnumValue } from './enum-value.ts';
 
 /**
  * Retrieves the key of an enum value from a list of enum values.

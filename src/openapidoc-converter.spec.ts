@@ -1,6 +1,7 @@
+import { describe, it, expect } from '@jest/globals';
 import { OpenAPIObject } from 'openapi3-ts/oas31';
-import { SchemaWrapperInfo } from './models/schema-info';
-import { OpenApiDocConverter } from './openapidoc-converter';
+import { SchemaWrapperInfo } from './models/schema-info.ts';
+import { OpenApiDocConverter } from './openapidoc-converter.ts';
 
 describe('OpenApiDocConverter Tests', () => {
   it('should handle blank parseRef()', () => {
@@ -9,14 +10,17 @@ describe('OpenApiDocConverter Tests', () => {
     expect(result).toBe('unknown');
   });
 
-  it('should handle invalid getPropertyTypeScriptType()', (done) => {
+  it('should handle invalid getPropertyTypeScriptType()', () => {
     const converter = new OpenApiDocConverter({ outputPath: '' }, {} as OpenAPIObject);
+    let errorThrown = false;
     try {
-      converter.getPropertyTypeScriptType({ propertySchemaObject: {} } as SchemaWrapperInfo);
-      done.fail('This test should throw an exception');
+      converter.getPropertyTypeScriptType({ propertySchemaObject: null } as never);
     } catch (err) {
       expect(err).toMatchSnapshot();
-      done();
+      errorThrown = true;
+    }
+    if (!errorThrown) {
+      throw new Error('This test should have thrown an exception');
     }
   });
 

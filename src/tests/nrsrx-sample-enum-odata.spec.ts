@@ -1,6 +1,7 @@
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { createDirectory, ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from '../models/generator-options';
+import { describe, it } from '@jest/globals';
+import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '../index.ts';
+import { createDirectory, ValidateFiles } from './app.spec.ts';
+import { IGeneratorOptions } from '../models/generator-options.ts';
 
 const fileSampleGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: '../src/open-api-spec-docs/nrsrx-sample-enum-odata.json',

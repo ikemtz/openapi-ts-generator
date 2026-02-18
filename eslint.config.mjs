@@ -14,11 +14,12 @@ export default defineConfig([
       parser: tseslint.parser,
       parserOptions: {
         project: './tsconfig.json',
+        tsconfigRootDir: process.cwd(),
       },
     },
     plugins: {
       '@typescript-eslint': tseslint.plugin,
     },
   },
-  { ignores: ['node_modules/**', 'dist/**', './coverage/**', 'lib/**', 'jest_output/**', 'jest.config.js', 'eslint.config.mjs'] },
+  { ignores: ['node_modules/**', 'dist/**', './coverage/**', 'lib/**', 'jest_output/**', 'jest.config.mjs', 'eslint.config.mjs'] },
 ]);

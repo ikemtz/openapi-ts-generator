@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { resolve } from 'path';
-import { ILogger } from './logger';
-import { IEntity } from './entity';
-import { IReferenceProperty } from './reference-property';
-import { IValueProperty } from './value-property';
+import { ILogger } from './logger.ts';
+import { IEntity } from './entity.ts';
+import { IReferenceProperty } from './reference-property.ts';
+import { IValueProperty } from './value-property.ts';
 import { AxiosRequestConfig } from 'axios';
 
 export interface IGeneratorOptions {

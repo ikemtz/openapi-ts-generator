@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for services with OpenApi spec documentation.",
   "main": "index.js",
+  "type": "module",
   "types": "index.d.ts",
   "exports": {
     ".": {
@@ -19,7 +20,8 @@
   "scripts": {
     "build": "tsc && cp -rfv ./src/templates ./lib",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint . --ext .ts --output-file ./eslint-report.json --format json && eslint . --ext .ts --output-file ./eslint-report.html --format html ",
+    "lint-json": "eslint --output-file ./eslint-report.json --format json",
+    "lint-html": "eslint --output-file ./eslint-report.html --format html",
     "link": "npm run build && cd lib && npm link && cd ..",
     "test": "npm run build && jest --collect-coverage",
     "prep:lib": "rm -rv ./lib/*.spec.* && rm -rv ./lib/**/*.spec.* && cp -v ./package.json ./lib/ && cp -v ./LICENSE ./lib/ && cp -v ./README.md ./lib/",
@@ -50,6 +52,7 @@
   "homepage": "https://github.com/ikemtz/OpenApi-TS-Generator#readme",
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@jest/globals": "^30.2.0",
     "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.23",
     "@types/node": "^22.19.7",
