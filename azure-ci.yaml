@@ -43,7 +43,14 @@ steps:
     displayName: 'npm lint-json'
     inputs:
       targetType: 'inline'
-      script: 'npx eslint --output-file ./eslint-report.json --format json'
+      script: 'npx eslint -o eslint-report.json -f json'
+      failOnStderr: true
+
+  - task: Bash@3
+    displayName: 'npm lint-html'
+    inputs:
+      targetType: 'inline'
+      script: 'npx eslint -o eslint-report.html -f html'
       failOnStderr: true
 
   - task: Npm@1
