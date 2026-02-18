@@ -1,8 +1,8 @@
 import { ReferenceObject, SchemaObject } from 'openapi3-ts/oas31';
-import { IEnumValue } from './enum-value';
-import { defaultFilter, IGeneratorOptions } from './generator-options';
-import { IReferenceProperty } from './reference-property';
-import { IValueProperty } from './value-property';
+import { IEnumValue } from './enum-value.ts';
+import { defaultFilter, IGeneratorOptions } from './generator-options.ts';
+import { IReferenceProperty } from './reference-property.ts';
+import { IValueProperty } from './value-property.ts';
 
 export class SchemaWrapperInfo {
   public propertySchemaObject: SchemaObject = {};

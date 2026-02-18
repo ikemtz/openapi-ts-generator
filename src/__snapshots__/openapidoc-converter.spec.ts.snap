@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[TypeError: done.fail is not a function]`;
+exports[`OpenApiDocConverter Tests should handle invalid getPropertyTypeScriptType() 1`] = `[TypeError: Cannot read properties of null (reading 'type')]`;
 
 exports[`OpenApiDocConverter Tests should properly convertPaths 1`] = `
 [

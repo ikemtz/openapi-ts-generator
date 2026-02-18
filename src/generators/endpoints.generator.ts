@@ -1,7 +1,7 @@
-import { IGeneratorOptions } from '../models/generator-options';
-import { IPath, ITemplateData } from '../models/template-data';
-import { BaseGenerator } from './base.generator';
 import { camelCase } from 'lodash';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { IPath, ITemplateData } from '../models/template-data.ts';
+import { BaseGenerator } from './base.generator.ts';
 
 export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {
   public readonly GeneratorName = 'EndPointsGenerator';

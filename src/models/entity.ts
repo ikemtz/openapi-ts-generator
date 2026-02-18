@@ -1,7 +1,7 @@
-import { IReferenceProperty } from './reference-property';
-import { IValueProperty } from './value-property';
-import { IImportType } from './template-data';
-import { IEnumValue } from './enum-value';
+import { IReferenceProperty } from './reference-property.ts';
+import { IValueProperty } from './value-property.ts';
+import { IImportType } from './template-data.ts';
+import { IEnumValue } from './enum-value.ts';
 
 export interface IEntity {
   isEnum?: boolean;
