@@ -1,12 +1,12 @@
-import { readdirSync } from 'fs';
-import { IGeneratorOptions } from '../models/generator-options';
-import { BaseGenerator } from './base.generator';
+import { readdirSync } from 'node:fs';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { BaseGenerator } from './base.generator.ts';
 
 export class BarrelGenerator extends BaseGenerator<{ fileNames: string[] }> {
   public readonly GeneratorName = 'BarrelGenerator';
   private readonly tsRegex = /.ts$/;
-  constructor(options: IGeneratorOptions) {
-    super(options, options.templates?.barrel);
+  constructor(generatorOptions: IGeneratorOptions) {
+    super(generatorOptions, generatorOptions.templates?.barrel);
   }
 
   public generate(): string | null {

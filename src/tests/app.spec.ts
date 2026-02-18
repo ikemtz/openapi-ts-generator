@@ -1,9 +1,10 @@
-import { mkdirSync, readdirSync, readFileSync, rmdirSync, unlinkSync } from 'fs';
-import { IGeneratorOptions } from '../models/generator-options';
+import { describe, it, expect } from '@jest/globals';
+import { mkdirSync, readdirSync, readFileSync, rmSync, unlinkSync } from 'node:fs';
+import { IGeneratorOptions } from '../models/generator-options.ts';
 
 export function createDirectory(path: string): void {
   try {
-    rmdirSync(path, { recursive: true });
+    rmSync(path, { recursive: true });
     mkdirSync(path, { recursive: true });
   } catch {
     // ignore

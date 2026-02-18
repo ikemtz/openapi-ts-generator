@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { kebabCase } from 'lodash';
-import { IGeneratorOptions } from '../models/generator-options';
-import { ITemplateData } from '../models/template-data';
-import { IEntity } from '../models/entity';
-import { IValueProperty } from '../models/value-property';
-import { BaseGenerator } from './base.generator';
 import * as HandleBars from 'handlebars';
-import { IHelperContext, PropertyType } from '../models/helper-context';
+import { kebabCase } from 'lodash';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { ITemplateData } from '../models/template-data.ts';
+import { IEntity } from '../models/entity.ts';
+import { IValueProperty } from '../models/value-property.ts';
+import { BaseGenerator } from './base.generator.ts';
+import { IHelperContext, PropertyType } from '../models/helper-context.ts';
 
 export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
   public readonly GeneratorName = 'FormGroupFactoryGenerator';

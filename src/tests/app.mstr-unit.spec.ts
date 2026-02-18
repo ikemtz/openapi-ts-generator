@@ -1,8 +1,9 @@
-import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '..';
-import { createDirectory, ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from '../models/generator-options';
-import { MockConsoleLogger } from '../models/logger';
-import { readdirSync } from 'fs';
+import { describe, it, expect } from '@jest/globals';
+import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '../index.ts';
+import { createDirectory, ValidateFiles } from './app.spec.ts';
+import { IGeneratorOptions } from '../models/generator-options.ts';
+import { MockConsoleLogger } from '../models/logger.ts';
+import { readdirSync } from 'node:fs';
 
 const unitGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: './open-api-spec-docs/mstr-unit.json',

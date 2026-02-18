@@ -1,6 +1,6 @@
-module.exports = {
+export default {
   transform: {
-    '^.+\\.(t|j)sx?$': 'ts-jest',
+    '^.+\\.(t|j)sx?$': ['ts-jest', { diagnostics: { ignoreCodes: ['TS151002'] } }],
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   testPathIgnorePatterns: ['/node_modules/', '/lib/', '/jest_output/'],

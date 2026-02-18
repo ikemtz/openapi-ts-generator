@@ -1,4 +1,5 @@
-import { EndPointsGenerator } from './endpoints.generator';
+import { describe, expect, it } from '@jest/globals';
+import { EndPointsGenerator } from './endpoints.generator.ts';
 
 describe('EndPointsGenerator', () => {
   it('should generate files', () => {

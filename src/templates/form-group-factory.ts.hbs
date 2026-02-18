@@ -23,9 +23,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
     {{name}}: new FormArray<FormControl<{{typeScriptType}}>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}} }{{/if}}),
 {{/if}}
 {{else}}
-{{#if hasMultipleValidators}}{{#if required}}    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.{{/if}}
+{{#if hasMultipleValidators}}
     {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null | undefined{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{#if email}}Validators.email, {{/if}}{{#if uri}}Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'), {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
-{{else}}{{#if required}}    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.{{/if}}
+{{else}}
     {{name}}: new FormControl<{{typeScriptType}}{{#unless required}} | null | undefined{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{#if email}}Validators.email {{/if}}{{#if uri}}Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?') {{/if}}{{minLengthValidator "valueProperties"}}{{maxLengthValidator "valueProperties"}}{{minimumValidator "valueProperties"}}{{maximumValidator "valueProperties"}}{{minItemsValidator "valueProperties"}}{{maxItemsValidator "valueProperties"}}{{{patternValidator "valueProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{/if}}
@@ -44,9 +44,9 @@ export function {{name}}FormGroupFac(): FormGroup<I{{name}}Form> {
     {{name}}: new FormArray<FormGroup<I{{typeScriptType}}Form>>([]{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}} } {{/if}}),
 {{/if}}
 {{else if isEnum}}
-{{#if hasMultipleValidators}}{{#if required}}    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.{{/if}}
+{{#if hasMultipleValidators}}
     {{name}}: new FormControl<{{typeScriptType}} | string{{#unless required}} | null | undefined{{/unless}}>({{{initialValue}}}, { validators: Validators.compose([{{#if required}}Validators.required, {{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}]){{#if required}}, nonNullable: true{{/if}} }),
-{{else}}{{#if required}}    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.{{/if}}
+{{else}}
     {{name}}: new FormControl<{{typeScriptType}} | string{{#unless required}} | null | undefined{{/unless}}>({{{initialValue}}}{{#if hasValidators}}, { validators: {{#if required}}Validators.required{{/if}}{{minLengthValidator "referenceProperties"}}{{maxLengthValidator "referenceProperties"}}{{minimumValidator "referenceProperties"}}{{maximumValidator "referenceProperties"}}{{minItemsValidator "referenceProperties"}}{{maxItemsValidator "referenceProperties"}}{{{patternValidator "referenceProperties"}}}{{#if required}}, nonNullable: true{{/if}} } {{/if}}),
 {{/if}}
 {{else}}
