@@ -55,17 +55,11 @@ import { ContactTypes2 } from './contact-types-2.enum';
 
 export function ContactFormGroupFac(): FormGroup<IContactForm> {
   return new FormGroup<IContactForm>({
-
     id: new FormControl<string | null | undefined>(undefined),
-    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     accountId: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
-    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     addressLine1: new FormControl<string>(undefined, { validators: Validators.required, nonNullable: true } ),
-    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     contactType: new FormControl<ContactTypes | string>(undefined, { validators: Validators.required, nonNullable: true } ),
-    // @ts-expect-error this is intentional, we want the initial value to be undefined so that the required validator will work correctly.
     contactType2: new FormControl<ContactTypes2 | string>(undefined, { validators: Validators.required, nonNullable: true } ),
-
     contactType3: new FormControl<ContactTypes | string | null | undefined>(undefined),
   });
 }

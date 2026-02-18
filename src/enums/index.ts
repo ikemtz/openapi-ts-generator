@@ -1,3 +1,3 @@
-export * from './enum-value';
-export * from './enum-properties';
-export * from './enum-helpers';
+export * from './enum-value.ts';
+export * from './enum-properties.ts';
+export * from './enum-helpers.ts';

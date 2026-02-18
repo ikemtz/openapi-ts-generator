@@ -1,6 +1,7 @@
-import { generateTsModels } from '..';
-import { createDirectory, ValidateFiles } from './app.spec';
-import { IGeneratorOptions } from '../models/generator-options';
+import { describe, it } from '@jest/globals';
+import { generateTsModels } from '../index.ts';
+import { createDirectory, ValidateFiles } from './app.spec.ts';
+import { IGeneratorOptions } from '../models/generator-options.ts';
 
 const fileEmployeeGenerationOptionsFactory = (): IGeneratorOptions => ({
   openApiJsonFileName: '../src/open-api-spec-docs/string-array-test-oject.json',
