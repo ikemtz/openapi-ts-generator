@@ -14,6 +14,7 @@ export default defineConfig([
       parser: tseslint.parser,
       parserOptions: {
         project: './tsconfig.json',
+        tsconfigRootDir: process.cwd(),
       },
     },
     plugins: {
