@@ -39,6 +39,12 @@ steps:
          sonar.typescript.lcov.reportPaths=coverage/lcov.info
          sonar.eslint.reportPaths=eslint-report.json
          sonar.typescript.exclusions=**/node_modules/**
+  - task: Bash@3
+    displayName: 'npm lint-json'
+    inputs:
+      targetType: 'inline'
+      script: 'npx eslint --output-file ./eslint-report.json --format json'
+      failOnStderr: true
 
   - task: Npm@1
     displayName: 'npm lint-json'
