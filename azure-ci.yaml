@@ -56,7 +56,7 @@ steps:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Pipeline.Workspace)\eslint-report.*'
+      targetPath: '$(System.DefaultWorkingDirectory)/eslint-report.*'
       artifact: 'eslint-reports'
       publishLocation: 'pipeline'
 
