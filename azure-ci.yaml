@@ -55,8 +55,9 @@ steps:
       customCommand: 'run lint-html'
 
   - task: PublishPipelineArtifact@1
+    displayName: 'Publish eslint reports'
     inputs:
-      targetPath: '$(System.DefaultWorkingDirectory)/eslint-report.*'
+      targetPath: '$(System.DefaultWorkingDirectory)/eslint-report.html'
       artifact: 'eslint-reports'
       publishLocation: 'pipeline'
 
@@ -74,10 +75,10 @@ steps:
       verbose: false
       customCommand: 'run test'
 
-  - task: PublishCodeCoverageResults@1
+  - task: PublishCodeCoverageResults@2
     displayName: 'Publish code coverage cobertura-coverage.xml'
     inputs:
-      codeCoverageTool: Cobertura
+      pathToSources: '$(System.DefaultWorkingDirectory)/src'
       summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
       failIfCoverageEmpty: true
 
@@ -89,10 +90,10 @@ steps:
       mergeTestResults: true
       failTaskOnFailedTests: true
 
-  - task: SonarCloudAnalyze@1
+  - task: SonarCloudAnalyze@3
     displayName: 'Run Code Analysis'
 
-  - task: SonarCloudPublish@1
+  - task: SonarCloudPublish@3
     displayName: 'Publish Quality Gate Result'
 
   - task: sonarcloud-buildbreaker@2
