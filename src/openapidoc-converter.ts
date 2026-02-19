@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-conversion */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { singular } from 'pluralize';
-import { camelCase, kebabCase, snakeCase, startCase } from 'lodash';
+import pluralize from 'pluralize';
+import lodash from 'lodash';
 import { OpenAPIObject, ReferenceObject, SchemaObject } from 'openapi3-ts/oas31';
 
 import { defaultFilter, IGeneratorOptions } from './models/generator-options.ts';
@@ -19,7 +19,7 @@ export class OpenApiDocConverter {
   constructor(
     private readonly options: IGeneratorOptions,
     private readonly apiDocument: OpenAPIObject,
-  ) {}
+  ) { }
 
   public convertDocument(): ITemplateData {
     const entities = this.convertEntities();
@@ -35,7 +35,7 @@ export class OpenApiDocConverter {
       const tag: string = (tagLookup?.tags || ['unknown_endpoint'])[0];
 
       paths.push({
-        tag: snakeCase(tag),
+        tag: lodash.snakeCase(tag),
         endpoint: this.options.pathUrlFormattingCallBack ? this.options.pathUrlFormattingCallBack(key) : key,
       });
     }
@@ -60,14 +60,14 @@ export class OpenApiDocConverter {
             typeof t === 'string' || t instanceof String
               ? t
               : {
-                  ...t,
-                  key: schemaWrapperInfo.isCharEnum ? t.key : +(t.key as number),
-                },
+                ...t,
+                key: schemaWrapperInfo.isCharEnum ? t.key : +(t.key as number),
+              },
           ),
           name: schemaName,
-          kebabCasedName: kebabCase(schemaName),
-          singularName: singular(schemaName),
-          camelSingularName: camelCase(singular(schemaName)),
+          kebabCasedName: lodash.kebabCase(schemaName),
+          singularName: pluralize.singular(schemaName),
+          camelSingularName: lodash.camelCase(pluralize.singular(schemaName)),
           description: schemaWrapperInfo.description,
           referenceProperties: schemaWrapperInfo.referenceProperties,
           valueProperties: schemaWrapperInfo.valueProperties.filter(this.options.valuePropertyTypeFilterCallBack || defaultFilter),
@@ -88,8 +88,8 @@ export class OpenApiDocConverter {
         return {
           key: key ? +key : 0,
           name,
-          titleName: startCase(name),
-          snakeCaseName: snakeCase(name).toUpperCase(),
+          titleName: lodash.startCase(name),
+          snakeCaseName: lodash.snakeCase(name).toUpperCase(),
         };
       }),
     ];
@@ -157,7 +157,7 @@ export class OpenApiDocConverter {
       initialValue,
       initialTestValue,
       isArray: false,
-      snakeCaseName: snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: lodash.snakeCase(propertyName).toUpperCase(),
       typeScriptType: this.getPropertyTypeScriptType(schemaWrapperInfo),
       maxLength: schemaWrapperInfo.propertySchemaObject.maxLength,
       minLength: schemaWrapperInfo.propertySchemaObject.minLength,
@@ -198,7 +198,7 @@ export class OpenApiDocConverter {
       email: false,
       uri: false,
       isArray: true,
-      snakeCaseName: snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: lodash.snakeCase(propertyName).toUpperCase(),
       hasMultipleValidators: false,
       hasValidators: validatorCount > 0,
     };
@@ -246,7 +246,7 @@ export class OpenApiDocConverter {
     } else if (defaultValue) {
       return `'${defaultValue.split(' ').pop() as string}'`;
     } else if (email) {
-      return `'${kebabCase(parentTypeName)}@email.org'`;
+      return `'${lodash.kebabCase(parentTypeName)}@email.org'`;
     } else if (typescriptType === 'Date') {
       return 'new Date()';
     } else if (typescriptType === 'boolean') {
@@ -258,7 +258,7 @@ export class OpenApiDocConverter {
     } else if (typescriptType === 'number') {
       return minValue ? `${minValue}` : '0';
     } else {
-      let retValue = snakeCase(propertyName).toUpperCase();
+      let retValue = lodash.snakeCase(propertyName).toUpperCase();
       while (minLength && retValue.length < minLength) {
         retValue = `${retValue}_${retValue}`;
       }
@@ -299,7 +299,7 @@ export class OpenApiDocConverter {
       isSameAsParentTypescriptType: parentTypeName.toLowerCase() === typeName.toLowerCase(),
       initialValue,
       initialTestValue,
-      snakeCaseName: snakeCase(propertyName).toUpperCase(),
+      snakeCaseName: lodash.snakeCase(propertyName).toUpperCase(),
       referenceTypeName: typeName,
       typeScriptType: typeName,
       isArray: false,
@@ -380,7 +380,7 @@ export class OpenApiDocConverter {
         const props = properties.filter((t) => (t.items as ReferenceObject).$ref === value || t.$ref === value);
         return {
           name: value,
-          kebabCasedTypeName: kebabCase(value),
+          kebabCasedTypeName: lodash.kebabCase(value),
           isEnum: (refSchema?.enum ?? []).length > 0,
           areAllArrays: props.every((val) => val.type === 'array'),
           hasArrays: props.some((val) => val.type === 'array'),
@@ -392,9 +392,9 @@ export class OpenApiDocConverter {
   public getIsRequired(propertyName: string, schemaWrapperInfo: SchemaWrapperInfo): boolean {
     return (
       ((schemaWrapperInfo.componentSchemaObject.required ?? []).includes(propertyName) ||
-        ((schemaWrapperInfo.propertySchemaObject as { nullable?: boolean }).nullable === undefined
+        ((schemaWrapperInfo.propertySchemaObject as { nullable?: boolean; }).nullable === undefined
           ? false
-          : !(schemaWrapperInfo.propertySchemaObject as { nullable?: boolean }).nullable)) &&
+          : !(schemaWrapperInfo.propertySchemaObject as { nullable?: boolean; }).nullable)) &&
       propertyName !== 'id'
     );
   }

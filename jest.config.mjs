@@ -1,6 +1,13 @@
 export default {
   transform: {
-    '^.+\\.(t|j)sx?$': ['ts-jest', { diagnostics: { ignoreCodes: ['TS151002'] } }],
+    '^.+\\.(t|j)sx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: 'tsconfig.json',
+        diagnostics: { ignoreCodes: ['TS151002', 'TS1343'] },
+      },
+    ],
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   testPathIgnorePatterns: ['/node_modules/', '/lib/', '/jest_output/'],
@@ -19,4 +26,5 @@ export default {
   maxConcurrency: 1,
   testTimeout: 30000,
   moduleNameMapper: {},
+  setupFilesAfterEnv: ['./src/jest.setup.ts'],
 };
