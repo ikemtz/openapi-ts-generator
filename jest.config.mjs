@@ -3,7 +3,7 @@ export default {
     '^.+\\.(t|j)sx?$': [
       'ts-jest',
       {
-        useESM: true,
+        useESM: false,
         tsconfig: 'tsconfig.json',
         diagnostics: { ignoreCodes: ['TS151002', 'TS1343'] },
       },
