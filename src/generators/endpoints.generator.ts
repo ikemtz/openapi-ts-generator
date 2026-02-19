@@ -1,11 +1,11 @@
-import { camelCase } from 'lodash';
+import lodash from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 import { IPath, ITemplateData } from '../models/template-data.ts';
 import { BaseGenerator } from './base.generator.ts';
 
-export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {
+export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[]; }> {
   public readonly GeneratorName = 'EndPointsGenerator';
-  public readonly endpointIdentifierRegex = /[A-z0-9_-]*$/;
+  public readonly endpointIdentifierRegex = /[A-Za-z0-9_-]*$/;
   constructor(options: IGeneratorOptions) {
     super(options, options.templates?.endpoints);
   }
@@ -19,13 +19,13 @@ export class EndPointsGenerator extends BaseGenerator<{ paths: IPath[] }> {
     const sortedTemplateData = [...templateData.paths].sort((x, y) => (x.endpoint.toUpperCase() < y.endpoint.toUpperCase() ? -1 : 1));
     const result: IPath[] = [];
     sortedTemplateData.forEach((val) => {
-      val = { ...val, tag: camelCase(val.tag) };
+      val = { ...val, tag: lodash.camelCase(val.tag) };
       const dupeIndex = result.findIndex((f) => f.tag === val.tag);
       if (dupeIndex > -1) {
         const dupeCount = result.filter((f) => f.tag === val.tag).length + 1;
         const endpointIdentifier = (this.endpointIdentifierRegex.exec(val.endpoint) || [])[0];
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        result.push({ ...val, tag: camelCase(`${val.tag}_${endpointIdentifier || dupeCount}`) });
+        result.push({ ...val, tag: lodash.camelCase(`${val.tag}_${endpointIdentifier || dupeCount}`) });
       } else {
         result.push(val);
       }
