@@ -2,6 +2,11 @@ import { describe, it } from '@jest/globals';
 import { generateTsModels, nrsrxTypeFilterCallBack, nrsrxValuePropertyTypeFilterCallBack } from '../index.ts';
 import { createDirectory, ValidateFiles } from './app.spec.ts';
 import { IGeneratorOptions } from '../models/generator-options.ts';
+import https from 'node:https';
+
+const httpsAgent = new https.Agent({
+  rejectUnauthorized: false
+});
 
 const optionsFactory = (): IGeneratorOptions => ({
   openApiJsonUrl: 'https://awod-ikemtz.azurewebsites.net/swagger/v1/swagger.json',
@@ -9,6 +14,7 @@ const optionsFactory = (): IGeneratorOptions => ({
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
   genAngularFormGroups: true,
+  axiosConfig: { httpsAgent }
 });
 
 describe('Url Based - Full Integration Tests', () => {
