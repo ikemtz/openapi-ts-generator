@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { kebabCase } from 'lodash';
+import lodash from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 import { ITemplateData } from '../models/template-data.ts';
 import { IEntity } from '../models/entity.ts';
@@ -16,7 +16,7 @@ export class ModelPropertiesGenerator extends BaseGenerator<IEntity> {
       ?.filter((entity) => !entity.isEnum)
       .filter((val) => val.valueProperties?.length > 0 || val.referenceProperties?.length > 0)
       .forEach((entity) => {
-        super.generateFile(`${this.generatorOptions.outputPath}/${kebabCase(entity.name)}.properties.ts`, entity);
+        super.generateFile(`${this.generatorOptions.outputPath}/${lodash.kebabCase(entity.name)}.properties.ts`, entity);
       });
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { kebabCase } from 'lodash';
+import lodash from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 import { ITemplateData } from '../models/template-data.ts';
 import { IEntity } from '../models/entity.ts';
@@ -15,7 +15,7 @@ export class FormGenerator extends BaseGenerator<IEntity> {
     templateData.entities
       ?.filter((val) => val.valueProperties?.length + val.referenceProperties?.length > 0)
       .forEach((entity) => {
-        super.generateFile(`${this.generatorOptions.outputPath}/${kebabCase(entity.name)}.form.ts`, entity);
+        super.generateFile(`${this.generatorOptions.outputPath}/${lodash.kebabCase(entity.name)}.form.ts`, entity);
       });
   }
 }

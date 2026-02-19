@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync } from 'node:fs';
-import { compile } from 'handlebars';
+import handlebars from 'handlebars';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 
 export abstract class BaseGenerator<TContextSchema> {
   public abstract readonly GeneratorName: string;
-  public readonly template?: HandlebarsTemplateDelegate<TContextSchema>;
+  public readonly template?: handlebars.TemplateDelegate<TContextSchema>;
   public readonly emptyArrayRegex = /, ]/g;
   public constructor(
     public readonly generatorOptions: IGeneratorOptions,
@@ -12,7 +12,7 @@ export abstract class BaseGenerator<TContextSchema> {
   ) {
     if (templateFilePath) {
       const templateSource = readFileSync(templateFilePath, { encoding: 'utf8' });
-      this.template = compile(templateSource);
+      this.template = handlebars.compile<TContextSchema>(templateSource);
     }
   }
 
