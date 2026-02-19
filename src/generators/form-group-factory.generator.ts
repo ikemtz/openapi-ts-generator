@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import * as HandleBars from 'handlebars';
-import { kebabCase } from 'lodash';
+import handlebars from 'handlebars';
+import lodash from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 import { ITemplateData } from '../models/template-data.ts';
 import { IEntity } from '../models/entity.ts';
@@ -19,7 +19,7 @@ export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
     templateData.entities
       ?.filter((val) => val.valueProperties?.length + val.referenceProperties?.length > 0)
       .forEach((entity) => {
-        super.generateFile(`${this.generatorOptions.outputPath}/${kebabCase(entity.name)}.form-group-fac.ts`, entity);
+        super.generateFile(`${this.generatorOptions.outputPath}/${lodash.kebabCase(entity.name)}.form-group-fac.ts`, entity);
       });
   }
   public registerHelpers() {
@@ -33,7 +33,7 @@ export class FormGroupFactoryGenerator extends BaseGenerator<IEntity> {
   }
 
   public registerValidatorHelper(validatorName: string, angularValidatorName: string = validatorName): void {
-    HandleBars.registerHelper(`${validatorName}Validator`, (x: PropertyType, y: IHelperContext) =>
+    handlebars.registerHelper(`${validatorName}Validator`, (x: PropertyType, y: IHelperContext) =>
       this.validatorFactory(x, y, validatorName, angularValidatorName),
     );
   }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
 
-import { kebabCase } from 'lodash';
+import lodash from 'lodash';
 import { IGeneratorOptions } from '../models/generator-options.ts';
 import { ITemplateData } from '../models/template-data.ts';
 import { IEntity } from '../models/entity.ts';
@@ -16,7 +16,7 @@ export class TestObjectFactoryGenerator extends BaseGenerator<IEntity> {
     templateData.entities
       ?.filter((val) => val.valueProperties?.length + val.referenceProperties?.length > 0)
       .forEach((entity) => {
-        super.generateFile(`${this.options.outputPath}/${kebabCase(entity.name)}.test-obj-fac.ts`, entity);
+        super.generateFile(`${this.options.outputPath}/${lodash.kebabCase(entity.name)}.test-obj-fac.ts`, entity);
       });
   }
 }
