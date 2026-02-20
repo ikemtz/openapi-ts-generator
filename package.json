@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "Based on swagger-ts-generator, this is a type script model generator specifically for services with OpenApi spec documentation.",
   "main": "index.js",
-  "type": "module",
   "types": "index.d.ts",
   "exports": {
     ".": {

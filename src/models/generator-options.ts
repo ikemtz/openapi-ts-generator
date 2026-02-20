@@ -5,7 +5,6 @@ import { IEntity } from './entity.ts';
 import { IReferenceProperty } from './reference-property.ts';
 import { IValueProperty } from './value-property.ts';
 import { AxiosRequestConfig } from 'axios';
-import { getDirName } from './utils.ts';
 
 export interface IGeneratorOptions {
   logger?: ILogger;
@@ -47,7 +46,6 @@ export function defaultFilter(
 }
 
 export function setGeneratorOptionDefaults(options: IGeneratorOptions): IGeneratorOptions {
-  const __dirname = getDirName();
   const templateFolder = resolve(`${__dirname}/..`, 'templates');
   options.typeFilterCallBack = options.typeFilterCallBack ?? defaultFilter;
   options.valuePropertyTypeFilterCallBack = options.valuePropertyTypeFilterCallBack ?? defaultFilter;

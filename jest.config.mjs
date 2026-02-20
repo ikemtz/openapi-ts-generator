@@ -26,5 +26,4 @@ export default {
   maxConcurrency: 1,
   testTimeout: 30000,
   moduleNameMapper: {},
-  setupFilesAfterEnv: ['./src/jest.setup.ts'],
 };
