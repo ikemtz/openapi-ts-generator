@@ -14,6 +14,7 @@ const optionsFactory = (): IGeneratorOptions => ({
   typeFilterCallBack: nrsrxTypeFilterCallBack,
   valuePropertyTypeFilterCallBack: nrsrxValuePropertyTypeFilterCallBack,
   genAngularFormGroups: true,
+  genAngularFormGroupsWithDefaultValues: true,
   axiosConfig: { httpsAgent }
 });
 
