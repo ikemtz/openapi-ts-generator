@@ -16,7 +16,7 @@ steps:
     inputs:
       verbose: false
 
-  - task: SonarCloudPrepare@1
+  - task: SonarCloudPrepare@4
     displayName: 'Prepare analysis on SonarCloud'
     inputs:
       SonarCloud: 'SonarCloud IkeMtz'
@@ -91,10 +91,10 @@ steps:
       failTaskOnFailedTests: true
 
 
-  - task: SonarCloudAnalyze@1
+  - task: SonarCloudAnalyze@4
     displayName: 'Run Code Analysis'
 
-  - task: SonarCloudPublish@1
+  - task: SonarCloudPublish@4
     displayName: 'Publish Quality Gate Result'
 
   - task: sonarcloud-buildbreaker@2
