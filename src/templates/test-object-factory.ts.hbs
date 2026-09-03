@@ -8,8 +8,9 @@
 {{#if importTypes}}{{#importTypes}}{{#unless isSelfReferencing}}{{#if isEnum}}
 import { {{name}} } from './{{kebabCasedTypeName}}.enum';{{/if}}{{/unless}}{{/importTypes}}{{/if}}
 import { {{name}}Properties } from './{{kebabCasedName}}.properties';
+import { I{{name}} } from './{{kebabCasedName}}.model';
 
-export function createTest{{name}}() {
+export function createTest{{name}}() : I{{name}} {
     return { {{#valueProperties}}
       [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/valueProperties}}{{#referenceProperties}}
       [{{../name}}Properties.{{snakeCaseName}}]: {{{initialTestValue}}},{{/referenceProperties}}

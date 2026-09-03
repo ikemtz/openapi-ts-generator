@@ -123,8 +123,9 @@ exports[`File Based - Full Integration Tests String Array Test should generate f
  */
 
 import { StringArrayTestObjectProperties } from './string-array-test-object.properties';
+import { IStringArrayTestObject } from './string-array-test-object.model';
 
-export function createTestStringArrayTestObject() {
+export function createTestStringArrayTestObject() : IStringArrayTestObject {
     return { 
       [StringArrayTestObjectProperties.TYPE_CODES]: [],
     };

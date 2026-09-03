@@ -123,8 +123,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { ApiResponseProperties } from './api-response.properties';
+import { IApiResponse } from './api-response.model';
 
-export function createTestApiResponse() {
+export function createTestApiResponse() : IApiResponse {
     return { 
       [ApiResponseProperties.CODE]: 0,
       [ApiResponseProperties.TYPE]: 'TYPE',
@@ -216,8 +217,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { CategoryProperties } from './category.properties';
+import { ICategory } from './category.model';
 
-export function createTestCategory() {
+export function createTestCategory() : ICategory {
     return { 
       [CategoryProperties.ID]: 0,
       [CategoryProperties.NAME]: 'NAME',
@@ -414,8 +416,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { OrderProperties } from './order.properties';
+import { IOrder } from './order.model';
 
-export function createTestOrder() {
+export function createTestOrder() : IOrder {
     return { 
       [OrderProperties.ID]: 0,
       [OrderProperties.PET_ID]: 0,
@@ -541,8 +544,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { PetProperties } from './pet.properties';
+import { IPet } from './pet.model';
 
-export function createTestPet() {
+export function createTestPet() : IPet {
     return { 
       [PetProperties.ID]: 0,
       [PetProperties.NAME]: 'NAME',
@@ -637,8 +641,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { TagProperties } from './tag.properties';
+import { ITag } from './tag.model';
 
-export function createTestTag() {
+export function createTestTag() : ITag {
     return { 
       [TagProperties.ID]: 0,
       [TagProperties.NAME]: 'NAME',
@@ -759,8 +764,9 @@ exports[`Url Based - Full Integration Tests Sample PetStore Service should gener
  */
 
 import { UserProperties } from './user.properties';
+import { IUser } from './user.model';
 
-export function createTestUser() {
+export function createTestUser() : IUser {
     return { 
       [UserProperties.ID]: 0,
       [UserProperties.USERNAME]: 'USERNAME',

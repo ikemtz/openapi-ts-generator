@@ -178,8 +178,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
 import { CourseStatus } from './course-status.enum';
 import { CourseTypes } from './course-types.enum';
 import { CourseProperties } from './course.properties';
+import { ICourse } from './course.model';
 
-export function createTestCourse() {
+export function createTestCourse() : ICourse {
     return { 
       [CourseProperties.ID]: 'ID',
       [CourseProperties.DEPARTMENT]: 'DEPARTMENT',
@@ -480,8 +481,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
  */
 
 import { SchoolProperties } from './school.properties';
+import { ISchool } from './school.model';
 
-export function createTestSchool() {
+export function createTestSchool() : ISchool {
     return { 
       [SchoolProperties.ID]: 'ID',
       [SchoolProperties.NAME]: 'NAME',
@@ -611,8 +613,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
  */
 
 import { SchoolCourseProperties } from './school-course.properties';
+import { ISchoolCourse } from './school-course.model';
 
-export function createTestSchoolCourse() {
+export function createTestSchoolCourse() : ISchoolCourse {
     return { 
       [SchoolCourseProperties.ID]: 'ID',
       [SchoolCourseProperties.SCHOOL_ID]: 'SCHOOL_ID',
@@ -769,8 +772,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
 
 import { Gender } from './gender.enum';
 import { StudentProperties } from './student.properties';
+import { IStudent } from './student.model';
 
-export function createTestStudent() {
+export function createTestStudent() : IStudent {
     return { 
       [StudentProperties.ID]: 'ID',
       [StudentProperties.TITLE]: 'TITLE',
@@ -935,8 +939,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
  */
 
 import { StudentCourseProperties } from './student-course.properties';
+import { IStudentCourse } from './student-course.model';
 
-export function createTestStudentCourse() {
+export function createTestStudentCourse() : IStudentCourse {
     return { 
       [StudentCourseProperties.ID]: 'ID',
       [StudentCourseProperties.STUDENT_ID]: 'STUDENT_ID',
@@ -1072,8 +1077,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample OData Microservice sho
  */
 
 import { StudentSchoolProperties } from './student-school.properties';
+import { IStudentSchool } from './student-school.model';
 
-export function createTestStudentSchool() {
+export function createTestStudentSchool() : IStudentSchool {
     return { 
       [StudentSchoolProperties.ID]: 'ID',
       [StudentSchoolProperties.SCHOOL_ID]: 'SCHOOL_ID',

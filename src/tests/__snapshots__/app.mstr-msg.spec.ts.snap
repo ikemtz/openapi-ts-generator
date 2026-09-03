@@ -148,8 +148,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  */
 
 import { MessageDtoProperties } from './message-dto.properties';
+import { IMessageDto } from './message-dto.model';
 
-export function createTestMessageDto() {
+export function createTestMessageDto() : IMessageDto {
     return { 
       [MessageDtoProperties.ID]: 'ID',
       [MessageDtoProperties.BODY]: 'BODY',
@@ -261,8 +262,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Messaging Service should 
  */
 
 import { RecipientProperties } from './recipient.properties';
+import { IRecipient } from './recipient.model';
 
-export function createTestRecipient() {
+export function createTestRecipient() : IRecipient {
     return { 
       [RecipientProperties.ID]: 'ID',
       [RecipientProperties.ULTI_ID]: 'ULTI_ID',

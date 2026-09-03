@@ -180,8 +180,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { CustomerProperties } from './customer.properties';
+import { ICustomer } from './customer.model';
 
-export function createTestCustomer() {
+export function createTestCustomer() : ICustomer {
     return { 
       [CustomerProperties.ID]: 'ID',
       [CustomerProperties.NUM]: 'NUM_NUM_NUM_NUM',
@@ -318,8 +319,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { CustomerAddressProperties } from './customer-address.properties';
+import { ICustomerAddress } from './customer-address.model';
 
-export function createTestCustomerAddress() {
+export function createTestCustomerAddress() : ICustomerAddress {
     return { 
       [CustomerAddressProperties.ID]: 'ID',
       [CustomerAddressProperties.CUSTOMER_ID]: 'CUSTOMER_ID',
@@ -618,8 +620,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
 import { OrderStatusTypes } from './order-status-types.enum';
 import { ShippingTypes } from './shipping-types.enum';
 import { OrderProperties } from './order.properties';
+import { IOrder } from './order.model';
 
-export function createTestOrder() {
+export function createTestOrder() : IOrder {
     return { 
       [OrderProperties.ID]: 'ID',
       [OrderProperties.ORDER_ID]: 0,
@@ -765,8 +768,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { OrderAddressProperties } from './order-address.properties';
+import { IOrderAddress } from './order-address.model';
 
-export function createTestOrderAddress() {
+export function createTestOrderAddress() : IOrderAddress {
     return { 
       [OrderAddressProperties.ID]: 'ID',
       [OrderAddressProperties.LINE_1]: 'LINE_1',
@@ -902,8 +906,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { OrderLineItemProperties } from './order-line-item.properties';
+import { IOrderLineItem } from './order-line-item.model';
 
-export function createTestOrderLineItem() {
+export function createTestOrderLineItem() : IOrderLineItem {
     return { 
       [OrderLineItemProperties.ID]: 'ID',
       [OrderLineItemProperties.ORDER_ID]: 'ORDER_ID',
@@ -1107,8 +1112,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { ProductProperties } from './product.properties';
+import { IProduct } from './product.model';
 
-export function createTestProduct() {
+export function createTestProduct() : IProduct {
     return { 
       [ProductProperties.ID]: 'ID',
       [ProductProperties.NAME]: 'NAME',
@@ -1223,8 +1229,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { ProductCategoryProperties } from './product-category.properties';
+import { IProductCategory } from './product-category.model';
 
-export function createTestProductCategory() {
+export function createTestProductCategory() : IProductCategory {
     return { 
       [ProductCategoryProperties.ID]: 'ID',
       [ProductCategoryProperties.NAME]: 'NAME',
@@ -1329,8 +1336,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { ProductModelProperties } from './product-model.properties';
+import { IProductModel } from './product-model.model';
 
-export function createTestProductModel() {
+export function createTestProductModel() : IProductModel {
     return { 
       [ProductModelProperties.ID]: 'ID',
       [ProductModelProperties.NAME]: 'NAME',
@@ -1436,8 +1444,9 @@ exports[`Url Based - Full Integration Tests Adventure Works Account Service shou
  */
 
 import { SalesAgentProperties } from './sales-agent.properties';
+import { ISalesAgent } from './sales-agent.model';
 
-export function createTestSalesAgent() {
+export function createTestSalesAgent() : ISalesAgent {
     return { 
       [SalesAgentProperties.ID]: 0,
       [SalesAgentProperties.NAME]: 'NAME',

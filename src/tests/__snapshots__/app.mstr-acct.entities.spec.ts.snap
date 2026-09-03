@@ -165,8 +165,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { AccountProperties } from './account.properties';
+import { IAccount } from './account.model';
 
-export function createTestAccount() {
+export function createTestAccount() : IAccount {
     return { 
       [AccountProperties.ID]: 'ID',
       [AccountProperties.REF_ID]: 'REF_ID',
@@ -295,8 +296,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { AccountInsertRequestProperties } from './account-insert-request.properties';
+import { IAccountInsertRequest } from './account-insert-request.model';
 
-export function createTestAccountInsertRequest() {
+export function createTestAccountInsertRequest() : IAccountInsertRequest {
     return { 
       [AccountInsertRequestProperties.ID]: 'ID',
       [AccountInsertRequestProperties.REF_ID]: 'REF_ID',
@@ -418,8 +420,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { AccountUpdateRequestProperties } from './account-update-request.properties';
+import { IAccountUpdateRequest } from './account-update-request.model';
 
-export function createTestAccountUpdateRequest() {
+export function createTestAccountUpdateRequest() : IAccountUpdateRequest {
     return { 
       [AccountUpdateRequestProperties.ID]: 'ID',
       [AccountUpdateRequestProperties.REF_ID]: 'REF_ID',
@@ -583,8 +586,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { ContactProperties } from './contact.properties';
+import { IContact } from './contact.model';
 
-export function createTestContact() {
+export function createTestContact() : IContact {
     return { 
       [ContactProperties.ID]: 'ID',
       [ContactProperties.IS_ENABLED]: false,
@@ -737,8 +741,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { ContactInsertRequestProperties } from './contact-insert-request.properties';
+import { IContactInsertRequest } from './contact-insert-request.model';
 
-export function createTestContactInsertRequest() {
+export function createTestContactInsertRequest() : IContactInsertRequest {
     return { 
       [ContactInsertRequestProperties.ID]: 'ID',
       [ContactInsertRequestProperties.CONTACT_TYPE_ID]: 'CONTACT_TYPE_ID',
@@ -889,8 +894,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Account Service - Entitie
  */
 
 import { ContactUpdateRequestProperties } from './contact-update-request.properties';
+import { IContactUpdateRequest } from './contact-update-request.model';
 
-export function createTestContactUpdateRequest() {
+export function createTestContactUpdateRequest() : IContactUpdateRequest {
     return { 
       [ContactUpdateRequestProperties.ID]: 'ID',
       [ContactUpdateRequestProperties.CONTACT_TYPE_ID]: 'CONTACT_TYPE_ID',

@@ -204,8 +204,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  */
 
 import { EmployeeProperties } from './employee.properties';
+import { IEmployee } from './employee.model';
 
-export function createTestEmployee() {
+export function createTestEmployee() : IEmployee {
     return { 
       [EmployeeProperties.ID]: 'ID',
       [EmployeeProperties.LAST_NAME]: 'LAST_NAME',
@@ -329,8 +330,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  */
 
 import { EmployeeCertificationProperties } from './employee-certification.properties';
+import { IEmployeeCertification } from './employee-certification.model';
 
-export function createTestEmployeeCertification() {
+export function createTestEmployeeCertification() : IEmployeeCertification {
     return { 
       [EmployeeCertificationProperties.ID]: 'ID',
       [EmployeeCertificationProperties.EMPLOYEE_ID]: 'EMPLOYEE_ID',
@@ -440,8 +442,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  */
 
 import { EmployeeCompetencyProperties } from './employee-competency.properties';
+import { IEmployeeCompetency } from './employee-competency.model';
 
-export function createTestEmployeeCompetency() {
+export function createTestEmployeeCompetency() : IEmployeeCompetency {
     return { 
       [EmployeeCompetencyProperties.ID]: 'ID',
       [EmployeeCompetencyProperties.EMPLOYEE_ID]: 'EMPLOYEE_ID',
@@ -552,8 +555,9 @@ exports[`File Based - Full Integration Tests NRSRx Employee OData Microservice s
  */
 
 import { EmployeeHealthItemProperties } from './employee-health-item.properties';
+import { IEmployeeHealthItem } from './employee-health-item.model';
 
-export function createTestEmployeeHealthItem() {
+export function createTestEmployeeHealthItem() : IEmployeeHealthItem {
     return { 
       [EmployeeHealthItemProperties.ID]: 'ID',
       [EmployeeHealthItemProperties.EMPLOYEE_ID]: 'EMPLOYEE_ID',
