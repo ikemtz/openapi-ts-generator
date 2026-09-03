@@ -191,8 +191,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { BuildingProperties } from './building.properties';
+import { IBuilding } from './building.model';
 
-export function createTestBuilding() {
+export function createTestBuilding() : IBuilding {
     return { 
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
@@ -428,8 +429,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { SiteProperties } from './site.properties';
+import { ISite } from './site.model';
 
-export function createTestSite() {
+export function createTestSite() : ISite {
     return { 
       [SiteProperties.ID]: 'ID',
       [SiteProperties.TENANT_ID]: 'TENANT_ID',
@@ -594,8 +596,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { SiteCollectionProperties } from './site-collection.properties';
+import { ISiteCollection } from './site-collection.model';
 
-export function createTestSiteCollection() {
+export function createTestSiteCollection() : ISiteCollection {
     return { 
       [SiteCollectionProperties.ID]: 'ID',
       [SiteCollectionProperties.TENANT_ID]: 'TENANT_ID',
@@ -712,8 +715,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { TagProperties } from './tag.properties';
+import { ITag } from './tag.model';
 
-export function createTestTag() {
+export function createTestTag() : ITag {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
@@ -855,8 +859,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { UnitProperties } from './unit.properties';
+import { IUnit } from './unit.model';
 
-export function createTestUnit() {
+export function createTestUnit() : IUnit {
     return { 
       [UnitProperties.ID]: 'ID',
       [UnitProperties.NUMBER]: 'NUMBER',
@@ -981,8 +986,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { UnitTagProperties } from './unit-tag.properties';
+import { IUnitTag } from './unit-tag.model';
 
-export function createTestUnitTag() {
+export function createTestUnitTag() : IUnitTag {
     return { 
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
@@ -1081,8 +1087,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should gener
  */
 
 import { UnitTypeProperties } from './unit-type.properties';
+import { IUnitType } from './unit-type.model';
 
-export function createTestUnitType() {
+export function createTestUnitType() : IUnitType {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
@@ -1146,8 +1153,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { BuildingProperties } from './building.properties';
+import { IBuilding } from './building.model';
 
-export function createTestBuilding() {
+export function createTestBuilding() : IBuilding {
     return { 
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
@@ -1231,8 +1239,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { SiteProperties } from './site.properties';
+import { ISite } from './site.model';
 
-export function createTestSite() {
+export function createTestSite() : ISite {
     return { 
       [SiteProperties.ID]: 'ID',
       [SiteProperties.TENANT_ID]: 'TENANT_ID',
@@ -1298,8 +1307,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { SiteCollectionProperties } from './site-collection.properties';
+import { ISiteCollection } from './site-collection.model';
 
-export function createTestSiteCollection() {
+export function createTestSiteCollection() : ISiteCollection {
     return { 
       [SiteCollectionProperties.ID]: 'ID',
       [SiteCollectionProperties.TENANT_ID]: 'TENANT_ID',
@@ -1352,8 +1362,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { TagProperties } from './tag.properties';
+import { ITag } from './tag.model';
 
-export function createTestTag() {
+export function createTestTag() : ITag {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
@@ -1404,8 +1415,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { UnitProperties } from './unit.properties';
+import { IUnit } from './unit.model';
 
-export function createTestUnit() {
+export function createTestUnit() : IUnit {
     return { 
       [UnitProperties.ID]: 'ID',
       [UnitProperties.NUMBER]: 'NUMBER',
@@ -1456,8 +1468,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { UnitTagProperties } from './unit-tag.properties';
+import { IUnitTag } from './unit-tag.model';
 
-export function createTestUnitTag() {
+export function createTestUnitTag() : IUnitTag {
     return { 
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
@@ -1499,8 +1512,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should not g
  */
 
 import { UnitTypeProperties } from './unit-type.properties';
+import { IUnitType } from './unit-type.model';
 
-export function createTestUnitType() {
+export function createTestUnitType() : IUnitType {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
@@ -1620,8 +1634,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { BuildingProperties } from './building.properties';
+import { IBuilding } from './building.model';
 
-export function createTestBuilding() {
+export function createTestBuilding() : IBuilding {
     return { 
       [BuildingProperties.ID]: 'ID',
       [BuildingProperties.SITE_ID]: 'SITE_ID',
@@ -1768,8 +1783,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { SiteProperties } from './site.properties';
+import { ISite } from './site.model';
 
-export function createTestSite() {
+export function createTestSite() : ISite {
     return { 
       [SiteProperties.ID]: 'ID',
       [SiteProperties.TENANT_ID]: 'TENANT_ID',
@@ -1864,8 +1880,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { SiteCollectionProperties } from './site-collection.properties';
+import { ISiteCollection } from './site-collection.model';
 
-export function createTestSiteCollection() {
+export function createTestSiteCollection() : ISiteCollection {
     return { 
       [SiteCollectionProperties.ID]: 'ID',
       [SiteCollectionProperties.TENANT_ID]: 'TENANT_ID',
@@ -1936,8 +1953,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { TagProperties } from './tag.properties';
+import { ITag } from './tag.model';
 
-export function createTestTag() {
+export function createTestTag() : ITag {
     return { 
       [TagProperties.ID]: 'ID',
       [TagProperties.NAME]: 'NAME',
@@ -2012,8 +2030,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { UnitProperties } from './unit.properties';
+import { IUnit } from './unit.model';
 
-export function createTestUnit() {
+export function createTestUnit() : IUnit {
     return { 
       [UnitProperties.ID]: 'ID',
       [UnitProperties.NUMBER]: 'NUMBER',
@@ -2084,8 +2103,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { UnitTagProperties } from './unit-tag.properties';
+import { IUnitTag } from './unit-tag.model';
 
-export function createTestUnitTag() {
+export function createTestUnitTag() : IUnitTag {
     return { 
       [UnitTagProperties.ID]: 'ID',
       [UnitTagProperties.UNIT_ID]: 'UNIT_ID',
@@ -2142,8 +2162,9 @@ exports[`Url Based - Full Integration Tests MasterCorp Unit Service should skip 
  */
 
 import { UnitTypeProperties } from './unit-type.properties';
+import { IUnitType } from './unit-type.model';
 
-export function createTestUnitType() {
+export function createTestUnitType() : IUnitType {
     return { 
       [UnitTypeProperties.ID]: 'ID',
       [UnitTypeProperties.CODE]: 'CODE',
