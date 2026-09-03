@@ -128,8 +128,9 @@ exports[`File Based - Full Integration Tests Enums Test Service should generate 
 import { ContactTypes } from './contact-types.enum';
 import { ContactTypes2 } from './contact-types-2.enum';
 import { ContactProperties } from './contact.properties';
+import { IContact } from './contact.model';
 
-export function createTestContact() {
+export function createTestContact() : IContact {
     return { 
       [ContactProperties.ID]: 'ID',
       [ContactProperties.ACCOUNT_ID]: 'ACCOUNT_ID',

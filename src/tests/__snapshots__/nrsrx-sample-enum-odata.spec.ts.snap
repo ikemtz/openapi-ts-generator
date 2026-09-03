@@ -137,8 +137,9 @@ exports[`File Based - Full Integration Tests NRSRx Sample Enum OData Microservic
 import { NumberTypes } from './number-types.enum';
 import { CharTypes } from './char-types.enum';
 import { ItemProperties } from './item.properties';
+import { IItem } from './item.model';
 
-export function createTestItem() {
+export function createTestItem() : IItem {
     return { 
       [ItemProperties.ID]: 'ID',
       [ItemProperties.NAME]: 'NAME',
